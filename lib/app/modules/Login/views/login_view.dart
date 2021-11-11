@@ -78,7 +78,7 @@ class LoginView extends GetView<LoginController> {
                         children: [
                           Expanded(
                             child: CustomTextFormFieldWidget(
-                              controller.usernameController,
+                              controller.passwordController,
                               "Password",
                               (s) {},
                               true,
