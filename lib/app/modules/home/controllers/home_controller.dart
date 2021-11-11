@@ -1,12 +1,22 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:gcms/app/modules/ExploreScreen/views/explore_screen_view.dart';
+import 'package:gcms/app/modules/Notifications/views/notifications_view.dart';
 import 'package:get/get.dart';
 import 'package:gcms/app/modules/home/providers/command_provider.dart';
-import 'package:gcms/app/modules/home/providers/task_provider.dart';
 import 'package:get_storage/get_storage.dart';
 
 class HomeController extends GetxController {
+  var selectedIndex = 0.obs;
+
+  static List<Widget> pages = <Widget>[
+    ExploreScreenView(),
+    Container(color: Colors.white),
+    NotificationsView(),
+  ];
+
+  //------OLD CODE THAT WE WILL ALTER TO SUUIT GCMS FOR CALLS TO API----//
   var lstCommand = List<dynamic>.empty(growable: true).obs;
   var page = 1;
   var isDataProcessing = false.obs;
