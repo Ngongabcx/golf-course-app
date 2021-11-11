@@ -94,9 +94,9 @@ class SetupScreenView extends GetView<SetupScreenController> {
                 children: [
                   SelectHolesCard(
                     onPress: () {
-                       controller.selectedHole = 9 as RxInt;
+                       controller.selectedHole.value = 9;
                     },
-                    color: controller.selectedHole == 9 as RxInt
+                    color: controller.selectedHole.value == 9
                         ? kActiveCardColor
                         : kInactiveCardColor,
                     cardChild: Padding(
@@ -110,9 +110,9 @@ class SetupScreenView extends GetView<SetupScreenController> {
                   ),
                   SelectHolesCard(
                     onPress: () {
-                       controller.selectedHole = 18 as RxInt;
+                       controller.selectedHole.value = 18;
                     },
-                    color: controller.selectedHole == 18 as RxInt
+                    color: controller.selectedHole.value == 18
                         ? kActiveCardColor
                         : kInactiveCardColor,
                     cardChild: Padding(
@@ -142,7 +142,7 @@ class SetupScreenView extends GetView<SetupScreenController> {
                       );
                     }).toList(),
                     onChanged: (int newSelectedHole) {
-                      controller.selectedHole = newSelectedHole as RxInt;
+                      controller.selectedHole.value = newSelectedHole;
                     },
                   ),
                   DropdownButton<int>(

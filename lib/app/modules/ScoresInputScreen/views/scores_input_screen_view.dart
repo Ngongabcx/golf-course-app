@@ -164,8 +164,8 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                         controller.par,
                                         controller.stroke,
                                         controller.score);
-                                controller.result =
-                                    resultCalc.calculateResult() as RxString;
+                                controller.result.value =
+                                    resultCalc.calculateResult();
                               },
                             ),
                           ],
@@ -196,8 +196,8 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                         controller.par,
                                         controller.stroke,
                                         controller.score);
-                                controller.result =
-                                    resultCalc.calculateResult() as RxString;
+                                controller.result.value =
+                                    resultCalc.calculateResult();
                               },
                             ),
                           ],
