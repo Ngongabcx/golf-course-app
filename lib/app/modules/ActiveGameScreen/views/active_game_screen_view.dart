@@ -17,12 +17,9 @@ class ActiveGameScreenView extends GetView<ActiveGameScreenController> {
         backgroundColor: Colors.white,
         iconTheme: const IconThemeData(color: Colors.black),
         automaticallyImplyLeading: true,
-        title: Align(
-          alignment: const AlignmentDirectional(-1, 0),
-          child: Text(
-            ' Active Games',
-            style: Theme.of(context).textTheme.headline3,
-          ),
+        title: Text(
+          ' Active Games',
+          style: Theme.of(context).textTheme.headline3,
         ),
         actions: [],
         centerTitle: true,

@@ -16,7 +16,7 @@ class Competition {
       'Lusaka Open',
       'Strokeplay',
       '25-11-2021',
-      'images/lusaka_golf_club_picture.jpg',
+      'assets/images/lusaka_golf_club_picture.jpg',
     ),
     Competition(
       2,
@@ -24,7 +24,7 @@ class Competition {
       'Ndola Open',
       'Staplefold',
       '25-11-2021',
-      'images/cover_picture_club_livingstone-golf-club.jpg',
+      'assets/images/cover_picture_club_livingstone-golf-club.jpg',
     ),
     Competition(
       3,
@@ -32,7 +32,7 @@ class Competition {
       'Kabwe Open',
       'Strokeplay',
       '25-11-2021',
-      'images/lusaka_golf_club_picture.jpg',
+      'assets/images/lusaka_golf_club_picture.jpg',
     ),
     Competition(
       4,
@@ -40,7 +40,7 @@ class Competition {
       'PGA Tour',
       'Staplefold',
       '25-11-2021',
-      'images/ottis-bunning.jpg',
+      'assets/images/ottis-bunning.jpg',
     ),
     Competition(
       5,
@@ -48,7 +48,7 @@ class Competition {
       'Lusaka Tour',
       'Strokeplay',
       '25-11-2021',
-      'images/lusaka_golf_club_picture.jpg',
+      'assets/images/lusaka_golf_club_picture.jpg',
     ),
     Competition(
       6,
@@ -56,7 +56,7 @@ class Competition {
       'Lusaka Open',
       'Strokeplay',
       '25-11-2021',
-      'images/ottis-bunning.jpg',
+      'assets/images/ottis-bunning.jpg',
     ),
     Competition(
       7,
@@ -64,7 +64,7 @@ class Competition {
       'Chisamba Open',
       'Staplefold',
       '25-11-2021',
-      'images/lusaka_golf_club_picture.jpg',
+      'assets/images/lusaka_golf_club_picture.jpg',
     ),
     Competition(
       8,
@@ -72,7 +72,7 @@ class Competition {
       'Lusaka Open',
       'Staplefold',
       '25-11-2021',
-      'images/lusaka_golf_club_picture.jpg',
+      'assets/images/lusaka_golf_club_picture.jpg',
     ),
     Competition(
       9,
@@ -80,7 +80,7 @@ class Competition {
       'Lusaka Open',
       'Staplefold',
       '25-11-2021',
-      'images/lusaka_golf_club_picture.jpg',
+      'assets/images/lusaka_golf_club_picture.jpg',
     ),
     Competition(
       10,
@@ -88,7 +88,7 @@ class Competition {
       'Livingstone Open',
       'Staplefold',
       '25-11-2021',
-      'images/cover_picture_club_livingstone-golf-club.jpg',
+      'assets/images/cover_picture_club_livingstone-golf-club.jpg',
     ),
     Competition(
       11,
@@ -96,7 +96,7 @@ class Competition {
       'Kitwe Open',
       'Strokeplay',
       '25-11-2021',
-      'images/ottis-bunning.jpg',
+      'assets/images/ottis-bunning.jpg',
     ),
     Competition(
       12,
@@ -104,7 +104,7 @@ class Competition {
       'Lusaka Open',
       'Staplefold',
       '25-11-2021',
-      'images/cover_picture_club_livingstone-golf-club.jpg',
+      'assets/images/cover_picture_club_livingstone-golf-club.jpg',
     ),
   ];
 }

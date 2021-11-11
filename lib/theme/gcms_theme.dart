@@ -19,7 +19,7 @@ class GcmsTheme {
       color: Colors.black,
     ),
     headline3: GoogleFonts.lexendDeca(
-      fontSize: 16.0,
+      fontSize: 11.0,
       fontWeight: FontWeight.w600,
       color: Colors.black,
     ),
