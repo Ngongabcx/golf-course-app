@@ -8,7 +8,7 @@ class HomeView extends GetView<HomeController> {
   }
   @override
   Widget build(BuildContext context) {
-    //final homeController = Get.put(HomeController());
+    final homeController = Get.put(HomeController());
     return Scaffold(
       appBar: AppBar(
         title: Text('GCMS App'),
@@ -32,7 +32,7 @@ class HomeView extends GetView<HomeController> {
         ],
         //centerTitle: true,
       ),
-      body: HomeController.pages[controller.selectedIndex.toInt()],
+      body: HomeController.pages[homeController.selectedIndex.toInt()],
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Theme.of(context).textSelectionTheme.selectionColor,
         currentIndex: controller.selectedIndex.toInt(),
