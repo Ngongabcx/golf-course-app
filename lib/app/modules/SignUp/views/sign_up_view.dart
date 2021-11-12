@@ -175,7 +175,7 @@ class SignUpView extends GetView<SignUpController> {
                                     child: Text(
                                       "Already have an Account?",
                                       style: TextStyle(
-                                        color: Theme.of(context).primaryColor,
+                                        color: kPrimaryColor,
                                         // fontWeight: FontWeight.bold,
                                         fontSize: 16,
                                       ),

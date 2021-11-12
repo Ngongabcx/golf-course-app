@@ -1,30 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:gcms/constants/constant.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class GcmsTheme {
   static TextTheme lightTextTheme = TextTheme(
     bodyText1: GoogleFonts.lexendDeca(
-      fontSize: 14.0,
-      fontWeight: FontWeight.w700,
+      fontSize: 15.0,
+      fontWeight: FontWeight.normal,
       color: Colors.black,
     ),
+    bodyText2: GoogleFonts.lexendDeca(
+      fontSize: 14.0,
+      fontWeight: FontWeight.normal,
+      color: Colors.grey,
+    ),
     headline1: GoogleFonts.lexendDeca(
-      fontSize: 32.0,
-      fontWeight: FontWeight.bold,
+      fontSize: 63.0,
+      fontWeight: FontWeight.w100,
       color: Colors.black,
     ),
     headline2: GoogleFonts.lexendDeca(
-      fontSize: 21.0,
-      fontWeight: FontWeight.w700,
+      fontSize: 30.0,
+      fontWeight: FontWeight.w400,
       color: Colors.black,
     ),
     headline3: GoogleFonts.lexendDeca(
-      fontSize: 11.0,
-      fontWeight: FontWeight.w600,
+      fontSize: 15.0,
+      fontWeight: FontWeight.w300,
       color: Colors.black,
     ),
     headline6: GoogleFonts.lexendDeca(
-      fontSize: 20.0,
+      fontSize: 12.0,
       fontWeight: FontWeight.w600,
       color: Colors.black,
     ),
@@ -32,27 +38,32 @@ class GcmsTheme {
 
   static TextTheme darkTextTheme = TextTheme(
     bodyText1: GoogleFonts.lexendDeca(
-      fontSize: 14.0,
+      fontSize: 15.0,
       fontWeight: FontWeight.w700,
       color: Colors.white,
     ),
+    bodyText2: GoogleFonts.lexendDeca(
+      fontSize: 14.0,
+      fontWeight: FontWeight.normal,
+      color: Colors.white,
+    ),
     headline1: GoogleFonts.lexendDeca(
-      fontSize: 32.0,
+      fontSize: 63.0,
       fontWeight: FontWeight.bold,
       color: Colors.white,
     ),
     headline2: GoogleFonts.lexendDeca(
-      fontSize: 21.0,
+      fontSize: 30.0,
       fontWeight: FontWeight.w700,
       color: Colors.white,
     ),
     headline3: GoogleFonts.lexendDeca(
-      fontSize: 16.0,
+      fontSize: 15.0,
       fontWeight: FontWeight.w600,
       color: Colors.white,
     ),
     headline6: GoogleFonts.lexendDeca(
-      fontSize: 20.0,
+      fontSize: 12.0,
       fontWeight: FontWeight.w600,
       color: Colors.white,
     ),
@@ -60,6 +71,8 @@ class GcmsTheme {
 
   static ThemeData light() {
     return ThemeData(
+      primarySwatch: kPrimaryColorMaterialized,
+      fontFamily: GoogleFonts.lexendDeca().fontFamily,
       brightness: Brightness.light,
       checkboxTheme: CheckboxThemeData(
         fillColor: MaterialStateColor.resolveWith((states) {
@@ -67,15 +80,15 @@ class GcmsTheme {
         }),
       ),
       appBarTheme: const AppBarTheme(
-        foregroundColor: Colors.black,
-        backgroundColor: Colors.white,
+        foregroundColor: Colors.white,
+        backgroundColor: kPrimaryColor,
       ),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
         foregroundColor: Colors.white,
-        backgroundColor: Colors.black,
+        backgroundColor: kPrimaryColor,
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-        selectedItemColor: Colors.green,
+        selectedItemColor: kPrimaryColor,
       ),
       textTheme: lightTextTheme,
     );
@@ -90,10 +103,10 @@ class GcmsTheme {
       ),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
         foregroundColor: Colors.white,
-        backgroundColor: Colors.green,
+        backgroundColor: kPrimaryColor,
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-        selectedItemColor: Colors.green,
+        selectedItemColor: kPrimaryColor,
       ),
       textTheme: darkTextTheme,
     );

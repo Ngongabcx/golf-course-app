@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gcms/constants/constant.dart';
 
 import 'package:get/get.dart';
 
@@ -45,7 +46,7 @@ class CustomTextFormFieldWidget extends GetView {
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: const BorderSide(
-            color: Color(0xFF22c17b),
+            color: kPrimaryColor,
             width: 2,
           ),
           borderRadius: BorderRadius.circular(8),
@@ -56,9 +57,9 @@ class CustomTextFormFieldWidget extends GetView {
       ),
       style: const TextStyle(
         fontFamily: 'Lexend Deca',
-        color: Color(0xFF2B343A),
+        color: Color(0xFF95A1AC),
         fontSize: 16,
-        fontWeight: FontWeight.bold,
+        fontWeight: FontWeight.normal,
       ),
     );
   }

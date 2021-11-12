@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/commonWidgets/customButton.dart';
 import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
 import 'package:gcms/app/modules/commonWidgets/textFormField.dart';
+import 'package:gcms/constants/constant.dart';
 import 'package:gcms/theme/gcms_theme.dart';
 
 import 'package:get/get.dart';
@@ -43,7 +44,7 @@ class LoginView extends GetView<LoginController> {
                             child: Text(
                               'Login',
                               textAlign: TextAlign.center,
-                              style: Theme.of(context).textTheme.headline1,
+                             style: Theme.of(context).textTheme.headline1,
                             ),
                           ),
                         ],
@@ -150,12 +151,11 @@ class LoginView extends GetView<LoginController> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Padding(
-                                    padding:
-                                        const EdgeInsets.only(bottom: 4.0),
+                                    padding: const EdgeInsets.only(bottom: 4.0),
                                     child: Text(
                                       "Don't have an Account?",
                                       style: TextStyle(
-                                        color: Theme.of(context).primaryColor,
+                                        color: kPrimaryColor,
                                         // fontWeight: FontWeight.bold,
                                         fontSize: 16,
                                       ),

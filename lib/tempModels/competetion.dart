@@ -29,7 +29,7 @@ class Competition {
     Competition(
       3,
       'Lusaka Golf Club',
-      'Kabwe Open',
+    'Kabwe Open',
       'Strokeplay',
       '25-11-2021',
       'assets/images/lusaka_golf_club_picture.jpg',

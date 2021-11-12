@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 
 import '../controllers/setup_screen_controller.dart';
+
 class SetupScreenView extends GetView<SetupScreenController> {
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class SetupScreenView extends GetView<SetupScreenController> {
           alignment: const AlignmentDirectional(-1, 0),
           child: Text(
             ' Match Setup',
-            style: Theme.of(context).textTheme.headline3,
+            style: Theme.of(context).textTheme.headline2,
           ),
         ),
         actions: [],
@@ -92,38 +93,44 @@ class SetupScreenView extends GetView<SetupScreenController> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SelectHolesCard(
-                    onPress: () {
-                       controller.selectedHole.value = 9;
-                    },
-                    color: controller.selectedHole.value == 9
-                        ? kActiveCardColor
-                        : kInactiveCardColor,
-                    cardChild: Padding(
-                      padding: EdgeInsets.only(top: 10.0),
-                      child: Text(
-                        '9 Holes',
-                        style: Theme.of(context).textTheme.bodyText1,
-                        textAlign: TextAlign.center,
+                  Obx(() {
+                    return SelectHolesCard(
+                      onPress: () {
+                        controller.selectedHole.value = 9;
+                        print(controller.selectedHole.value);
+                      },
+                      color: controller.selectedHole.value == 9
+                          ? kActiveCardColor
+                          : kInactiveCardColor,
+                      cardChild: Padding(
+                        padding: EdgeInsets.only(top: 10.0),
+                        child: Text(
+                          '9 Holes',
+                          style: Theme.of(context).textTheme.bodyText1,
+                          textAlign: TextAlign.center,
+                        ),
                       ),
-                    ),
-                  ),
-                  SelectHolesCard(
-                    onPress: () {
-                       controller.selectedHole.value = 18;
-                    },
-                    color: controller.selectedHole.value == 18
-                        ? kActiveCardColor
-                        : kInactiveCardColor,
-                    cardChild: Padding(
-                      padding: EdgeInsets.only(top: 10.0),
-                      child: Text(
-                        '18 Holes',
-                        style: Theme.of(context).textTheme.bodyText1,
-                        textAlign: TextAlign.center,
+                    );
+                  }),
+                  Obx(() {
+                    return SelectHolesCard(
+                      onPress: () {
+                        controller.selectedHole.value = 18;
+                        print(controller.selectedHole.value);
+                      },
+                      color: controller.selectedHole.value == 18
+                          ? kActiveCardColor
+                          : kInactiveCardColor,
+                      cardChild: Padding(
+                        padding: EdgeInsets.only(top: 10.0),
+                        child: Text(
+                          '18 Holes',
+                          style: Theme.of(context).textTheme.bodyText1,
+                          textAlign: TextAlign.center,
+                        ),
                       ),
-                    ),
-                  ),
+                    );
+                  }),
                 ],
               ),
               const SizedBox(height: 20),
@@ -178,7 +185,8 @@ class SetupScreenView extends GetView<SetupScreenController> {
                             minTime: DateTime(2000, 1, 1),
                             maxTime: DateTime(2022, 12, 31), onConfirm: (date) {
                           print('confirm $date');
-                          controller.date = '${date.year} - ${date.month} - ${date.day}';
+                          controller.date.value =
+                              '${date.year} - ${date.month} - ${date.day}';
                         }, currentTime: DateTime.now(), locale: LocaleType.en);
                       },
                       child: Container(
@@ -197,12 +205,12 @@ class SetupScreenView extends GetView<SetupScreenController> {
                                         size: 18.0,
                                         color: Color(0xFF9C9D9E),
                                       ),
-                                      Text(
-                                        " $controller.date",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyText2,
-                                      ),
+                                      Obx(() => Text(
+                                            " ${controller.date.value}",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText2,
+                                          )),
                                     ],
                                   ),
                                 )
@@ -230,12 +238,9 @@ class SetupScreenView extends GetView<SetupScreenController> {
                               containerHeight: 210.0,
                             ),
                             showTitleActions: true, onConfirm: (time) {
-                          print('confirm $time');
-                          controller.time =
+                          controller.time.value =
                               '${time.hour} : ${time.minute} : ${time.second}';
-
                         }, currentTime: DateTime.now(), locale: LocaleType.en);
-
                       },
                       child: Container(
                         alignment: Alignment.center,
@@ -253,10 +258,12 @@ class SetupScreenView extends GetView<SetupScreenController> {
                                         size: 18.0,
                                         color: Color(0xFF9C9D9E),
                                       ),
-                                      Text(" $controller.time",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyText2),
+                                      Obx(() {
+                                        return Text("${controller.time.value}",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText2);
+                                      }),
                                     ],
                                   ),
                                 )
@@ -280,7 +287,7 @@ class SetupScreenView extends GetView<SetupScreenController> {
                   alignment: FractionalOffset.bottomCenter,
                   child: SubmitButton(
                       text: ('View Match'),
-                      style: GcmsTheme.lightTextTheme.bodyText2,
+                      style: GcmsTheme.lightTextTheme.headline3,
                       onPressed: () {
                         Get.toNamed("/scores-input-screen");
                       }),

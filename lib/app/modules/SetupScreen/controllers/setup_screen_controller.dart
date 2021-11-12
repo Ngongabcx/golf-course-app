@@ -6,8 +6,8 @@ class SetupScreenController extends GetxController {
     'Bonanza Golf Course',
     'Chilanga Golf Club',
   ];
-  var currentSelectedCourse = '';
-  var currentSelectedHole = '';
+  var currentSelectedCourse = ''.obs;
+  var currentSelectedHole = ''.obs;
   var selectedHole = 0.obs;
   final hole9options = [1, 9, 10, 18];
   final hole18options = [1, 9, 10, 18];
@@ -17,8 +17,8 @@ class SetupScreenController extends GetxController {
   bool steplefold = false;
 
   final playersList = ['Tiger Woods', 'Love the third', 'Rory McRoy'];
-  String date = "Not set";
-  String time = "Not set";
+  var date = 'Not set'.obs;
+  var time = "Not set".obs;
 
   final count = 0.obs;
   @override

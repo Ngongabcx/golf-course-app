@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gcms/theme/gcms_theme.dart';
 
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -17,9 +18,7 @@ void main() async {
           ? HomeView()
           : LoginView(),
       getPages: AppPages.routes,
-      theme: ThemeData(
-        primarySwatch: Colors.teal,
-      ),
+      theme: GcmsTheme.light(),
     ),
   );
 }

@@ -1,13 +1,12 @@
-import 'dart:developer';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:gcms/app/modules/home/controllers/greeting.dart';
 import 'package:get/get.dart';
 import 'package:gcms/app/modules/home/controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
   void _onItemTapped(int index) {
-    log("HOME CONTROLLER INDEX VALUE ==> ${controller.selectedIndex}");
-    log("INDEX PASSED VALUE ==> ${index}");
     controller.selectedIndex.value = index;
   }
 
@@ -16,7 +15,14 @@ class HomeView extends GetView<HomeController> {
     final homeController = Get.put(HomeController());
     return Scaffold(
       appBar: AppBar(
-        title: Text('GCMS App'),
+        title: Text(
+          greeting(),
+          style: TextStyle(
+            fontSize: 23.0,
+            fontWeight: FontWeight.w100,
+            color: Colors.white,
+          ),
+        ),
         actions: [
           IconButton(
             icon: Icon(
