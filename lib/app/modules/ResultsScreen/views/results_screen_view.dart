@@ -17,7 +17,7 @@ class ResultsScreenView extends GetView<ResultsScreenController> {
         title: Align(
           alignment: const AlignmentDirectional(-1, 0),
           child: Text(
-            'Results page',
+            'Match Results',
             style: Theme.of(context).textTheme.headline3,
           ),
         ),
@@ -41,7 +41,7 @@ class ResultsScreenView extends GetView<ResultsScreenController> {
                       padding: EdgeInsets.only(left: 16.0, top: 16.0),
                       child: Text(
                         'Course',
-                        style: GcmsTheme.lightTextTheme.headline2,
+                        style: GcmsTheme.lightTextTheme.headline3,
                       ),
                     ),
                   ],
@@ -61,7 +61,7 @@ class ResultsScreenView extends GetView<ResultsScreenController> {
                                 // shape: ,
                                 image: const DecorationImage(
                                   image: AssetImage(
-                                      'images/lusaka_golf_club_picture.jpg'),
+                                      'assets/images/lusaka_golf_club_picture.jpg'),
                                   fit: BoxFit.cover,
                                 ),
                                 borderRadius: BorderRadius.circular(10),
@@ -80,7 +80,7 @@ class ResultsScreenView extends GetView<ResultsScreenController> {
                             padding: EdgeInsets.only(left: 16.0),
                             child: Text(
                               'Chinama Hills Golf Course',
-                              style: GcmsTheme.lightTextTheme.headline2,
+                              style: GcmsTheme.lightTextTheme.headline3,
                             ),
                           ),
                           Padding(
@@ -110,14 +110,14 @@ class ResultsScreenView extends GetView<ResultsScreenController> {
                       padding: EdgeInsets.only(left: 16.0),
                       child: Text(
                         'Players',
-                        style: GcmsTheme.lightTextTheme.headline2,
+                        style: GcmsTheme.lightTextTheme.headline3,
                       ),
                     ),
                     Padding(
                       padding: EdgeInsets.only(left: 16.0),
                       child: Text(
                         'Scores',
-                        style: Theme.of(context).textTheme.headline2,
+                        style: Theme.of(context).textTheme.headline3,
                       ),
                     ),
                   ],
@@ -130,7 +130,7 @@ class ResultsScreenView extends GetView<ResultsScreenController> {
                         flex: 5,
                         child: CircleAvatar(
                           radius: 30.0,
-                          backgroundImage: AssetImage('images/Tiger-Woods.jpg'),
+                          backgroundImage: AssetImage('assets/images/Tiger-Woods.jpg'),
                         ),
                       ),
                     ),

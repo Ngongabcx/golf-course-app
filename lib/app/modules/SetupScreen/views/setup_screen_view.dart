@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:gcms/app/components/submit_button.dart';
 import 'package:gcms/app/modules/ActiveGameScreen/views/select_holes_card.dart';
+import 'package:gcms/app/modules/commonWidgets/custom_multi_select_drop_down.dart';
+import 'package:gcms/app/modules/commonWidgets/custom_single_select_drop_down.dart';
 import 'package:gcms/constants/constant.dart';
 import 'package:gcms/theme/gcms_theme.dart';
 
@@ -18,12 +20,9 @@ class SetupScreenView extends GetView<SetupScreenController> {
         backgroundColor: Colors.white,
         iconTheme: const IconThemeData(color: Colors.black),
         automaticallyImplyLeading: true,
-        title: Align(
-          alignment: const AlignmentDirectional(-1, 0),
-          child: Text(
-            ' Match Setup',
-            style: Theme.of(context).textTheme.headline2,
-          ),
+        title: Text(
+          ' Match Setup',
+          style: Theme.of(context).textTheme.headline3,
         ),
         actions: [],
         centerTitle: true,
@@ -60,33 +59,26 @@ class SetupScreenView extends GetView<SetupScreenController> {
                 style: Theme.of(context).textTheme.headline3,
               ),
               const SizedBox(height: 20),
-              DropdownSearch<String>(
-                  mode: Mode.MENU,
-                  showSearchBox: true,
-                  items: controller.courses,
-                  label: "Select Course",
-                  hint: "country in menu mode",
-                  popupItemDisabled: (String s) => s.startsWith('I'),
-                  onChanged: print,
-                  selectedItem: "Chinama Golf Course"),
+              CustomDropDown("Golf Course", "Select Golf Course",true, controller.courses),
               const SizedBox(height: 20),
               Text(
                 'Player Setup',
                 style: Theme.of(context).textTheme.headline3,
               ),
               const SizedBox(height: 16),
-              DropdownSearch<String>.multiSelection(
-                autoValidateMode: AutovalidateMode.always,
-                showClearButton: true,
-                showSearchBox: true,
-                mode: Mode.MENU,
-                items: controller.playersList,
-                label: "Invite Players",
-                hint: "Player in menu mode",
-                popupItemDisabled: (String s) => s.startsWith('I'),
-                onChanged: print,
-                selectedItems: ["Tiger Woods"],
-              ),
+              CustomDropDownMultiSelect("Invite Players", "Player in menu mode", true, true, controller.playersList,),
+              // DropdownSearch<String>.multiSelection(
+              //   autoValidateMode: AutovalidateMode.always,
+              //   showClearButton: true,
+              //   showSearchBox: true,
+              //   mode: Mode.MENU,
+              //   items: controller.playersList,
+              //   label: "Invite Players",
+              //   hint: "Player in menu mode",
+              //   popupItemDisabled: (String s) => s.startsWith('I'),
+              //   onChanged: print,
+              //   selectedItems: ["Tiger Woods"],
+              // ),
               const SizedBox(height: 20),
               Text('Select Holes',
                   style: Theme.of(context).textTheme.headline3),

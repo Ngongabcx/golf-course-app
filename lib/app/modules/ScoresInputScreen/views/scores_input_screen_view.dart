@@ -7,6 +7,7 @@ import 'package:gcms/app/components/submit_button.dart';
 import 'package:gcms/app/modules/ActiveGameScreen/views/update_score_button.dart';
 import 'package:gcms/app/modules/ScoresInputScreen/views/result_widget.dart';
 import 'package:gcms/app/modules/ScoresInputScreen/views/score_widget.dart';
+import 'package:gcms/constants/constant.dart';
 import 'package:gcms/theme/gcms_theme.dart';
 
 import 'package:get/get.dart';
@@ -21,12 +22,9 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
         backgroundColor: Colors.white,
         iconTheme: const IconThemeData(color: Colors.black),
         automaticallyImplyLeading: true,
-        title: Align(
-          alignment: const AlignmentDirectional(-1, 0),
-          child: Text(
-            'Score Input',
-            style: Theme.of(context).textTheme.headline3,
-          ),
+        title: Text(
+          'Score Input',
+          style: Theme.of(context).textTheme.headline3,
         ),
         actions: [],
         centerTitle: true,
@@ -229,34 +227,172 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                         ],
                       ),
                     ),
-                    const SizedBox(
-                      height: 45.0,
-                      width: 500.0,
-                      child: Divider(
-                        color: Color(0xFFF6F6F6),
-                        thickness: 3.0,
-                      ),
-                    ),
                     Column(
                       children: [
-                        SubmitButton(
-                          text: 'Submit Your Score',
-                          onPressed: () {
-                            controller.calculateResult();
-                            Get.toNamed("/results-screen");
-                          },
-
-                          // onPressed: () async {
-                          //   print(score);
-                          //   final result = await HttpService().addScore(
-                          //     Scorecard(
-                          //       1,
-                          //       _result,
-                          //     ),
-                          //   );
-                          //   print(result);
-                          // },
-                          style: GcmsTheme.lightTextTheme.bodyText2,
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8.0),
+                          child: SubmitButton(
+                            text: 'Submit',
+                            onPressed: () {
+                              controller.calculateResult();
+                              Get.defaultDialog(
+                                title: "Confirm Submission",
+                                // middleText: "Submit score of ${controller.}",
+                                backgroundColor: kPrimaryColor,
+                                titleStyle: TextStyle(
+                                    color: Colors.white, fontSize: 18),
+                                onConfirm: () {},
+                                onCancel: () {},
+                                textConfirm: "Confirm",
+                                textCancel: "Cancel",
+                                cancelTextColor: Colors.white,
+                                confirmTextColor: Colors.white,
+                                buttonColor: Colors.green,
+                                content: Column(
+                                  children: [
+                                    Text(
+                                      "Score : ${controller.score.value}",
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    Text(
+                                      "Result: ${controller.result.value}",
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  ],
+                                ),
+                                middleTextStyle: TextStyle(color: Colors.white),
+                              );
+                            },
+                            style: GcmsTheme.lightTextTheme.bodyText2,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 6.0),
+                          child: InkWell(
+                            onTap: () {
+                              Get.bottomSheet(
+                                  Container(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(16.0),
+                                      child: Column(
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Padding(
+                                                padding:
+                                                    EdgeInsets.only(left: 20.0),
+                                                child: Text(
+                                                  'Player',
+                                                  style: GcmsTheme
+                                                      .lightTextTheme.headline3,
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    EdgeInsets.only(right: 14.0),
+                                                child: Text(
+                                                  'Scores',
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .headline3,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              const Padding(
+                                                padding: EdgeInsets.only(
+                                                    left: 16.0, top: 16.0),
+                                                child: Expanded(
+                                                  flex: 5,
+                                                  child: CircleAvatar(
+                                                    radius: 30.0,
+                                                    backgroundImage: AssetImage(
+                                                        'assets/images/Tiger-Woods.jpg'),
+                                                  ),
+                                                ),
+                                              ),
+                                              Expanded(
+                                                flex: 10,
+                                                child: Padding(
+                                                  padding: EdgeInsets.only(
+                                                      left: 20.0),
+                                                  child: Text(
+                                                    'Tiger Woods (You)',
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyText1,
+                                                  ),
+                                                ),
+                                              ),
+                                              Expanded(
+                                                flex: 2,
+                                                child: Text(
+                                                  controller.result.value
+                                                      .toString(),
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyText1,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  elevation: 20.0,
+                                  enableDrag: false,
+                                  backgroundColor: Colors.white,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(30.0),
+                                    topRight: Radius.circular(30.0),
+                                  )));
+                            },
+                            child: Ink(
+                              padding: EdgeInsets.symmetric(
+                                vertical: 12,
+                                horizontal: 16,
+                              ),
+                              decoration: BoxDecoration(
+                                border: Border(
+                                  top: BorderSide(
+                                    color: Colors.grey[300],
+                                  ),
+                                  bottom: BorderSide(
+                                    color: Colors.grey[300],
+                                  ),
+                                ),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(bottom: 4.0),
+                                        child: Text(
+                                          "View Match Results",
+                                          style: TextStyle(
+                                            color: kPrimaryColor,
+                                            // fontWeight: FontWeight.bold,
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
                         ),
                       ],
                     ),

@@ -32,7 +32,6 @@ class CustomTextFormFieldWidget extends GetView {
       decoration: InputDecoration(
         labelText: label,
         labelStyle: const TextStyle(
-          fontFamily: 'Lexend Deca',
           color: Color(0xFF95A1AC),
           fontSize: 16,
           fontWeight: FontWeight.bold,
@@ -56,7 +55,6 @@ class CustomTextFormFieldWidget extends GetView {
         contentPadding: const EdgeInsetsDirectional.fromSTEB(16, 24, 0, 24),
       ),
       style: const TextStyle(
-        fontFamily: 'Lexend Deca',
         color: Color(0xFF95A1AC),
         fontSize: 16,
         fontWeight: FontWeight.normal,
