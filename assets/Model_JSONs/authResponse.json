@@ -1,0 +1,8 @@
+{
+    "data": {
+      "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjQ0Nzg5NWFmLWMyZjEtNDQ3NC04YTM0LWIwZWQ1MWY1ZDE4MSIsImVtYWlsIjoibmlja0BuaWNrLmNvbSIsInN1YiI6Im5pY2tAbmljay5jb20iLCJqdGkiOiI3MDFkNTZmYy1lYTAwLTQyNzgtYmU2My0zMTU4NTYyZjk5NmMiLCJuYmYiOjE2MzYzNzk1NDgsImV4cCI6MTYzNjM3OTcyOCwiaWF0IjoxNjM2Mzc5NTQ4fQ.BHOfezREFxKG5ld7RdLZEt1jYAv4gSCFrkrHj6I7dEI",
+      "refreshToken": "Uhrj1aLkSoBhGn8aAUCLx883MNhALH3hjJtcc7204fe-e83b-4b6e-b876-f67191a171a2"
+    },
+    "success": true,
+    "errors": null
+  }

@@ -44,7 +44,7 @@ class LoginView extends GetView<LoginController> {
                             child: Text(
                               'Login',
                               textAlign: TextAlign.center,
-                             style: Theme.of(context).textTheme.headline1,
+                              style: Theme.of(context).textTheme.headline1,
                             ),
                           ),
                         ],
@@ -101,27 +101,41 @@ class LoginView extends GetView<LoginController> {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(bottom: 16.0),
-                      child: CustomButton(
-                        text: ('Login'),
-                        style: GcmsTheme.lightTextTheme.bodyText2,
-                        onPressed: () {
-                          if (GetUtils.isEmail(
-                              controller.usernameController.text)) {
-                            ShowSnackBar(
-                                "Success", "Login Successful.", Colors.teal);
-                            //TODO: Email is valid, implement logic to validate credentials
-
-                            //Save login status to storage
-                            controller.storage.write("isLoggedIn", true);
-                            Get.offAllNamed('/home');
-                          } else {
-                            ShowSnackBar(
+                      child: Obx(() {
+                        return CustomButton(
+                          text: (controller.isProcessing.value == true
+                              ? 'Processing'
+                              : 'Login'),
+                          style: GcmsTheme.lightTextTheme.bodyText2,
+                          onPressed: () {
+                            if (GetUtils.isEmail(
+                                controller.usernameController.text)) {
+                              if (GetUtils.isBlank(
+                                  controller.passwordController.text)) {
+                                ShowSnackBar(
+                                  "Password cannot be empty",
+                                  "Please provide a valid password.",
+                                  Colors.red,
+                                );
+                              } else {
+                                if (controller.isProcessing.value == false) {
+                                  controller.login({
+                                    'email': controller.usernameController.text,
+                                    'password':
+                                        controller.passwordController.text,
+                                  });
+                                }
+                              }
+                            } else {
+                              ShowSnackBar(
                                 "Invalid Email",
                                 "Please provide a valid email address.",
-                                Colors.red);
-                          }
-                        },
-                      ),
+                                Colors.red,
+                              );
+                            }
+                          },
+                        );
+                      }),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(bottom: 16.0),

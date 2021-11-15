@@ -39,18 +39,17 @@ const kScoreInputStyle = TextStyle(
   color: Color(0xFF22C17B),
 );
 
-Map<int, Color> color =
-{
-50:Color.fromRGBO(0,128,128, .1),
-100:Color.fromRGBO(0,128,128, .2),
-200:Color.fromRGBO(0,128,128, .3),
-300:Color.fromRGBO(0,128,128, .4),
-400:Color.fromRGBO(0,128,128, .5),
-500:Color.fromRGBO(0,128,128, .6),
-600:Color.fromRGBO(0,128,128, .7),
-700:Color.fromRGBO(0,128,128, .8),
-800:Color.fromRGBO(0,128,128, .9),
-900:Color.fromRGBO(0,128,128, 1),
+Map<int, Color> color = {
+  50: Color.fromRGBO(0, 128, 128, .1),
+  100: Color.fromRGBO(0, 128, 128, .2),
+  200: Color.fromRGBO(0, 128, 128, .3),
+  300: Color.fromRGBO(0, 128, 128, .4),
+  400: Color.fromRGBO(0, 128, 128, .5),
+  500: Color.fromRGBO(0, 128, 128, .6),
+  600: Color.fromRGBO(0, 128, 128, .7),
+  700: Color.fromRGBO(0, 128, 128, .8),
+  800: Color.fromRGBO(0, 128, 128, .9),
+  900: Color.fromRGBO(0, 128, 128, 1),
 };
 MaterialColor kPrimaryColorMaterialized = MaterialColor(0xff246EE9, color);
 const int kOtpDuarationSeconds = 120;
@@ -67,3 +66,4 @@ const kWhiteGreyColor = Color(0xFFF9F9F9);
 const kDefaultPagePadding = EdgeInsets.symmetric(
   horizontal: 16,
 );
+const String kApiBaseURL = "https://gcms.azurewebsites.net/api";

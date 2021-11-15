@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:gcms/app/modules/Login/providers/auth_provider.dart';
+import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
+import 'package:gcms/constants/constant.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class LoginController extends GetxController {
   final loginFormKey = GlobalKey<FormState>();
   var storage = GetStorage();
+  var isProcessing = false.obs;
   TextEditingController usernameController, passwordController;
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
@@ -21,5 +24,34 @@ class LoginController extends GetxController {
 
   @override
   void onClose() {}
-  void increment() => count.value++;
+  // Save Data
+  void login(Map data) {
+    try {
+      isProcessing(true);
+      AuthProvider().login(data).then((resp) {
+        print("<-------ON SUCCESS-------->"+resp.info.accessToken);
+        clearTextEditingControllers();
+        isProcessing(false);
+        ShowSnackBar("Success", "Login Successful.", kPrimaryColor);
+        storage.write("isLoggedIn", true);
+        storage.write("accessToken", resp.info.accessToken);
+        storage.write("refreshToken", resp.info.refreshToken);
+        //TODO: Decode JWT, Create and call user details
+        Get.offAllNamed('/home');
+      }, onError: (err) {
+        isProcessing(false);
+        ShowSnackBar("Error", err.toString(), Colors.red);
+      });
+    } catch (exception) {
+      isProcessing(false);
+      print("<---------EXCEPTION2--------->" + exception.toString());
+      ShowSnackBar("Exception", exception.toString(), Colors.red);
+    }
+  }
+
+  // clear the controllers
+  void clearTextEditingControllers() {
+    usernameController.clear();
+    passwordController.clear();
+  }
 }
