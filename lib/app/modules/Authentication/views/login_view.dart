@@ -7,10 +7,10 @@ import 'package:gcms/theme/gcms_theme.dart';
 
 import 'package:get/get.dart';
 
-import '../controllers/login_controller.dart';
+import '../controllers/auth_controller.dart';
 
-class LoginView extends GetView<LoginController> {
-  final loginController = Get.put(LoginController());
+class LoginView extends GetView<AuthenticationController> {
+  final loginController = Get.put(AuthenticationController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(

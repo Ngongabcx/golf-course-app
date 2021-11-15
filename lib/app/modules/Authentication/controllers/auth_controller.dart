@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:gcms/app/modules/Login/providers/auth_provider.dart';
+import 'package:gcms/app/modules/Authentication/providers/auth_provider.dart';
 import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
 import 'package:gcms/constants/constant.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-class LoginController extends GetxController {
+class AuthenticationController extends GetxController {
   final loginFormKey = GlobalKey<FormState>();
+  final signUpFormKey  = GlobalKey<FormState>();
   var storage = GetStorage();
   var isProcessing = false.obs;
-  TextEditingController usernameController, passwordController;
+  TextEditingController usernameController, passwordController,signUpEmailController, signUpPasswordController,signUpConfirmPasswordController;
   @override
   void onInit() {
     super.onInit();
     usernameController = TextEditingController();
     passwordController = TextEditingController();
+    signUpEmailController = TextEditingController();
+    signUpPasswordController = TextEditingController();
+     signUpConfirmPasswordController = TextEditingController();
   }
 
   @override

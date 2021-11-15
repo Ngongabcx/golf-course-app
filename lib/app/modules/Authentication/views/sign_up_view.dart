@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gcms/app/modules/Authentication/controllers/auth_controller.dart';
 import 'package:gcms/app/modules/commonWidgets/customButton.dart';
 import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
 import 'package:gcms/app/modules/commonWidgets/textFormField.dart';
@@ -7,10 +8,9 @@ import 'package:gcms/theme/gcms_theme.dart';
 
 import 'package:get/get.dart';
 
-import '../controllers/sign_up_controller.dart';
 
-class SignUpView extends GetView<SignUpController> {
-  final signUpController = Get.put(SignUpController());
+class SignUpView extends GetView<AuthenticationController> {
+  final signUpController = Get.put(AuthenticationController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -132,7 +132,7 @@ class SignUpView extends GetView<SignUpController> {
                             //TODO: Email is valid, implement logic to validate credentials
 
                             //Save login status to storage
-                            controller.storag.write("isLoggedIn", true);
+                            controller.storage.write("isLoggedIn", true);
                             Get.offAllNamed('/home');
                           } else {
                             ShowSnackBar(
