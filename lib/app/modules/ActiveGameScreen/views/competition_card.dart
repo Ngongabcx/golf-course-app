@@ -7,7 +7,6 @@ class CompetitionCard extends StatelessWidget {
 
   const CompetitionCard({Key key, this.competition}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -18,7 +17,7 @@ class CompetitionCard extends StatelessWidget {
             children: [
               Text(
                 competition.courseName,
-                style: GcmsTheme.darkTextTheme.headline2,
+                style: GcmsTheme.darkTextTheme.headline3,
               ),
               Positioned(
                 child: Text(

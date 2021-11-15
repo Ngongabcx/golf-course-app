@@ -48,12 +48,12 @@ class CompetitionDetailView extends GetView {
               const SizedBox(
                 height: 20,
               ),
-              Center(
-                child: Text(
-                  competition.courseName,
-                  style: Theme.of(context).textTheme.headline2,
-                ),
+              Text(
+                competition.courseName,
+                style: Theme.of(context).textTheme.headline5,
               ),
+              Text(competition.compDate,
+                  style: Theme.of(context).textTheme.subtitle2),
               const SizedBox(
                 height: 20,
               ),
@@ -62,22 +62,17 @@ class CompetitionDetailView extends GetView {
                 children: [
                   Text(
                     competition.compName,
-                    style: Theme.of(context).textTheme.headline3,
+                    style: Theme.of(context).textTheme.bodyText2,
+                  ),
+                  Text(
+                    competition.gameType,
+                    style: Theme.of(context).textTheme.bodyText2,
                   ),
                   Text(
                     '18 Holes',
-                    style: Theme.of(context).textTheme.headline3,
+                    style: Theme.of(context).textTheme.bodyText2,
                   ),
                 ],
-              ),
-              Text(competition.compDate,
-                  style: Theme.of(context).textTheme.bodyText2),
-              const SizedBox(
-                height: 20,
-              ),
-              Text(
-                competition.gameType,
-                style: Theme.of(context).textTheme.headline3,
               ),
               const SizedBox(
                 height: 25.0,
@@ -89,7 +84,7 @@ class CompetitionDetailView extends GetView {
               ),
               Text(
                 'Player Setup',
-                style: Theme.of(context).textTheme.headline2,
+                style: Theme.of(context).textTheme.headline5,
               ),
               const SizedBox(
                 height: 20,
@@ -136,9 +131,21 @@ class CompetitionDetailView extends GetView {
                       ),
                     ),
                   ),
-                  const Expanded(
+                  Expanded(
                     flex: 2,
-                    child: Icon(Icons.more_vert),
+                    child: PopupMenuButton<int>(
+                      onSelected: (item) => onSelected(context, item),
+                      itemBuilder: (context) => [
+                        PopupMenuItem(
+                          value: 0,
+                          child: Text('Setup player'),
+                        ),
+                        PopupMenuItem(
+                          value: 1,
+                          child: Text('Remove'),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -167,5 +174,17 @@ class CompetitionDetailView extends GetView {
         ),
       ),
     );
+  }
+}
+
+void onSelected(BuildContext context, int item) {
+  switch (item) {
+    case 0:
+      print('player setup clicked');
+      break;
+
+    case 1:
+      print('Remove clicked');
+      break;
   }
 }

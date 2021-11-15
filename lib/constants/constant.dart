@@ -6,51 +6,23 @@ const kInactiveCardColor = Color(0xFF838789);
 const kBottomContainerColour = Color(0xFF22C17B);
 const kBottomContainerHeight = 50.0;
 
-const kLabelScoresStyle = TextStyle(
-  fontSize: 20,
-  color: Color(0xFF333738),
-);
-
-const kLabelHoleStyle = TextStyle(
-  fontSize: 16,
-  color: Color(0xFF333738),
-);
-
-const kGreySmallTextStyle = TextStyle(
-  fontWeight: FontWeight.bold,
-  fontSize: 16.0,
-  color: Color(0xFF9C9D9E),
-);
-
-const kLabelResultStyle = TextStyle(
-  fontSize: 22,
-  fontWeight: FontWeight.bold,
-  color: Color(0xFF333738),
-);
-const kNumberResultStyle = TextStyle(
-  fontSize: 22,
-  fontWeight: FontWeight.bold,
-  color: Colors.white,
-);
-
 const kScoreInputStyle = TextStyle(
   fontSize: 20,
   fontWeight: FontWeight.bold,
   color: Color(0xFF22C17B),
 );
 
-Map<int, Color> color =
-{
-50:Color.fromRGBO(0,128,128, .1),
-100:Color.fromRGBO(0,128,128, .2),
-200:Color.fromRGBO(0,128,128, .3),
-300:Color.fromRGBO(0,128,128, .4),
-400:Color.fromRGBO(0,128,128, .5),
-500:Color.fromRGBO(0,128,128, .6),
-600:Color.fromRGBO(0,128,128, .7),
-700:Color.fromRGBO(0,128,128, .8),
-800:Color.fromRGBO(0,128,128, .9),
-900:Color.fromRGBO(0,128,128, 1),
+Map<int, Color> color = {
+  50: Color.fromRGBO(0, 128, 128, .1),
+  100: Color.fromRGBO(0, 128, 128, .2),
+  200: Color.fromRGBO(0, 128, 128, .3),
+  300: Color.fromRGBO(0, 128, 128, .4),
+  400: Color.fromRGBO(0, 128, 128, .5),
+  500: Color.fromRGBO(0, 128, 128, .6),
+  600: Color.fromRGBO(0, 128, 128, .7),
+  700: Color.fromRGBO(0, 128, 128, .8),
+  800: Color.fromRGBO(0, 128, 128, .9),
+  900: Color.fromRGBO(0, 128, 128, 1),
 };
 MaterialColor kPrimaryColorMaterialized = MaterialColor(0xff246EE9, color);
 const int kOtpDuarationSeconds = 120;

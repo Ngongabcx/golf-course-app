@@ -59,14 +59,21 @@ class SetupScreenView extends GetView<SetupScreenController> {
                 style: Theme.of(context).textTheme.headline3,
               ),
               const SizedBox(height: 20),
-              CustomDropDown("Golf Course", "Select Golf Course",true, controller.courses),
+              CustomDropDown("Golf Course", "Select Golf Course", true,
+                  controller.courses),
               const SizedBox(height: 20),
               Text(
                 'Player Setup',
                 style: Theme.of(context).textTheme.headline3,
               ),
               const SizedBox(height: 16),
-              CustomDropDownMultiSelect("Invite Players", "Player in menu mode", true, true, controller.playersList,),
+              CustomDropDownMultiSelect(
+                "Invite Players",
+                "Player in menu mode",
+                true,
+                true,
+                controller.playersList,
+              ),
               // DropdownSearch<String>.multiSelection(
               //   autoValidateMode: AutovalidateMode.always,
               //   showClearButton: true,
@@ -281,7 +288,7 @@ class SetupScreenView extends GetView<SetupScreenController> {
                       text: ('View Match'),
                       style: GcmsTheme.lightTextTheme.headline3,
                       onPressed: () {
-                        Get.toNamed("/scores-input-screen");
+                        Get.toNamed("/active-game-screen");
                       }),
                 ),
               ),
