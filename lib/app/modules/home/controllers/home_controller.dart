@@ -16,8 +16,7 @@ class HomeController extends GetxController {
   ];
 
   var storage = GetStorage();
-
-
+  
   @override
   void onInit() async {
     super.onInit();
