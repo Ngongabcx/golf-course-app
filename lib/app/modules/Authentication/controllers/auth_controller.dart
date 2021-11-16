@@ -7,10 +7,14 @@ import 'package:get_storage/get_storage.dart';
 
 class AuthenticationController extends GetxController {
   final loginFormKey = GlobalKey<FormState>();
-  final signUpFormKey  = GlobalKey<FormState>();
+  final signUpFormKey = GlobalKey<FormState>();
   var storage = GetStorage();
   var isProcessing = false.obs;
-  TextEditingController usernameController, passwordController,signUpEmailController, signUpPasswordController,signUpConfirmPasswordController;
+  TextEditingController usernameController,
+      passwordController,
+      signUpEmailController,
+      signUpPasswordController,
+      signUpConfirmPasswordController;
   @override
   void onInit() {
     super.onInit();
@@ -18,7 +22,7 @@ class AuthenticationController extends GetxController {
     passwordController = TextEditingController();
     signUpEmailController = TextEditingController();
     signUpPasswordController = TextEditingController();
-     signUpConfirmPasswordController = TextEditingController();
+    signUpConfirmPasswordController = TextEditingController();
   }
 
   @override
@@ -33,7 +37,29 @@ class AuthenticationController extends GetxController {
     try {
       isProcessing(true);
       AuthProvider().login(data).then((resp) {
-        print("<-------ON SUCCESS-------->"+resp.info.accessToken);
+        clearTextEditingControllers();
+        isProcessing(false);
+        ShowSnackBar("Success", "Login Successful.", kPrimaryColor);
+        storage.write("isLoggedIn", true);
+        storage.write("accessToken", resp.info.accessToken);
+        storage.write("refreshToken", resp.info.refreshToken);
+        //TODO: Decode JWT, Create and call user details
+        Get.offAllNamed('/home');
+      }, onError: (err) {
+        isProcessing(false);
+        ShowSnackBar("Error", err.toString(), Colors.red);
+      });
+    } catch (exception) {
+      isProcessing(false);
+      print("<---------EXCEPTION2--------->" + exception.toString());
+      ShowSnackBar("Exception", exception.toString(), Colors.red);
+    }
+  }
+
+  void register(Map data) {
+    try {
+      isProcessing(true);
+      AuthProvider().register(data).then((resp) {
         clearTextEditingControllers();
         isProcessing(false);
         ShowSnackBar("Success", "Login Successful.", kPrimaryColor);
@@ -57,5 +83,8 @@ class AuthenticationController extends GetxController {
   void clearTextEditingControllers() {
     usernameController.clear();
     passwordController.clear();
+    signUpEmailController.clear();
+    signUpPasswordController.clear();
+    signUpConfirmPasswordController.clear();
   }
 }
