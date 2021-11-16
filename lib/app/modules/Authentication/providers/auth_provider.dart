@@ -13,11 +13,11 @@ class AuthProvider extends GetConnect {
       if (response.status.hasError) {
         return Future.error(response.body["errors"].join(","));
       } else {
-        Map<String, dynamic> a = jsonDecode(response.bodyString);
-        return Auth.fromJson(a);
+        Map<String, dynamic> resp = jsonDecode(response.bodyString);
+        return Auth.fromJson(resp);
       }
     } catch (exception) {
-      print('<<===EXCEPTION 1==> $exception');
+      print('<<===LOGIN EXCEPTION ==> $exception');
       return Future.error(exception);
     }
   }
@@ -28,11 +28,11 @@ class AuthProvider extends GetConnect {
       if (response.status.hasError) {
         return Future.error(response.body["errors"].join(","));
       } else {
-        Map<String, dynamic> a = jsonDecode(response.bodyString);
-        return Auth.fromJson(a);
+        Map<String, dynamic> resp = jsonDecode(response.bodyString);
+        return Auth.fromJson(resp);
       }
     } catch (exception) {
-      print('<<===EXCEPTION 1==> $exception');
+      print('<<===LOGIN EXCEPTION ==> $exception');
       return Future.error(exception);
     }
   }
