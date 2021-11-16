@@ -28,9 +28,5 @@ class HomeController extends GetxController {
   void onClose() {
     // TODO: implement onClose
     super.onClose();
-    scrollController.dispose();
-    howToEditingController.dispose();
-    lineEditingController.dispose();
-    platformEditingController.dispose();
   }
 }
