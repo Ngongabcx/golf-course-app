@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gcms/app/components/submit_button.dart';
+import 'package:gcms/app/modules/commonWidgets/customButton.dart';
 import 'package:gcms/tempModels/competetion.dart';
 import 'package:gcms/theme/gcms_theme.dart';
 
@@ -161,11 +162,12 @@ class CompetitionDetailView extends GetView {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(bottom: 16.0),
-                    child: SubmitButton(
-                        text: ('Proceed to hole'),
-                        onPressed: () {
-                          Get.toNamed("/scores-input-screen");
-                        }),
+                    child: CustomButton(
+                      text: "Proceed to hole",
+                      onPressed: () {
+                        Get.toNamed("/scores-input-screen");
+                      },
+                    ),
                   ),
                 ],
               ),

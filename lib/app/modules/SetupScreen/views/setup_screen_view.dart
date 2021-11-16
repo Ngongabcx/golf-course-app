@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:gcms/app/components/submit_button.dart';
 import 'package:gcms/app/modules/ActiveGameScreen/views/select_holes_card.dart';
+import 'package:gcms/app/modules/commonWidgets/customButton.dart';
 import 'package:gcms/app/modules/commonWidgets/custom_multi_select_drop_down.dart';
 import 'package:gcms/app/modules/commonWidgets/custom_single_select_drop_down.dart';
 import 'package:gcms/constants/constant.dart';
@@ -284,12 +285,12 @@ class SetupScreenView extends GetView<SetupScreenController> {
               Expanded(
                 child: Align(
                   alignment: FractionalOffset.bottomCenter,
-                  child: SubmitButton(
-                      text: ('View Match'),
-                      style: GcmsTheme.lightTextTheme.headline3,
-                      onPressed: () {
-                        Get.toNamed("/active-game-screen");
-                      }),
+                  child: CustomButton(
+                    text: "View Match",
+                    onPressed: () {
+                      Get.toNamed("/active-game-screen");
+                    },
+                  ),
                 ),
               ),
             ],

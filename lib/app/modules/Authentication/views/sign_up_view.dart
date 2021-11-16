@@ -8,7 +8,6 @@ import 'package:gcms/theme/gcms_theme.dart';
 
 import 'package:get/get.dart';
 
-
 class SignUpView extends GetView<AuthenticationController> {
   final signUpController = Get.put(AuthenticationController());
   @override
@@ -79,7 +78,7 @@ class SignUpView extends GetView<AuthenticationController> {
                         children: [
                           Expanded(
                             child: CustomTextFormFieldWidget(
-                              controller.signUpEmailController,
+                              controller.signUpPasswordController,
                               "Password",
                               (s) {},
                               true,
@@ -121,27 +120,65 @@ class SignUpView extends GetView<AuthenticationController> {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(bottom: 16.0),
-                      child: CustomButton(
-                        text: ('Create Account'),
-                        style: GcmsTheme.lightTextTheme.bodyText2,
-                        onPressed: () {
-                          if (GetUtils.isEmail(
-                              controller.signUpEmailController.text)) {
-                            ShowSnackBar("Success", "Registration Successful.",
-                                kPrimaryColor);
-                            //TODO: Email is valid, implement logic to validate credentials
-
-                            //Save login status to storage
-                            controller.storage.write("isLoggedIn", true);
-                            Get.offAllNamed('/home');
-                          } else {
-                            ShowSnackBar(
+                      child: Obx(() {
+                        return CustomButton(
+                          text: (controller.isProcessing.value == true
+                              ? 'Processing'
+                              : 'Create Account'),
+                          style: GcmsTheme.lightTextTheme.bodyText2,
+                          onPressed: () {
+                            if (GetUtils.isEmail(
+                                controller.signUpEmailController.text)) {
+                              if (GetUtils.isBlank(
+                                  controller.signUpPasswordController.text)) {
+                                ShowSnackBar(
+                                  "Password cannot be empty",
+                                  "Please provide a valid password.",
+                                  Colors.red,
+                                );
+                              } else {
+                                if (GetUtils.isBlank(controller
+                                    .signUpConfirmPasswordController.text)) {
+                                  ShowSnackBar(
+                                    "Password cannot be empty",
+                                    "Please provide a valid password.",
+                                    Colors.red,
+                                  );
+                                } else {
+                                  if (controller
+                                          .signUpPasswordController.text !=
+                                      controller.signUpConfirmPasswordController
+                                          .text) {
+                                    ShowSnackBar(
+                                      "Password Error",
+                                      "Passwords entered did not match.",
+                                      Colors.red,
+                                    );
+                                  } else {
+                                    if (controller.isProcessing.value ==
+                                        false) {
+                                      controller.register({
+                                        'username': controller
+                                            .signUpEmailController.text,
+                                        'email': controller
+                                            .signUpEmailController.text,
+                                        'password': controller
+                                            .signUpPasswordController.text,
+                                      });
+                                    }
+                                  }
+                                }
+                              }
+                            } else {
+                              ShowSnackBar(
                                 "Invalid Email",
                                 "Please provide a valid email address.",
-                                Colors.red);
-                          }
-                        },
-                      ),
+                                Colors.red,
+                              );
+                            }
+                          },
+                        );
+                      }),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(bottom: 16.0),

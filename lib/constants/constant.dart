@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 const Color kPrimaryColor = Colors.teal;
-const kActiveCardColor = Color(0xFF22C17B);
+const kActiveCardColor = Color(0xff246EE9);
 const kInactiveCardColor = Color(0xFF838789);
 const kBottomContainerColour = Color(0xFF22C17B);
 const kBottomContainerHeight = 50.0;
@@ -26,7 +26,6 @@ Map<int, Color> color = {
 };
 MaterialColor kPrimaryColorMaterialized = MaterialColor(0xff246EE9, color);
 const int kOtpDuarationSeconds = 120;
-const kMainColor = Color(0xff246EE9);
 const kHomeBackgroundColor = Color(0xffF6F6F6);
 const kCardsBackgroundColor = Color(0xffF6F6F6);
 const kGreyColor = Color(0xff868686);

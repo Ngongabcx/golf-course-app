@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gcms/constants/constant.dart';
 
 class ResultWidget extends StatelessWidget {
 
@@ -13,7 +14,7 @@ class ResultWidget extends StatelessWidget {
       child: Text(text),
       textStyle: (style),
       elevation: 4.0,
-      fillColor: Color(0xFF22C17B),
+      fillColor: kPrimaryColor,
       constraints: const BoxConstraints.tightFor(
         width: 55.0,
         height: 60.0,

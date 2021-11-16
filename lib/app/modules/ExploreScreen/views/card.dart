@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gcms/constants/constant.dart';
 import 'package:gcms/theme/gcms_theme.dart';
 
 class OptionsCard extends StatelessWidget {
@@ -32,7 +33,7 @@ class OptionsCard extends StatelessWidget {
         ),
         padding: const EdgeInsets.all(8),
         decoration: const BoxDecoration(
-          color: Color(0xFF22C17B),
+          color: kPrimaryColor,
           borderRadius: BorderRadius.all(
             Radius.circular(10.0),
           ),

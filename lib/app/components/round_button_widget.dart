@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gcms/constants/constant.dart';
 
 class RoundButtonWidget extends StatelessWidget {
 
@@ -21,7 +22,7 @@ class RoundButtonWidget extends StatelessWidget {
       ),
       shape: const CircleBorder(
         side: BorderSide(
-          color: Color(0xFF22C17B),
+          color: kPrimaryColor,
         ),
       ),
       onPressed: () {},

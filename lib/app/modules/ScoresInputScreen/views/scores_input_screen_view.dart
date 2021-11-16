@@ -7,6 +7,7 @@ import 'package:gcms/app/components/submit_button.dart';
 import 'package:gcms/app/modules/ActiveGameScreen/views/update_score_button.dart';
 import 'package:gcms/app/modules/ScoresInputScreen/views/result_widget.dart';
 import 'package:gcms/app/modules/ScoresInputScreen/views/score_widget.dart';
+import 'package:gcms/app/modules/commonWidgets/customButton.dart';
 import 'package:gcms/constants/constant.dart';
 import 'package:gcms/theme/gcms_theme.dart';
 
@@ -131,8 +132,8 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                       height: 25.0,
                       width: 500.0,
                       child: Divider(
-                        color: Color(0xFFF6F6F6),
-                        thickness: 3.0,
+                        color: kPrimaryColor,
+                        thickness: 0.3,
                       ),
                     ),
                     Padding(
@@ -231,9 +232,9 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(top: 8.0),
-                          child: SubmitButton(
-                            text: 'Submit',
-                            onPressed: () {
+                          child:CustomButton(
+                      text: "Submit",
+                      onPressed: () {
                               controller.calculateResult();
                               Get.defaultDialog(
                                 title: "Confirm Submission",
@@ -263,8 +264,7 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                 middleTextStyle: TextStyle(color: Colors.white),
                               );
                             },
-                            style: GcmsTheme.lightTextTheme.bodyText2,
-                          ),
+                    ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 6.0),
