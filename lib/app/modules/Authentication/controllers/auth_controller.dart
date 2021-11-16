@@ -43,7 +43,6 @@ class AuthenticationController extends GetxController {
         storage.write("isLoggedIn", true);
         storage.write("accessToken", resp.info.accessToken);
         storage.write("refreshToken", resp.info.refreshToken);
-        //TODO: Decode JWT, Create and call user details
         Get.offAllNamed('/home');
       }, onError: (err) {
         isProcessing(false);
@@ -66,7 +65,6 @@ class AuthenticationController extends GetxController {
         storage.write("isLoggedIn", true);
         storage.write("accessToken", resp.info.accessToken);
         storage.write("refreshToken", resp.info.refreshToken);
-        //TODO: Decode JWT, Create and call user details
         Get.offAllNamed('/home');
       }, onError: (err) {
         isProcessing(false);

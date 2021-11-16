@@ -35,6 +35,7 @@ class HomeController extends GetxController {
   @override
   void onInit() async {
     super.onInit();
+    //TODO: Check JWT Expiration, If expired refresh token and fetch user details
     // Fetch Data
     getCommands();
 
