@@ -16,7 +16,8 @@ class HomeView extends GetView<HomeController> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          greeting(),
+         // greeting(),
+         controller.name,
           style: TextStyle(
             fontSize: 23.0,
             fontWeight: FontWeight.w100,

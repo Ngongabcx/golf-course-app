@@ -7,8 +7,7 @@ class Auth {
 
   Auth.fromJson(Map<String, dynamic> json) {
     info = json['info'] != null ? Info.fromJson(json['info']) : null;
-    //errors = json['errors'].cast<String>();
-     errors = json['errors'];
+    errors = json['errors'].cast<String>();
     success = json['success'];
   }
 

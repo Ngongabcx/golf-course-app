@@ -4,6 +4,7 @@ import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
 import 'package:gcms/constants/constant.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:jwt_decode/jwt_decode.dart';
 
 class AuthenticationController extends GetxController {
   final loginFormKey = GlobalKey<FormState>();
@@ -36,7 +37,7 @@ class AuthenticationController extends GetxController {
   void login(Map data) {
     try {
       isProcessing(true);
-      AuthProvider().login(data).then((resp) {
+      AuthProvider().login(data).then((resp) async {
         clearTextEditingControllers();
         isProcessing(false);
         ShowSnackBar("Success", "Login Successful.", kPrimaryColor);
@@ -85,4 +86,6 @@ class AuthenticationController extends GetxController {
     signUpPasswordController.clear();
     signUpConfirmPasswordController.clear();
   }
+
+
 }
