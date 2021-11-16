@@ -1,5 +1,5 @@
 # GCMS MOBILE APP
-# Golf Cource Management System
+# GOLF COURSE MANAGEMENT SYSTEM
 
 > This is the mobile application for the BCX-GCMS.
 
