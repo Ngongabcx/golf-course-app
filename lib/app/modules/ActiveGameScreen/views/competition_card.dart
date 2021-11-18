@@ -50,6 +50,7 @@ class CompetitionCard extends StatelessWidget {
             height: 150,
           ),
           decoration: BoxDecoration(
+            color: Colors.black.withOpacity(0.6),
             image: DecorationImage(
               image: AssetImage(competition.image),
               fit: BoxFit.cover,

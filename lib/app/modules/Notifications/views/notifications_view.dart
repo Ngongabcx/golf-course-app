@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gcms/app/modules/commonWidgets/drawer.dart';
 
 import 'package:get/get.dart';
 
@@ -8,6 +9,7 @@ class NotificationsView extends GetView<NotificationsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: GcmsDrawer(),
       body: SingleChildScrollView(
         child: SafeArea(
           child: Container(

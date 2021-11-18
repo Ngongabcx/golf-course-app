@@ -30,6 +30,7 @@ class HomeView extends GetView<HomeController> {
             ),
             onPressed: () {
               // do something
+              Get.toNamed('/setting-screen');
             },
           ),
           IconButton(

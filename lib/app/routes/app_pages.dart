@@ -1,5 +1,7 @@
 import 'package:gcms/app/modules/Authentication/bindings/login_binding.dart';
 import 'package:gcms/app/modules/Authentication/views/login_view.dart';
+import 'package:gcms/app/modules/SettingScreen/bindings/setting_screen_binding.dart';
+import 'package:gcms/app/modules/SettingScreen/views/setting_screen_view.dart';
 import 'package:gcms/app/modules/home/views/explore_screen_view.dart';
 import 'package:get/get.dart';
 
@@ -68,6 +70,11 @@ class AppPages {
       name: _Paths.SETUP_SCREEN,
       page: () => SetupScreenView(),
       binding: SetupScreenBinding(),
+    ),
+    GetPage(
+      name: _Paths.SETTING_SCREEN,
+      page: () => SettingScreenView(),
+      binding: SettingScreenBinding(),
     ),
   ];
 }

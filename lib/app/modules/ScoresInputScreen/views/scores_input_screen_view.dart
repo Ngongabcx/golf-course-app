@@ -8,6 +8,7 @@ import 'package:gcms/app/modules/ActiveGameScreen/views/update_score_button.dart
 import 'package:gcms/app/modules/ScoresInputScreen/views/result_widget.dart';
 import 'package:gcms/app/modules/ScoresInputScreen/views/score_widget.dart';
 import 'package:gcms/app/modules/commonWidgets/customButton.dart';
+import 'package:gcms/app/modules/commonWidgets/drawer.dart';
 import 'package:gcms/constants/constant.dart';
 import 'package:gcms/theme/gcms_theme.dart';
 
@@ -232,9 +233,9 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(top: 8.0),
-                          child:CustomButton(
-                      text: "Submit",
-                      onPressed: () {
+                          child: CustomButton(
+                            text: "Submit",
+                            onPressed: () {
                               controller.calculateResult();
                               Get.defaultDialog(
                                 title: "Confirm Submission",
@@ -264,7 +265,7 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                 middleTextStyle: TextStyle(color: Colors.white),
                               );
                             },
-                    ),
+                          ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 6.0),
@@ -290,8 +291,8 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                                 ),
                                               ),
                                               Padding(
-                                                padding:
-                                                    EdgeInsets.only(right: 14.0),
+                                                padding: EdgeInsets.only(
+                                                    right: 14.0),
                                                 child: Text(
                                                   'Scores',
                                                   style: Theme.of(context)

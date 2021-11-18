@@ -30,9 +30,7 @@ class CustomDropDown extends GetView {
         isDense: true,
         isCollapsed: false,
         labelText: label,
-        labelStyle: TextStyle(
-          color: Colors.grey
-        ),
+        labelStyle: TextStyle(color: Colors.grey),
         enabledBorder: OutlineInputBorder(
           borderSide: const BorderSide(
             //color: Color(0xFFDBE2E7),

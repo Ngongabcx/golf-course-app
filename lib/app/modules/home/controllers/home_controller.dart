@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/Notifications/views/notifications_view.dart';
+import 'package:gcms/app/modules/SettingScreen/views/user_details_screen_view.dart';
 import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
 import 'package:gcms/app/modules/home/providers/user_provider.dart';
 import 'package:gcms/app/modules/home/views/explore_screen_view.dart';
@@ -25,6 +26,7 @@ class HomeController extends GetxController {
   void onInit() async {
     super.onInit();
     await validateTokenAndGetUser();
+    await checkIfUserFullyRegistered();
     Get.offAllNamed('/home');
   }
 
@@ -33,6 +35,16 @@ class HomeController extends GetxController {
     // TODO: implement onClose
     super.onClose();
     name.value = '';
+  }
+
+  checkIfUserFullyRegistered() {
+    Map<String, dynamic> storedUser = jsonDecode(storage.read('user'));
+    var usr = User.fromJson(storedUser);
+    print("USER REG DETAILS   ===> ");
+    if (usr.firstName == '' || usr.firstName == null) {
+      //Call the reg screen here
+      Get.to(UserDetailsScreenView());
+    }
   }
 
   validateTokenAndGetUser() async {
@@ -45,7 +57,8 @@ class HomeController extends GetxController {
       });
     }
     print("TOKEN ---> ${storage.read("accessToken")}");
-    print("TOKEN IS EXPIRING ON --->${Jwt.getExpiryDate(storage.read("accessToken"))}");
+    print(
+        "TOKEN IS EXPIRING ON --->${Jwt.getExpiryDate(storage.read("accessToken"))}");
     Map<String, dynamic> tkn = Jwt.parseJwt('${storage.read("accessToken")}');
     print("DECODED TOKEN ---> $tkn");
     print("USER ID ---->${tkn['Id']}");
@@ -87,6 +100,9 @@ class HomeController extends GetxController {
         storage.write("user", resp);
         Map<String, dynamic> storedUser = jsonDecode(storage.read('user'));
         var usr = User.fromJson(storedUser);
+        if (usr.isBlank) {
+          ShowSnackBar("USER DETAILS Error", "NO USER INFO FOUND", Colors.blue);
+        }
         name.value = usr.firstName;
         print(
             "USER DETAILS RETRIEVED FROM MEMORY  ---> ${storage.read('user')}");

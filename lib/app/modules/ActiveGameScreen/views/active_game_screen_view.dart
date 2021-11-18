@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gcms/app/modules/ActiveGameScreen/views/competition_card.dart';
 import 'package:gcms/app/modules/ActiveGameScreen/views/search_card.dart';
+import 'package:gcms/app/modules/commonWidgets/drawer.dart';
 import 'package:gcms/tempModels/competetion.dart';
 
 import 'package:get/get.dart';
 
 import '../controllers/active_game_screen_controller.dart';
-import 'competition_detail_view.dart';
+import '../../SetupScreen/views/competition_detail_view.dart';
 
 class ActiveGameScreenView extends GetView<ActiveGameScreenController> {
   @override
@@ -33,26 +34,6 @@ class ActiveGameScreenView extends GetView<ActiveGameScreenController> {
           child: Column(
             children: [
               SearchCard(),
-              const SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('Create a new match',
-                      style: Theme.of(context).textTheme.bodyText2),
-                  FloatingActionButton(
-                    backgroundColor: Colors.white,
-                    foregroundColor: Colors.black,
-                    mini: true,
-                    onPressed: () {
-                      // Respond to button press
-                      Get.toNamed("/setup-screen");
-                    },
-                    child: Icon(Icons.add),
-                  ),
-                ],
-              ),
               const SizedBox(
                 height: 20,
               ),

@@ -11,7 +11,7 @@ import '../course_model.dart';
 class SetupScreenController extends GetxController {
   var isProcessing = false.obs;
   var lstCourses = [].obs;
-   var players = [];
+  var players = [];
   final courses = [
     'Chinama Golf Course',
     'Lusaka Golf Club',
@@ -72,7 +72,7 @@ class SetupScreenController extends GetxController {
         isProcessing(false);
         players.addAll(resp);
         print("PLAYERS SUCCESSFULLY FETCHED  ---> $resp");
-         print("PLAYERS HERE -----  ---> $players");
+        print("PLAYERS HERE -----  ---> $players");
       }, onError: (err) {
         isProcessing(false);
         print("Error getting players details -->" + err.toString());

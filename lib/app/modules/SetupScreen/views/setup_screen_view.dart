@@ -2,7 +2,7 @@ import 'package:dropdown_plus/dropdown_plus.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
-import 'package:gcms/app/modules/ActiveGameScreen/views/competition_detail_view.dart';
+
 import 'package:gcms/app/modules/ActiveGameScreen/views/select_holes_card.dart';
 import 'package:gcms/app/modules/commonWidgets/customButton.dart';
 import 'package:gcms/app/modules/commonWidgets/custom_multi_select_drop_down.dart';

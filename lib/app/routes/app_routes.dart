@@ -11,6 +11,7 @@ abstract class Routes {
   static const VIEW_PLAYERS_SCREEN = _Paths.VIEW_PLAYERS_SCREEN;
   static const RESULTS_SCREEN = _Paths.RESULTS_SCREEN;
   static const SETUP_SCREEN = _Paths.SETUP_SCREEN;
+  static const SETTING_SCREEN = _Paths.SETTING_SCREEN;
 }
 
 abstract class _Paths {
@@ -23,4 +24,5 @@ abstract class _Paths {
   static const VIEW_PLAYERS_SCREEN = '/view-players-screen';
   static const RESULTS_SCREEN = '/results-screen';
   static const SETUP_SCREEN = '/setup-screen';
+  static const SETTING_SCREEN = '/setting-screen';
 }
