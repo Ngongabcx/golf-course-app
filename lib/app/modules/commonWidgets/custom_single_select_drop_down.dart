@@ -25,8 +25,8 @@ class CustomDropDown extends GetView {
       mode: Mode.BOTTOM_SHEET,
       showSearchBox: showSearchField,
       items: itemList,
-      label: hint,
-      hint: label,
+      label: label,
+      hint: hint,
       popupItemDisabled: (String s) => s.startsWith('I'),
       dropdownSearchDecoration: InputDecoration(
         constraints: BoxConstraints(maxHeight: 60.0),
@@ -52,6 +52,7 @@ class CustomDropDown extends GetView {
             .takeWhile((i) => i.courseName == value)
             .toList();
         print("FILTERED ITEM ID ----> ${_courses.first.id}");
+        _controller.selectedCourseId.value = _courses.first.id.toString();
       },
       //selectedItem: "123456",
     );

@@ -77,13 +77,16 @@ class SetupScreenView extends GetView<SetupScreenController> {
                 style: Theme.of(context).textTheme.headline3,
               ),
               const SizedBox(height: 16),
-              CustomDropDownMultiSelect(
-                "Invite Players",
-                "Player in menu mode",
-                true,
-                true,
-                controller.playersList,
-              ),
+              Obx(() {
+                return CustomDropDownMultiSelect(
+                  "Invite Players",
+                  "Player in menu mode",
+                  true,
+                  true,
+                  List.generate(controller.lstPlayers.length,
+                      (index) => controller.lstPlayers[index].firstName),
+                );
+              }),
               const SizedBox(height: 20),
               Text('Select Holes',
                   style: Theme.of(context).textTheme.headline3),
