@@ -11,6 +11,7 @@ import '../course_model.dart';
 class SetupScreenController extends GetxController {
   var isProcessing = false.obs;
   var lstCourses = [].obs;
+   var players = [];
   final courses = [
     'Chinama Golf Course',
     'Lusaka Golf Club',
@@ -34,6 +35,7 @@ class SetupScreenController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    getPlayers();
     getCourses();
   }
 
@@ -62,13 +64,15 @@ class SetupScreenController extends GetxController {
       ShowSnackBar("Exception", exception.toString(), Colors.red);
     }
   }
-  getPlayes() {
+
+  getPlayers() {
     try {
       isProcessing(true);
       UserProvider().getPlayers().then((resp) async {
         isProcessing(false);
-        lstCourses.addAll(resp);
+        players.addAll(resp);
         print("PLAYERS SUCCESSFULLY FETCHED  ---> $resp");
+         print("PLAYERS HERE -----  ---> $players");
       }, onError: (err) {
         isProcessing(false);
         print("Error getting players details -->" + err.toString());

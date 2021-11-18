@@ -15,16 +15,14 @@ class HomeView extends GetView<HomeController> {
     final _controller = Get.put(HomeController());
     return Scaffold(
       appBar: AppBar(
-        title: Obx(() {
-          return Text(
-            greeting(),
-            style: TextStyle(
-              fontSize: 23.0,
-              fontWeight: FontWeight.w100,
-              color: Colors.white,
-            ),
-          );
-        }),
+        title: Text(
+          greeting(),
+          style: TextStyle(
+            fontSize: 23.0,
+            fontWeight: FontWeight.w100,
+            color: Colors.white,
+          ),
+        ),
         actions: [
           IconButton(
             icon: Icon(
@@ -36,7 +34,7 @@ class HomeView extends GetView<HomeController> {
           ),
           IconButton(
               onPressed: () {
-                controller.storage.write("isLoggedIn", false);
+                controller.storage.erase();
                 Get.offAllNamed('/login');
               },
               icon: Icon(

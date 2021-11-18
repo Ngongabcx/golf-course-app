@@ -38,12 +38,14 @@ class HomeController extends GetxController {
   validateTokenAndGetUser() async {
     String token = storage.read("accessToken");
     if (Jwt.isExpired(token)) {
+      print("TOKEN IS EXPIRED --->${Jwt.getExpiryDate(token)}");
       await refreshToken({
         'accessToken': token.toString(),
         'refreshToken': storage.read("refreshToken").toString(),
       });
     }
     print("TOKEN ---> ${storage.read("accessToken")}");
+    print("TOKEN IS EXPIRING ON --->${Jwt.getExpiryDate(storage.read("accessToken"))}");
     Map<String, dynamic> tkn = Jwt.parseJwt('${storage.read("accessToken")}');
     print("DECODED TOKEN ---> $tkn");
     print("USER ID ---->${tkn['Id']}");
