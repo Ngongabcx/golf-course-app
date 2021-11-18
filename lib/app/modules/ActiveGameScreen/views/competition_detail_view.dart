@@ -163,7 +163,7 @@ class CompetitionDetailView extends GetView {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 16.0),
                     child: CustomButton(
-                      text: "Proceed to hole",
+                      text: "Start recording scores",
                       onPressed: () {
                         Get.toNamed("/scores-input-screen");
                       },

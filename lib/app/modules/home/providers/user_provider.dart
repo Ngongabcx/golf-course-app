@@ -4,6 +4,8 @@ import 'package:gcms/app/modules/Authentication/auth_model.dart';
 import 'package:gcms/constants/constant.dart';
 import 'package:get/get.dart';
 
+import '../user_model.dart';
+
 class UserProvider extends GetConnect {
    Future<Auth> refreshToken(Map data) async {
     try {
@@ -29,6 +31,20 @@ class UserProvider extends GetConnect {
       }
     } catch (exception) {
       print('<<===GET USER DETAILS EXCEPTION==> $exception');
+      return Future.error(exception);
+    }
+  }
+  Future<List<User>> getPlayers() async {
+    try {
+      final response = await get("$kApiBaseURL/course");
+      if (response.status.hasError) {
+        return Future.error(response.statusText);
+      } else {
+        List<dynamic> resp = List<dynamic>.from(jsonDecode(response.bodyString));
+        return resp.map((item) => User.fromJson(item)).toList();
+      }
+    } catch (exception) {
+      print('<<===GET PLAYERS EXCEPTION2==> $exception');
       return Future.error(exception);
     }
   }

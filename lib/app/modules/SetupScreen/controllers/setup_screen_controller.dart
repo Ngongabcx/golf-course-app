@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/SetupScreen/providers/course_provider.dart';
 import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
+import 'package:gcms/app/modules/home/providers/user_provider.dart';
 import 'package:get/get.dart';
 
 import '../course_model.dart';
@@ -54,13 +55,29 @@ class SetupScreenController extends GetxController {
         isProcessing(false);
         print("Error getting courses details -->" + err.toString());
         ShowSnackBar("Error", err.toString(), Colors.red);
-        Get.offAllNamed('/login');
       });
     } catch (exception) {
       isProcessing(false);
       print("Exception getting courses details -->" + exception.toString());
       ShowSnackBar("Exception", exception.toString(), Colors.red);
-      Get.offAllNamed('/login');
+    }
+  }
+  getPlayes() {
+    try {
+      isProcessing(true);
+      UserProvider().getPlayers().then((resp) async {
+        isProcessing(false);
+        lstCourses.addAll(resp);
+        print("PLAYERS SUCCESSFULLY FETCHED  ---> $resp");
+      }, onError: (err) {
+        isProcessing(false);
+        print("Error getting players details -->" + err.toString());
+        ShowSnackBar("Error", err.toString(), Colors.red);
+      });
+    } catch (exception) {
+      isProcessing(false);
+      print("Exception getting players details -->" + exception.toString());
+      ShowSnackBar("Exception", exception.toString(), Colors.red);
     }
   }
 }

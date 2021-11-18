@@ -169,7 +169,7 @@ class ViewPlayersScreenView extends GetView<ViewPlayersScreenController> {
                     Padding(
                       padding: const EdgeInsets.only(bottom: 16.0),
                       child:CustomButton(
-                      text: "Proceed to hole",
+                      text: "Go to Scores",
                       onPressed: () {
                         Get.toNamed("/scores-input-screen");
                       },

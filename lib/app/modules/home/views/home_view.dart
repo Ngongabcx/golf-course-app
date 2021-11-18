@@ -17,8 +17,7 @@ class HomeView extends GetView<HomeController> {
       appBar: AppBar(
         title: Obx(() {
           return Text(
-            // greeting(),
-            _controller.name.value,
+            greeting(),
             style: TextStyle(
               fontSize: 23.0,
               fontWeight: FontWeight.w100,
