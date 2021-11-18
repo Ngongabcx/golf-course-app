@@ -26,7 +26,7 @@ class AuthProvider extends GetConnect {
       final response = await post("$kApiBaseURL/authmanagement/register", data);
       //final body = json.decode(response.bodyString);
       if (response.status.hasError) {
-        return Future.error(response.body["errors"].join(","));
+        return Future.error(response.statusText);
       } else {
         Map<String, dynamic> resp = jsonDecode(response.bodyString);
         return Auth.fromJson(resp);

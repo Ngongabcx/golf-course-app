@@ -23,7 +23,7 @@ class CustomDropDownMultiSelect extends GetView {
     return DropdownSearch<String>.multiSelection(
       autoValidateMode: AutovalidateMode.always,
       showClearButton: showClearButton,
-      mode: Mode.MENU,
+      mode: Mode.BOTTOM_SHEET,
       showSearchBox: showSearchField,
       items: itemList,
       label: label,

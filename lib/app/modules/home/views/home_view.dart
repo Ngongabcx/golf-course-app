@@ -12,18 +12,20 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    final homeController = Get.put(HomeController());
+    final _controller = Get.put(HomeController());
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-         // greeting(),
-         controller.name,
-          style: TextStyle(
-            fontSize: 23.0,
-            fontWeight: FontWeight.w100,
-            color: Colors.white,
-          ),
-        ),
+        title: Obx(() {
+          return Text(
+            // greeting(),
+            _controller.name.value,
+            style: TextStyle(
+              fontSize: 23.0,
+              fontWeight: FontWeight.w100,
+              color: Colors.white,
+            ),
+          );
+        }),
         actions: [
           IconButton(
             icon: Icon(
@@ -45,7 +47,7 @@ class HomeView extends GetView<HomeController> {
         elevation: 0,
         //centerTitle: true,
       ),
-      body: HomeController.pages[homeController.selectedIndex.value],
+      body: HomeController.pages[_controller.selectedIndex.value],
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Theme.of(context).textSelectionTheme.selectionColor,
         currentIndex: controller.selectedIndex.toInt(),

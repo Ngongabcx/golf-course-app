@@ -1,5 +1,15 @@
+import 'dart:convert';
+
+import 'package:flutter/material.dart';
+import 'package:gcms/app/modules/SetupScreen/providers/course_provider.dart';
+import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
 import 'package:get/get.dart';
+
+import '../course_model.dart';
+
 class SetupScreenController extends GetxController {
+  var isProcessing = false.obs;
+  var lstCourses = [].obs;
   final courses = [
     'Chinama Golf Course',
     'Lusaka Golf Club',
@@ -20,10 +30,10 @@ class SetupScreenController extends GetxController {
   var date = 'Not set'.obs;
   var time = "Not set".obs;
 
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
+    getCourses();
   }
 
   @override
@@ -33,5 +43,24 @@ class SetupScreenController extends GetxController {
 
   @override
   void onClose() {}
-  void increment() => count.value++;
+  getCourses() {
+    try {
+      isProcessing(true);
+      CourseProvider().getCourses().then((resp) async {
+        isProcessing(false);
+        lstCourses.addAll(resp);
+        print("COURSES SUCCESSFULLY FETCHED  ---> $resp");
+      }, onError: (err) {
+        isProcessing(false);
+        print("Error getting courses details -->" + err.toString());
+        ShowSnackBar("Error", err.toString(), Colors.red);
+        Get.offAllNamed('/login');
+      });
+    } catch (exception) {
+      isProcessing(false);
+      print("Exception getting courses details -->" + exception.toString());
+      ShowSnackBar("Exception", exception.toString(), Colors.red);
+      Get.offAllNamed('/login');
+    }
+  }
 }

@@ -19,7 +19,7 @@ class CustomDropDown extends GetView {
   @override
   Widget build(BuildContext context) {
     return DropdownSearch<String>(
-      mode: Mode.MENU,
+      mode: Mode.BOTTOM_SHEET,
       showSearchBox: showSearchField,
       items: itemList,
       label: label,

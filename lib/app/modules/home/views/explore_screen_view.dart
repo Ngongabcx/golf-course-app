@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:gcms/bcx_icons_icons.dart';
 
 import 'package:get/get.dart';
-
-import '../controllers/explore_screen_controller.dart';
 import 'card.dart';
 
-class ExploreScreenView extends GetView<ExploreScreenController> {
+class ExploreScreenView extends GetView {
   @override
   Widget build(BuildContext context) {
     return GridView.count(
@@ -16,6 +15,14 @@ class ExploreScreenView extends GetView<ExploreScreenController> {
       mainAxisSpacing: 10,
       crossAxisCount: 2,
       children: <Widget>[
+        OptionsCard(
+          text1: 'Create Match',
+          icon: BcxIcons.golfing,
+          color: Colors.white,
+          onTapped: () {
+            Get.toNamed("/setup-screen");
+          },
+        ),
         OptionsCard(
           text1: 'Active Games',
           icon: FontAwesomeIcons.playCircle,
@@ -33,12 +40,6 @@ class ExploreScreenView extends GetView<ExploreScreenController> {
         OptionsCard(
           text1: 'Past Scores',
           icon: Icons.sports_score,
-          color: Colors.white,
-          onTapped: () {},
-        ),
-        OptionsCard(
-          text1: 'Membership',
-          icon: Icons.card_membership,
           color: Colors.white,
           onTapped: () {},
         ),

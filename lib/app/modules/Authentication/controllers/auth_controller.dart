@@ -40,6 +40,8 @@ class AuthenticationController extends GetxController {
       AuthProvider().login(data).then((resp) async {
         clearTextEditingControllers();
         isProcessing(false);
+        print("ACCESSTOKEN ---> " + resp.info.accessToken);
+        print("REFRESHTOKEN ---> " + resp.info.refreshToken);
         ShowSnackBar("Success", "Login Successful.", kPrimaryColor);
         storage.write("isLoggedIn", true);
         storage.write("accessToken", resp.info.accessToken);
@@ -86,6 +88,4 @@ class AuthenticationController extends GetxController {
     signUpPasswordController.clear();
     signUpConfirmPasswordController.clear();
   }
-
-
 }

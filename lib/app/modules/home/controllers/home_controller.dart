@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:gcms/app/modules/ExploreScreen/views/explore_screen_view.dart';
 import 'package:gcms/app/modules/Notifications/views/notifications_view.dart';
 import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
 import 'package:gcms/app/modules/home/providers/user_provider.dart';
+import 'package:gcms/app/modules/home/views/explore_screen_view.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:jwt_decode/jwt_decode.dart';
@@ -13,7 +13,7 @@ import '../user_model.dart';
 
 class HomeController extends GetxController {
   var selectedIndex = 0.obs;
-  String name = '';
+  var name = ''.obs;
   var storage = GetStorage();
   var isProcessing = false.obs;
   static List<Widget> pages = <Widget>[
@@ -25,34 +25,35 @@ class HomeController extends GetxController {
   void onInit() async {
     super.onInit();
     await validateTokenAndGetUser();
+    Get.offAllNamed('/home');
   }
 
   @override
   void onClose() {
     // TODO: implement onClose
     super.onClose();
-    name = '';
+    name.value = '';
   }
 
   validateTokenAndGetUser() async {
-    // storage.write("accessToken", resp.info.accessToken);
-    print("STORED TOKEN ======> ${storage.read("accessToken")}");
     String token = storage.read("accessToken");
     if (Jwt.isExpired(token)) {
       await refreshToken({
-        'accessToken': '$token',
-        'refreshToken': '${storage.read("refreshToken")}',
+        'accessToken': token.toString(),
+        'refreshToken': storage.read("refreshToken").toString(),
       });
     }
     print("TOKEN ---> ${storage.read("accessToken")}");
     Map<String, dynamic> tkn = Jwt.parseJwt('${storage.read("accessToken")}');
     print("DECODED TOKEN ---> $tkn");
     print("USER ID ---->${tkn['Id']}");
+    storage.write("aspUserID", tkn['Id']);
     await getUserDetails(tkn['Id']);
-    Get.offAllNamed('/home');
+    print("NAME ----> $name");
   }
 
   refreshToken(Map data) {
+    print("DATA FOR REFRESHING TOKEN---------> $data");
     try {
       isProcessing(true);
       UserProvider().refreshToken(data).then((resp) async {
@@ -64,11 +65,13 @@ class HomeController extends GetxController {
         isProcessing(false);
         print("Error refreshing tokens -->" + err.toString());
         ShowSnackBar("Error", err.toString(), Colors.red);
+        Get.offAllNamed('/login');
       });
     } catch (exception) {
       isProcessing(false);
       print("Exception refreshing tokens -->" + exception.toString());
       ShowSnackBar("Exception", exception.toString(), Colors.red);
+      Get.offAllNamed('/login');
     }
   }
 
@@ -80,18 +83,22 @@ class HomeController extends GetxController {
         print("USER DETAILS SUCCESSFULLY FETCHED  ---> $resp");
         //TODO: TRY TO SAVE THE USER RESPONSE AS A JSON OBJECT FOR EASY ACCESS --> (json.decode(resp))
         storage.write("user", resp);
-         Map<String, dynamic> storedUser = jsonDecode(storage.read('user'));
+        Map<String, dynamic> storedUser = jsonDecode(storage.read('user'));
         var usr = User.fromJson(storedUser);
-        name = usr.firstName;
+        name.value = usr.firstName;
+        print(
+            "USER DETAILS RETRIEVED FROM MEMORY  ---> ${storage.read('user')}");
       }, onError: (err) {
         isProcessing(false);
         print("Error getting user details -->" + err.toString());
         ShowSnackBar("Error", err.toString(), Colors.red);
+        Get.offAllNamed('/login');
       });
     } catch (exception) {
       isProcessing(false);
       print("Exception getting user details -->" + exception.toString());
       ShowSnackBar("Exception", exception.toString(), Colors.red);
+      Get.offAllNamed('/login');
     }
   }
 }

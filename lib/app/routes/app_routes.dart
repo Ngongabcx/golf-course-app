@@ -6,7 +6,6 @@ abstract class Routes {
   static const LOGIN = _Paths.LOGIN;
   static const SIGN_UP = _Paths.SIGN_UP;
   static const ACTIVE_GAME_SCREEN = _Paths.ACTIVE_GAME_SCREEN;
-  static const EXPLORE_SCREEN = _Paths.EXPLORE_SCREEN;
   static const SCORES_INPUT_SCREEN = _Paths.SCORES_INPUT_SCREEN;
   static const NOTIFICATIONS = _Paths.NOTIFICATIONS;
   static const VIEW_PLAYERS_SCREEN = _Paths.VIEW_PLAYERS_SCREEN;
@@ -19,7 +18,6 @@ abstract class _Paths {
   static const LOGIN = '/login';
   static const SIGN_UP = '/sign-up';
   static const ACTIVE_GAME_SCREEN = '/active-game-screen';
-  static const EXPLORE_SCREEN = '/explore-screen';
   static const SCORES_INPUT_SCREEN = '/scores-input-screen';
   static const NOTIFICATIONS = '/notifications';
   static const VIEW_PLAYERS_SCREEN = '/view-players-screen';
