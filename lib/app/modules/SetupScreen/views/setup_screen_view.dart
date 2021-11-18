@@ -61,42 +61,16 @@ class SetupScreenView extends GetView<SetupScreenController> {
                 'Select Golf Course',
                 style: Theme.of(context).textTheme.headline3,
               ),
-              // const SizedBox(height: 20),
-              // CustomDropDown("Golf Course", "Select Golf Course", true,
-              //     controller.courses),
-              Expanded(
-                child: DropdownButtonHideUnderline(
-                  child: ButtonTheme(
-                    alignedDropdown: true,
-                    child: Obx(() {
-                      return DropdownButton<String>(
-                        value: controller.currentSelectedCourse.value,
-                        iconSize: 30,
-                        icon: (null),
-                        style: TextStyle(
-                          color: Colors.black54,
-                          fontSize: 16,
-                        ),
-                        hint: Text('Select Golf Course'),
-                        onChanged: (String newValue) {
-                          controller.currentSelectedCourse.value = newValue;
-                          print(controller.currentSelectedCourse.value);
-                        },
-                        items: controller.lstCourses?.map((item) {
-                              print(
-                                  "AAAARYAyyyyyyy------->>>${controller.lstCourses.value}");
-                              return new DropdownMenuItem(
-                                child: new Text(item['courseName']),
-                                value: item['id'].toString(),
-                              );
-                            })?.toList() ??
-                            [],
-                      );
-                    }),
-                  ),
-                ),
-              ),
-
+              const SizedBox(height: 20),
+              Obx(() {
+                return CustomDropDown(
+                  "Golf Course",
+                  "Select Golf Course",
+                  true,
+                  List.generate(controller.lstCourses.length,
+                      (index) => controller.lstCourses[index].courseName),
+                );
+              }),
               const SizedBox(height: 20),
               Text(
                 'Player Setup',

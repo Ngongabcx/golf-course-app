@@ -45,7 +45,8 @@ class HomeController extends GetxController {
       });
     }
     print("TOKEN ---> ${storage.read("accessToken")}");
-    print("TOKEN IS EXPIRING ON --->${Jwt.getExpiryDate(storage.read("accessToken"))}");
+    print(
+        "TOKEN IS EXPIRING ON --->${Jwt.getExpiryDate(storage.read("accessToken"))}");
     Map<String, dynamic> tkn = Jwt.parseJwt('${storage.read("accessToken")}');
     print("DECODED TOKEN ---> $tkn");
     print("USER ID ---->${tkn['Id']}");
@@ -77,13 +78,20 @@ class HomeController extends GetxController {
     }
   }
 
+  checkIfUserFullyRegistered() {
+    Map<String, dynamic> storedUser = jsonDecode(storage.read('user'));
+    var usr = User.fromJson(storedUser);
+    if (usr.firstName == '' || usr.firstName == null) {
+      //Call the reg screen here
+    }
+  }
+
   getUserDetails(String id) {
     try {
       isProcessing(true);
       UserProvider().getUserDetails(id).then((resp) async {
         isProcessing(false);
         print("USER DETAILS SUCCESSFULLY FETCHED  ---> $resp");
-        //TODO: TRY TO SAVE THE USER RESPONSE AS A JSON OBJECT FOR EASY ACCESS --> (json.decode(resp))
         storage.write("user", resp);
         Map<String, dynamic> storedUser = jsonDecode(storage.read('user'));
         var usr = User.fromJson(storedUser);
