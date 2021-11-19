@@ -47,11 +47,9 @@ class CustomDropDown extends GetView {
         ),
       ),
       onChanged: (value) {
-        print("FILTERED ITEM TEST ----> ");
         var _courses = _controller.lstCourses
             .takeWhile((i) => i.courseName == value)
             .toList();
-        print("FILTERED ITEM ID ----> ${_courses.first.id}");
         _controller.selectedCourseId.value = _courses.first.id.toString();
       },
       //selectedItem: "123456",

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gcms/app/components/submit_button.dart';
+import 'package:gcms/app/modules/SetupScreen/competition_model.dart';
 import 'package:gcms/app/modules/commonWidgets/customButton.dart';
-import 'package:gcms/tempModels/competetion.dart';
 import 'package:gcms/theme/gcms_theme.dart';
 
 import 'package:get/get.dart';
@@ -12,6 +11,7 @@ class CompetitionDetailView extends GetView {
   CompetitionDetailView(this.competition);
   @override
   Widget build(BuildContext context) {
+  final comp = competition.payload.first;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -20,7 +20,7 @@ class CompetitionDetailView extends GetView {
         title: Align(
           alignment: AlignmentDirectional(-1, 0),
           child: Text(
-            competition.compName,
+            comp.compName,
             style: Theme.of(context).textTheme.headline3,
           ),
         ),
@@ -40,7 +40,7 @@ class CompetitionDetailView extends GetView {
                 ),
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage(competition.image),
+                    image: AssetImage(comp.course.courseImage),
                     fit: BoxFit.cover,
                   ),
                   borderRadius: const BorderRadius.all(Radius.circular(10.0)),
@@ -50,10 +50,10 @@ class CompetitionDetailView extends GetView {
                 height: 20,
               ),
               Text(
-                competition.courseName,
+                comp.course.courseName,
                 style: Theme.of(context).textTheme.headline5,
               ),
-              Text(competition.compDate,
+              Text(comp.compDate,
                   style: Theme.of(context).textTheme.subtitle2),
               const SizedBox(
                 height: 20,
@@ -62,11 +62,11 @@ class CompetitionDetailView extends GetView {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    competition.compName,
+                    comp.compName,
                     style: Theme.of(context).textTheme.bodyText2,
                   ),
                   Text(
-                    competition.gameType,
+                    "Strokeplay",
                     style: Theme.of(context).textTheme.bodyText2,
                   ),
                   Text(

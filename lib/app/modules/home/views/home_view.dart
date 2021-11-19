@@ -34,7 +34,7 @@ class HomeView extends GetView<HomeController> {
           ),
           IconButton(
               onPressed: () {
-                controller.storage.erase();
+                _controller.storage.erase();
                 Get.offAllNamed('/login');
               },
               icon: Icon(

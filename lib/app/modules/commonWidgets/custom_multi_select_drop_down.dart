@@ -62,7 +62,7 @@ class CustomDropDownMultiSelect extends GetView {
           }
 
           print("FILTERED ITEM ID ----> ${_controller.selectedPlayers.reversed}");
-          _controller.selectedPlayers.add(value.first);
+          //_controller.selectedPlayers.add(value.first);
         }
         //selectedItems: ["Tiger Woods"],
         );

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gcms/app/modules/ActiveGameScreen/views/competition_card.dart';
 import 'package:gcms/app/modules/ActiveGameScreen/views/search_card.dart';
 import 'package:gcms/tempModels/competetion.dart';
@@ -7,7 +6,6 @@ import 'package:gcms/tempModels/competetion.dart';
 import 'package:get/get.dart';
 
 import '../controllers/active_game_screen_controller.dart';
-import 'competition_detail_view.dart';
 
 class ActiveGameScreenView extends GetView<ActiveGameScreenController> {
   @override
@@ -59,7 +57,7 @@ class ActiveGameScreenView extends GetView<ActiveGameScreenController> {
               Expanded(
                 child: ListView.builder(
                   // 5
-                  itemCount: Competition.samples.length,
+                  itemCount: TempCompetition.samples.length,
                   // 6
                   itemBuilder: (BuildContext context, int index) {
                     // 7
@@ -67,22 +65,10 @@ class ActiveGameScreenView extends GetView<ActiveGameScreenController> {
                     // 7
                     return GestureDetector(
                       // 8
-                      onTap: () {
-                        // 9
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              // 10
-                              return CompetitionDetailView(
-                                  Competition.samples[index]);
-                            },
-                          ),
-                        );
-                      },
+                      onTap: () {},
                       // 11
                       child: CompetitionCard(
-                          competition: Competition.samples[index]),
+                          competition: TempCompetition.samples[index]),
                     );
                   },
                 ),

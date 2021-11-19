@@ -1,0 +1,49 @@
+{
+    "status": 201,
+    "success": true,
+    "message": "Competition created successfully",
+    "error": "",
+    "payload": {
+      "id": 2,
+      "compName": "Strkkeset Guys1",
+      "gametype": {
+        "id": 1,
+        "name": "Stable Ford",
+        "description": "A game played by four people"
+      },
+      "compFee": 0.0,
+      "compDate": "10/12/2021 12:00:00 AM",
+      "course": {
+        "id": 2,
+        "courseName": "Chainama Golf Club",
+        "address": "Plot 1 Chainama",
+        "courseAbr": "Cha-1",
+        "email": "chainama@gmail.com",
+        "phoneNo": "0967856489",
+        "courseImage": "https://www.istockphoto.com/photo/backlit-golf-course-with-no-golfers-gm481345926-69506541?utm_source=unsplash&utm_medium=affiliate&utm_campaign=srp_photos_top&utm_content=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fgolf&utm_term=golf%3A%3Asearch-aggressive-affiliates-v2%3Aa"
+      },
+      "competitionPlayer": [
+        {
+          "id": 39,
+          "competitionId": 33,
+          "competitionTime": "12:12:00",
+          "playerId": 8,
+          "competitionHcp": 12
+        },
+        {
+          "id": 40,
+          "competitionId": 33,
+          "competitionTime": "12:12:00",
+          "playerId": 15,
+          "competitionHcp": 12
+        },
+        {
+          "id": 41,
+          "competitionId": 33,
+          "competitionTime": "12:12:00",
+          "playerId": 18,
+          "competitionHcp": 12
+        }
+      ]
+    }
+  }
