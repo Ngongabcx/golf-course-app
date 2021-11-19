@@ -8,7 +8,7 @@ import '../competition_model.dart';
 class CompetitionProvider extends GetConnect {
   Future<Competition> createCompetition(Map data) async {
     try {
-      final response = await post("$kApiBaseURL/members", data);
+      final response = await post("$kApiBaseURL/competitions", data);
       //final body = json.decode(response.bodyString);
       if (response.status.hasError) {
         return Future.error(response.statusText);
@@ -17,7 +17,7 @@ class CompetitionProvider extends GetConnect {
         return Competition.fromJson(resp);
       }
     } catch (exception) {
-      print('<<===REGISTER USER EXCEPTION ==> $exception');
+      print('<<===CREATING COMPETITION EXCEPTION ==> $exception');
       return Future.error(exception);
     }
   }
