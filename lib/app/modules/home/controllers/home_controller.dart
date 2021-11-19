@@ -26,7 +26,7 @@ class HomeController extends GetxController {
   void onInit() async {
     super.onInit();
     await validateTokenAndGetUser();
-    await checkIfUserFullyRegistered();
+    // await checkIfUserFullyRegistered();
     Get.offAllNamed('/home');
   }
 
@@ -37,12 +37,18 @@ class HomeController extends GetxController {
     name.value = '';
   }
 
-  checkIfUserFullyRegistered() {
-    Map<String, dynamic> storedUser = jsonDecode(storage.read('user'));
-    var usr = User.fromJson(storedUser);
-    print("USER REG DETAILS   ===> ");
-    if (usr.firstName == '' || usr.firstName == null) {
-      //Call the reg screen here
+  // checkIfUserFullyRegistered() {
+  //   Map<String, dynamic> storedUser = jsonDecode(storage.read('user'));
+  //   var usr = User.fromJson(storedUser);
+  //   print("USER REG DETAILS   ===> ");
+  //   if (usr.firstName == '' || usr.firstName == null) {
+  //     //Call the reg screen here
+  //     Get.to(UserDetailsScreenView());
+  //   }
+  // }
+
+  isRegistered() {
+    if (storage.read('user') == null) {
       Get.to(UserDetailsScreenView());
     }
   }

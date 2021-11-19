@@ -1,3 +1,8 @@
+import 'package:flutter/material.dart';
+import 'package:gcms/app/modules/ScoresInputScreen/providers/scorecard_provider.dart';
+import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
+import 'package:gcms/constants/constant.dart';
+import 'package:get/get.dart';
 import 'package:get/get.dart';
 
 class ScoresInputScreenController extends GetxController {
@@ -7,6 +12,7 @@ class ScoresInputScreenController extends GetxController {
   var stroke = 13.0.obs;
   var score = 0.0.obs;
   var result = 0.0.obs;
+  var isProcessing = false.obs;
   @override
   void onInit() {
     super.onInit();
@@ -19,6 +25,24 @@ class ScoresInputScreenController extends GetxController {
 
   @override
   void onClose() {}
+
+  void addScorecard(Map data) {
+    try {
+      isProcessing(true);
+      ScorecardProvider().addScorecard(data).then((resp) {
+        isProcessing(false);
+        hole++;
+        ShowSnackBar("Success", "Score Successfully Added.", Colors.green);
+      }, onError: (err) {
+        isProcessing(false);
+        ShowSnackBar("Error", err.toString(), Colors.red);
+      });
+    } catch (exception) {
+      isProcessing(false);
+      print("<---------EXCEPTION2--------->" + exception.toString());
+      ShowSnackBar("Exception", exception.toString(), Colors.red);
+    }
+  }
 
   calculateResult() {
     if (score > 0) {
