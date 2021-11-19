@@ -4,21 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/SetupScreen/providers/course_provider.dart';
 import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
 import 'package:gcms/app/modules/home/providers/user_provider.dart';
+import 'package:gcms/app/modules/home/user_model.dart';
 import 'package:get/get.dart';
 
 import '../course_model.dart';
 
 class SetupScreenController extends GetxController {
   var isProcessing = false.obs;
-  var lstCourses = [].obs;
-  var players = [];
-  final courses = [
-    'Chinama Golf Course',
-    'Lusaka Golf Club',
-    'Bonanza Golf Course',
-    'Chilanga Golf Club',
-  ];
-  var currentSelectedCourse = ''.obs;
+  var lstCourses = <Course>[].obs;
+  var lstPlayers = <User>[].obs;
+  var selectedPlayers = [].obs;
+  var selectedCourseId = ''.obs;
   var currentSelectedHole = ''.obs;
   var selectedHole = 0.obs;
   final hole9options = [1, 9, 10, 18];
@@ -39,20 +35,13 @@ class SetupScreenController extends GetxController {
     getCourses();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {}
   getCourses() {
     try {
       isProcessing(true);
       CourseProvider().getCourses().then((resp) async {
         isProcessing(false);
         lstCourses.addAll(resp);
-        print("COURSES SUCCESSFULLY FETCHED  ---> $resp");
+        print("COURSES SUCCESSFULLY FETCHED  ---> ${resp.first.courseName}");
       }, onError: (err) {
         isProcessing(false);
         print("Error getting courses details -->" + err.toString());
@@ -70,9 +59,8 @@ class SetupScreenController extends GetxController {
       isProcessing(true);
       UserProvider().getPlayers().then((resp) async {
         isProcessing(false);
-        players.addAll(resp);
-        print("PLAYERS SUCCESSFULLY FETCHED  ---> $resp");
-        print("PLAYERS HERE -----  ---> $players");
+        lstPlayers.addAll(resp);
+        print("PLAYERS SUCCESSFULLY FETCHED  ---> ${resp.first.firstName}");
       }, onError: (err) {
         isProcessing(false);
         print("Error getting players details -->" + err.toString());
@@ -84,4 +72,12 @@ class SetupScreenController extends GetxController {
       ShowSnackBar("Exception", exception.toString(), Colors.red);
     }
   }
+
+  @override
+  void onReady() {
+    super.onReady();
+  }
+
+  @override
+  void onClose() {}
 }

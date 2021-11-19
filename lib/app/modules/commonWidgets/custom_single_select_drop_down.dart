@@ -1,5 +1,7 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
+import 'package:gcms/app/modules/SetupScreen/controllers/setup_screen_controller.dart';
+import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/state_manager.dart';
 
 import 'package:gcms/constants/constant.dart';
@@ -9,6 +11,7 @@ class CustomDropDown extends GetView {
   final String hint;
   final bool showSearchField;
   final List<String> itemList;
+  SetupScreenController _controller = Get.find();
 
   CustomDropDown(
     this.label,
@@ -43,8 +46,15 @@ class CustomDropDown extends GetView {
           ),
         ),
       ),
-      onChanged: print,
-      selectedItem: "Chinama Golf Course",
+      onChanged: (value) {
+        print("FILTERED ITEM TEST ----> ");
+        var _courses = _controller.lstCourses
+            .takeWhile((i) => i.courseName == value)
+            .toList();
+        print("FILTERED ITEM ID ----> ${_courses.first.id}");
+        _controller.selectedCourseId.value = _courses.first.id.toString();
+      },
+      //selectedItem: "123456",
     );
   }
 }

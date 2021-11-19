@@ -39,7 +39,7 @@ class UserProvider extends GetConnect {
 
   Future<List<User>> getPlayers() async {
     try {
-      final response = await get("$kApiBaseURL/course");
+      final response = await get("$kApiBaseURL/members");
       if (response.status.hasError) {
         return Future.error(response.statusText);
       } else {

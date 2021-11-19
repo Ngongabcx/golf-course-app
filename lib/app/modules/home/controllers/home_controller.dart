@@ -90,13 +90,20 @@ class HomeController extends GetxController {
     }
   }
 
+  checkIfUserFullyRegistered() {
+    Map<String, dynamic> storedUser = jsonDecode(storage.read('user'));
+    var usr = User.fromJson(storedUser);
+    if (usr.firstName == '' || usr.firstName == null) {
+      //Call the reg screen here
+    }
+  }
+
   getUserDetails(String id) {
     try {
       isProcessing(true);
       UserProvider().getUserDetails(id).then((resp) async {
         isProcessing(false);
         print("USER DETAILS SUCCESSFULLY FETCHED  ---> $resp");
-        //TODO: TRY TO SAVE THE USER RESPONSE AS A JSON OBJECT FOR EASY ACCESS --> (json.decode(resp))
         storage.write("user", resp);
         Map<String, dynamic> storedUser = jsonDecode(storage.read('user'));
         var usr = User.fromJson(storedUser);
