@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:gcms/app/modules/SetupScreen/competition_model.dart';
+import 'package:gcms/app/components/submit_button.dart';
 import 'package:gcms/app/modules/commonWidgets/customButton.dart';
+import 'package:gcms/app/modules/commonWidgets/drawer.dart';
+import 'package:gcms/tempModels/competetion.dart';
 import 'package:gcms/theme/gcms_theme.dart';
 
 import 'package:get/get.dart';
 
 class CompetitionDetailView extends GetView {
-  final Competition competition;
+  final TempCompetition competition;
 
   CompetitionDetailView(this.competition);
   @override
   Widget build(BuildContext context) {
-  final comp = competition.payload.first;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -20,7 +21,7 @@ class CompetitionDetailView extends GetView {
         title: Align(
           alignment: AlignmentDirectional(-1, 0),
           child: Text(
-            comp.compName,
+            competition.compName,
             style: Theme.of(context).textTheme.headline3,
           ),
         ),
@@ -40,7 +41,7 @@ class CompetitionDetailView extends GetView {
                 ),
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage(comp.course.courseImage),
+                    image: AssetImage(competition.image),
                     fit: BoxFit.cover,
                   ),
                   borderRadius: const BorderRadius.all(Radius.circular(10.0)),
@@ -50,10 +51,10 @@ class CompetitionDetailView extends GetView {
                 height: 20,
               ),
               Text(
-                comp.course.courseName,
+                competition.courseName,
                 style: Theme.of(context).textTheme.headline5,
               ),
-              Text(comp.compDate,
+              Text(competition.compDate,
                   style: Theme.of(context).textTheme.subtitle2),
               const SizedBox(
                 height: 20,
@@ -62,11 +63,11 @@ class CompetitionDetailView extends GetView {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    comp.compName,
+                    competition.compName,
                     style: Theme.of(context).textTheme.bodyText2,
                   ),
                   Text(
-                    "Strokeplay",
+                    competition.gameType,
                     style: Theme.of(context).textTheme.bodyText2,
                   ),
                   Text(
