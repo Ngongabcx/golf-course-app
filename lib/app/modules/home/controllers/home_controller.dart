@@ -30,6 +30,13 @@ class HomeController extends GetxController {
     Get.offAllNamed('/home');
   }
 
+  void onItemTapped(int index) {
+    print("I HAVE BEEN TAPPED WITH INDEX  --> $index");
+    print("SELECTED INDEX VALUE BEFORE ---> $selectedIndex");
+    selectedIndex.value = index;
+    print("SELECTED INDEX VALUE AFTER ---> $selectedIndex");
+  }
+
   @override
   void onClose() {
     // TODO: implement onClose

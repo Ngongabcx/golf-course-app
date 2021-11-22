@@ -1,8 +1,5 @@
-import 'package:dropdown_plus/dropdown_plus.dart';
-import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
-
 import 'package:gcms/app/modules/ActiveGameScreen/views/select_holes_card.dart';
 import 'package:gcms/app/modules/commonWidgets/customButton.dart';
 import 'package:gcms/app/modules/commonWidgets/custom_multi_select_drop_down.dart';
@@ -12,10 +9,8 @@ import 'package:gcms/constants/constant.dart';
 import 'package:get/get.dart';
 
 import '../controllers/setup_screen_controller.dart';
-import '../course_model.dart';
 
 class SetupScreenView extends GetView<SetupScreenController> {
-  var _controller = Get.put(SetupScreenController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,6 +34,7 @@ class SetupScreenView extends GetView<SetupScreenController> {
           child: ListView(
             children: [
               TextFormField(
+                controller: controller.matchName,
                 decoration: InputDecoration(
                     fillColor: Colors.white,
                     focusedBorder: OutlineInputBorder(
@@ -185,8 +181,8 @@ class SetupScreenView extends GetView<SetupScreenController> {
                             minTime: DateTime(2000, 1, 1),
                             maxTime: DateTime(2022, 12, 31), onConfirm: (date) {
                           print('confirm $date');
-                          controller.date.value =
-                              '${date.year} - ${date.month} - ${date.day}';
+                          controller.matchDate.value =
+                              '${date.year}-${date.month}-${date.day}';
                         }, currentTime: DateTime.now(), locale: LocaleType.en);
                       },
                       child: Container(
@@ -206,7 +202,7 @@ class SetupScreenView extends GetView<SetupScreenController> {
                                         color: Color(0xFF9C9D9E),
                                       ),
                                       Obx(() => Text(
-                                            " ${controller.date.value}",
+                                            " ${controller.matchDate.value}",
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyText2,
@@ -238,8 +234,8 @@ class SetupScreenView extends GetView<SetupScreenController> {
                               containerHeight: 210.0,
                             ),
                             showTitleActions: true, onConfirm: (time) {
-                          controller.time.value =
-                              '${time.hour} : ${time.minute} : ${time.second}';
+                          controller.matchTime.value =
+                              '${time.hour}:${time.minute}:${time.second}';
                         }, currentTime: DateTime.now(), locale: LocaleType.en);
                       },
                       child: Container(
@@ -259,7 +255,8 @@ class SetupScreenView extends GetView<SetupScreenController> {
                                         color: Color(0xFF9C9D9E),
                                       ),
                                       Obx(() {
-                                        return Text("${controller.time.value}",
+                                        return Text(
+                                            "${controller.matchTime.value}",
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyText2);
@@ -285,12 +282,26 @@ class SetupScreenView extends GetView<SetupScreenController> {
               Expanded(
                 child: Align(
                   alignment: FractionalOffset.bottomCenter,
-                  child: CustomButton(
-                    text: "Confirm",
-                    onPressed: () {
-                      // Get.to(CompetitionDetailView());
-                    },
-                  ),
+                  child: Obx(() {
+                    return CustomButton(
+                      text: controller.isProcessing.value == true
+                          ? 'Processing'
+                          : 'Confirm',
+                      onPressed: () {
+                        controller.createCompetition({
+                          "CompName": controller.matchName.text.toString(),
+                          "GametypeId": 1,
+                          "CompDate": controller.matchDate.value.toString(),
+                          "CourseId": controller.selectedCourseId.value,
+                          "CompetitionPlayer": [
+                            {"PlayerId": 8},
+                            {"PlayerId": 15},
+                            {"PlayerId": 18}
+                          ]
+                        });
+                      },
+                    );
+                  }),
                 ),
               ),
             ],

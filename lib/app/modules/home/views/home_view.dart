@@ -6,10 +6,6 @@ import 'package:get/get.dart';
 import 'package:gcms/app/modules/home/controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
-  void _onItemTapped(int index) {
-    controller.selectedIndex.value = index;
-  }
-
   @override
   Widget build(BuildContext context) {
     final _controller = Get.put(HomeController());
@@ -35,7 +31,7 @@ class HomeView extends GetView<HomeController> {
           ),
           IconButton(
               onPressed: () {
-                controller.storage.erase();
+                _controller.storage.erase();
                 Get.offAllNamed('/login');
               },
               icon: Icon(
@@ -45,11 +41,13 @@ class HomeView extends GetView<HomeController> {
         elevation: 0,
         //centerTitle: true,
       ),
-      body: HomeController.pages[_controller.selectedIndex.value],
+      body: Obx(() {
+        return HomeController.pages[_controller.selectedIndex.value];
+      }),
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Theme.of(context).textSelectionTheme.selectionColor,
-        currentIndex: controller.selectedIndex.toInt(),
-        onTap: _onItemTapped,
+        currentIndex: controller.selectedIndex.value.toInt(),
+        onTap: controller.onItemTapped,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.explore),

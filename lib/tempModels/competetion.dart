@@ -1,4 +1,4 @@
-class Competition {
+class TempCompetition {
   int id;
   String courseName;
   String compName;
@@ -6,11 +6,11 @@ class Competition {
   String compDate;
   String image;
 
-  Competition(this.id, this.courseName, this.compName, this.gameType,
+  TempCompetition(this.id, this.courseName, this.compName, this.gameType,
       this.compDate, this.image);
 
-  static List<Competition> samples = [
-    Competition(
+  static List<TempCompetition> samples = [
+    TempCompetition(
       1,
       'Chinama Golf Course',
       'Lusaka Open',
@@ -18,7 +18,7 @@ class Competition {
       '25-11-2021',
       'assets/images/lusaka_golf_club_picture.jpg',
     ),
-    Competition(
+    TempCompetition(
       2,
       'Chinama Golf Course',
       'Ndola Open',
@@ -26,7 +26,7 @@ class Competition {
       '25-11-2021',
       'assets/images/cover_picture_club_livingstone-golf-club.jpg',
     ),
-    Competition(
+    TempCompetition(
       3,
       'Lusaka Golf Club',
     'Kabwe Open',
@@ -34,7 +34,7 @@ class Competition {
       '25-11-2021',
       'assets/images/lusaka_golf_club_picture.jpg',
     ),
-    Competition(
+    TempCompetition(
       4,
       'Bonanza Golf Course',
       'PGA Tour',
@@ -42,7 +42,7 @@ class Competition {
       '25-11-2021',
       'assets/images/ottis-bunning.jpg',
     ),
-    Competition(
+    TempCompetition(
       5,
       'Bonanza Golf Course',
       'Lusaka Tour',
@@ -50,7 +50,7 @@ class Competition {
       '25-11-2021',
       'assets/images/lusaka_golf_club_picture.jpg',
     ),
-    Competition(
+    TempCompetition(
       6,
       'Bonanza Golf Course',
       'Lusaka Open',
@@ -58,7 +58,7 @@ class Competition {
       '25-11-2021',
       'assets/images/ottis-bunning.jpg',
     ),
-    Competition(
+    TempCompetition(
       7,
       'Chilanga Golf Club',
       'Chisamba Open',
@@ -66,7 +66,7 @@ class Competition {
       '25-11-2021',
       'assets/images/lusaka_golf_club_picture.jpg',
     ),
-    Competition(
+    TempCompetition(
       8,
       'Chilanga Golf Club',
       'Lusaka Open',
@@ -74,7 +74,7 @@ class Competition {
       '25-11-2021',
       'assets/images/lusaka_golf_club_picture.jpg',
     ),
-    Competition(
+    TempCompetition(
       9,
       'Chinama Golf Course',
       'Lusaka Open',
@@ -82,7 +82,7 @@ class Competition {
       '25-11-2021',
       'assets/images/lusaka_golf_club_picture.jpg',
     ),
-    Competition(
+    TempCompetition(
       10,
       'Chinama Golf Course',
       'Livingstone Open',
@@ -90,7 +90,7 @@ class Competition {
       '25-11-2021',
       'assets/images/cover_picture_club_livingstone-golf-club.jpg',
     ),
-    Competition(
+    TempCompetition(
       11,
       'Bonanza Golf Course',
       'Kitwe Open',
@@ -98,7 +98,7 @@ class Competition {
       '25-11-2021',
       'assets/images/ottis-bunning.jpg',
     ),
-    Competition(
+    TempCompetition(
       12,
       'Lusaka Golf Club',
       'Lusaka Open',

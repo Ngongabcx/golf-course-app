@@ -3,7 +3,7 @@ import 'package:gcms/tempModels/competetion.dart';
 import 'package:gcms/theme/gcms_theme.dart';
 
 class CompetitionCard extends StatelessWidget {
-  final Competition competition;
+  final TempCompetition competition;
 
   const CompetitionCard({Key key, this.competition}) : super(key: key);
 
