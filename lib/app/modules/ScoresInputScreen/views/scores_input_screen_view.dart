@@ -274,7 +274,7 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                           'result': controller.result.value
                                               .toString(),
                                           "confirmed": true,
-                                          "holeId": 93,
+                                          "holeId": 96,
                                           "compplayerId": 1,
                                         });
                                         Get.back();
