@@ -6,6 +6,7 @@ import 'package:gcms/app/modules/SettingScreen/views/user_details_screen_view.da
 import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
 import 'package:gcms/app/modules/home/providers/user_provider.dart';
 import 'package:gcms/app/modules/home/views/explore_screen_view.dart';
+import 'package:gcms/app/modules/joinMatchScreen/views/join_match_screen_view.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:jwt_decode/jwt_decode.dart';
@@ -19,7 +20,7 @@ class HomeController extends GetxController {
   var isProcessing = false.obs;
   static List<Widget> pages = <Widget>[
     ExploreScreenView(),
-    Container(color: Colors.white),
+    JoinMatchScreenView(),
     NotificationsView(),
   ];
   @override
@@ -28,6 +29,13 @@ class HomeController extends GetxController {
     await validateTokenAndGetUser();
     // await checkIfUserFullyRegistered();
     Get.offAllNamed('/home');
+  }
+
+  void onItemTapped(int index) {
+    print("I HAVE BEEN TAPPED WITH INDEX  --> $index");
+    print("SELECTED INDEX VALUE BEFORE ---> $selectedIndex");
+    selectedIndex.value = index;
+    print("SELECTED INDEX VALUE AFTER ---> $selectedIndex");
   }
 
   @override

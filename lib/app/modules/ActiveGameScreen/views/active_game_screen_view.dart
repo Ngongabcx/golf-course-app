@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/ActiveGameScreen/views/competition_card.dart';
-import 'package:gcms/app/modules/ActiveGameScreen/views/search_card.dart';
+import 'package:gcms/app/modules/SetupScreen/views/competition_detail_view.dart';
+import 'package:gcms/app/modules/commonWidgets/search_card.dart';
 import 'package:gcms/tempModels/competetion.dart';
-
 import 'package:get/get.dart';
-
 import '../controllers/active_game_screen_controller.dart';
 
 class ActiveGameScreenView extends GetView<ActiveGameScreenController> {
@@ -48,7 +47,19 @@ class ActiveGameScreenView extends GetView<ActiveGameScreenController> {
                     // 7
                     return GestureDetector(
                       // 8
-                      onTap: () {},
+                      onTap: () {
+                        // 9
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              // 10
+                              return CompetitionDetailView(
+                                  TempCompetition.samples[index]);
+                            },
+                          ),
+                        );
+                      },
                       // 11
                       child: CompetitionCard(
                           competition: TempCompetition.samples[index]),
