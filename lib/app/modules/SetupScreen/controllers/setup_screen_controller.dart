@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:gcms/app/modules/ActiveGameScreen/views/competition_detail_view.dart';
+import 'package:gcms/app/modules/SetupScreen/providers/competition_provider.dart';
 import 'package:gcms/app/modules/SetupScreen/providers/course_provider.dart';
-import 'package:gcms/app/modules/SetupScreen/views/competition_detail_view.dart';
 import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
 import 'package:gcms/app/modules/home/providers/user_provider.dart';
 import 'package:gcms/app/modules/home/user_model.dart';
