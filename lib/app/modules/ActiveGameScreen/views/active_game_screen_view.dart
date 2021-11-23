@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/ActiveGameScreen/views/competition_card.dart';
-import 'package:gcms/app/modules/SetupScreen/views/competition_detail_view.dart';
-import 'package:gcms/app/modules/commonWidgets/search_card.dart';
+import 'package:gcms/app/modules/ActiveGameScreen/views/search_card.dart';
 import 'package:gcms/tempModels/competetion.dart';
+
 import 'package:get/get.dart';
+
 import '../controllers/active_game_screen_controller.dart';
 
 class ActiveGameScreenView extends GetView<ActiveGameScreenController> {
@@ -33,6 +34,23 @@ class ActiveGameScreenView extends GetView<ActiveGameScreenController> {
               const SizedBox(
                 height: 20,
               ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Create a new match',
+                      style: Theme.of(context).textTheme.bodyText2),
+                  FloatingActionButton(
+                    backgroundColor: Colors.white,
+                    foregroundColor: Colors.black,
+                    mini: true,
+                    onPressed: () {
+                      // Respond to button press
+                      Get.toNamed("/setup-screen");
+                    },
+                    child: Icon(Icons.add),
+                  ),
+                ],
+              ),
               const SizedBox(
                 height: 20,
               ),
@@ -47,19 +65,7 @@ class ActiveGameScreenView extends GetView<ActiveGameScreenController> {
                     // 7
                     return GestureDetector(
                       // 8
-                      onTap: () {
-                        // 9
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              // 10
-                              return CompetitionDetailView(
-                                  TempCompetition.samples[index]);
-                            },
-                          ),
-                        );
-                      },
+                      onTap: () {},
                       // 11
                       child: CompetitionCard(
                           competition: TempCompetition.samples[index]),
