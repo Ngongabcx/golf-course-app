@@ -43,17 +43,17 @@ class SetupScreenController extends GetxController {
     try {
       isProcessing(true);
       CourseProvider().getCourses().then((resp) async {
-        isProcessing(false);
         lstCourses.addAll(resp);
         print("COURSES SUCCESSFULLY FETCHED  ---> ${resp.first.courseName}");
-      }, onError: (err) {
         isProcessing(false);
+      }, onError: (err) {
         print("Error getting courses details -->" + err.toString());
+        isProcessing(false);
         ShowSnackBar("Error", err.toString(), Colors.red);
       });
     } catch (exception) {
-      isProcessing(false);
       print("Exception getting courses details -->" + exception.toString());
+      isProcessing(false);
       ShowSnackBar("Exception", exception.toString(), Colors.red);
     }
   }
@@ -63,17 +63,17 @@ class SetupScreenController extends GetxController {
     try {
       isProcessing(true);
       UserProvider().getPlayers().then((resp) async {
-        isProcessing(false);
         lstPlayers.addAll(resp);
         print("PLAYERS SUCCESSFULLY FETCHED  ---> ${resp.first.firstName}");
-      }, onError: (err) {
         isProcessing(false);
+      }, onError: (err) {
         print("Error getting players details -->" + err.toString());
+        isProcessing(false);
         ShowSnackBar("Error", err.toString(), Colors.red);
       });
     } catch (exception) {
-      isProcessing(false);
       print("Exception getting players details -->" + exception.toString());
+      isProcessing(false);
       ShowSnackBar("Exception", exception.toString(), Colors.red);
     }
   }
@@ -83,17 +83,17 @@ class SetupScreenController extends GetxController {
     try {
       isProcessing(true);
       CompetitionProvider().createCompetition(data).then((resp) async {
-        isProcessing(false);
         print("COMPETITION SUCCESSFULLY CREATED  ---> ${resp.payload}");
+        isProcessing(false);
         Get.to(CompetitionDetailView(resp));
       }, onError: (err) {
-        isProcessing(false);
         print("Error CREATING COMPETITION -->" + err.toString());
+        isProcessing(false);
         ShowSnackBar("Error", err.toString(), Colors.red);
       });
     } catch (exception) {
-      isProcessing(false);
       print("Exception CREATING COMPETITION -->" + exception.toString());
+      isProcessing(false);
       ShowSnackBar("Exception", exception.toString(), Colors.red);
     }
   }

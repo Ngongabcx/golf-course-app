@@ -1,9 +1,12 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:gcms/app/modules/commonWidgets/loader/loader.dart';
+import 'package:gcms/app/modules/commonWidgets/loader/loading_provider.dart';
 import 'package:gcms/app/modules/home/controllers/greeting.dart';
 import 'package:get/get.dart';
 import 'package:gcms/app/modules/home/controllers/home_controller.dart';
+import 'package:provider/src/provider.dart';
 
 class HomeView extends GetView<HomeController> {
   @override
@@ -40,9 +43,16 @@ class HomeView extends GetView<HomeController> {
         elevation: 0,
         //centerTitle: true,
       ),
-      body: Obx(() {
-        return HomeController.pages[_controller.selectedIndex.value];
-      }),
+      body: _controller.isProcessing.value == true
+          ? Loader()
+          : Obx(() {
+              Future.delayed(Duration.zero, () async {
+                context
+                    .read<LoadingProvider>()
+                    .setLoad(controller.isProcessing.value);
+              });
+              return HomeController.pages[_controller.selectedIndex.value];
+            }),
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Theme.of(context).textSelectionTheme.selectionColor,
         currentIndex: controller.selectedIndex.value.toInt(),
