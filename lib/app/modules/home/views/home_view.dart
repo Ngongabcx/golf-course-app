@@ -1,15 +1,14 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:gcms/app/modules/commonWidgets/loader/loader.dart';
+import 'package:gcms/app/modules/commonWidgets/loader/loading_provider.dart';
 import 'package:gcms/app/modules/home/controllers/greeting.dart';
 import 'package:get/get.dart';
 import 'package:gcms/app/modules/home/controllers/home_controller.dart';
+import 'package:provider/src/provider.dart';
 
 class HomeView extends GetView<HomeController> {
-  void _onItemTapped(int index) {
-    controller.selectedIndex.value = index;
-  }
-
   @override
   Widget build(BuildContext context) {
     final _controller = Get.put(HomeController());
@@ -30,12 +29,11 @@ class HomeView extends GetView<HomeController> {
             ),
             onPressed: () {
               // do something
-              Get.toNamed('/setting-screen');
             },
           ),
           IconButton(
               onPressed: () {
-                controller.storage.erase();
+                _controller.storage.erase();
                 Get.offAllNamed('/login');
               },
               icon: Icon(
@@ -45,19 +43,28 @@ class HomeView extends GetView<HomeController> {
         elevation: 0,
         //centerTitle: true,
       ),
-      body: HomeController.pages[_controller.selectedIndex.value],
+      body: _controller.isProcessing.value == true
+          ? Loader()
+          : Obx(() {
+              Future.delayed(Duration.zero, () async {
+                context
+                    .read<LoadingProvider>()
+                    .setLoad(controller.isProcessing.value);
+              });
+              return HomeController.pages[_controller.selectedIndex.value];
+            }),
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Theme.of(context).textSelectionTheme.selectionColor,
-        currentIndex: controller.selectedIndex.toInt(),
-        onTap: _onItemTapped,
+        currentIndex: controller.selectedIndex.value.toInt(),
+        onTap: controller.onItemTapped,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.explore),
             label: 'Explore',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.play_arrow),
-            label: 'Join Match',
+            icon: Icon(Icons.leaderboard),
+            label: 'Leaderboard',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.notifications),

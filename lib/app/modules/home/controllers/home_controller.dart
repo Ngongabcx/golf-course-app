@@ -70,6 +70,7 @@ class HomeController extends GetxController {
     print("USER ID ---->${tkn['Id']}");
     storage.write("aspUserID", tkn['Id']);
     await getUserDetails(tkn['Id']);
+    isProcessing(false);
     print("NAME ----> $name");
   }
 
@@ -78,20 +79,20 @@ class HomeController extends GetxController {
     try {
       isProcessing(true);
       UserProvider().refreshToken(data).then((resp) async {
-        isProcessing(false);
         print("TOKENS SUCCESSFULLY REFRESHED  ---> $resp");
         storage.write("accessToken", resp.info.accessToken);
         storage.write("refreshToken", resp.info.refreshToken);
-      }, onError: (err) {
         isProcessing(false);
+      }, onError: (err) {
         print("Error refreshing tokens -->" + err.toString());
         ShowSnackBar("Error", err.toString(), Colors.red);
+        isProcessing(false);
         Get.offAllNamed('/login');
       });
     } catch (exception) {
-      isProcessing(false);
       print("Exception refreshing tokens -->" + exception.toString());
       ShowSnackBar("Exception", exception.toString(), Colors.red);
+      isProcessing(false);
       Get.offAllNamed('/login');
     }
   }
@@ -108,7 +109,6 @@ class HomeController extends GetxController {
     try {
       isProcessing(true);
       UserProvider().getUserDetails(id).then((resp) async {
-        isProcessing(false);
         print("USER DETAILS SUCCESSFULLY FETCHED  ---> $resp");
         storage.write("user", resp);
         Map<String, dynamic> storedUser = jsonDecode(storage.read('user'));
@@ -119,6 +119,7 @@ class HomeController extends GetxController {
         name.value = usr.firstName;
         print(
             "USER DETAILS RETRIEVED FROM MEMORY  ---> ${storage.read('user')}");
+        isProcessing(false);
       }, onError: (err) {
         isProcessing(false);
         print("Error getting user details -->" + err.toString());

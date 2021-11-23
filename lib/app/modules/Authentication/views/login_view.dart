@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/commonWidgets/customButton.dart';
+import 'package:gcms/app/modules/commonWidgets/loader/loading_provider.dart';
 import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
 import 'package:gcms/app/modules/commonWidgets/textFormField.dart';
 import 'package:gcms/constants/constant.dart';
 import 'package:gcms/theme/gcms_theme.dart';
 
 import 'package:get/get.dart';
+import 'package:provider/src/provider.dart';
 
 import '../controllers/auth_controller.dart';
 
@@ -102,6 +104,15 @@ class LoginView extends GetView<AuthenticationController> {
                     Padding(
                       padding: const EdgeInsets.only(bottom: 16.0),
                       child: Obx(() {
+                        //We setting loader below
+                        Future.delayed(Duration.zero, () async {
+                          context
+                              .read<LoadingProvider>()
+                              .setLoad(controller.isProcessing.value);
+                        });
+                        //We dismiss keyboard below
+                        FocusScope.of(context)
+                            .requestFocus(new FocusNode()); //dismisses keyboard
                         return CustomButton(
                           text: (controller.isProcessing.value == true
                               ? 'Processing'
