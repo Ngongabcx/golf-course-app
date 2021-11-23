@@ -34,23 +34,6 @@ class ActiveGameScreenView extends GetView<ActiveGameScreenController> {
               const SizedBox(
                 height: 20,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('Create a new match',
-                      style: Theme.of(context).textTheme.bodyText2),
-                  FloatingActionButton(
-                    backgroundColor: Colors.white,
-                    foregroundColor: Colors.black,
-                    mini: true,
-                    onPressed: () {
-                      // Respond to button press
-                      Get.toNamed("/setup-screen");
-                    },
-                    child: Icon(Icons.add),
-                  ),
-                ],
-              ),
               const SizedBox(
                 height: 20,
               ),

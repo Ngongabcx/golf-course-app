@@ -63,8 +63,8 @@ class HomeView extends GetView<HomeController> {
             label: 'Explore',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.leaderboard),
-            label: 'Leaderboard',
+            icon: Icon(Icons.play_arrow),
+            label: 'Join',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.notifications),
