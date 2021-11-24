@@ -52,18 +52,17 @@ class CustomDropDownMultiSelect extends GetView {
           ),
         ),
         onChanged: (value) {
+          _controller.selectedPlayers.clear();
           for (int i = 0; i < value.length; i++) {
             var _players = _controller.lstPlayers
-                .takeWhile((v) => v.firstName == value[i])
+                .where((v) => v.firstName == value[i])
                 .toList();
             print(i);
             print(value[i]);
-            _controller.selectedPlayers.add(_players);
-            print("FILTERED ITEM PLAYERS ----> ${_players.reversed}");
+            _controller.selectedPlayers.add(_players[0].id);
+            print("FILTERED ITEM PLAYERS ----> ${_players[0].id}");
           }
-
-          print("FILTERED ITEM ID ----> ${_controller.selectedPlayers.reversed}");
-          _controller.selectedPlayers.add(value.first);
+          print("FILTERED ITEM ID ----> ${_controller.selectedPlayers}");
         }
         //selectedItems: ["Tiger Woods"],
         );
