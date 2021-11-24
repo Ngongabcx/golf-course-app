@@ -119,7 +119,7 @@ class LoginView extends GetView<AuthenticationController> {
                             .requestFocus(new FocusNode()); //dismisses keyboard
                         return CustomButton(
                           text: (controller.isProcessing.value == true
-                              ? 'Processing'
+                              ? 'Processing...'
                               : 'Login'),
                           style: GcmsTheme.lightTextTheme.bodyText2,
                           onPressed: () {

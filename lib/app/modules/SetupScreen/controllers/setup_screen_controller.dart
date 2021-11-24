@@ -16,12 +16,15 @@ class SetupScreenController extends GetxController {
     {"PlayerId": 15},
     {"PlayerId": 18}
   ];
+  int dropDownValue;
   var isProcessing = false.obs;
   var lstCourses = <Course>[].obs;
   var lstPlayers = <User>[].obs;
   var selectedPlayers = [].obs;
   var currentSelectedHole = ''.obs;
-  var selectedHole = 0.obs;
+  var numberOfHolesToPlay = 0.obs;
+  var selectedStartFromHole = 0.obs;
+  var selectedEndAtHole = 0.obs;
   final hole9options = [1, 9, 10, 18];
   final hole18options = [1, 9, 10, 18];
   TextEditingController matchName;

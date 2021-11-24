@@ -137,7 +137,7 @@ class SignUpView extends GetView<AuthenticationController> {
                         FocusScope.of(context).requestFocus(new FocusNode());
                         return CustomButton(
                           text: (controller.isProcessing.value == true
-                              ? 'Processing'
+                              ? 'Processing...'
                               : 'Create Account'),
                           style: GcmsTheme.lightTextTheme.bodyText2,
                           onPressed: () {
