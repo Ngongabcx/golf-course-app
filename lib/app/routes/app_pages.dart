@@ -21,7 +21,7 @@ import 'package:gcms/app/modules/home/bindings/home_binding.dart';
 import 'package:gcms/app/modules/home/views/explore_screen_view.dart';
 import 'package:gcms/app/modules/home/views/home_view.dart';
 import 'package:gcms/app/modules/joinMatchScreen/bindings/join_match_screen_binding.dart';
-import 'package:gcms/app/modules/joinMatchScreen/views/join_match_screen_view.dart';
+import 'package:gcms/app/modules/joinMatchScreen/views/match_invites_screen_view.dart';
 
 part 'app_routes.dart';
 
@@ -80,7 +80,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.JOIN_MATCH_SCREEN,
-      page: () => JoinMatchScreenView(),
+      page: () => MatchInvitesScreenView(),
       binding: JoinMatchScreenBinding(),
     ),
   ];

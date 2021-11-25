@@ -5,8 +5,8 @@ import '../controllers/join_match_screen_controller.dart';
 class JoinMatchScreenBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<JoinMatchScreenController>(
-      () => JoinMatchScreenController(),
+    Get.lazyPut<MatchInvitesController>(
+      () => MatchInvitesController(),
     );
   }
 }
