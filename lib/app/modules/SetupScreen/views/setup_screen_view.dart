@@ -97,7 +97,7 @@ class SetupScreenView extends GetView<SetupScreenController> {
                 );
               }),
               const SizedBox(height: 20),
-              Text('Select Number Of Holes',
+              Text('Select Number Of Holes To Play',
                   style: Theme.of(context).textTheme.headline3),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -105,10 +105,20 @@ class SetupScreenView extends GetView<SetupScreenController> {
                   Obx(() {
                     return SelectHolesCard(
                       onPress: () {
+                        controller.startingHole.value.isBlank;
+                        controller.endingHoleOptions.clear();
                         controller.numberOfHolesToPlay.value = 9;
-                        print(controller.selectedStartFromHole.value);
+                        controller.startingHoleOptions.clear();
+                        controller.startingHoleOptions
+                            .addAll(controller.hole9options);
+                        controller.endingHoleOptions
+                            .addAll(controller.startingHoleOptions);
+                        print(
+                            "Number of holes to play ==> ${controller.numberOfHolesToPlay.value}");
+                        print(
+                            "STARTING HOLE OPTIONS ==> ${controller.startingHoleOptions}");
                       },
-                      color: controller.selectedStartFromHole.value == 9
+                      color: controller.numberOfHolesToPlay.value == 9
                           ? kActiveCardColor
                           : kInactiveCardColor,
                       cardChild: Padding(
@@ -124,10 +134,20 @@ class SetupScreenView extends GetView<SetupScreenController> {
                   Obx(() {
                     return SelectHolesCard(
                       onPress: () {
+                        controller.startingHole.value.isBlank;
+                        controller.endingHoleOptions.clear();
                         controller.numberOfHolesToPlay.value = 18;
-                        print(controller.selectedStartFromHole);
+                        controller.startingHoleOptions.clear();
+                        controller.startingHoleOptions
+                            .addAll(controller.hole18options);
+                        controller.endingHoleOptions
+                            .addAll(controller.startingHoleOptions);
+                        print(
+                            "Number of holes to play ==> ${controller.numberOfHolesToPlay.value}");
+                        print(
+                            "STARTING HOLE OPTIONS ==> ${controller.startingHoleOptions}");
                       },
-                      color: controller.selectedStartFromHole.value == 18
+                      color: controller.numberOfHolesToPlay.value == 18
                           ? kActiveCardColor
                           : kInactiveCardColor,
                       cardChild: Padding(
@@ -146,65 +166,53 @@ class SetupScreenView extends GetView<SetupScreenController> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  // DropdownButton(
-                  //   hint: const Text("Select number"),
-                  //   value: controller.selectedStartFromHole.value,
-                  //   //icon: const Icon(Icons.arrow_downward),
-                  //   iconSize: 24,
-                  //   elevation: 16,
-                  //   style: const TextStyle(color: Colors.teal),
-                  //   underline: Container(
-                  //     height: 2,
-                  //     color: Colors.teal,
-                  //   ),
-                  //   onChanged: (val) {
-                  //     controller.selectedStartFromHole.value = val;
-                  //     print(
-                  //         "VALUE CHANGED --> ${controller.selectedStartFromHole}");
-                  //   },
-                  //   items: <int>[1, 2, 3, 4].map((int value) {
-                  //     return DropdownMenuItem<int>(
-                  //       value: value,
-                  //       child: Text(value.toString()),
-                  //     );
-                  //   }).toList(),
-                  // ),
-                  // Obx(() {
-                  //   return DropdownButton<int>(
-                  //     hint: Text(
-                  //       controller.selectedStartFromHole.value == 0
-                  //           ? 'Start from'
-                  //           : controller.selectedStartFromHole.toString(),
-                  //       style: Theme.of(context).textTheme.bodyText2,
-                  //     ),
-                  //     items: controller.hole9options.map((int value) {
-                  //       return DropdownMenuItem<int>(
-                  //         value: value,
-                  //         child: Text(value.toString()),
-                  //       );
-                  //     }).toList(),
-                  //     onChanged: (value) {
-                  //       controller.selectedStartFromHole.value = value;
-                  //       print(
-                  //           "VALUE CHANGED --> ${controller.selectedStartFromHole.value}");
-                  //     },
-                  //   );
-                  // }),
-                  DropdownButton<int>(
-                    hint: Text(
-                      'End At',
-                      style: Theme.of(context).textTheme.bodyText2,
-                    ),
-                    items: controller.hole18options.map((int value) {
-                      return DropdownMenuItem<int>(
-                        value: value,
-                        child: Text(value.toString()),
-                      );
-                    }).toList(),
-                    onChanged: (value) {
-                      controller.selectedEndAtHole.value = value;
-                    },
-                  ),
+                  Obx(() {
+                    return DropdownButton<int>(
+                      hint: Text(
+                        'Start from',
+                        style: Theme.of(context).textTheme.bodyText2,
+                      ),
+                      items: controller.startingHoleOptions.map((int value) {
+                        return DropdownMenuItem<int>(
+                          value: value,
+                          child: Text(value.toString()),
+                        );
+                      }).toList(),
+                      onChanged: (int val) {
+                        if (controller.startingHole.value != 0) {
+                          controller.endingHoleOptions
+                              .add(controller.startingHole.value);
+                        }
+                        controller.startingHole.value = val;
+                        controller.endingHoleOptions
+                            .removeWhere((item) => item == val);
+
+                        print(
+                            "Starting to play from ==> ${controller.startingHole.value}");
+                        print(
+                            "Ending at options ==> ${controller.endingHoleOptions}");
+                      },
+                    );
+                  }),
+                  Obx(() {
+                    return DropdownButton<int>(
+                      hint: Text(
+                        'End At',
+                        style: Theme.of(context).textTheme.bodyText2,
+                      ),
+                      items: controller.endingHoleOptions.map((int value) {
+                        return DropdownMenuItem<int>(
+                          value: value,
+                          child: Text(value.toString()),
+                        );
+                      }).toList(),
+                      onChanged: (int val) {
+                        controller.endingHole.value = val;
+                        print(
+                            "ENding to play at ==> ${controller.endingHole.value}");
+                      },
+                    );
+                  }),
                 ],
               ),
               const SizedBox(height: 20),
@@ -331,19 +339,22 @@ class SetupScreenView extends GetView<SetupScreenController> {
                     FocusScope.of(context).requestFocus(new FocusNode());
                     return CustomButton(
                       text: controller.isProcessing.value == true
-                          ? 'Processing...'
+                          ? 'Processing'
                           : 'Confirm',
                       onPressed: () {
                         var comp = CompetitionRequest();
-                        comp.compDate = controller.matchDate.value.toString();
-                        comp.compFee = 2300;
-                        comp.compName = controller.matchName.text.toString();
+                        comp.compDate = controller.matchDate.value;
+                        comp.compFee = 0;
+                        comp.compName = controller.matchName.text;
                         comp.compTime = "09:09:09";
-                        comp.competitionPlayer = controller.selectedPlayers.toList();
-                        comp.courseId = controller.selectedCourseId.value as int;
-                        comp.gameHoles = controller.numberOfHolesToPlay.value.toString();
+                        comp.competitionPlayer =
+                            controller.selectedPlayers.cast<int>();
+                        comp.courseId = int.parse(controller.selectedCourseId.value);
+                        comp.gameHoles =
+                            controller.numberOfHolesToPlay.value.toString();
                         comp.gametypeId = 1;
-                        comp.startingHole = controller.selectedStartFromHole.value;
+                        comp.startingHole =
+                            controller.startingHole.value;
                         controller.createCompetition(comp.toJson());
                       },
                     );
