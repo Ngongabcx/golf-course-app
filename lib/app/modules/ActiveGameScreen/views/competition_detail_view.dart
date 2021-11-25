@@ -11,7 +11,7 @@ class CompetitionDetailView extends GetView {
   CompetitionDetailView(this.competition);
   @override
   Widget build(BuildContext context) {
-  final comp = competition.payload.first;
+  final comp = competition.payload;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -40,7 +40,7 @@ class CompetitionDetailView extends GetView {
                 ),
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage(comp.course.courseImage),
+                    image: NetworkImage(comp.course.courseImage),
                     fit: BoxFit.cover,
                   ),
                   borderRadius: const BorderRadius.all(Radius.circular(10.0)),
