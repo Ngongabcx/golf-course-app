@@ -8,7 +8,6 @@ import 'package:get/get.dart';
 
 import '../controllers/join_match_screen_controller.dart';
 import 'match_details_card.dart';
-import 'match_invites_card_view.dart';
 
 class MatchInvitesScreenView extends GetView<MatchInvitesController> {
   final loginController = Get.put(MatchInvitesController());

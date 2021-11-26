@@ -9,6 +9,7 @@ import 'package:gcms/app/modules/ScoresInputScreen/views/result_widget.dart';
 import 'package:gcms/app/modules/ScoresInputScreen/views/score_widget.dart';
 import 'package:gcms/app/modules/commonWidgets/customButton.dart';
 import 'package:gcms/app/modules/commonWidgets/drawer.dart';
+import 'package:gcms/app/modules/commonWidgets/loader/loader.dart';
 import 'package:gcms/constants/constant.dart';
 import 'package:gcms/theme/gcms_theme.dart';
 
@@ -40,11 +41,9 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                 height: MediaQuery.of(context).size.height,
                 width: MediaQuery.of(context).size.height,
                 padding: const EdgeInsets.all(20.0),
-                child: controller.isProcessing == true
+                child: controller.isProcessing.value == true
                     ? Center(
-                        child: CircularProgressIndicator(
-                        color: kPrimaryColor,
-                      ))
+                        child: Loader())
                     : Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
@@ -281,11 +280,11 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                       },
                                       onCancel: () {},
                                       textConfirm:
-                                          controller.isProcessing == false
+                                          controller.isProcessing.value == false
                                               ? "Confirm"
                                               : 'procesing',
                                       textCancel:
-                                          controller.isProcessing == false
+                                          controller.isProcessing.value == false
                                               ? "Cancel"
                                               : 'procesing',
                                       cancelTextColor: Colors.white,
