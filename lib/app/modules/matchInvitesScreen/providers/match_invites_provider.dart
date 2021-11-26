@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:gcms/constants/constant.dart';
 import 'package:get/get.dart';
-
 import '../match_invites_model.dart';
 
 class MatchInvitesProvider extends GetConnect {
@@ -12,8 +11,7 @@ class MatchInvitesProvider extends GetConnect {
       if (response.status.hasError) {
         return Future.error(response.statusText);
       } else {
-        List<dynamic> resp =
-            List<dynamic>.from(jsonDecode(response.bodyString));
+        List<dynamic> resp = matchInvitesFromJson(response.bodyString) as List;
         return resp.map((item) => MatchInvites.fromJson(item)).toList();
       }
     } catch (exception) {

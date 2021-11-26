@@ -6,7 +6,7 @@ import 'package:gcms/app/modules/SettingScreen/views/user_details_screen_view.da
 import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
 import 'package:gcms/app/modules/home/providers/user_provider.dart';
 import 'package:gcms/app/modules/home/views/explore_screen_view.dart';
-import 'package:gcms/app/modules/joinMatchScreen/views/match_invites_screen_view.dart';
+import 'package:gcms/app/modules/matchInvitesScreen/views/match_invites_screen_view.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:jwt_decode/jwt_decode.dart';
