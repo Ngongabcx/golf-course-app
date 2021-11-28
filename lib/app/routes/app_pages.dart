@@ -1,5 +1,4 @@
-import 'package:gcms/app/modules/matchInvitesScreen/bindings/join_match_screen_binding.dart';
-import 'package:gcms/app/modules/matchInvitesScreen/views/match_invites_screen_view.dart';
+import 'package:gcms/app/modules/home/views/match_invites_screen_view.dart';
 import 'package:get/get.dart';
 
 import 'package:gcms/app/modules/ActiveGameScreen/bindings/active_game_screen_binding.dart';
@@ -81,7 +80,7 @@ class AppPages {
     GetPage(
       name: _Paths.JOIN_MATCH_SCREEN,
       page: () => MatchInvitesScreenView(),
-      binding: MatchInvitesScreenBinding(),
+      binding: HomeBinding(),
     ),
   ];
 }
