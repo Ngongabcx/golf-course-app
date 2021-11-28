@@ -9,7 +9,6 @@ class AuthProvider extends GetConnect {
   //LOGIN
   Future<Auth> login(Map data) async {
     try {
-       print("DATA TO CREATE COMPETITION =====> $data");
       final response = await post("$kApiBaseURL/authmanagement/login", data);
       if (response.status.hasError) {
         return Future.error(response.body["errors"].join(","));

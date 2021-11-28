@@ -151,11 +151,9 @@ class HomeController extends GetxController {
       await MatchInvitesProvider().getMatchInvites(id).then((resp) async {
         matchInvites.value = resp;
         print("INVIT ---> ${matchInvites.toString()}");
-        // change(data, status: RxStatus.success());
         print("INVITE SUCCESSFULLY RECEIVED  ---> $resp");
         isProcessing(false);
       }, onError: (err) {
-        // change(null, status: RxStatus.error(err.toString()));
         print("Error receiving invites -->" + err.toString());
         ShowSnackBar("Error", err.toString(), Colors.red);
         isProcessing(false);
