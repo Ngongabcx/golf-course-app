@@ -6,11 +6,11 @@ import 'package:gcms/theme/gcms_theme.dart';
 
 import 'package:get/get.dart';
 
-import '../controllers/join_match_screen_controller.dart';
+import '../controllers/match_invites_controller.dart';
 import 'match_details_card.dart';
 
 class MatchInvitesScreenView extends GetView<MatchInvitesController> {
-  final loginController = Get.put(MatchInvitesController());
+  final matchInvitesController = Get.put(MatchInvitesController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +31,7 @@ class MatchInvitesScreenView extends GetView<MatchInvitesController> {
               Expanded(
                 child: Obx(
                   () => ListView.builder(
-                    itemCount: controller.matchInvites.length,
+                    itemCount: controller.matchInvites.first.payload.length,
                     itemBuilder: (BuildContext context, int index) {
                       return GestureDetector(
                         onTap: () {},
@@ -58,8 +58,9 @@ class MatchInvitesScreenView extends GetView<MatchInvitesController> {
                                     top: 5.0,
                                     bottom: 5.0),
                                 child: Text(
-                                  controller.matchInvites[index].payload[index]
-                                      .course.courseName,
+                                  controller.matchInvites.first.payload[index]
+                                      .course.courseName
+                                      .toString(),
                                   style: Theme.of(context).textTheme.headline5,
                                 ),
                               ),
@@ -67,7 +68,7 @@ class MatchInvitesScreenView extends GetView<MatchInvitesController> {
                                 padding: const EdgeInsets.only(
                                     right: 16.0, left: 16.0, bottom: 16.0),
                                 child: Text(
-                                  controller.matchInvites[index].payload[index]
+                                  controller.matchInvites.first.payload[index]
                                       .compName,
                                   style: Theme.of(context).textTheme.bodyText1,
                                 ),
@@ -102,8 +103,9 @@ class MatchInvitesScreenView extends GetView<MatchInvitesController> {
                                       ],
                                     ),
                                     Text(
-                                      controller.matchInvites[index]
-                                          .payload[index].gametype.name,
+                                      controller.matchInvites.first
+                                          .payload[index].gametype.name
+                                          .toString(),
                                       style: GcmsTheme.darkTextTheme.bodyText2,
                                     ),
                                     SizedBox(
@@ -126,6 +128,7 @@ class MatchInvitesScreenView extends GetView<MatchInvitesController> {
                       );
                     },
                   ),
+                  // ),
                 ),
               ),
             ],

@@ -1,3 +1,5 @@
+import 'package:gcms/app/modules/matchInvitesScreen/bindings/join_match_screen_binding.dart';
+import 'package:gcms/app/modules/matchInvitesScreen/views/match_invites_screen_view.dart';
 import 'package:get/get.dart';
 
 import 'package:gcms/app/modules/ActiveGameScreen/bindings/active_game_screen_binding.dart';
@@ -20,8 +22,6 @@ import 'package:gcms/app/modules/ViewPlayersScreen/views/view_players_screen_vie
 import 'package:gcms/app/modules/home/bindings/home_binding.dart';
 import 'package:gcms/app/modules/home/views/explore_screen_view.dart';
 import 'package:gcms/app/modules/home/views/home_view.dart';
-import 'package:gcms/app/modules/joinMatchScreen/bindings/join_match_screen_binding.dart';
-import 'package:gcms/app/modules/joinMatchScreen/views/match_invites_screen_view.dart';
 
 part 'app_routes.dart';
 
@@ -81,7 +81,7 @@ class AppPages {
     GetPage(
       name: _Paths.JOIN_MATCH_SCREEN,
       page: () => MatchInvitesScreenView(),
-      binding: JoinMatchScreenBinding(),
+      binding: MatchInvitesScreenBinding(),
     ),
   ];
 }
