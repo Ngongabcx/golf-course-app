@@ -4,13 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/Notifications/views/notifications_view.dart';
 import 'package:gcms/app/modules/SettingScreen/views/user_details_screen_view.dart';
 import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
+import 'package:gcms/app/modules/home/providers/match_invites_provider.dart';
 import 'package:gcms/app/modules/home/providers/user_provider.dart';
 import 'package:gcms/app/modules/home/views/explore_screen_view.dart';
-import 'package:gcms/app/modules/joinMatchScreen/views/join_match_screen_view.dart';
+import 'package:gcms/app/modules/home/views/match_invites_screen_view.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:jwt_decode/jwt_decode.dart';
-
+import '../match_invites_model.dart';
 import '../user_model.dart';
 
 class HomeController extends GetxController {
@@ -18,9 +19,10 @@ class HomeController extends GetxController {
   var name = ''.obs;
   var storage = GetStorage();
   var isProcessing = false.obs;
+  var matchInvites = MatchInvites().obs;
   static List<Widget> pages = <Widget>[
     ExploreScreenView(),
-    JoinMatchScreenView(),
+    MatchInvitesScreenView(),
     NotificationsView(),
   ];
   @override
@@ -44,16 +46,6 @@ class HomeController extends GetxController {
     super.onClose();
     name.value = '';
   }
-
-  // checkIfUserFullyRegistered() {
-  //   Map<String, dynamic> storedUser = jsonDecode(storage.read('user'));
-  //   var usr = User.fromJson(storedUser);
-  //   print("USER REG DETAILS   ===> ");
-  //   if (usr.firstName == '' || usr.firstName == null) {
-  //     //Call the reg screen here
-  //     Get.to(UserDetailsScreenView());
-  //   }
-  // }
 
   isRegistered() {
     if (storage.read('user') == null) {
@@ -104,16 +96,7 @@ class HomeController extends GetxController {
       Get.offAllNamed('/login');
     }
   }
-
-  checkIfUserFullyRegistered() {
-    Map<String, dynamic> storedUser = jsonDecode(storage.read('user'));
-    var usr = User.fromJson(storedUser);
-    if (usr.firstName == '' || usr.firstName == null) {
-      //Call the reg screen here
-    }
-  }
-
-  getUserDetails(String id) {
+  getUserDetails(String id) async{
     try {
       isProcessing(true);
       UserProvider().getUserDetails(id).then((resp) async {
@@ -121,6 +104,11 @@ class HomeController extends GetxController {
         storage.write("user", resp);
         Map<String, dynamic> storedUser = jsonDecode(storage.read('user'));
         var usr = User.fromJson(storedUser);
+        if(usr.id.toString()=="" || usr.id.isBlank){
+          Get.to(UserDetailsScreenView());
+        }
+        storage.write("userId", usr.id.toString());
+        await getMatchInvites(usr.id.toString());
         if (usr.isBlank) {
           ShowSnackBar("USER DETAILS Error", "NO USER INFO FOUND", Colors.blue);
         }
@@ -139,6 +127,26 @@ class HomeController extends GetxController {
       print("Exception getting user details -->" + exception.toString());
       ShowSnackBar("Exception", exception.toString(), Colors.red);
       Get.offAllNamed('/login');
+    }
+  }
+
+  getMatchInvites(String id) async {
+    try {
+      isProcessing(true);
+      await MatchInvitesProvider().getMatchInvites(id).then((resp) async {
+        matchInvites.value = resp;
+        print("INVIT ---> ${matchInvites.toString()}");
+        print("INVITE SUCCESSFULLY RECEIVED  ---> $resp");
+        isProcessing(false);
+      }, onError: (err) {
+        print("Error receiving invites -->" + err.toString());
+        ShowSnackBar("Error", err.toString(), Colors.red);
+        isProcessing(false);
+      });
+    } catch (exception) {
+      print("Exception receiving invites  -->" + exception.toString());
+       ShowSnackBar("Exception", exception.toString(), Colors.red);
+      isProcessing(false);
     }
   }
 }

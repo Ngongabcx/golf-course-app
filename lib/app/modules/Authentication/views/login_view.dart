@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:provider/src/provider.dart';
 
@@ -19,12 +20,6 @@ class LoginView extends GetView<AuthenticationController> {
       body: Stack(
         fit: StackFit.expand,
         children: [
-          // Image.asset(
-          //   "assets/images/bg.jpg",
-          //   fit: BoxFit.fill,
-          //   color: Colors.black.withOpacity(0.5),
-          //   colorBlendMode: BlendMode.darken,
-          // ),
           Padding(
             padding: const EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
             child: SingleChildScrollView(
@@ -35,18 +30,27 @@ class LoginView extends GetView<AuthenticationController> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Padding(
+                      padding: const EdgeInsets.only(top: 10.0),
+                      child: Center(
+                        child: SvgPicture.asset(
+                          'assets/images/tempLogo.svg',
+                          color: kPrimaryColor,
+                          height: MediaQuery.of(context).size.height * 0.29,
+                        ),
+                      ),
+                    ),
+                    Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0, 70, 0, 30),
+                          const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Expanded(
-                            flex: 2,
                             child: Text(
                               'Login',
                               textAlign: TextAlign.center,
-                              style: Theme.of(context).textTheme.headline1,
+                              style: Theme.of(context).textTheme.headline2,
                             ),
                           ),
                         ],

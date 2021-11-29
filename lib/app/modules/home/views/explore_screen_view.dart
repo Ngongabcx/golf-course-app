@@ -24,7 +24,7 @@ class ExploreScreenView extends GetView {
           },
         ),
         OptionsCard(
-          text1: 'Upcoming Match',
+          text1: 'Matches',
           icon: FontAwesomeIcons.playCircle,
           color: Colors.white,
           onTapped: () {

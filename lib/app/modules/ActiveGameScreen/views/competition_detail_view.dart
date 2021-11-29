@@ -7,11 +7,11 @@ import 'package:get/get.dart';
 
 class CompetitionDetailView extends GetView {
   final Competition competition;
-
   CompetitionDetailView(this.competition);
   @override
   Widget build(BuildContext context) {
-  final comp = competition.payload.first;
+    final comp = competition.payload;
+    final compPlayers = comp.competitionPlayer;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -33,15 +33,15 @@ class CompetitionDetailView extends GetView {
           child: ListView(
             children: [
               Container(
-                padding: const EdgeInsets.all(20),
+                padding: const EdgeInsets.only(left:20,right:20),
                 constraints: const BoxConstraints.expand(
-                  width: 350,
+                 // width: 350,
                   height: 150,
                 ),
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage(comp.course.courseImage),
-                    fit: BoxFit.cover,
+                    image: NetworkImage(comp.course.courseImage),
+                    fit: BoxFit.fill,
                   ),
                   borderRadius: const BorderRadius.all(Radius.circular(10.0)),
                 ),
@@ -53,8 +53,7 @@ class CompetitionDetailView extends GetView {
                 comp.course.courseName,
                 style: Theme.of(context).textTheme.headline5,
               ),
-              Text(comp.compDate,
-                  style: Theme.of(context).textTheme.subtitle2),
+              Text(comp.compDate, style: Theme.of(context).textTheme.subtitle2),
               const SizedBox(
                 height: 20,
               ),
@@ -63,15 +62,15 @@ class CompetitionDetailView extends GetView {
                 children: [
                   Text(
                     comp.compName,
-                    style: Theme.of(context).textTheme.bodyText2,
+                    style: Theme.of(context).textTheme.headline6,
                   ),
                   Text(
                     "Strokeplay",
-                    style: Theme.of(context).textTheme.bodyText2,
+                    style: Theme.of(context).textTheme.headline6,
                   ),
                   Text(
                     '18 Holes',
-                    style: Theme.of(context).textTheme.bodyText2,
+                    style: Theme.of(context).textTheme.headline6,
                   ),
                 ],
               ),
@@ -85,7 +84,7 @@ class CompetitionDetailView extends GetView {
               ),
               Text(
                 'Player Setup',
-                style: Theme.of(context).textTheme.headline5,
+                style: Theme.of(context).textTheme.headline3,
               ),
               const SizedBox(
                 height: 20,
@@ -109,47 +108,64 @@ class CompetitionDetailView extends GetView {
                   ),
                 ],
               ),
-              Row(
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.only(left: 16.0, top: 16.0),
-                    child: Expanded(
-                      flex: 5,
-                      child: CircleAvatar(
-                        radius: 30.0,
-                        backgroundImage:
-                            AssetImage('assets/images/Tiger-Woods.jpg'),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 10,
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 20.0),
-                      child: Text(
-                        'Tiger Woods (You)',
-                        style: GcmsTheme.lightTextTheme.bodyText1,
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 2,
-                    child: PopupMenuButton<int>(
-                      onSelected: (item) => onSelected(context, item),
-                      itemBuilder: (context) => [
-                        PopupMenuItem(
-                          value: 0,
-                          child: Text('Setup player'),
+              Expanded(
+                  child: ListView.builder(
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                physics: ScrollPhysics(),
+                itemCount: competition.payload.competitionPlayer.length,
+                itemBuilder: (context, index) {
+                  return Row(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(left: 16.0, top: 16.0),
+                        child: Expanded(
+                          flex: 5,
+                          child: compPlayers[index].player.image == ""
+                              ? CircleAvatar(
+                                  radius: 30.0,
+                                  backgroundImage: AssetImage(
+                                      'assets/images/Tiger-Woods.jpg'),
+                                )
+                              : CircleAvatar(
+                                  radius: 30.0,
+                                  backgroundImage: NetworkImage(
+                                      compPlayers[index].player.image),
+                                ),
                         ),
-                        PopupMenuItem(
-                          value: 1,
-                          child: Text('Remove'),
+                      ),
+                      Expanded(
+                        flex: 10,
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 20.0),
+                          child: Text(
+                            compPlayers[index].player.firstname +
+                                " " +
+                                compPlayers[index].player.lastname,
+                            style: GcmsTheme.lightTextTheme.bodyText1,
+                          ),
                         ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+                      ),
+                      Expanded(
+                        flex: 2,
+                        child: PopupMenuButton<int>(
+                          onSelected: (item) => onSelected(context, item),
+                          itemBuilder: (context) => [
+                            PopupMenuItem(
+                              value: 0,
+                              child: Text('Setup player'),
+                            ),
+                            PopupMenuItem(
+                              value: 1,
+                              child: Text('Remove'),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              )),
               const SizedBox(
                 height: 50.0,
                 width: 500.0,

@@ -102,7 +102,7 @@ class UserDetailsScreenView extends GetView<SettingScreenController> {
                   child: Obx(
                     () => CustomButton(
                       text: (controller.isProcessing.value == true
-                          ? 'Processing'
+                          ? 'Processing...'
                           : 'Submit'),
                       style: GcmsTheme.lightTextTheme.bodyText2,
                       onPressed: () {

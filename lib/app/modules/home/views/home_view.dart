@@ -64,7 +64,7 @@ class HomeView extends GetView<HomeController> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.play_arrow),
-            label: 'Join',
+            label: 'Match Invitations',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.notifications),

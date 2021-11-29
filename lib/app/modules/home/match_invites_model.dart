@@ -1,15 +1,15 @@
 // To parse this JSON data, do
 //
-//     final competition = competitionFromJson(jsonString);
+//     final matchInvites = matchInvitesFromJson(jsonString);
 
 import 'dart:convert';
 
-Competition competitionFromJson(String str) => Competition.fromJson(json.decode(str));
+MatchInvites matchInvitesFromJson(String str) => MatchInvites.fromJson(json.decode(str));
 
-String competitionToJson(Competition data) => json.encode(data.toJson());
+String matchInvitesToJson(MatchInvites data) => json.encode(data.toJson());
 
-class Competition {
-    Competition({
+class MatchInvites {
+    MatchInvites({
         this.status,
         this.success,
         this.message,
@@ -21,14 +21,14 @@ class Competition {
     bool success;
     String message;
     String error;
-    Payload payload;
+    List<Payload> payload;
 
-    factory Competition.fromJson(Map<String, dynamic> json) => Competition(
+    factory MatchInvites.fromJson(Map<String, dynamic> json) => MatchInvites(
         status: json["status"],
         success: json["success"],
         message: json["message"],
         error: json["error"],
-        payload: Payload.fromJson(json["payload"]),
+        payload: List<Payload>.from(json["payload"].map((x) => Payload.fromJson(x))),
     );
 
     Map<String, dynamic> toJson() => {
@@ -36,7 +36,7 @@ class Competition {
         "success": success,
         "message": message,
         "error": error,
-        "payload": payload.toJson(),
+        "payload": List<dynamic>.from(payload.map((x) => x.toJson())),
     };
 }
 
@@ -140,45 +140,53 @@ class Player {
     });
 
     int id;
-    String firstname;
-    String lastname;
-    String address;
+    Stname firstname;
+    Stname lastname;
+    PlayerAddress address;
     String image;
-    String dob;
+    Dob dob;
     String gender;
     int hcp;
-    String dateJoined;
+    DateJoined dateJoined;
     AspnetuserDetails aspnetuserDetails;
     Type usertype;
 
     factory Player.fromJson(Map<String, dynamic> json) => Player(
         id: json["id"],
-        firstname: json["firstname"],
-        lastname: json["lastname"],
-        address: json["address"],
+        firstname: stnameValues.map[json["firstname"]],
+        lastname: stnameValues.map[json["lastname"]],
+        address: playerAddressValues.map[json["address"]],
         image: json["image"],
-        dob: json["dob"],
+        dob: dobValues.map[json["dob"]],
         gender: json["gender"],
         hcp: json["hcp"],
-        dateJoined: json["dateJoined"],
+        dateJoined: dateJoinedValues.map[json["dateJoined"]],
         aspnetuserDetails: AspnetuserDetails.fromJson(json["aspnetuserDetails"]),
         usertype: Type.fromJson(json["usertype"]),
     );
 
     Map<String, dynamic> toJson() => {
         "id": id,
-        "firstname": firstname,
-        "lastname": lastname,
-        "address": address,
+        "firstname": stnameValues.reverse[firstname],
+        "lastname": stnameValues.reverse[lastname],
+        "address": playerAddressValues.reverse[address],
         "image": image,
-        "dob": dob,
+        "dob": dobValues.reverse[dob],
         "gender": gender,
         "hcp": hcp,
-        "dateJoined": dateJoined,
+        "dateJoined": dateJoinedValues.reverse[dateJoined],
         "aspnetuserDetails": aspnetuserDetails.toJson(),
         "usertype": usertype.toJson(),
     };
 }
+
+enum PlayerAddress { IBEX_HILL, CHIWALA, NDOLA }
+
+final playerAddressValues = EnumValues({
+    "Chiwala": PlayerAddress.CHIWALA,
+    "Ibex Hill": PlayerAddress.IBEX_HILL,
+    "Ndola": PlayerAddress.NDOLA
+});
 
 class AspnetuserDetails {
     AspnetuserDetails({
@@ -189,24 +197,60 @@ class AspnetuserDetails {
     });
 
     String id;
-    String username;
+    Username username;
     String phoneNumber;
-    String email;
+    Email email;
 
     factory AspnetuserDetails.fromJson(Map<String, dynamic> json) => AspnetuserDetails(
         id: json["id"],
-        username: json["username"],
+        username: usernameValues.map[json["username"]],
         phoneNumber: json["phoneNumber"],
-        email: json["email"],
+        email: emailValues.map[json["email"]],
     );
 
     Map<String, dynamic> toJson() => {
         "id": id,
-        "username": username,
+        "username": usernameValues.reverse[username],
         "phoneNumber": phoneNumber,
-        "email": email,
+        "email": emailValues.reverse[email],
     };
 }
+
+enum Email { CHAINAMA_GMAIL_COM }
+
+final emailValues = EnumValues({
+    "chainama@gmail.com": Email.CHAINAMA_GMAIL_COM
+});
+
+enum Username { BWALYANGONGA_GMAIL_COM, NICK_NICK_COM, LEONARD_CHINYAMA }
+
+final usernameValues = EnumValues({
+    "bwalyangonga@gmail.com": Username.BWALYANGONGA_GMAIL_COM,
+    "Leonard-Chinyama": Username.LEONARD_CHINYAMA,
+    "nick@nick.com": Username.NICK_NICK_COM
+});
+
+enum DateJoined { THE_11182021120000_AM, THE_3152021120000_AM, THE_3202021120000_AM }
+
+final dateJoinedValues = EnumValues({
+    "11/18/2021 12:00:00 AM": DateJoined.THE_11182021120000_AM,
+    "3/15/2021 12:00:00 AM": DateJoined.THE_3152021120000_AM,
+    "3/20/2021 12:00:00 AM": DateJoined.THE_3202021120000_AM
+});
+
+enum Dob { THE_3192021120000_AM }
+
+final dobValues = EnumValues({
+    "3/19/2021 12:00:00 AM": Dob.THE_3192021120000_AM
+});
+
+enum Stname { BWALYA, NICK, CHINYAMA }
+
+final stnameValues = EnumValues({
+    "Bwalya": Stname.BWALYA,
+    "Chinyama": Stname.CHINYAMA,
+    "Nick": Stname.NICK
+});
 
 class Type {
     Type({
@@ -216,21 +260,35 @@ class Type {
     });
 
     int id;
-    String name;
-    String description;
+    Name name;
+    Description description;
 
     factory Type.fromJson(Map<String, dynamic> json) => Type(
         id: json["id"],
-        name: json["name"],
-        description: json["description"],
+        name: nameValues.map[json["name"]],
+        description: descriptionValues.map[json["description"]],
     );
 
     Map<String, dynamic> toJson() => {
         "id": id,
-        "name": name,
-        "description": description,
+        "name": nameValues.reverse[name],
+        "description": descriptionValues.reverse[description],
     };
 }
+
+enum Description { THIS_IS_A_NORMAL_USER, A_GAME_PLAYED_BY_FOUR_PEOPLE }
+
+final descriptionValues = EnumValues({
+    "A game played by four people": Description.A_GAME_PLAYED_BY_FOUR_PEOPLE,
+    "This is a normal user": Description.THIS_IS_A_NORMAL_USER
+});
+
+enum Name { NORMAL_USER, STABLE_FORD }
+
+final nameValues = EnumValues({
+    "Normal User": Name.NORMAL_USER,
+    "Stable Ford": Name.STABLE_FORD
+});
 
 class Course {
     Course({
@@ -244,30 +302,62 @@ class Course {
     });
 
     int id;
-    String courseName;
-    String address;
-    String courseAbr;
-    String email;
+    CourseName courseName;
+    CourseAddress address;
+    CourseAbr courseAbr;
+    Email email;
     String phoneNo;
     String courseImage;
 
     factory Course.fromJson(Map<String, dynamic> json) => Course(
         id: json["id"],
-        courseName: json["courseName"],
-        address: json["address"],
-        courseAbr: json["courseAbr"],
-        email: json["email"],
+        courseName: courseNameValues.map[json["courseName"]],
+        address: courseAddressValues.map[json["address"]],
+        courseAbr: courseAbrValues.map[json["courseAbr"]],
+        email: emailValues.map[json["email"]],
         phoneNo: json["phoneNo"],
         courseImage: json["courseImage"],
     );
 
     Map<String, dynamic> toJson() => {
         "id": id,
-        "courseName": courseName,
-        "address": address,
-        "courseAbr": courseAbr,
-        "email": email,
+        "courseName": courseNameValues.reverse[courseName],
+        "address": courseAddressValues.reverse[address],
+        "courseAbr": courseAbrValues.reverse[courseAbr],
+        "email": emailValues.reverse[email],
         "phoneNo": phoneNo,
         "courseImage": courseImage,
     };
+}
+
+enum CourseAddress { PLOT_1_CHAINAMA }
+
+final courseAddressValues = EnumValues({
+    "Plot 1 Chainama": CourseAddress.PLOT_1_CHAINAMA
+});
+
+enum CourseAbr { CHA_1 }
+
+final courseAbrValues = EnumValues({
+    "Cha-1": CourseAbr.CHA_1
+});
+
+enum CourseName { CHAINAMA_GOLF_CLUB }
+
+final courseNameValues = EnumValues({
+    "Chainama Golf Club": CourseName.CHAINAMA_GOLF_CLUB
+});
+
+class EnumValues<T> {
+    Map<String, T> map;
+    Map<T, String> reverseMap;
+
+    EnumValues(this.map);
+
+    Map<T, String> get reverse {
+        if (reverseMap == null) {
+            reverseMap = map.map((k, v) => new MapEntry(v, k));
+        }
+        return reverseMap;
+    }
 }

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/ScoresInputScreen/providers/scorecard_provider.dart';
 import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
-import 'package:gcms/constants/constant.dart';
 import 'package:get/get.dart';
-import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class ScoresInputScreenController extends GetxController {
   var hcp = 21.0.obs;
@@ -13,6 +12,7 @@ class ScoresInputScreenController extends GetxController {
   var score = 0.0.obs;
   var result = 0.0.obs;
   var isProcessing = false.obs;
+  var storage = GetStorage();
   @override
   void onInit() {
     super.onInit();
@@ -26,10 +26,10 @@ class ScoresInputScreenController extends GetxController {
   @override
   void onClose() {}
 
-  void addScorecard(Map data) {
+  void addScorecard(Map data, String compId, String userId) {
     try {
       isProcessing(true);
-      ScorecardProvider().addScorecard(data).then((resp) {
+      ScorecardProvider().addScorecard(data, compId, userId).then((resp) {
         isProcessing(false);
         hole++;
         ShowSnackBar("Success", "Score Successfully Added.", Colors.green);

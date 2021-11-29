@@ -1,10 +1,1235 @@
 {
-    "status": 201,
-    "success": true,
-    "message": "Competition created successfully",
-    "error": "",
-    "payload": {
-      "id": 2,
+  "status": 200,
+  "success": true,
+  "message": "Records retrieved successfull",
+  "error": "",
+  "payload": [
+    {
+      "id": 52,
+      "compName": "Just a new Tournament1",
+      "gametype": {
+        "id": 1,
+        "name": "Stable Ford",
+        "description": "A game played by four people"
+      },
+      "compFee": 2500.0,
+      "compDate": "10/12/2021 12:00:00 AM",
+      "compTime": "00:00:00",
+      "numberOfHoles": 9,
+      "startingHole": 9,
+      "course": {
+        "id": 2,
+        "courseName": "Chainama Golf Club",
+        "address": "Plot 1 Chainama",
+        "courseAbr": "Cha-1",
+        "email": "chainama@gmail.com",
+        "phoneNo": "0967856489",
+        "courseImage": "https://www.istockphoto.com/photo/backlit-golf-course-with-no-golfers-gm481345926-69506541?utm_source=unsplash&utm_medium=affiliate&utm_campaign=srp_photos_top&utm_content=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fgolf&utm_term=golf%3A%3Asearch-aggressive-affiliates-v2%3Aa"
+      },
+      "competitionPlayer": [
+        {
+          "id": 77,
+          "competitionId": 52,
+          "competitionTime": "12:12:00",
+          "player": {
+            "id": 8,
+            "firstname": "Chinyama",
+            "lastname": "Chinyama",
+            "address": "Ndola",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/20/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "d7f022fb-0853-40f5-815f-48cba26d192c",
+              "username": "Leonard-Chinyama",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        },
+        {
+          "id": 78,
+          "competitionId": 52,
+          "competitionTime": "12:12:00",
+          "player": {
+            "id": 15,
+            "firstname": "Nick",
+            "lastname": "Nick",
+            "address": "Chiwala",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/15/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "447895af-c2f1-4474-8a34-b0ed51f5d181",
+              "username": "nick@nick.com",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        }
+      ]
+    },
+    {
+      "id": 48,
+      "compName": "New Test tournament",
+      "gametype": {
+        "id": 1,
+        "name": "Stable Ford",
+        "description": "A game played by four people"
+      },
+      "compFee": 2500.0,
+      "compDate": "10/12/2021 12:00:00 AM",
+      "compTime": "12:00:00",
+      "numberOfHoles": 0,
+      "startingHole": 0,
+      "course": {
+        "id": 2,
+        "courseName": "Chainama Golf Club",
+        "address": "Plot 1 Chainama",
+        "courseAbr": "Cha-1",
+        "email": "chainama@gmail.com",
+        "phoneNo": "0967856489",
+        "courseImage": "https://www.istockphoto.com/photo/backlit-golf-course-with-no-golfers-gm481345926-69506541?utm_source=unsplash&utm_medium=affiliate&utm_campaign=srp_photos_top&utm_content=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fgolf&utm_term=golf%3A%3Asearch-aggressive-affiliates-v2%3Aa"
+      },
+      "competitionPlayer": [
+        {
+          "id": 72,
+          "competitionId": 48,
+          "competitionTime": "",
+          "player": {
+            "id": 8,
+            "firstname": "Chinyama",
+            "lastname": "Chinyama",
+            "address": "Ndola",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/20/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "d7f022fb-0853-40f5-815f-48cba26d192c",
+              "username": "Leonard-Chinyama",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        }
+      ]
+    },
+    {
+      "id": 47,
+      "compName": "khhgg",
+      "gametype": {
+        "id": 1,
+        "name": "Stable Ford",
+        "description": "A game played by four people"
+      },
+      "compFee": 0.0,
+      "compDate": "11/19/2021 12:00:00 AM",
+      "compTime": "12:00:00",
+      "numberOfHoles": 0,
+      "startingHole": 0,
+      "course": {
+        "id": 2,
+        "courseName": "Chainama Golf Club",
+        "address": "Plot 1 Chainama",
+        "courseAbr": "Cha-1",
+        "email": "chainama@gmail.com",
+        "phoneNo": "0967856489",
+        "courseImage": "https://www.istockphoto.com/photo/backlit-golf-course-with-no-golfers-gm481345926-69506541?utm_source=unsplash&utm_medium=affiliate&utm_campaign=srp_photos_top&utm_content=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fgolf&utm_term=golf%3A%3Asearch-aggressive-affiliates-v2%3Aa"
+      },
+      "competitionPlayer": [
+        {
+          "id": 69,
+          "competitionId": 47,
+          "competitionTime": "",
+          "player": {
+            "id": 8,
+            "firstname": "Chinyama",
+            "lastname": "Chinyama",
+            "address": "Ndola",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/20/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "d7f022fb-0853-40f5-815f-48cba26d192c",
+              "username": "Leonard-Chinyama",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        },
+        {
+          "id": 70,
+          "competitionId": 47,
+          "competitionTime": "",
+          "player": {
+            "id": 15,
+            "firstname": "Nick",
+            "lastname": "Nick",
+            "address": "Chiwala",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/15/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "447895af-c2f1-4474-8a34-b0ed51f5d181",
+              "username": "nick@nick.com",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        },
+        {
+          "id": 71,
+          "competitionId": 47,
+          "competitionTime": "",
+          "player": {
+            "id": 18,
+            "firstname": "Bwalya",
+            "lastname": "Bwalya",
+            "address": "Ibex Hill",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "male",
+            "hcp": 21,
+            "dateJoined": "11/18/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "39b3d3e6-d7c4-4304-99c5-f8f0c3591ec7",
+              "username": "bwalyangonga@gmail.com",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        }
+      ]
+    },
+    {
+      "id": 46,
+      "compName": "vvgvggjjjhhhhhj",
+      "gametype": {
+        "id": 1,
+        "name": "Stable Ford",
+        "description": "A game played by four people"
+      },
+      "compFee": 0.0,
+      "compDate": "11/19/2021 12:00:00 AM",
+      "compTime": "12:00:00",
+      "numberOfHoles": 0,
+      "startingHole": 0,
+      "course": {
+        "id": 2,
+        "courseName": "Chainama Golf Club",
+        "address": "Plot 1 Chainama",
+        "courseAbr": "Cha-1",
+        "email": "chainama@gmail.com",
+        "phoneNo": "0967856489",
+        "courseImage": "https://www.istockphoto.com/photo/backlit-golf-course-with-no-golfers-gm481345926-69506541?utm_source=unsplash&utm_medium=affiliate&utm_campaign=srp_photos_top&utm_content=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fgolf&utm_term=golf%3A%3Asearch-aggressive-affiliates-v2%3Aa"
+      },
+      "competitionPlayer": [
+        {
+          "id": 66,
+          "competitionId": 46,
+          "competitionTime": "",
+          "player": {
+            "id": 8,
+            "firstname": "Chinyama",
+            "lastname": "Chinyama",
+            "address": "Ndola",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/20/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "d7f022fb-0853-40f5-815f-48cba26d192c",
+              "username": "Leonard-Chinyama",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        },
+        {
+          "id": 67,
+          "competitionId": 46,
+          "competitionTime": "",
+          "player": {
+            "id": 15,
+            "firstname": "Nick",
+            "lastname": "Nick",
+            "address": "Chiwala",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/15/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "447895af-c2f1-4474-8a34-b0ed51f5d181",
+              "username": "nick@nick.com",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        },
+        {
+          "id": 68,
+          "competitionId": 46,
+          "competitionTime": "",
+          "player": {
+            "id": 18,
+            "firstname": "Bwalya",
+            "lastname": "Bwalya",
+            "address": "Ibex Hill",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "male",
+            "hcp": 21,
+            "dateJoined": "11/18/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "39b3d3e6-d7c4-4304-99c5-f8f0c3591ec7",
+              "username": "bwalyangonga@gmail.com",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        }
+      ]
+    },
+    {
+      "id": 45,
+      "compName": "vvgvggjjjhhhhh",
+      "gametype": {
+        "id": 1,
+        "name": "Stable Ford",
+        "description": "A game played by four people"
+      },
+      "compFee": 0.0,
+      "compDate": "11/19/2021 12:00:00 AM",
+      "compTime": "12:00:00",
+      "numberOfHoles": 0,
+      "startingHole": 0,
+      "course": {
+        "id": 2,
+        "courseName": "Chainama Golf Club",
+        "address": "Plot 1 Chainama",
+        "courseAbr": "Cha-1",
+        "email": "chainama@gmail.com",
+        "phoneNo": "0967856489",
+        "courseImage": "https://www.istockphoto.com/photo/backlit-golf-course-with-no-golfers-gm481345926-69506541?utm_source=unsplash&utm_medium=affiliate&utm_campaign=srp_photos_top&utm_content=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fgolf&utm_term=golf%3A%3Asearch-aggressive-affiliates-v2%3Aa"
+      },
+      "competitionPlayer": [
+        {
+          "id": 63,
+          "competitionId": 45,
+          "competitionTime": "",
+          "player": {
+            "id": 8,
+            "firstname": "Chinyama",
+            "lastname": "Chinyama",
+            "address": "Ndola",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/20/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "d7f022fb-0853-40f5-815f-48cba26d192c",
+              "username": "Leonard-Chinyama",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        },
+        {
+          "id": 64,
+          "competitionId": 45,
+          "competitionTime": "",
+          "player": {
+            "id": 15,
+            "firstname": "Nick",
+            "lastname": "Nick",
+            "address": "Chiwala",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/15/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "447895af-c2f1-4474-8a34-b0ed51f5d181",
+              "username": "nick@nick.com",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        },
+        {
+          "id": 65,
+          "competitionId": 45,
+          "competitionTime": "",
+          "player": {
+            "id": 18,
+            "firstname": "Bwalya",
+            "lastname": "Bwalya",
+            "address": "Ibex Hill",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "male",
+            "hcp": 21,
+            "dateJoined": "11/18/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "39b3d3e6-d7c4-4304-99c5-f8f0c3591ec7",
+              "username": "bwalyangonga@gmail.com",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        }
+      ]
+    },
+    {
+      "id": 43,
+      "compName": "vvgvggjjjhhh",
+      "gametype": {
+        "id": 1,
+        "name": "Stable Ford",
+        "description": "A game played by four people"
+      },
+      "compFee": 0.0,
+      "compDate": "11/19/2021 12:00:00 AM",
+      "compTime": "12:00:00",
+      "numberOfHoles": 0,
+      "startingHole": 0,
+      "course": {
+        "id": 2,
+        "courseName": "Chainama Golf Club",
+        "address": "Plot 1 Chainama",
+        "courseAbr": "Cha-1",
+        "email": "chainama@gmail.com",
+        "phoneNo": "0967856489",
+        "courseImage": "https://www.istockphoto.com/photo/backlit-golf-course-with-no-golfers-gm481345926-69506541?utm_source=unsplash&utm_medium=affiliate&utm_campaign=srp_photos_top&utm_content=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fgolf&utm_term=golf%3A%3Asearch-aggressive-affiliates-v2%3Aa"
+      },
+      "competitionPlayer": [
+        {
+          "id": 60,
+          "competitionId": 43,
+          "competitionTime": "",
+          "player": {
+            "id": 8,
+            "firstname": "Chinyama",
+            "lastname": "Chinyama",
+            "address": "Ndola",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/20/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "d7f022fb-0853-40f5-815f-48cba26d192c",
+              "username": "Leonard-Chinyama",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        },
+        {
+          "id": 61,
+          "competitionId": 43,
+          "competitionTime": "",
+          "player": {
+            "id": 15,
+            "firstname": "Nick",
+            "lastname": "Nick",
+            "address": "Chiwala",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/15/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "447895af-c2f1-4474-8a34-b0ed51f5d181",
+              "username": "nick@nick.com",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        },
+        {
+          "id": 62,
+          "competitionId": 43,
+          "competitionTime": "",
+          "player": {
+            "id": 18,
+            "firstname": "Bwalya",
+            "lastname": "Bwalya",
+            "address": "Ibex Hill",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "male",
+            "hcp": 21,
+            "dateJoined": "11/18/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "39b3d3e6-d7c4-4304-99c5-f8f0c3591ec7",
+              "username": "bwalyangonga@gmail.com",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        }
+      ]
+    },
+    {
+      "id": 42,
+      "compName": "vvgvggjjjhh",
+      "gametype": {
+        "id": 1,
+        "name": "Stable Ford",
+        "description": "A game played by four people"
+      },
+      "compFee": 0.0,
+      "compDate": "11/19/2021 12:00:00 AM",
+      "compTime": "12:00:00",
+      "numberOfHoles": 0,
+      "startingHole": 0,
+      "course": {
+        "id": 2,
+        "courseName": "Chainama Golf Club",
+        "address": "Plot 1 Chainama",
+        "courseAbr": "Cha-1",
+        "email": "chainama@gmail.com",
+        "phoneNo": "0967856489",
+        "courseImage": "https://www.istockphoto.com/photo/backlit-golf-course-with-no-golfers-gm481345926-69506541?utm_source=unsplash&utm_medium=affiliate&utm_campaign=srp_photos_top&utm_content=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fgolf&utm_term=golf%3A%3Asearch-aggressive-affiliates-v2%3Aa"
+      },
+      "competitionPlayer": [
+        {
+          "id": 57,
+          "competitionId": 42,
+          "competitionTime": "",
+          "player": {
+            "id": 8,
+            "firstname": "Chinyama",
+            "lastname": "Chinyama",
+            "address": "Ndola",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/20/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "d7f022fb-0853-40f5-815f-48cba26d192c",
+              "username": "Leonard-Chinyama",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        },
+        {
+          "id": 58,
+          "competitionId": 42,
+          "competitionTime": "",
+          "player": {
+            "id": 15,
+            "firstname": "Nick",
+            "lastname": "Nick",
+            "address": "Chiwala",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/15/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "447895af-c2f1-4474-8a34-b0ed51f5d181",
+              "username": "nick@nick.com",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        },
+        {
+          "id": 59,
+          "competitionId": 42,
+          "competitionTime": "",
+          "player": {
+            "id": 18,
+            "firstname": "Bwalya",
+            "lastname": "Bwalya",
+            "address": "Ibex Hill",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "male",
+            "hcp": 21,
+            "dateJoined": "11/18/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "39b3d3e6-d7c4-4304-99c5-f8f0c3591ec7",
+              "username": "bwalyangonga@gmail.com",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        }
+      ]
+    },
+    {
+      "id": 40,
+      "compName": "vvgvggjjj",
+      "gametype": {
+        "id": 1,
+        "name": "Stable Ford",
+        "description": "A game played by four people"
+      },
+      "compFee": 0.0,
+      "compDate": "11/19/2021 12:00:00 AM",
+      "compTime": "12:00:00",
+      "numberOfHoles": 0,
+      "startingHole": 0,
+      "course": {
+        "id": 2,
+        "courseName": "Chainama Golf Club",
+        "address": "Plot 1 Chainama",
+        "courseAbr": "Cha-1",
+        "email": "chainama@gmail.com",
+        "phoneNo": "0967856489",
+        "courseImage": "https://www.istockphoto.com/photo/backlit-golf-course-with-no-golfers-gm481345926-69506541?utm_source=unsplash&utm_medium=affiliate&utm_campaign=srp_photos_top&utm_content=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fgolf&utm_term=golf%3A%3Asearch-aggressive-affiliates-v2%3Aa"
+      },
+      "competitionPlayer": [
+        {
+          "id": 54,
+          "competitionId": 40,
+          "competitionTime": "",
+          "player": {
+            "id": 8,
+            "firstname": "Chinyama",
+            "lastname": "Chinyama",
+            "address": "Ndola",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/20/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "d7f022fb-0853-40f5-815f-48cba26d192c",
+              "username": "Leonard-Chinyama",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        },
+        {
+          "id": 55,
+          "competitionId": 40,
+          "competitionTime": "",
+          "player": {
+            "id": 15,
+            "firstname": "Nick",
+            "lastname": "Nick",
+            "address": "Chiwala",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/15/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "447895af-c2f1-4474-8a34-b0ed51f5d181",
+              "username": "nick@nick.com",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        },
+        {
+          "id": 56,
+          "competitionId": 40,
+          "competitionTime": "",
+          "player": {
+            "id": 18,
+            "firstname": "Bwalya",
+            "lastname": "Bwalya",
+            "address": "Ibex Hill",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "male",
+            "hcp": 21,
+            "dateJoined": "11/18/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "39b3d3e6-d7c4-4304-99c5-f8f0c3591ec7",
+              "username": "bwalyangonga@gmail.com",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        }
+      ]
+    },
+    {
+      "id": 37,
+      "compName": "vvgvgg",
+      "gametype": {
+        "id": 1,
+        "name": "Stable Ford",
+        "description": "A game played by four people"
+      },
+      "compFee": 0.0,
+      "compDate": "11/19/2021 12:00:00 AM",
+      "compTime": "12:00:00",
+      "numberOfHoles": 0,
+      "startingHole": 0,
+      "course": {
+        "id": 2,
+        "courseName": "Chainama Golf Club",
+        "address": "Plot 1 Chainama",
+        "courseAbr": "Cha-1",
+        "email": "chainama@gmail.com",
+        "phoneNo": "0967856489",
+        "courseImage": "https://www.istockphoto.com/photo/backlit-golf-course-with-no-golfers-gm481345926-69506541?utm_source=unsplash&utm_medium=affiliate&utm_campaign=srp_photos_top&utm_content=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fgolf&utm_term=golf%3A%3Asearch-aggressive-affiliates-v2%3Aa"
+      },
+      "competitionPlayer": [
+        {
+          "id": 51,
+          "competitionId": 37,
+          "competitionTime": "",
+          "player": {
+            "id": 8,
+            "firstname": "Chinyama",
+            "lastname": "Chinyama",
+            "address": "Ndola",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/20/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "d7f022fb-0853-40f5-815f-48cba26d192c",
+              "username": "Leonard-Chinyama",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        },
+        {
+          "id": 52,
+          "competitionId": 37,
+          "competitionTime": "",
+          "player": {
+            "id": 15,
+            "firstname": "Nick",
+            "lastname": "Nick",
+            "address": "Chiwala",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/15/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "447895af-c2f1-4474-8a34-b0ed51f5d181",
+              "username": "nick@nick.com",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        },
+        {
+          "id": 53,
+          "competitionId": 37,
+          "competitionTime": "",
+          "player": {
+            "id": 18,
+            "firstname": "Bwalya",
+            "lastname": "Bwalya",
+            "address": "Ibex Hill",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "male",
+            "hcp": 21,
+            "dateJoined": "11/18/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "39b3d3e6-d7c4-4304-99c5-f8f0c3591ec7",
+              "username": "bwalyangonga@gmail.com",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        }
+      ]
+    },
+    {
+      "id": 36,
+      "compName": "uhgff",
+      "gametype": {
+        "id": 1,
+        "name": "Stable Ford",
+        "description": "A game played by four people"
+      },
+      "compFee": 0.0,
+      "compDate": "11/21/2021 12:00:00 AM",
+      "compTime": "12:00:00",
+      "numberOfHoles": 0,
+      "startingHole": 0,
+      "course": {
+        "id": 2,
+        "courseName": "Chainama Golf Club",
+        "address": "Plot 1 Chainama",
+        "courseAbr": "Cha-1",
+        "email": "chainama@gmail.com",
+        "phoneNo": "0967856489",
+        "courseImage": "https://www.istockphoto.com/photo/backlit-golf-course-with-no-golfers-gm481345926-69506541?utm_source=unsplash&utm_medium=affiliate&utm_campaign=srp_photos_top&utm_content=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fgolf&utm_term=golf%3A%3Asearch-aggressive-affiliates-v2%3Aa"
+      },
+      "competitionPlayer": [
+        {
+          "id": 48,
+          "competitionId": 36,
+          "competitionTime": "",
+          "player": {
+            "id": 8,
+            "firstname": "Chinyama",
+            "lastname": "Chinyama",
+            "address": "Ndola",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/20/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "d7f022fb-0853-40f5-815f-48cba26d192c",
+              "username": "Leonard-Chinyama",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        },
+        {
+          "id": 49,
+          "competitionId": 36,
+          "competitionTime": "",
+          "player": {
+            "id": 15,
+            "firstname": "Nick",
+            "lastname": "Nick",
+            "address": "Chiwala",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/15/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "447895af-c2f1-4474-8a34-b0ed51f5d181",
+              "username": "nick@nick.com",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        },
+        {
+          "id": 50,
+          "competitionId": 36,
+          "competitionTime": "",
+          "player": {
+            "id": 18,
+            "firstname": "Bwalya",
+            "lastname": "Bwalya",
+            "address": "Ibex Hill",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "male",
+            "hcp": 21,
+            "dateJoined": "11/18/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "39b3d3e6-d7c4-4304-99c5-f8f0c3591ec7",
+              "username": "bwalyangonga@gmail.com",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        }
+      ]
+    },
+    {
+      "id": 35,
+      "compName": "gjhvc",
+      "gametype": {
+        "id": 1,
+        "name": "Stable Ford",
+        "description": "A game played by four people"
+      },
+      "compFee": 0.0,
+      "compDate": "11/19/2022 12:00:00 AM",
+      "compTime": "12:00:00",
+      "numberOfHoles": 0,
+      "startingHole": 0,
+      "course": {
+        "id": 2,
+        "courseName": "Chainama Golf Club",
+        "address": "Plot 1 Chainama",
+        "courseAbr": "Cha-1",
+        "email": "chainama@gmail.com",
+        "phoneNo": "0967856489",
+        "courseImage": "https://www.istockphoto.com/photo/backlit-golf-course-with-no-golfers-gm481345926-69506541?utm_source=unsplash&utm_medium=affiliate&utm_campaign=srp_photos_top&utm_content=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fgolf&utm_term=golf%3A%3Asearch-aggressive-affiliates-v2%3Aa"
+      },
+      "competitionPlayer": [
+        {
+          "id": 45,
+          "competitionId": 35,
+          "competitionTime": "",
+          "player": {
+            "id": 8,
+            "firstname": "Chinyama",
+            "lastname": "Chinyama",
+            "address": "Ndola",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/20/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "d7f022fb-0853-40f5-815f-48cba26d192c",
+              "username": "Leonard-Chinyama",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        },
+        {
+          "id": 46,
+          "competitionId": 35,
+          "competitionTime": "",
+          "player": {
+            "id": 15,
+            "firstname": "Nick",
+            "lastname": "Nick",
+            "address": "Chiwala",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/15/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "447895af-c2f1-4474-8a34-b0ed51f5d181",
+              "username": "nick@nick.com",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        },
+        {
+          "id": 47,
+          "competitionId": 35,
+          "competitionTime": "",
+          "player": {
+            "id": 18,
+            "firstname": "Bwalya",
+            "lastname": "Bwalya",
+            "address": "Ibex Hill",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "male",
+            "hcp": 21,
+            "dateJoined": "11/18/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "39b3d3e6-d7c4-4304-99c5-f8f0c3591ec7",
+              "username": "bwalyangonga@gmail.com",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        }
+      ]
+    },
+    {
+      "id": 34,
+      "compName": "nick@nick.com ",
+      "gametype": {
+        "id": 1,
+        "name": "Stable Ford",
+        "description": "A game played by four people"
+      },
+      "compFee": 0.0,
+      "compDate": "11/22/2021 12:00:00 AM",
+      "compTime": "12:00:00",
+      "numberOfHoles": 0,
+      "startingHole": 0,
+      "course": {
+        "id": 2,
+        "courseName": "Chainama Golf Club",
+        "address": "Plot 1 Chainama",
+        "courseAbr": "Cha-1",
+        "email": "chainama@gmail.com",
+        "phoneNo": "0967856489",
+        "courseImage": "https://www.istockphoto.com/photo/backlit-golf-course-with-no-golfers-gm481345926-69506541?utm_source=unsplash&utm_medium=affiliate&utm_campaign=srp_photos_top&utm_content=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fgolf&utm_term=golf%3A%3Asearch-aggressive-affiliates-v2%3Aa"
+      },
+      "competitionPlayer": [
+        {
+          "id": 42,
+          "competitionId": 34,
+          "competitionTime": "",
+          "player": {
+            "id": 8,
+            "firstname": "Chinyama",
+            "lastname": "Chinyama",
+            "address": "Ndola",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/20/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "d7f022fb-0853-40f5-815f-48cba26d192c",
+              "username": "Leonard-Chinyama",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        },
+        {
+          "id": 43,
+          "competitionId": 34,
+          "competitionTime": "",
+          "player": {
+            "id": 15,
+            "firstname": "Nick",
+            "lastname": "Nick",
+            "address": "Chiwala",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/15/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "447895af-c2f1-4474-8a34-b0ed51f5d181",
+              "username": "nick@nick.com",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        },
+        {
+          "id": 44,
+          "competitionId": 34,
+          "competitionTime": "",
+          "player": {
+            "id": 18,
+            "firstname": "Bwalya",
+            "lastname": "Bwalya",
+            "address": "Ibex Hill",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "male",
+            "hcp": 21,
+            "dateJoined": "11/18/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "39b3d3e6-d7c4-4304-99c5-f8f0c3591ec7",
+              "username": "bwalyangonga@gmail.com",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        }
+      ]
+    },
+    {
+      "id": 33,
       "compName": "Strkkeset Guys1",
       "gametype": {
         "id": 1,
@@ -13,6 +1238,9 @@
       },
       "compFee": 0.0,
       "compDate": "10/12/2021 12:00:00 AM",
+      "compTime": "12:00:00",
+      "numberOfHoles": 0,
+      "startingHole": 0,
       "course": {
         "id": 2,
         "courseName": "Chainama Golf Club",
@@ -26,24 +1254,1471 @@
         {
           "id": 39,
           "competitionId": 33,
-          "competitionTime": "12:12:00",
-          "playerId": 8,
+          "competitionTime": "",
+          "player": {
+            "id": 8,
+            "firstname": "Chinyama",
+            "lastname": "Chinyama",
+            "address": "Ndola",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/20/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "d7f022fb-0853-40f5-815f-48cba26d192c",
+              "username": "Leonard-Chinyama",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
           "competitionHcp": 12
         },
         {
           "id": 40,
           "competitionId": 33,
-          "competitionTime": "12:12:00",
-          "playerId": 15,
+          "competitionTime": "",
+          "player": {
+            "id": 15,
+            "firstname": "Nick",
+            "lastname": "Nick",
+            "address": "Chiwala",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/15/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "447895af-c2f1-4474-8a34-b0ed51f5d181",
+              "username": "nick@nick.com",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
           "competitionHcp": 12
         },
         {
           "id": 41,
           "competitionId": 33,
-          "competitionTime": "12:12:00",
-          "playerId": 18,
+          "competitionTime": "",
+          "player": {
+            "id": 18,
+            "firstname": "Bwalya",
+            "lastname": "Bwalya",
+            "address": "Ibex Hill",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "male",
+            "hcp": 21,
+            "dateJoined": "11/18/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "39b3d3e6-d7c4-4304-99c5-f8f0c3591ec7",
+              "username": "bwalyangonga@gmail.com",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
           "competitionHcp": 12
         }
       ]
+    },
+    {
+      "id": 31,
+      "compName": "test198086",
+      "gametype": {
+        "id": 1,
+        "name": "Stable Ford",
+        "description": "A game played by four people"
+      },
+      "compFee": 0.0,
+      "compDate": "11/23/2021 12:00:00 AM",
+      "compTime": "12:00:00",
+      "numberOfHoles": 0,
+      "startingHole": 0,
+      "course": {
+        "id": 2,
+        "courseName": "Chainama Golf Club",
+        "address": "Plot 1 Chainama",
+        "courseAbr": "Cha-1",
+        "email": "chainama@gmail.com",
+        "phoneNo": "0967856489",
+        "courseImage": "https://www.istockphoto.com/photo/backlit-golf-course-with-no-golfers-gm481345926-69506541?utm_source=unsplash&utm_medium=affiliate&utm_campaign=srp_photos_top&utm_content=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fgolf&utm_term=golf%3A%3Asearch-aggressive-affiliates-v2%3Aa"
+      },
+      "competitionPlayer": [
+        {
+          "id": 36,
+          "competitionId": 31,
+          "competitionTime": "",
+          "player": {
+            "id": 8,
+            "firstname": "Chinyama",
+            "lastname": "Chinyama",
+            "address": "Ndola",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/20/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "d7f022fb-0853-40f5-815f-48cba26d192c",
+              "username": "Leonard-Chinyama",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        },
+        {
+          "id": 37,
+          "competitionId": 31,
+          "competitionTime": "",
+          "player": {
+            "id": 15,
+            "firstname": "Nick",
+            "lastname": "Nick",
+            "address": "Chiwala",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/15/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "447895af-c2f1-4474-8a34-b0ed51f5d181",
+              "username": "nick@nick.com",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        },
+        {
+          "id": 38,
+          "competitionId": 31,
+          "competitionTime": "",
+          "player": {
+            "id": 18,
+            "firstname": "Bwalya",
+            "lastname": "Bwalya",
+            "address": "Ibex Hill",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "male",
+            "hcp": 21,
+            "dateJoined": "11/18/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "39b3d3e6-d7c4-4304-99c5-f8f0c3591ec7",
+              "username": "bwalyangonga@gmail.com",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "compName": "test19808",
+      "gametype": {
+        "id": 1,
+        "name": "Stable Ford",
+        "description": "A game played by four people"
+      },
+      "compFee": 0.0,
+      "compDate": "11/23/2021 12:00:00 AM",
+      "compTime": "12:00:00",
+      "numberOfHoles": 0,
+      "startingHole": 0,
+      "course": {
+        "id": 2,
+        "courseName": "Chainama Golf Club",
+        "address": "Plot 1 Chainama",
+        "courseAbr": "Cha-1",
+        "email": "chainama@gmail.com",
+        "phoneNo": "0967856489",
+        "courseImage": "https://www.istockphoto.com/photo/backlit-golf-course-with-no-golfers-gm481345926-69506541?utm_source=unsplash&utm_medium=affiliate&utm_campaign=srp_photos_top&utm_content=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fgolf&utm_term=golf%3A%3Asearch-aggressive-affiliates-v2%3Aa"
+      },
+      "competitionPlayer": [
+        {
+          "id": 33,
+          "competitionId": 30,
+          "competitionTime": "",
+          "player": {
+            "id": 8,
+            "firstname": "Chinyama",
+            "lastname": "Chinyama",
+            "address": "Ndola",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/20/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "d7f022fb-0853-40f5-815f-48cba26d192c",
+              "username": "Leonard-Chinyama",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        },
+        {
+          "id": 34,
+          "competitionId": 30,
+          "competitionTime": "",
+          "player": {
+            "id": 15,
+            "firstname": "Nick",
+            "lastname": "Nick",
+            "address": "Chiwala",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/15/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "447895af-c2f1-4474-8a34-b0ed51f5d181",
+              "username": "nick@nick.com",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        },
+        {
+          "id": 35,
+          "competitionId": 30,
+          "competitionTime": "",
+          "player": {
+            "id": 18,
+            "firstname": "Bwalya",
+            "lastname": "Bwalya",
+            "address": "Ibex Hill",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "male",
+            "hcp": 21,
+            "dateJoined": "11/18/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "39b3d3e6-d7c4-4304-99c5-f8f0c3591ec7",
+              "username": "bwalyangonga@gmail.com",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "compName": "test1980",
+      "gametype": {
+        "id": 1,
+        "name": "Stable Ford",
+        "description": "A game played by four people"
+      },
+      "compFee": 0.0,
+      "compDate": "11/23/2021 12:00:00 AM",
+      "compTime": "12:00:00",
+      "numberOfHoles": 0,
+      "startingHole": 0,
+      "course": {
+        "id": 2,
+        "courseName": "Chainama Golf Club",
+        "address": "Plot 1 Chainama",
+        "courseAbr": "Cha-1",
+        "email": "chainama@gmail.com",
+        "phoneNo": "0967856489",
+        "courseImage": "https://www.istockphoto.com/photo/backlit-golf-course-with-no-golfers-gm481345926-69506541?utm_source=unsplash&utm_medium=affiliate&utm_campaign=srp_photos_top&utm_content=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fgolf&utm_term=golf%3A%3Asearch-aggressive-affiliates-v2%3Aa"
+      },
+      "competitionPlayer": [
+        {
+          "id": 30,
+          "competitionId": 29,
+          "competitionTime": "",
+          "player": {
+            "id": 8,
+            "firstname": "Chinyama",
+            "lastname": "Chinyama",
+            "address": "Ndola",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/20/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "d7f022fb-0853-40f5-815f-48cba26d192c",
+              "username": "Leonard-Chinyama",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        },
+        {
+          "id": 31,
+          "competitionId": 29,
+          "competitionTime": "",
+          "player": {
+            "id": 15,
+            "firstname": "Nick",
+            "lastname": "Nick",
+            "address": "Chiwala",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/15/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "447895af-c2f1-4474-8a34-b0ed51f5d181",
+              "username": "nick@nick.com",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        },
+        {
+          "id": 32,
+          "competitionId": 29,
+          "competitionTime": "",
+          "player": {
+            "id": 18,
+            "firstname": "Bwalya",
+            "lastname": "Bwalya",
+            "address": "Ibex Hill",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "male",
+            "hcp": 21,
+            "dateJoined": "11/18/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "39b3d3e6-d7c4-4304-99c5-f8f0c3591ec7",
+              "username": "bwalyangonga@gmail.com",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "compName": "test198",
+      "gametype": {
+        "id": 1,
+        "name": "Stable Ford",
+        "description": "A game played by four people"
+      },
+      "compFee": 0.0,
+      "compDate": "11/23/2021 12:00:00 AM",
+      "compTime": "12:00:00",
+      "numberOfHoles": 0,
+      "startingHole": 0,
+      "course": {
+        "id": 2,
+        "courseName": "Chainama Golf Club",
+        "address": "Plot 1 Chainama",
+        "courseAbr": "Cha-1",
+        "email": "chainama@gmail.com",
+        "phoneNo": "0967856489",
+        "courseImage": "https://www.istockphoto.com/photo/backlit-golf-course-with-no-golfers-gm481345926-69506541?utm_source=unsplash&utm_medium=affiliate&utm_campaign=srp_photos_top&utm_content=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fgolf&utm_term=golf%3A%3Asearch-aggressive-affiliates-v2%3Aa"
+      },
+      "competitionPlayer": [
+        {
+          "id": 27,
+          "competitionId": 28,
+          "competitionTime": "",
+          "player": {
+            "id": 8,
+            "firstname": "Chinyama",
+            "lastname": "Chinyama",
+            "address": "Ndola",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/20/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "d7f022fb-0853-40f5-815f-48cba26d192c",
+              "username": "Leonard-Chinyama",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        },
+        {
+          "id": 28,
+          "competitionId": 28,
+          "competitionTime": "",
+          "player": {
+            "id": 15,
+            "firstname": "Nick",
+            "lastname": "Nick",
+            "address": "Chiwala",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/15/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "447895af-c2f1-4474-8a34-b0ed51f5d181",
+              "username": "nick@nick.com",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        },
+        {
+          "id": 29,
+          "competitionId": 28,
+          "competitionTime": "",
+          "player": {
+            "id": 18,
+            "firstname": "Bwalya",
+            "lastname": "Bwalya",
+            "address": "Ibex Hill",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "male",
+            "hcp": 21,
+            "dateJoined": "11/18/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "39b3d3e6-d7c4-4304-99c5-f8f0c3591ec7",
+              "username": "bwalyangonga@gmail.com",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "compName": "test1",
+      "gametype": {
+        "id": 1,
+        "name": "Stable Ford",
+        "description": "A game played by four people"
+      },
+      "compFee": 0.0,
+      "compDate": "11/21/2021 12:00:00 AM",
+      "compTime": "12:00:00",
+      "numberOfHoles": 0,
+      "startingHole": 0,
+      "course": {
+        "id": 2,
+        "courseName": "Chainama Golf Club",
+        "address": "Plot 1 Chainama",
+        "courseAbr": "Cha-1",
+        "email": "chainama@gmail.com",
+        "phoneNo": "0967856489",
+        "courseImage": "https://www.istockphoto.com/photo/backlit-golf-course-with-no-golfers-gm481345926-69506541?utm_source=unsplash&utm_medium=affiliate&utm_campaign=srp_photos_top&utm_content=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fgolf&utm_term=golf%3A%3Asearch-aggressive-affiliates-v2%3Aa"
+      },
+      "competitionPlayer": [
+        {
+          "id": 24,
+          "competitionId": 26,
+          "competitionTime": "",
+          "player": {
+            "id": 8,
+            "firstname": "Chinyama",
+            "lastname": "Chinyama",
+            "address": "Ndola",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/20/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "d7f022fb-0853-40f5-815f-48cba26d192c",
+              "username": "Leonard-Chinyama",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        },
+        {
+          "id": 25,
+          "competitionId": 26,
+          "competitionTime": "",
+          "player": {
+            "id": 15,
+            "firstname": "Nick",
+            "lastname": "Nick",
+            "address": "Chiwala",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/15/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "447895af-c2f1-4474-8a34-b0ed51f5d181",
+              "username": "nick@nick.com",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        },
+        {
+          "id": 26,
+          "competitionId": 26,
+          "competitionTime": "",
+          "player": {
+            "id": 18,
+            "firstname": "Bwalya",
+            "lastname": "Bwalya",
+            "address": "Ibex Hill",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "male",
+            "hcp": 21,
+            "dateJoined": "11/18/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "39b3d3e6-d7c4-4304-99c5-f8f0c3591ec7",
+              "username": "bwalyangonga@gmail.com",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "compName": "testing 101",
+      "gametype": {
+        "id": 1,
+        "name": "Stable Ford",
+        "description": "A game played by four people"
+      },
+      "compFee": 0.0,
+      "compDate": "11/22/2021 12:00:00 AM",
+      "compTime": "12:00:00",
+      "numberOfHoles": 0,
+      "startingHole": 0,
+      "course": {
+        "id": 2,
+        "courseName": "Chainama Golf Club",
+        "address": "Plot 1 Chainama",
+        "courseAbr": "Cha-1",
+        "email": "chainama@gmail.com",
+        "phoneNo": "0967856489",
+        "courseImage": "https://www.istockphoto.com/photo/backlit-golf-course-with-no-golfers-gm481345926-69506541?utm_source=unsplash&utm_medium=affiliate&utm_campaign=srp_photos_top&utm_content=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fgolf&utm_term=golf%3A%3Asearch-aggressive-affiliates-v2%3Aa"
+      },
+      "competitionPlayer": [
+        {
+          "id": 21,
+          "competitionId": 25,
+          "competitionTime": "",
+          "player": {
+            "id": 8,
+            "firstname": "Chinyama",
+            "lastname": "Chinyama",
+            "address": "Ndola",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/20/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "d7f022fb-0853-40f5-815f-48cba26d192c",
+              "username": "Leonard-Chinyama",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        },
+        {
+          "id": 22,
+          "competitionId": 25,
+          "competitionTime": "",
+          "player": {
+            "id": 15,
+            "firstname": "Nick",
+            "lastname": "Nick",
+            "address": "Chiwala",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/15/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "447895af-c2f1-4474-8a34-b0ed51f5d181",
+              "username": "nick@nick.com",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        },
+        {
+          "id": 23,
+          "competitionId": 25,
+          "competitionTime": "",
+          "player": {
+            "id": 18,
+            "firstname": "Bwalya",
+            "lastname": "Bwalya",
+            "address": "Ibex Hill",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "male",
+            "hcp": 21,
+            "dateJoined": "11/18/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "39b3d3e6-d7c4-4304-99c5-f8f0c3591ec7",
+              "username": "bwalyangonga@gmail.com",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "compName": "testing 10",
+      "gametype": {
+        "id": 1,
+        "name": "Stable Ford",
+        "description": "A game played by four people"
+      },
+      "compFee": 0.0,
+      "compDate": "11/22/2021 12:00:00 AM",
+      "compTime": "12:00:00",
+      "numberOfHoles": 0,
+      "startingHole": 0,
+      "course": {
+        "id": 2,
+        "courseName": "Chainama Golf Club",
+        "address": "Plot 1 Chainama",
+        "courseAbr": "Cha-1",
+        "email": "chainama@gmail.com",
+        "phoneNo": "0967856489",
+        "courseImage": "https://www.istockphoto.com/photo/backlit-golf-course-with-no-golfers-gm481345926-69506541?utm_source=unsplash&utm_medium=affiliate&utm_campaign=srp_photos_top&utm_content=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fgolf&utm_term=golf%3A%3Asearch-aggressive-affiliates-v2%3Aa"
+      },
+      "competitionPlayer": [
+        {
+          "id": 18,
+          "competitionId": 24,
+          "competitionTime": "",
+          "player": {
+            "id": 8,
+            "firstname": "Chinyama",
+            "lastname": "Chinyama",
+            "address": "Ndola",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/20/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "d7f022fb-0853-40f5-815f-48cba26d192c",
+              "username": "Leonard-Chinyama",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        },
+        {
+          "id": 19,
+          "competitionId": 24,
+          "competitionTime": "",
+          "player": {
+            "id": 15,
+            "firstname": "Nick",
+            "lastname": "Nick",
+            "address": "Chiwala",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/15/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "447895af-c2f1-4474-8a34-b0ed51f5d181",
+              "username": "nick@nick.com",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        },
+        {
+          "id": 20,
+          "competitionId": 24,
+          "competitionTime": "",
+          "player": {
+            "id": 18,
+            "firstname": "Bwalya",
+            "lastname": "Bwalya",
+            "address": "Ibex Hill",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "male",
+            "hcp": 21,
+            "dateJoined": "11/18/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "39b3d3e6-d7c4-4304-99c5-f8f0c3591ec7",
+              "username": "bwalyangonga@gmail.com",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "compName": "",
+      "gametype": {
+        "id": 1,
+        "name": "Stable Ford",
+        "description": "A game played by four people"
+      },
+      "compFee": 0.0,
+      "compDate": "11/20/2021 12:00:00 AM",
+      "compTime": "12:00:00",
+      "numberOfHoles": 0,
+      "startingHole": 0,
+      "course": {
+        "id": 2,
+        "courseName": "Chainama Golf Club",
+        "address": "Plot 1 Chainama",
+        "courseAbr": "Cha-1",
+        "email": "chainama@gmail.com",
+        "phoneNo": "0967856489",
+        "courseImage": "https://www.istockphoto.com/photo/backlit-golf-course-with-no-golfers-gm481345926-69506541?utm_source=unsplash&utm_medium=affiliate&utm_campaign=srp_photos_top&utm_content=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fgolf&utm_term=golf%3A%3Asearch-aggressive-affiliates-v2%3Aa"
+      },
+      "competitionPlayer": [
+        {
+          "id": 15,
+          "competitionId": 21,
+          "competitionTime": "",
+          "player": {
+            "id": 8,
+            "firstname": "Chinyama",
+            "lastname": "Chinyama",
+            "address": "Ndola",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/20/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "d7f022fb-0853-40f5-815f-48cba26d192c",
+              "username": "Leonard-Chinyama",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        },
+        {
+          "id": 16,
+          "competitionId": 21,
+          "competitionTime": "",
+          "player": {
+            "id": 15,
+            "firstname": "Nick",
+            "lastname": "Nick",
+            "address": "Chiwala",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/15/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "447895af-c2f1-4474-8a34-b0ed51f5d181",
+              "username": "nick@nick.com",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        },
+        {
+          "id": 17,
+          "competitionId": 21,
+          "competitionTime": "",
+          "player": {
+            "id": 18,
+            "firstname": "Bwalya",
+            "lastname": "Bwalya",
+            "address": "Ibex Hill",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "male",
+            "hcp": 21,
+            "dateJoined": "11/18/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "39b3d3e6-d7c4-4304-99c5-f8f0c3591ec7",
+              "username": "bwalyangonga@gmail.com",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "compName": "Strkkeet Guys1",
+      "gametype": {
+        "id": 1,
+        "name": "Stable Ford",
+        "description": "A game played by four people"
+      },
+      "compFee": 0.0,
+      "compDate": "10/12/2021 12:00:00 AM",
+      "compTime": "12:00:00",
+      "numberOfHoles": 0,
+      "startingHole": 0,
+      "course": {
+        "id": 2,
+        "courseName": "Chainama Golf Club",
+        "address": "Plot 1 Chainama",
+        "courseAbr": "Cha-1",
+        "email": "chainama@gmail.com",
+        "phoneNo": "0967856489",
+        "courseImage": "https://www.istockphoto.com/photo/backlit-golf-course-with-no-golfers-gm481345926-69506541?utm_source=unsplash&utm_medium=affiliate&utm_campaign=srp_photos_top&utm_content=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fgolf&utm_term=golf%3A%3Asearch-aggressive-affiliates-v2%3Aa"
+      },
+      "competitionPlayer": [
+        {
+          "id": 12,
+          "competitionId": 20,
+          "competitionTime": "",
+          "player": {
+            "id": 8,
+            "firstname": "Chinyama",
+            "lastname": "Chinyama",
+            "address": "Ndola",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/20/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "d7f022fb-0853-40f5-815f-48cba26d192c",
+              "username": "Leonard-Chinyama",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        },
+        {
+          "id": 13,
+          "competitionId": 20,
+          "competitionTime": "",
+          "player": {
+            "id": 15,
+            "firstname": "Nick",
+            "lastname": "Nick",
+            "address": "Chiwala",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/15/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "447895af-c2f1-4474-8a34-b0ed51f5d181",
+              "username": "nick@nick.com",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        },
+        {
+          "id": 14,
+          "competitionId": 20,
+          "competitionTime": "",
+          "player": {
+            "id": 18,
+            "firstname": "Bwalya",
+            "lastname": "Bwalya",
+            "address": "Ibex Hill",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "male",
+            "hcp": 21,
+            "dateJoined": "11/18/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "39b3d3e6-d7c4-4304-99c5-f8f0c3591ec7",
+              "username": "bwalyangonga@gmail.com",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "compName": "Street Guys1",
+      "gametype": {
+        "id": 1,
+        "name": "Stable Ford",
+        "description": "A game played by four people"
+      },
+      "compFee": 0.0,
+      "compDate": "10/12/2021 12:00:00 AM",
+      "compTime": "12:00:00",
+      "numberOfHoles": 0,
+      "startingHole": 0,
+      "course": {
+        "id": 2,
+        "courseName": "Chainama Golf Club",
+        "address": "Plot 1 Chainama",
+        "courseAbr": "Cha-1",
+        "email": "chainama@gmail.com",
+        "phoneNo": "0967856489",
+        "courseImage": "https://www.istockphoto.com/photo/backlit-golf-course-with-no-golfers-gm481345926-69506541?utm_source=unsplash&utm_medium=affiliate&utm_campaign=srp_photos_top&utm_content=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fgolf&utm_term=golf%3A%3Asearch-aggressive-affiliates-v2%3Aa"
+      },
+      "competitionPlayer": [
+        {
+          "id": 9,
+          "competitionId": 18,
+          "competitionTime": "",
+          "player": {
+            "id": 8,
+            "firstname": "Chinyama",
+            "lastname": "Chinyama",
+            "address": "Ndola",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/20/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "d7f022fb-0853-40f5-815f-48cba26d192c",
+              "username": "Leonard-Chinyama",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        },
+        {
+          "id": 10,
+          "competitionId": 18,
+          "competitionTime": "",
+          "player": {
+            "id": 15,
+            "firstname": "Nick",
+            "lastname": "Nick",
+            "address": "Chiwala",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/15/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "447895af-c2f1-4474-8a34-b0ed51f5d181",
+              "username": "nick@nick.com",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        },
+        {
+          "id": 11,
+          "competitionId": 18,
+          "competitionTime": "",
+          "player": {
+            "id": 18,
+            "firstname": "Bwalya",
+            "lastname": "Bwalya",
+            "address": "Ibex Hill",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "male",
+            "hcp": 21,
+            "dateJoined": "11/18/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "39b3d3e6-d7c4-4304-99c5-f8f0c3591ec7",
+              "username": "bwalyangonga@gmail.com",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "compName": "Street Guys",
+      "gametype": {
+        "id": 1,
+        "name": "Stable Ford",
+        "description": "A game played by four people"
+      },
+      "compFee": 2500.0,
+      "compDate": "10/12/2021 12:00:00 AM",
+      "compTime": "12:00:00",
+      "numberOfHoles": 0,
+      "startingHole": 0,
+      "course": {
+        "id": 2,
+        "courseName": "Chainama Golf Club",
+        "address": "Plot 1 Chainama",
+        "courseAbr": "Cha-1",
+        "email": "chainama@gmail.com",
+        "phoneNo": "0967856489",
+        "courseImage": "https://www.istockphoto.com/photo/backlit-golf-course-with-no-golfers-gm481345926-69506541?utm_source=unsplash&utm_medium=affiliate&utm_campaign=srp_photos_top&utm_content=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fgolf&utm_term=golf%3A%3Asearch-aggressive-affiliates-v2%3Aa"
+      },
+      "competitionPlayer": [
+        {
+          "id": 8,
+          "competitionId": 16,
+          "competitionTime": "",
+          "player": {
+            "id": 8,
+            "firstname": "Chinyama",
+            "lastname": "Chinyama",
+            "address": "Ndola",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/20/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "d7f022fb-0853-40f5-815f-48cba26d192c",
+              "username": "Leonard-Chinyama",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "compName": "My tournament",
+      "gametype": {
+        "id": 1,
+        "name": "Stable Ford",
+        "description": "A game played by four people"
+      },
+      "compFee": 2500.0,
+      "compDate": "10/12/2021 12:00:00 AM",
+      "compTime": "12:00:00",
+      "numberOfHoles": 0,
+      "startingHole": 0,
+      "course": {
+        "id": 2,
+        "courseName": "Chainama Golf Club",
+        "address": "Plot 1 Chainama",
+        "courseAbr": "Cha-1",
+        "email": "chainama@gmail.com",
+        "phoneNo": "0967856489",
+        "courseImage": "https://www.istockphoto.com/photo/backlit-golf-course-with-no-golfers-gm481345926-69506541?utm_source=unsplash&utm_medium=affiliate&utm_campaign=srp_photos_top&utm_content=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fgolf&utm_term=golf%3A%3Asearch-aggressive-affiliates-v2%3Aa"
+      },
+      "competitionPlayer": [
+        {
+          "id": 7,
+          "competitionId": 15,
+          "competitionTime": "",
+          "player": {
+            "id": 8,
+            "firstname": "Chinyama",
+            "lastname": "Chinyama",
+            "address": "Ndola",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/20/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "d7f022fb-0853-40f5-815f-48cba26d192c",
+              "username": "Leonard-Chinyama",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 12
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "compName": "Test Competition",
+      "gametype": {
+        "id": 1,
+        "name": "Stable Ford",
+        "description": "A game played by four people"
+      },
+      "compFee": 2500.0,
+      "compDate": "10/12/2021 12:00:00 AM",
+      "compTime": "12:00:00",
+      "numberOfHoles": 0,
+      "startingHole": 0,
+      "course": {
+        "id": 2,
+        "courseName": "Chainama Golf Club",
+        "address": "Plot 1 Chainama",
+        "courseAbr": "Cha-1",
+        "email": "chainama@gmail.com",
+        "phoneNo": "0967856489",
+        "courseImage": "https://www.istockphoto.com/photo/backlit-golf-course-with-no-golfers-gm481345926-69506541?utm_source=unsplash&utm_medium=affiliate&utm_campaign=srp_photos_top&utm_content=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fgolf&utm_term=golf%3A%3Asearch-aggressive-affiliates-v2%3Aa"
+      },
+      "competitionPlayer": [
+        {
+          "id": 6,
+          "competitionId": 14,
+          "competitionTime": "",
+          "player": {
+            "id": 8,
+            "firstname": "Chinyama",
+            "lastname": "Chinyama",
+            "address": "Ndola",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/20/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "d7f022fb-0853-40f5-815f-48cba26d192c",
+              "username": "Leonard-Chinyama",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 24
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "compName": "Hello wild",
+      "gametype": {
+        "id": 1,
+        "name": "Stable Ford",
+        "description": "A game played by four people"
+      },
+      "compFee": 2500.0,
+      "compDate": "10/12/2021 12:00:00 AM",
+      "compTime": "12:00:00",
+      "numberOfHoles": 0,
+      "startingHole": 0,
+      "course": {
+        "id": 2,
+        "courseName": "Chainama Golf Club",
+        "address": "Plot 1 Chainama",
+        "courseAbr": "Cha-1",
+        "email": "chainama@gmail.com",
+        "phoneNo": "0967856489",
+        "courseImage": "https://www.istockphoto.com/photo/backlit-golf-course-with-no-golfers-gm481345926-69506541?utm_source=unsplash&utm_medium=affiliate&utm_campaign=srp_photos_top&utm_content=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fgolf&utm_term=golf%3A%3Asearch-aggressive-affiliates-v2%3Aa"
+      },
+      "competitionPlayer": [
+        {
+          "id": 5,
+          "competitionId": 13,
+          "competitionTime": "",
+          "player": {
+            "id": 8,
+            "firstname": "Chinyama",
+            "lastname": "Chinyama",
+            "address": "Ndola",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/20/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "d7f022fb-0853-40f5-815f-48cba26d192c",
+              "username": "Leonard-Chinyama",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 24
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "compName": "The five",
+      "gametype": {
+        "id": 1,
+        "name": "Stable Ford",
+        "description": "A game played by four people"
+      },
+      "compFee": 200.0,
+      "compDate": "12/29/2021 12:00:00 AM",
+      "compTime": "12:00:00",
+      "numberOfHoles": 0,
+      "startingHole": 0,
+      "course": {
+        "id": 2,
+        "courseName": "Chainama Golf Club",
+        "address": "Plot 1 Chainama",
+        "courseAbr": "Cha-1",
+        "email": "chainama@gmail.com",
+        "phoneNo": "0967856489",
+        "courseImage": "https://www.istockphoto.com/photo/backlit-golf-course-with-no-golfers-gm481345926-69506541?utm_source=unsplash&utm_medium=affiliate&utm_campaign=srp_photos_top&utm_content=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fgolf&utm_term=golf%3A%3Asearch-aggressive-affiliates-v2%3Aa"
+      },
+      "competitionPlayer": [
+        {
+          "id": 1,
+          "competitionId": 6,
+          "competitionTime": "08:00:00",
+          "player": {
+            "id": 8,
+            "firstname": "Chinyama",
+            "lastname": "Chinyama",
+            "address": "Ndola",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/20/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "d7f022fb-0853-40f5-815f-48cba26d192c",
+              "username": "Leonard-Chinyama",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 82
+        },
+        {
+          "id": 2,
+          "competitionId": 6,
+          "competitionTime": "",
+          "player": {
+            "id": 15,
+            "firstname": "Nick",
+            "lastname": "Nick",
+            "address": "Chiwala",
+            "image": "",
+            "dob": "3/19/2021 12:00:00 AM",
+            "gender": "1",
+            "hcp": 21,
+            "dateJoined": "3/15/2021 12:00:00 AM",
+            "aspnetuserDetails": {
+              "id": "447895af-c2f1-4474-8a34-b0ed51f5d181",
+              "username": "nick@nick.com",
+              "phoneNumber": "",
+              "email": "chainama@gmail.com"
+            },
+            "usertype": {
+              "id": 2,
+              "name": "Normal User",
+              "description": "This is a normal user"
+            }
+          },
+          "competitionHcp": 20
+        }
+      ]
     }
-  }
+  ]
+}

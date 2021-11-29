@@ -13,6 +13,7 @@ class AuthProvider extends GetConnect {
       if (response.status.hasError) {
         return Future.error(response.body["errors"].join(","));
       } else {
+        print('<<===LOGIN RESPONSE BODY==> ${response.body.toString()}');
         Map<String, dynamic> resp = jsonDecode(response.bodyString);
         return Auth.fromJson(resp);
       }
