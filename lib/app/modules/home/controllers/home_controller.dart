@@ -47,16 +47,6 @@ class HomeController extends GetxController {
     name.value = '';
   }
 
-  // checkIfUserFullyRegistered() {
-  //   Map<String, dynamic> storedUser = jsonDecode(storage.read('user'));
-  //   var usr = User.fromJson(storedUser);
-  //   print("USER REG DETAILS   ===> ");
-  //   if (usr.firstName == '' || usr.firstName == null) {
-  //     //Call the reg screen here
-  //     Get.to(UserDetailsScreenView());
-  //   }
-  // }
-
   isRegistered() {
     if (storage.read('user') == null) {
       Get.to(UserDetailsScreenView());
@@ -106,15 +96,6 @@ class HomeController extends GetxController {
       Get.offAllNamed('/login');
     }
   }
-
-  checkIfUserFullyRegistered() {
-    Map<String, dynamic> storedUser = jsonDecode(storage.read('user'));
-    var usr = User.fromJson(storedUser);
-    if (usr.firstName == '' || usr.firstName == null) {
-      //Call the reg screen here
-    }
-  }
-
   getUserDetails(String id) async{
     try {
       isProcessing(true);
@@ -123,6 +104,9 @@ class HomeController extends GetxController {
         storage.write("user", resp);
         Map<String, dynamic> storedUser = jsonDecode(storage.read('user'));
         var usr = User.fromJson(storedUser);
+        if(usr.id.toString()=="" || usr.id.isBlank){
+          Get.to(UserDetailsScreenView());
+        }
         await getMatchInvites(usr.id.toString());
         if (usr.isBlank) {
           ShowSnackBar("USER DETAILS Error", "NO USER INFO FOUND", Colors.blue);

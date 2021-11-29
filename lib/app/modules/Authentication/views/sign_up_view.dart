@@ -68,7 +68,7 @@ class SignUpView extends GetView<AuthenticationController> {
                               "Email",
                               (s) {},
                               false,
-                              false,
+                              true,
                               true,
                             ),
                           ),
