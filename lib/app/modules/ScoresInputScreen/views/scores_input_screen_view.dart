@@ -1,14 +1,10 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:gcms/app/components/circle_image.dart';
 import 'package:gcms/app/components/round_button_widget.dart';
-import 'package:gcms/app/components/submit_button.dart';
 import 'package:gcms/app/modules/ActiveGameScreen/views/update_score_button.dart';
 import 'package:gcms/app/modules/ScoresInputScreen/views/result_widget.dart';
 import 'package:gcms/app/modules/ScoresInputScreen/views/score_widget.dart';
 import 'package:gcms/app/modules/commonWidgets/customButton.dart';
-import 'package:gcms/app/modules/commonWidgets/drawer.dart';
 import 'package:gcms/app/modules/commonWidgets/loader/loader.dart';
 import 'package:gcms/constants/constant.dart';
 import 'package:gcms/theme/gcms_theme.dart';
@@ -274,8 +270,7 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                               .toString(),
                                           "confirmed": true,
                                           "holeId": 96,
-                                          "compplayerId": 1,
-                                        });
+                                        },"we need to change this",controller.storage.read("userId"));
                                         Get.back();
                                       },
                                       onCancel: () {},

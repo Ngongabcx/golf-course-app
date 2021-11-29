@@ -6,9 +6,9 @@ import 'package:get/get.dart';
 import '../scorecard_model.dart';
 
 class ScorecardProvider extends GetConnect {
-  Future<Scorecard> addScorecard(data) async {
+  Future<Scorecard> addScorecard(data,compId,userId) async {
     try {
-      final response = await post("$kApiBaseURL/scorecards/", data);
+      final response = await post("$kApiBaseURL/scorecards/$compId/$userId", data);
       //final body = json.decode(response.bodyString);
       if (response.status.hasError) {
         return Future.error(response.statusText);

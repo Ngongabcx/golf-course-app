@@ -10,7 +10,7 @@ class MatchInvitesScreenView extends GetView<HomeController> {
   final _controller = Get.put(HomeController());
   @override
   Widget build(BuildContext context) {
-    var invitations = controller.matchInvites.value.payload;
+    var invitations = _controller.matchInvites.value.payload;
     return Scaffold(
       body: SafeArea(
         child: Container(
