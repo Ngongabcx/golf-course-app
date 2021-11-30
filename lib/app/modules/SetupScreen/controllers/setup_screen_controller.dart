@@ -24,7 +24,7 @@ class SetupScreenController extends GetxController {
   var currentSelectedHole = ''.obs;
   var startingHole = 0.obs;
   var endingHole = 0.obs;
-  final hole9options = [1, 9, 18];
+  final hole9options = [1, 9,10, 18];
   var holeCorrespondingValue = [].obs;
   final hole18options = [1, 18];
   var startingHoleOptions = <int>[].obs;
@@ -108,7 +108,7 @@ class SetupScreenController extends GetxController {
       CompetitionProvider().getCompetition(id).then((resp) async {
         print("COMPETITION SUCCESSFULLY FETCHED  ---> $resp");
         isProcessing(false);
-        Get.to(CompetitionDetailView(resp));
+        Get.offAll(CompetitionDetailView(resp));
       }, onError: (err) {
         print("Error getting competition details -->" + err.toString());
         isProcessing(false);

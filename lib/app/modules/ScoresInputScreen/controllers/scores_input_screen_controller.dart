@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/ScoresInputScreen/providers/scorecard_provider.dart';
+import 'package:gcms/app/modules/SetupScreen/competition_model.dart';
 import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class ScoresInputScreenController extends GetxController {
-  var hcp = 21.0.obs;
-  var hole = 1.0.obs;
-  var par = 5.0.obs;
-  var stroke = 13.0.obs;
+  var hcp = 0.0.obs;
+  var hole = 0.0.obs;
+  var par = 0.0.obs;
+  var stroke = 0.0.obs;
   var score = 0.0.obs;
   var result = 0.0.obs;
   var isProcessing = false.obs;
   var storage = GetStorage();
+  var endHole;
+  var gameHoles = <Hole>[].obs;
+  var remainingHoles = 0.obs;
+  var holeIndex = 0.obs;
+  var count = 0.obs;
   @override
   void onInit() {
     super.onInit();
@@ -25,13 +31,57 @@ class ScoresInputScreenController extends GetxController {
 
   @override
   void onClose() {}
+  void extractGameHolesArray(Competition competition) {
+    print("EXTRACT GAME HOLES HAS BEEN CALLED!!!!");
+    var totalHoles = competition.payload.numberOfHoles;
+    remainingHoles.value = totalHoles;
+    var startingHole = competition.payload.startingHole;
+    var holes = competition.payload.course.holes;
+    print("TOTAL HOLES ------------> $totalHoles");
+    //get holes that are being payed accourding to the competition number of holes being played
+    if (totalHoles == 18) {
+      gameHoles.addAll(holes);
+      print("GAME HOLES ----> ${gameHoles.first}");
+    } else {
+      if (startingHole == 1 || startingHole == 9) {
+        count.value = 1;
+        for (int h = 0; h < totalHoles; h++) {
+          print("COUNT1  --> $count");
+          var _gameHoles =
+              holes.where((course) => course.holeNo == count.value).toList();
+          count.value++;
+          print(h);
+          print(holes[h]);
+          gameHoles.addAll(_gameHoles);
+        }
+      }
+      if (startingHole == 10 || startingHole == 18) {
+        count.value = 10;
+        for (int h = 0; h < totalHoles; h++) {
+          print("COUNT2  --> $count");
+          var _gameHoles =
+              holes.where((course) => course.holeNo == count.value).toList();
+          count.value++;
+          print(h);
+          print(holes[h]);
+          gameHoles.addAll(_gameHoles);
+        }
+      }
+    }
+    stroke.value = gameHoles[holeIndex.value].stroke.toDouble();
+    par.value = gameHoles[holeIndex.value].par.toDouble();
+    hole.value = gameHoles[holeIndex.value].holeNo.toDouble();
+    hcp.value = storage.read("hcp");
+    print("FIRST GAME HOLE NUMBER ----> ${gameHoles.first.holeNo}");
+    print("LAST GAME HOLE NUMBER ----> ${gameHoles.last.holeNo}");
+  }
 
   void addScorecard(Map data, String compId, String userId) {
     try {
       isProcessing(true);
       ScorecardProvider().addScorecard(data, compId, userId).then((resp) {
         isProcessing(false);
-        hole++;
+        holeIndex++;
         ShowSnackBar("Success", "Score Successfully Added.", Colors.green);
       }, onError: (err) {
         isProcessing(false);

@@ -1,3 +1,4 @@
+import 'package:gcms/app/modules/SetupScreen/competition_model.dart';
 import 'package:gcms/app/modules/home/views/match_invites_screen_view.dart';
 import 'package:get/get.dart';
 
@@ -47,11 +48,11 @@ class AppPages {
       page: () => ActiveGameScreenView(),
       binding: ActiveGameScreenBinding(),
     ),
-    GetPage(
-      name: _Paths.SCORES_INPUT_SCREEN,
-      page: () => ScoresInputScreenView(),
-      binding: ScoresInputScreenBinding(),
-    ),
+    // GetPage(
+    //   name: _Paths.SCORES_INPUT_SCREEN,
+    //   page: () => ScoresInputScreenView(),
+    //   binding: ScoresInputScreenBinding(),
+    // ),
     GetPage(
       name: _Paths.NOTIFICATIONS,
       page: () => NotificationsView(),

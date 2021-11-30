@@ -108,6 +108,7 @@ class HomeController extends GetxController {
           Get.to(UserDetailsScreenView());
         }
         storage.write("userId", usr.id.toString());
+        storage.write("hcp", usr.hcp.toDouble());
         await getMatchInvites(usr.id.toString());
         if (usr.isBlank) {
           ShowSnackBar("USER DETAILS Error", "NO USER INFO FOUND", Colors.blue);

@@ -4,6 +4,7 @@ import 'package:gcms/app/components/round_button_widget.dart';
 import 'package:gcms/app/modules/ActiveGameScreen/views/update_score_button.dart';
 import 'package:gcms/app/modules/ScoresInputScreen/views/result_widget.dart';
 import 'package:gcms/app/modules/ScoresInputScreen/views/score_widget.dart';
+import 'package:gcms/app/modules/SetupScreen/competition_model.dart';
 import 'package:gcms/app/modules/commonWidgets/customButton.dart';
 import 'package:gcms/app/modules/commonWidgets/loader/loader.dart';
 import 'package:gcms/constants/constant.dart';
@@ -14,8 +15,12 @@ import 'package:get/get.dart';
 import '../controllers/scores_input_screen_controller.dart';
 
 class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
+  final _controller = Get.put(ScoresInputScreenController());
+  final Competition competition;
+  ScoresInputScreenView(this.competition);
   @override
   Widget build(BuildContext context) {
+    _controller.extractGameHolesArray(competition);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -27,7 +32,7 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
         ),
         actions: [],
         centerTitle: true,
-        elevation: 1,
+        elevation: 0,
       ),
       body: Obx(
         () {
@@ -36,10 +41,9 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
               child: Container(
                 height: MediaQuery.of(context).size.height,
                 width: MediaQuery.of(context).size.height,
-                padding: const EdgeInsets.all(20.0),
-                child: controller.isProcessing.value == true
-                    ? Center(
-                        child: Loader())
+                padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+                child: _controller.isProcessing.value == true
+                    ? Center(child: Loader())
                     : Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
@@ -47,7 +51,7 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               const Padding(
-                                padding: EdgeInsets.only(top: 16.0),
+                                padding: EdgeInsets.only(top: 0.0),
                                 child: CircleImage(
                                   imageProvider: AssetImage(
                                       'assets/images/Tiger-Woods.jpg'),
@@ -58,7 +62,7 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                 style: Theme.of(context).textTheme.headline2,
                               ),
                               Text(
-                                'hcp ${controller.hcp.value.toString()}',
+                                'hcp ${_controller.hcp.value.toString()}',
                                 style: Theme.of(context).textTheme.bodyText2,
                               ),
                             ],
@@ -78,7 +82,7 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                 child: Column(
                                   children: [
                                     RoundButtonWidget(
-                                      text: controller.hole.value.toString(),
+                                      text: _controller.hole.value.toString(),
                                       style:
                                           Theme.of(context).textTheme.bodyText2,
                                     ),
@@ -99,7 +103,7 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                 child: Column(
                                   children: [
                                     RoundButtonWidget(
-                                      text: controller.par.value.toString(),
+                                      text: _controller.par.value.toString(),
                                       style:
                                           Theme.of(context).textTheme.bodyText2,
                                     ),
@@ -120,7 +124,7 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                 child: Column(
                                   children: [
                                     RoundButtonWidget(
-                                      text: controller.stroke.value.toString(),
+                                      text: _controller.stroke.value.toString(),
                                       style:
                                           Theme.of(context).textTheme.bodyText2,
                                     ),
@@ -173,8 +177,8 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                       UpdateScoreButtton(
                                         icon: Icons.remove,
                                         onPressed: () {
-                                          controller.score--;
-                                          print(controller.score.value);
+                                          _controller.score--;
+                                          print(_controller.score.value);
                                           controller.calculateResult();
                                         },
                                       ),
@@ -186,7 +190,7 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                   child: Column(
                                     children: [
                                       ScoreWidget(
-                                        text: controller.score.value.toString(),
+                                        text: _controller.score.value.toString(),
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyText2,
@@ -201,8 +205,8 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                       UpdateScoreButtton(
                                         icon: Icons.add,
                                         onPressed: () {
-                                          controller.score++;
-                                          controller.calculateResult();
+                                          _controller.score.value++;
+                                          _controller.calculateResult();
                                         },
                                       ),
                                     ],
@@ -238,7 +242,7 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                     children: [
                                       ResultWidget(
                                         text:
-                                            controller.result.value.toString(),
+                                            _controller.result.value.toString(),
                                         style:
                                             GcmsTheme.darkTextTheme.bodyText1,
                                       ),
@@ -255,7 +259,7 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                 child: CustomButton(
                                   text: "Submit",
                                   onPressed: () {
-                                    controller.calculateResult();
+                                    _controller.calculateResult();
                                     Get.defaultDialog(
                                       title: "Confirm Submission",
                                       // middleText: "Submit score of ${controller.}",
@@ -270,7 +274,8 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                               .toString(),
                                           "confirmed": true,
                                           "holeId": 96,
-                                        },"we need to change this",controller.storage.read("userId"));
+                                        }, "we need to change this",
+                                            _controller.storage.read("userId"));
                                         Get.back();
                                       },
                                       onCancel: () {},
@@ -440,6 +445,21 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                   ),
                                 ),
                               ),
+                              Padding(
+                                  padding: const EdgeInsets.only(top: 8.0),
+                                  child: CustomButton(
+                                    text: "End Match",
+                                    onPressed: () {
+                                      Get.defaultDialog(
+                                          title: "End Match",
+                                          content: Text(
+                                              "You will lose all your scores and match progress. This action cannot be reversed. Confirm ending match?"),
+                                          onConfirm: () {
+                                            Get.toNamed("/home");
+                                          },
+                                          onCancel: () {});
+                                    },
+                                  ))
                             ],
                           ),
                         ],

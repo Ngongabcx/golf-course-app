@@ -14,8 +14,8 @@ class CompetitionProvider extends GetConnect {
       if (response.status.hasError) {
         return Future.error(response.statusText);
       } else {
+        print("SUCCESSFUL COMPETITION RESPONSE -->>> ${response.body.toString()}");
         final resp = competitionFromJson(response.bodyString);
-        print("SUCCESSFUL COMPETITION RESPONSE -->>> ${resp.toString()}");
         return resp;
       }
     } catch (exception) {

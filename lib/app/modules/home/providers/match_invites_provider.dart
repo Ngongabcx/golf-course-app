@@ -13,7 +13,7 @@ class MatchInvitesProvider extends GetConnect {
       } else {
         final resp =
             matchInvitesFromJson(response.bodyString);
-        print('<<===GET MATCH INVITATIONS  SUCCESSFUL==> $resp');
+        print('<<===GET MATCH INVITATIONS  SUCCESSFUL==> ${response.bodyString}');
         return resp;
       }
     } catch (exception) {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gcms/app/modules/ScoresInputScreen/views/scores_input_screen_view.dart';
 import 'package:gcms/app/modules/SetupScreen/competition_model.dart';
 import 'package:gcms/app/modules/commonWidgets/customButton.dart';
 import 'package:gcms/theme/gcms_theme.dart';
@@ -17,25 +18,23 @@ class CompetitionDetailView extends GetView {
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(color: Colors.black),
         automaticallyImplyLeading: true,
-        title: Align(
-          alignment: AlignmentDirectional(-1, 0),
-          child: Text(
-            comp.compName,
-            style: Theme.of(context).textTheme.headline3,
-          ),
+        title: Text(
+          comp.compName.toUpperCase(),
+          style: Theme.of(context).textTheme.headline3,
         ),
+        centerTitle: true,
+        elevation: 0,
       ),
       body: SafeArea(
         child: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.height,
-          padding: EdgeInsets.all(20.0),
+          padding: EdgeInsets.only(left:20,right:20),
           child: ListView(
             children: [
               Container(
-                padding: const EdgeInsets.only(left:20,right:20),
                 constraints: const BoxConstraints.expand(
-                 // width: 350,
+                  width: 550,
                   height: 150,
                 ),
                 decoration: BoxDecoration(
@@ -43,11 +42,11 @@ class CompetitionDetailView extends GetView {
                     image: NetworkImage(comp.course.courseImage),
                     fit: BoxFit.fill,
                   ),
-                  borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+                  borderRadius: const BorderRadius.all(Radius.circular(5.0)),
                 ),
               ),
               const SizedBox(
-                height: 20,
+                height: 5,
               ),
               Text(
                 comp.course.courseName,
@@ -55,13 +54,13 @@ class CompetitionDetailView extends GetView {
               ),
               Text(comp.compDate, style: Theme.of(context).textTheme.subtitle2),
               const SizedBox(
-                height: 20,
+                height: 10,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    comp.compName,
+                    comp.compName.toUpperCase(),
                     style: Theme.of(context).textTheme.headline6,
                   ),
                   Text(
@@ -82,30 +81,23 @@ class CompetitionDetailView extends GetView {
                   thickness: 3.0,
                 ),
               ),
-              Text(
-                'Player Setup',
-                style: Theme.of(context).textTheme.headline3,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(left: 16.0),
+                    padding: EdgeInsets.only(left: 0.0),
                     child: Text(
                       'Players',
                       style: GcmsTheme.lightTextTheme.headline3,
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 16.0),
-                    child: Text(
-                      'Options',
-                      style: GcmsTheme.lightTextTheme.headline3,
-                    ),
-                  ),
+                  // Padding(
+                  //   padding: EdgeInsets.only(left: 16.0),
+                  //   child: Text(
+                  //     'Options',
+                  //     style: GcmsTheme.lightTextTheme.headline3,
+                  //   ),
+                  // ),
                 ],
               ),
               Expanded(
@@ -179,9 +171,9 @@ class CompetitionDetailView extends GetView {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 16.0),
                     child: CustomButton(
-                      text: "Start recording scores",
+                      text: "Play",
                       onPressed: () {
-                        Get.toNamed("/scores-input-screen");
+                        Get.offAll(ScoresInputScreenView(competition));
                       },
                     ),
                   ),

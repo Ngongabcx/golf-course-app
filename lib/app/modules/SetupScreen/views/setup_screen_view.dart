@@ -27,13 +27,13 @@ class SetupScreenView extends GetView<SetupScreenController> {
         ),
         actions: [],
         centerTitle: true,
-        elevation: 4,
+        elevation: 0,
       ),
       body: SafeArea(
         child: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.height,
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 20.0),
           child: ListView(
             children: [
               TextFormField(
@@ -184,9 +184,25 @@ class SetupScreenView extends GetView<SetupScreenController> {
                               .add(controller.startingHole.value);
                         }
                         controller.startingHole.value = val;
-                        controller.endingHoleOptions
-                            .removeWhere((item) => item == val);
-
+                        if (controller.numberOfHolesToPlay.value == 9) {
+                          controller.endingHoleOptions.clear();
+                          if (val == 1) {
+                            controller.endingHoleOptions.add(9);
+                            controller.endingHole.value = 9;
+                          } else if (val == 9) {
+                            controller.endingHoleOptions.add(1);
+                            controller.endingHole.value = 1;
+                          } else if (val == 10) {
+                            controller.endingHoleOptions.add(18);
+                            controller.endingHole.value = 18;
+                          } else if (val == 18) {
+                            controller.endingHoleOptions.add(10);
+                            controller.endingHole.value = 10;
+                          }
+                        } else {
+                          controller.endingHoleOptions
+                              .removeWhere((item) => item == val);
+                        }
                         print(
                             "Starting to play from ==> ${controller.startingHole.value}");
                         print(
@@ -344,17 +360,17 @@ class SetupScreenView extends GetView<SetupScreenController> {
                       onPressed: () {
                         var comp = CompetitionRequest();
                         comp.compDate = controller.matchDate.value;
-                        comp.compFee = 0;
+                        comp.compFee = 0.0;
                         comp.compName = controller.matchName.text;
                         comp.compTime = "09:09:09";
                         comp.competitionPlayer =
                             controller.selectedPlayers.cast<int>();
-                        comp.courseId = int.parse(controller.selectedCourseId.value);
+                        comp.courseId =
+                            int.parse(controller.selectedCourseId.value);
                         comp.gameHoles =
                             controller.numberOfHolesToPlay.value.toString();
                         comp.gametypeId = 1;
-                        comp.startingHole =
-                            controller.startingHole.value;
+                        comp.startingHole = controller.startingHole.value;
                         controller.createCompetition(comp.toJson());
                       },
                     );

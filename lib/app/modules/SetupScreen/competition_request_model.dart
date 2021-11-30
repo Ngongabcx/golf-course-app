@@ -1,7 +1,7 @@
 class CompetitionRequest {
   String compName;
   int gametypeId;
-  int compFee;
+  double compFee;
   String compDate;
   String compTime;
   String gameHoles;
