@@ -31,12 +31,6 @@ class ActiveGameScreenView extends GetView<ActiveGameScreenController> {
           child: Column(
             children: [
               SearchCard(),
-              const SizedBox(
-                height: 20,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
               Expanded(
                 child: ListView.builder(
                   // 5
