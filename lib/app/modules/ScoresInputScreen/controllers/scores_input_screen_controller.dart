@@ -6,12 +6,9 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class ScoresInputScreenController extends GetxController {
-  var hcp = 0.0.obs;
-  var hole = 0.0.obs;
-  var par = 0.0.obs;
-  var stroke = 0.0.obs;
-  var score = 0.0.obs;
-  var result = 0.0.obs;
+  var hcp = 0.obs;
+  var score = 0.obs;
+  var result = 0.obs;
   var isProcessing = false.obs;
   var storage = GetStorage();
   var endHole;
@@ -68,9 +65,6 @@ class ScoresInputScreenController extends GetxController {
         }
       }
     }
-    stroke.value = gameHoles[holeIndex.value].stroke.toDouble();
-    par.value = gameHoles[holeIndex.value].par.toDouble();
-    hole.value = gameHoles[holeIndex.value].holeNo.toDouble();
     hcp.value = storage.read("hcp");
     print("FIRST GAME HOLE NUMBER ----> ${gameHoles.first.holeNo}");
     print("LAST GAME HOLE NUMBER ----> ${gameHoles.last.holeNo}");
@@ -81,11 +75,22 @@ class ScoresInputScreenController extends GetxController {
       isProcessing(true);
       ScorecardProvider().addScorecard(data, compId, userId).then((resp) {
         isProcessing(false);
-        holeIndex++;
-        ShowSnackBar("Success", "Score Successfully Added.", Colors.green);
+        print("Hole index before ${holeIndex.value}");
+         print("old hole --> ${gameHoles[holeIndex.value].holeNo}, old par --> ${gameHoles[holeIndex.value].par}");
+        holeIndex.value++;
+        ShowSnackBar(
+            "Success",
+            "Score Successfully Added. Hole index now ${holeIndex.value}",
+            Colors.green);
+        print("Hole index after ${holeIndex.value}");
+        print("new hole --> ${gameHoles[holeIndex.value].holeNo}, new par --> ${gameHoles[holeIndex.value].par}");
+        score.value = 0;
+        result.value = 0;
       }, onError: (err) {
         isProcessing(false);
-        ShowSnackBar("Error", err.toString(), Colors.red);
+        print("POST SCORES ERROR ---> ${err.toString()}");
+        ShowSnackBar(
+            "Error", "Failed to save scores please try again.", Colors.red);
       });
     } catch (exception) {
       isProcessing(false);
@@ -97,16 +102,16 @@ class ScoresInputScreenController extends GetxController {
   calculateResult() {
     if (score > 0) {
       if (hcp >= 18) {
-        double calc = hcp.value - 18;
-        if (stroke <= calc) {
-          result.value = (3 + (par.value - score.value)) + 1;
+        int calc = hcp.value - 18;
+        if (gameHoles[holeIndex.value].stroke <= calc) {
+          result.value = (3 + (gameHoles[holeIndex.value].par - score.value)) + 1;
         } else {
-          result.value = (3 + (par.value - score.value));
+          result.value = (3 + (gameHoles[holeIndex.value].par - score.value));
         }
-      } else if (hcp < stroke.value) {
-        result.value = (2 + (par.value - score.value));
+      } else if (hcp < gameHoles[holeIndex.value].stroke) {
+        result.value = (2 + (gameHoles[holeIndex.value].par - score.value));
       } else {
-        result.value = (3 + (par.value - score.value));
+        result.value = (3 + (gameHoles[holeIndex.value].par - score.value));
       }
 
       if (result.value <= 0) {
@@ -119,17 +124,17 @@ class ScoresInputScreenController extends GetxController {
   }
 
   String getInterpretation() {
-    if (result.value == (par.value - 1)) {
+    if (result.value == (gameHoles[holeIndex.value].par - 1)) {
       return 'Good job you got a birdie ';
-    } else if (score.value == (par.value - 2)) {
+    } else if (score.value == (gameHoles[holeIndex.value].par - 2)) {
       return 'Great job you got an Eagle !!!';
-    } else if (score.value == (par.value - 3)) {
+    } else if (score.value == (gameHoles[holeIndex.value].par - 3)) {
       return 'Excellent you got an albertros';
-    } else if (score.value == par.value) {
+    } else if (score.value == gameHoles[holeIndex.value].par) {
       return 'Not bad you got a Par';
-    } else if (score.value == (par.value + 1)) {
+    } else if (score.value == (gameHoles[holeIndex.value].par + 1)) {
       return 'You got a Bogey';
-    } else if (score.value == (par.value + 1)) {
+    } else if (score.value == (gameHoles[holeIndex.value].par + 1)) {
       return 'You got a Double Bogey';
     } else {
       return 'You have scored 0!!!';

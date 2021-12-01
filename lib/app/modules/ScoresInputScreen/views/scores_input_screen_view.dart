@@ -81,11 +81,14 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                 flex: 2,
                                 child: Column(
                                   children: [
-                                    RoundButtonWidget(
-                                      text: _controller.hole.value.toString(),
-                                      style:
-                                          Theme.of(context).textTheme.bodyText2,
-                                    ),
+                                    Obx(() {
+                                      return RoundButtonWidget(
+                                        text:  _controller.gameHoles[_controller.holeIndex.value].holeNo.toString(),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText2,
+                                      );
+                                    }),
                                     Padding(
                                       padding: const EdgeInsets.all(16.0),
                                       child: Text(
@@ -102,11 +105,14 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                 flex: 2,
                                 child: Column(
                                   children: [
-                                    RoundButtonWidget(
-                                      text: _controller.par.value.toString(),
-                                      style:
-                                          Theme.of(context).textTheme.bodyText2,
-                                    ),
+                                    Obx(() {
+                                      return RoundButtonWidget(
+                                        text:  _controller.gameHoles[_controller.holeIndex.value].par.toString(),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText2,
+                                      );
+                                    }),
                                     Padding(
                                       padding: const EdgeInsets.all(16.0),
                                       child: Text(
@@ -123,11 +129,15 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                 flex: 2,
                                 child: Column(
                                   children: [
-                                    RoundButtonWidget(
-                                      text: _controller.stroke.value.toString(),
-                                      style:
-                                          Theme.of(context).textTheme.bodyText2,
-                                    ),
+                                    Obx(() {
+                                      return RoundButtonWidget(
+                                        text:
+                                            _controller.gameHoles[_controller.holeIndex.value].stroke.toString(),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText2,
+                                      );
+                                    }),
                                     Padding(
                                       padding: const EdgeInsets.all(16.0),
                                       child: Text(
@@ -179,7 +189,7 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                         onPressed: () {
                                           _controller.score--;
                                           print(_controller.score.value);
-                                          controller.calculateResult();
+                                          _controller.calculateResult();
                                         },
                                       ),
                                     ],
@@ -190,7 +200,8 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                   child: Column(
                                     children: [
                                       ScoreWidget(
-                                        text: _controller.score.value.toString(),
+                                        text:
+                                            _controller.score.value.toString(),
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyText2,
@@ -267,24 +278,26 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                       titleStyle: TextStyle(
                                           color: Colors.white, fontSize: 18),
                                       onConfirm: () {
-                                        controller.addScorecard({
-                                          'score':
-                                              controller.score.value.toString(),
-                                          'result': controller.result.value
+                                        _controller.addScorecard({
+                                          'score': _controller.score.value
+                                              .toString(),
+                                          'result': _controller.result.value
                                               .toString(),
                                           "confirmed": true,
-                                          "holeId": 96,
-                                        }, "we need to change this",
+                                          "holeId": _controller.gameHoles[_controller.holeIndex.value].id.toString(),
+                                        }, "${competition.payload.id}",
                                             _controller.storage.read("userId"));
                                         Get.back();
                                       },
                                       onCancel: () {},
                                       textConfirm:
-                                          controller.isProcessing.value == false
+                                          _controller.isProcessing.value ==
+                                                  false
                                               ? "Confirm"
                                               : 'procesing',
                                       textCancel:
-                                          controller.isProcessing.value == false
+                                          _controller.isProcessing.value ==
+                                                  false
                                               ? "Cancel"
                                               : 'procesing',
                                       cancelTextColor: Colors.white,
@@ -293,12 +306,12 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                       content: Column(
                                         children: [
                                           Text(
-                                            "Score: ${controller.score.value}",
+                                            "Score: ${_controller.score.value}",
                                             style:
                                                 TextStyle(color: Colors.white),
                                           ),
                                           Text(
-                                            "Result: ${controller.result.value}",
+                                            "Result: ${_controller.result.value}",
                                             style:
                                                 TextStyle(color: Colors.white),
                                           ),
