@@ -50,15 +50,14 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Padding(
+                               Padding(
                                 padding: EdgeInsets.only(top: 0.0),
                                 child: CircleImage(
-                                  imageProvider: AssetImage(
-                                      'assets/images/Tiger-Woods.jpg'),
+                                  imageProvider: NetworkImage('${_controller.storage.read("profilePic")}'),
                                 ),
                               ),
                               Text(
-                                'Tiger Woods',
+                                '${_controller.storage.read("name")}',
                                 style: Theme.of(context).textTheme.headline2,
                               ),
                               Text(
