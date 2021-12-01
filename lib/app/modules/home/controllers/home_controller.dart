@@ -109,6 +109,8 @@ class HomeController extends GetxController {
         }
         storage.write("userId", usr.id.toString());
         storage.write("hcp", usr.hcp.toInt());
+        storage.write("name", usr.firstName+" "+usr.lastName);
+        storage.write("profilePic", usr.image);
         await getMatchInvites(usr.id.toString());
         if (usr.isBlank) {
           ShowSnackBar("USER DETAILS Error", "NO USER INFO FOUND", Colors.blue);

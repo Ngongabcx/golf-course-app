@@ -80,7 +80,7 @@ class ScoresInputScreenController extends GetxController {
         holeIndex.value++;
         ShowSnackBar(
             "Success",
-            "Score Successfully Added. Hole index now ${holeIndex.value}",
+            "Your score has been saved.",
             Colors.green);
         print("Hole index after ${holeIndex.value}");
         print("new hole --> ${gameHoles[holeIndex.value].holeNo}, new par --> ${gameHoles[holeIndex.value].par}");
