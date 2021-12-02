@@ -27,7 +27,7 @@ class CompetitionDetailView extends GetView {
         child: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.height,
-          padding: EdgeInsets.only(left:20,right:20),
+          padding: EdgeInsets.only(left: 20, right: 20),
           child: ListView(
             children: [
               Container(
@@ -50,7 +50,8 @@ class CompetitionDetailView extends GetView {
                 competition.course.courseName,
                 style: Theme.of(context).textTheme.headline5,
               ),
-              Text(competition.compDate, style: Theme.of(context).textTheme.subtitle2),
+              Text(competition.compDate,
+                  style: Theme.of(context).textTheme.subtitle2),
               const SizedBox(
                 height: 10,
               ),
@@ -111,7 +112,9 @@ class CompetitionDetailView extends GetView {
                         padding: EdgeInsets.only(left: 16.0, top: 16.0),
                         child: Expanded(
                           flex: 5,
-                          child: competition.competitionPlayer[index].player.image == ""
+                          child: competition
+                                      .competitionPlayer[index].player.image ==
+                                  ""
                               ? CircleAvatar(
                                   radius: 30.0,
                                   backgroundImage: AssetImage(
@@ -119,8 +122,8 @@ class CompetitionDetailView extends GetView {
                                 )
                               : CircleAvatar(
                                   radius: 30.0,
-                                  backgroundImage: NetworkImage(
-                                      competition.competitionPlayer[index].player.image),
+                                  backgroundImage: NetworkImage(competition
+                                      .competitionPlayer[index].player.image),
                                 ),
                         ),
                       ),
@@ -129,9 +132,7 @@ class CompetitionDetailView extends GetView {
                         child: Padding(
                           padding: EdgeInsets.only(left: 20.0),
                           child: Text(
-                            competition.competitionPlayer[index].player.firstname.toString() +
-                                " " +
-                                competition.competitionPlayer[index].player.lastname.toString(),
+                            "${competition.competitionPlayer[index].player.firstname.toString().split('.').last.replaceAll('_', ' ').capitalizeFirst ?? ''}",
                             style: GcmsTheme.lightTextTheme.bodyText1,
                           ),
                         ),
