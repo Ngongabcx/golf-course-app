@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gcms/constants/constant.dart';
 import 'package:gcms/tempModels/competetion.dart';
 import 'package:gcms/theme/gcms_theme.dart';
 
@@ -82,7 +83,8 @@ class CompetitionCard extends StatelessWidget {
                 ],
               ),
               decoration: BoxDecoration(
-                color: Color(0xFF009DAE).withOpacity(0.6),
+                color: kPrimaryColor
+                  .withOpacity(0.9),
               ),
             ),
           ],

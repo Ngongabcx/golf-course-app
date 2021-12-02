@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/SetupScreen/competition_model.dart';
+import 'package:gcms/constants/constant.dart';
 import 'package:gcms/theme/gcms_theme.dart';
 import 'package:get/get_utils/src/extensions/string_extensions.dart';
 
@@ -127,8 +128,8 @@ class MatchInvitationsCard extends StatelessWidget {
               ],
             ),
             decoration: BoxDecoration(
-              color: Color(0xFF008080)
-                  .withOpacity(0.6),
+              color: kPrimaryColor
+                  .withOpacity(0.9),
             ),
           ),
         ],
