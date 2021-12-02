@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/Notifications/views/notifications_view.dart';
 import 'package:gcms/app/modules/SettingScreen/views/user_details_screen_view.dart';
+import 'package:gcms/app/modules/SetupScreen/competition_model.dart';
 import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
 import 'package:gcms/app/modules/home/providers/match_invites_provider.dart';
 import 'package:gcms/app/modules/home/providers/user_provider.dart';
@@ -11,7 +12,6 @@ import 'package:gcms/app/modules/home/views/match_invites_screen_view.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:jwt_decode/jwt_decode.dart';
-import '../match_invites_model.dart';
 import '../user_model.dart';
 
 class HomeController extends GetxController {
@@ -19,7 +19,7 @@ class HomeController extends GetxController {
   var name = ''.obs;
   var storage = GetStorage();
   var isProcessing = false.obs;
-  var matchInvites = MatchInvites().obs;
+  var matchInvites = Competition().obs;
   static List<Widget> pages = <Widget>[
     ExploreScreenView(),
     MatchInvitesScreenView(),
@@ -139,7 +139,7 @@ class HomeController extends GetxController {
       await MatchInvitesProvider().getMatchInvites(id).then((resp) async {
         matchInvites.value = resp;
         print("INVIT ---> ${matchInvites.toString()}");
-        print("INVITE SUCCESSFULLY RECEIVED  ---> $resp");
+        print("################INVITE SUCCESSFULLY RECEIVED  ---> ${resp.payload.first.compName}");
         isProcessing(false);
       }, onError: (err) {
         print("Error receiving invites -->" + err.toString());

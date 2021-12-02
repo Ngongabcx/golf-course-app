@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:gcms/app/modules/ActiveGameScreen/views/competition_detail_view.dart';
 import 'package:gcms/app/modules/commonWidgets/loader/loader.dart';
 import 'package:gcms/app/modules/commonWidgets/search_card.dart';
 import 'package:gcms/app/modules/home/controllers/home_controller.dart';
+import 'package:gcms/theme/gcms_theme.dart';
 import 'package:get/get.dart';
 
 import 'matchInvitationsCard.dart';
@@ -30,10 +32,17 @@ class MatchInvitesScreenView extends GetView<HomeController> {
                                     .matchInvites.value.payload.length,
                                 itemBuilder: (BuildContext context, int index) {
                                   return GestureDetector(
-                                    onTap: () {},
+                                    onTap: () {
+                                      Get.to(
+                                        CompetitionDetailView(
+                                            competition: invitations[index]),
+                                      );
+                                    },
                                     child: Padding(
                                       padding: const EdgeInsets.only(top: 20.0),
-                                      child: MatchInvitationsCard(invitations: invitations[index]),
+                                      child: MatchInvitationsCard(
+                                        invitations: invitations[index],
+                                      ),
                                     ),
                                   );
                                 },
@@ -51,4 +60,3 @@ class MatchInvitesScreenView extends GetView<HomeController> {
     );
   }
 }
-

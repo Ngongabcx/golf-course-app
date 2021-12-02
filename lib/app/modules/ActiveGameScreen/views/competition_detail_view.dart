@@ -7,19 +7,17 @@ import 'package:gcms/theme/gcms_theme.dart';
 import 'package:get/get.dart';
 
 class CompetitionDetailView extends GetView {
-  final Competition competition;
-  CompetitionDetailView(this.competition);
+  CompetitionDetailView({@required this.competition});
+  final Payload competition;
   @override
   Widget build(BuildContext context) {
-    final comp = competition.payload;
-    final compPlayers = comp.competitionPlayer;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(color: Colors.black),
         automaticallyImplyLeading: true,
         title: Text(
-          comp.compName.toUpperCase(),
+          competition.compName.toUpperCase(),
           style: Theme.of(context).textTheme.headline3,
         ),
         centerTitle: true,
@@ -39,7 +37,7 @@ class CompetitionDetailView extends GetView {
                 ),
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: NetworkImage(comp.course.courseImage),
+                    image: NetworkImage(competition.course.courseImage),
                     fit: BoxFit.fill,
                   ),
                   borderRadius: const BorderRadius.all(Radius.circular(5.0)),
@@ -49,10 +47,10 @@ class CompetitionDetailView extends GetView {
                 height: 5,
               ),
               Text(
-                comp.course.courseName,
+                competition.course.courseName,
                 style: Theme.of(context).textTheme.headline5,
               ),
-              Text(comp.compDate, style: Theme.of(context).textTheme.subtitle2),
+              Text(competition.compDate, style: Theme.of(context).textTheme.subtitle2),
               const SizedBox(
                 height: 10,
               ),
@@ -60,7 +58,7 @@ class CompetitionDetailView extends GetView {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    comp.compName.toUpperCase(),
+                    competition.compName.toUpperCase(),
                     style: Theme.of(context).textTheme.headline6,
                   ),
                   Text(
@@ -105,7 +103,7 @@ class CompetitionDetailView extends GetView {
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
                 physics: ScrollPhysics(),
-                itemCount: competition.payload.competitionPlayer.length,
+                itemCount: competition.competitionPlayer.length,
                 itemBuilder: (context, index) {
                   return Row(
                     children: [
@@ -113,7 +111,7 @@ class CompetitionDetailView extends GetView {
                         padding: EdgeInsets.only(left: 16.0, top: 16.0),
                         child: Expanded(
                           flex: 5,
-                          child: compPlayers[index].player.image == ""
+                          child: competition.competitionPlayer[index].player.image == ""
                               ? CircleAvatar(
                                   radius: 30.0,
                                   backgroundImage: AssetImage(
@@ -122,7 +120,7 @@ class CompetitionDetailView extends GetView {
                               : CircleAvatar(
                                   radius: 30.0,
                                   backgroundImage: NetworkImage(
-                                      compPlayers[index].player.image),
+                                      competition.competitionPlayer[index].player.image),
                                 ),
                         ),
                       ),
@@ -131,9 +129,9 @@ class CompetitionDetailView extends GetView {
                         child: Padding(
                           padding: EdgeInsets.only(left: 20.0),
                           child: Text(
-                            compPlayers[index].player.firstname +
+                            competition.competitionPlayer[index].player.firstname.toString() +
                                 " " +
-                                compPlayers[index].player.lastname,
+                                competition.competitionPlayer[index].player.lastname.toString(),
                             style: GcmsTheme.lightTextTheme.bodyText1,
                           ),
                         ),

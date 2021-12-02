@@ -1,9 +1,9 @@
+import 'package:gcms/app/modules/SetupScreen/competition_model.dart';
 import 'package:gcms/constants/constant.dart';
 import 'package:get/get.dart';
-import '../match_invites_model.dart';
 
 class MatchInvitesProvider extends GetConnect {
-  Future<MatchInvites> getMatchInvites(String id) async {
+  Future<Competition> getMatchInvites(String id) async {
     print("######---ID FOR FETCHING MATCH INVITATIONS   ---> $id");
     try {
       final response = await get("$kApiBaseURL/invites/all/$id");
@@ -12,7 +12,7 @@ class MatchInvitesProvider extends GetConnect {
         return Future.error(response.statusText);
       } else {
         final resp =
-            matchInvitesFromJson(response.bodyString);
+            competitionFromJson(response.bodyString);
         print('<<===GET MATCH INVITATIONS  SUCCESSFUL==> ${response.bodyString}');
         return resp;
       }

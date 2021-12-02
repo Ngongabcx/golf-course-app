@@ -28,12 +28,12 @@ class ScoresInputScreenController extends GetxController {
 
   @override
   void onClose() {}
-  void extractGameHolesArray(Competition competition) {
+  void extractGameHolesArray(Payload competition) {
     print("EXTRACT GAME HOLES HAS BEEN CALLED!!!!");
-    var totalHoles = competition.payload.numberOfHoles;
+    var totalHoles = competition.numberOfHoles;
     remainingHoles.value = totalHoles;
-    var startingHole = competition.payload.startingHole;
-    var holes = competition.payload.course.holes;
+    var startingHole = competition.startingHole;
+    var holes = competition.course.holes;
     print("TOTAL HOLES ------------> $totalHoles");
     //get holes that are being payed accourding to the competition number of holes being played
     if (totalHoles == 18) {

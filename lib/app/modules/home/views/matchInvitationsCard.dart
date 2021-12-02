@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:gcms/app/modules/SetupScreen/competition_model.dart';
 import 'package:gcms/theme/gcms_theme.dart';
 import 'package:get/get_utils/src/extensions/string_extensions.dart';
-
-import '../match_invites_model.dart';
 
 class MatchInvitationsCard extends StatelessWidget {
   const MatchInvitationsCard({

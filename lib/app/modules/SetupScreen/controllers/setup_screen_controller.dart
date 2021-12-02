@@ -89,8 +89,8 @@ class SetupScreenController extends GetxController {
       isProcessing(true);
       CompetitionProvider().createCompetition(data).then((resp) async {
         isProcessing(false);
-         Get.to(CompetitionDetailView(resp));
-      }, onError: (err) {
+         Get.to(CompetitionDetailView(competition: resp.payload.first));
+         }, onError: (err) {
         print("Error CREATING COMPETITION -->" + err.toString());
         isProcessing(false);
         ShowSnackBar("Error", err.toString(), Colors.red);
@@ -108,7 +108,7 @@ class SetupScreenController extends GetxController {
       CompetitionProvider().getCompetition(id).then((resp) async {
         print("COMPETITION SUCCESSFULLY FETCHED  ---> $resp");
         isProcessing(false);
-        Get.offAll(CompetitionDetailView(resp));
+        Get.offAll(CompetitionDetailView(competition: resp.payload.first));
       }, onError: (err) {
         print("Error getting competition details -->" + err.toString());
         isProcessing(false);

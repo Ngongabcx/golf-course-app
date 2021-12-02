@@ -16,7 +16,7 @@ import '../controllers/scores_input_screen_controller.dart';
 
 class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
   final _controller = Get.put(ScoresInputScreenController());
-  final Competition competition;
+  final Payload competition;
   ScoresInputScreenView(this.competition);
   @override
   Widget build(BuildContext context) {
@@ -284,7 +284,7 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                               .toString(),
                                           "confirmed": true,
                                           "holeId": _controller.gameHoles[_controller.holeIndex.value].id.toString(),
-                                        }, "${competition.payload.id}",
+                                        }, "${competition.id}",
                                             _controller.storage.read("userId"));
                                         Get.back();
                                       },
