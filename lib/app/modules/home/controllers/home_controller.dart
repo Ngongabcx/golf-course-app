@@ -22,7 +22,6 @@ class HomeController extends GetxController {
   var matchInvites = Competition().obs;
   static List<Widget> pages = <Widget>[
     ExploreScreenView(),
-    MatchInvitesScreenView(),
     NotificationsView(),
   ];
   @override

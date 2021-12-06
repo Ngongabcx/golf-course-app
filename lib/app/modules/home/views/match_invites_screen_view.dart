@@ -13,6 +13,18 @@ class MatchInvitesScreenView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     var invitations = _controller.matchInvites.value.payload;
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        iconTheme: const IconThemeData(color: Colors.black),
+        automaticallyImplyLeading: true,
+        title: Text(
+          ' Match Invites',
+          style: Theme.of(context).textTheme.headline3,
+        ),
+        actions: [],
+        centerTitle: true,
+        elevation: 4,
+      ),
       body: SafeArea(
         child: Container(
           height: MediaQuery.of(context).size.height,
@@ -49,7 +61,7 @@ class MatchInvitesScreenView extends GetView<HomeController> {
                               // ),
                             )
                           : Center(
-                              child: CircularProgressIndicator(),
+                              child: Text("No Invitations."),
                             ),
                     ),
                   ],

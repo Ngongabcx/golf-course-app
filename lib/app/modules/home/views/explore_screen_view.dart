@@ -24,6 +24,12 @@ class ExploreScreenView extends GetView {
           },
         ),
         OptionsCard(
+          text1: 'Tournaments',
+          icon: Icons.sports_golf,
+          color: Colors.white,
+          onTapped: () {},
+        ),
+        OptionsCard(
           text1: 'Matches',
           icon: FontAwesomeIcons.playCircle,
           color: Colors.white,
@@ -32,9 +38,17 @@ class ExploreScreenView extends GetView {
           },
         ),
         OptionsCard(
-          text1: 'Tournaments',
-          icon: Icons.sports_golf,
+          text1: 'Match Invites',
           color: Colors.white,
+          icon: FontAwesomeIcons.plusSquare,
+          onTapped: () {
+            Get.toNamed("/join-match-screen");
+          },
+        ),
+        OptionsCard(
+          text1: 'Courses',
+          color: Colors.white,
+          icon: Icons.grass,
           onTapped: () {},
         ),
         OptionsCard(

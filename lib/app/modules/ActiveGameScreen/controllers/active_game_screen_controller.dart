@@ -10,8 +10,9 @@ class ActiveGameScreenController extends GetxController {
   var isProcessing = false.obs;
   final count = 0.obs;
   @override
-  void onInit() {
+  Future<void> onInit() async {
     super.onInit();
+    await getActiveMatches();
   }
 
   @override
@@ -29,8 +30,12 @@ class ActiveGameScreenController extends GetxController {
       await ActiveGamesProvider().getActiveMatches().then((resp) async {
         matches.value = resp;
         print("MATCHES ---> ${matches.toString()}");
-        debugPrint("MATCHES ---> ${matches.toString()}");
+        debugPrint(
+            "NUMBER  OF  COMPETITIONS ---> ${matches.value.payload.length}");
+        debugPrint(
+            "FIRST COMPETITION NAME ---> ${matches.value.payload.first.compName}");
         isProcessing(false);
+        print(isProcessing.value);
       }, onError: (err) {
         print("Error receiving matches -->" + err.toString());
         ShowSnackBar("Error", err.toString(), Colors.red);

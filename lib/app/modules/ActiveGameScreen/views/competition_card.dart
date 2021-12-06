@@ -3,6 +3,7 @@ import 'package:gcms/app/modules/SetupScreen/competition_model.dart';
 import 'package:gcms/constants/constant.dart';
 import 'package:gcms/tempModels/competetion.dart';
 import 'package:gcms/theme/gcms_theme.dart';
+import 'package:get/get_utils/src/extensions/string_extensions.dart';
 
 class CompetitionCard extends StatelessWidget {
   final Payload competition;
@@ -34,7 +35,7 @@ class CompetitionCard extends StatelessWidget {
                   left: 16.0, right: 16.0, top: 5.0, bottom: 5.0),
               child: Text(
                 competition.course.courseName ?? '',
-                style: Theme.of(context).textTheme.headline5,
+                style: Theme.of(context).textTheme.headline6,
               ),
             ),
             Padding(
@@ -53,10 +54,10 @@ class CompetitionCard extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Text(
-                        'Leonard Chinyama',
-                        style: GcmsTheme.darkTextTheme.bodyText2,
-                      ),
+                      // Text(
+                      //   'Leonard Chinyama',
+                      //   style: GcmsTheme.darkTextTheme.bodyText2,
+                      // ),
                       SizedBox(
                         width: 10.0,
                       ),
@@ -73,7 +74,13 @@ class CompetitionCard extends StatelessWidget {
                     ],
                   ),
                   Text(
-                    competition.gametype.name.toString() ?? '',
+                    competition.gametype.name
+                            .toString()
+                            .split('.')
+                            .last
+                            .replaceAll('_', ' ')
+                            .capitalizeFirst ??
+                        '',
                     style: GcmsTheme.darkTextTheme.bodyText2,
                   ),
                   SizedBox(

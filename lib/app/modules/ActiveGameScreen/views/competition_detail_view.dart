@@ -17,7 +17,7 @@ class CompetitionDetailView extends GetView {
         iconTheme: IconThemeData(color: Colors.black),
         automaticallyImplyLeading: true,
         title: Text(
-          competition.compName.toUpperCase(),
+          competition.compName.capitalizeFirst,
           style: Theme.of(context).textTheme.headline3,
         ),
         centerTitle: true,
@@ -59,7 +59,7 @@ class CompetitionDetailView extends GetView {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    competition.compName.toUpperCase(),
+                    competition.compName.capitalizeFirst,
                     style: Theme.of(context).textTheme.headline6,
                   ),
                   Text(

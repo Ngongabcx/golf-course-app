@@ -4,6 +4,7 @@ import 'package:gcms/app/modules/ActiveGameScreen/views/search_card.dart';
 import 'package:gcms/app/modules/commonWidgets/loader/loader.dart';
 import 'package:get/get.dart';
 import '../controllers/active_game_screen_controller.dart';
+import 'competition_detail_view.dart';
 
 class ActiveGameScreenView extends GetView<ActiveGameScreenController> {
   final _controller = Get.put(ActiveGameScreenController());
@@ -24,7 +25,8 @@ class ActiveGameScreenView extends GetView<ActiveGameScreenController> {
         elevation: 4,
       ),
       body: SafeArea(
-        child: Container(
+          child: Obx(
+        () => Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.height,
           padding: const EdgeInsets.all(20.0),
@@ -47,7 +49,12 @@ class ActiveGameScreenView extends GetView<ActiveGameScreenController> {
                                   // 7
                                   return GestureDetector(
                                     // 8
-                                    onTap: () {},
+                                    onTap: () {
+                                      Get.to(
+                                        CompetitionDetailView(
+                                            competition: matches[index]),
+                                      );
+                                    },
                                     // 11
                                     child: CompetitionCard(
                                         competition: matches[index]),
@@ -56,13 +63,16 @@ class ActiveGameScreenView extends GetView<ActiveGameScreenController> {
                               ),
                             )
                           : Center(
-                              child: CircularProgressIndicator(),
+                              child: Text(
+                                "No Matches.",
+                                style: Theme.of(context).textTheme.headline3,
+                              ),
                             ),
                     ),
                   ],
                 ),
         ),
-      ),
+      )),
     );
   }
 }
