@@ -116,6 +116,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_plugin_android_lifecycle:
+    dependency: transitive
+    description:
+      name: flutter_plugin_android_lifecycle
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.5"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -180,6 +187,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  intl:
+    dependency: transitive
+    description:
+      name: intl
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.17.0"
   json_annotation:
     dependency: "direct main"
     description:
@@ -194,6 +208,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.3.1"
+  local_auth:
+    dependency: "direct main"
+    description:
+      name: local_auth
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.8"
   matcher:
     dependency: transitive
     description:
@@ -418,4 +439,4 @@ packages:
     version: "5.3.1"
 sdks:
   dart: ">=2.14.0 <3.0.0"
-  flutter: ">=1.24.0-7.0"
+  flutter: ">=2.5.0"
