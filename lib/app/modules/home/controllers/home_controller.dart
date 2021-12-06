@@ -96,7 +96,8 @@ class HomeController extends GetxController {
       Get.offAllNamed('/login');
     }
   }
-  getUserDetails(String id) async{
+
+  getUserDetails(String id) async {
     try {
       isProcessing(true);
       UserProvider().getUserDetails(id).then((resp) async {
@@ -104,12 +105,12 @@ class HomeController extends GetxController {
         storage.write("user", resp);
         Map<String, dynamic> storedUser = jsonDecode(storage.read('user'));
         var usr = User.fromJson(storedUser);
-        if(usr.id.toString()=="" || usr.id.isBlank){
+        if (usr.id.toString() == "" || usr.id.isBlank) {
           Get.to(UserDetailsScreenView());
         }
         storage.write("userId", usr.id.toString());
         storage.write("hcp", usr.hcp.toInt());
-        storage.write("name", usr.firstName+" "+usr.lastName);
+        storage.write("name", usr.firstName + " " + usr.lastName);
         storage.write("profilePic", usr.image);
         await getMatchInvites(usr.id.toString());
         if (usr.isBlank) {
@@ -139,7 +140,6 @@ class HomeController extends GetxController {
       await MatchInvitesProvider().getMatchInvites(id).then((resp) async {
         matchInvites.value = resp;
         print("INVIT ---> ${matchInvites.toString()}");
-        print("################INVITE SUCCESSFULLY RECEIVED  ---> ${resp.payload.first.compName}");
         isProcessing(false);
       }, onError: (err) {
         print("Error receiving invites -->" + err.toString());
@@ -148,7 +148,7 @@ class HomeController extends GetxController {
       });
     } catch (exception) {
       print("Exception receiving invites  -->" + exception.toString());
-       ShowSnackBar("Exception", exception.toString(), Colors.red);
+      ShowSnackBar("Exception", exception.toString(), Colors.red);
       isProcessing(false);
     }
   }

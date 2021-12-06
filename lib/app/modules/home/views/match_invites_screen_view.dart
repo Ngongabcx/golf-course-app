@@ -5,7 +5,6 @@ import 'package:gcms/app/modules/commonWidgets/search_card.dart';
 import 'package:gcms/app/modules/home/controllers/home_controller.dart';
 import 'package:gcms/theme/gcms_theme.dart';
 import 'package:get/get.dart';
-
 import 'matchInvitationsCard.dart';
 
 class MatchInvitesScreenView extends GetView<HomeController> {
@@ -50,7 +49,7 @@ class MatchInvitesScreenView extends GetView<HomeController> {
                               // ),
                             )
                           : Center(
-                              child: Text("No Invitations."),
+                              child: CircularProgressIndicator(),
                             ),
                     ),
                   ],
