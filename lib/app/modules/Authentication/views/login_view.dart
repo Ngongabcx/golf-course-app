@@ -162,17 +162,14 @@ class LoginView extends GetView<AuthenticationController> {
                         ),
                         Expanded(
                             flex: 3,
-                            child: Align(
-                              alignment: Alignment.topRight,
-                              child: TextButton.icon(
-                                  onPressed: () =>
-                                      controller.authenticateUser(),
-                                  icon: Icon(
-                                    Icons.fingerprint,
-                                    color: kPrimaryColor,
-                                    size: 60.0,
-                                  ),
-                                  label: Text("")),
+                            child: IconButton(
+                              padding: EdgeInsets.only(bottom: 12),
+                              splashRadius: 25,
+                              icon: Icon(Icons.fingerprint),
+                              iconSize: 65,
+                              color: kPrimaryColor,
+                              splashColor: Colors.grey,
+                              onPressed: () => controller.authenticateUser(),
                             )),
                       ],
                     ),
