@@ -11,6 +11,9 @@ import 'app/routes/app_pages.dart';
 
 void main() async {
   await GetStorage.init();
+  // final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
+  // final pushNotificationService = PushNotificationService(_firebaseMessaging);
+  // await pushNotificationService.initialise();
   runApp(
     GetMaterialApp(
       debugShowCheckedModeBanner: false,

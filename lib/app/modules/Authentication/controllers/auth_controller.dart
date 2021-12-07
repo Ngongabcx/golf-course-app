@@ -5,8 +5,14 @@ import 'package:gcms/constants/constant.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:jwt_decode/jwt_decode.dart';
+import 'package:local_auth/auth_strings.dart';
+import 'package:local_auth/local_auth.dart';
 
 class AuthenticationController extends GetxController {
+  var _localAuth = LocalAuthentication();
+  var hasFingerPrintLock = false.obs;
+  var hasFaceLock = false.obs;
+  var isUserAuthenticated = false.obs;
   final loginFormKey = GlobalKey<FormState>();
   final signUpFormKey = GlobalKey<FormState>();
   var storage = GetStorage();
@@ -19,6 +25,7 @@ class AuthenticationController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+     _getAllBiometrics();
     usernameController = TextEditingController();
     passwordController = TextEditingController();
     signUpEmailController = TextEditingController();
@@ -33,6 +40,44 @@ class AuthenticationController extends GetxController {
 
   @override
   void onClose() {}
+  void _getAllBiometrics() async {
+    // Check whether there is local authentication available on this device or not
+    bool hasLocalAuthentication = await _localAuth.canCheckBiometrics;
+    if (hasLocalAuthentication) {
+      List<BiometricType> availableBiometrics =
+          await _localAuth.getAvailableBiometrics();
+      hasFaceLock.value = availableBiometrics.contains(BiometricType.face);
+      hasFingerPrintLock.value =
+          availableBiometrics.contains(BiometricType.fingerprint);
+    } else {
+      ShowSnackBar("Error", 'Local Authentication not available', Colors.red);
+    }
+  }
+  void authenticateUser() async {
+    try {
+      const androidMessage = const AndroidAuthMessages(
+        cancelButton: 'Cancel',
+        goToSettingsButton: 'settings',
+        goToSettingsDescription: 'Please set up your Fingerprint/Face.',
+        biometricHint: 'Verify your identity',
+      );
+      isUserAuthenticated.value = await _localAuth.authenticate(
+        localizedReason: 'Authenticate Yourself',
+        biometricOnly: true,
+        useErrorDialogs: true,
+        stickyAuth: true,
+        androidAuthStrings: androidMessage,
+      );
+      if (isUserAuthenticated.value) {
+        ShowSnackBar( "Success", "You are authenticated",Colors.green);
+      } else {
+        ShowSnackBar( "Error", "Authentication Cancelled", Colors.red);
+      }
+    } catch (e) {
+      ShowSnackBar("Error", e.toString(),Colors.red);
+      print("EXCEPTION --> ${e.toString()}");
+    }
+  }
   // Save Data
   void login(Map data) {
     try {

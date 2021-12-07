@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "243982390497",
+    "project_id": "gcms-app",
+    "storage_bucket": "gcms-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:243982390497:android:f7b162946a75169f6d93a0",
+        "android_client_info": {
+          "package_name": "zm.co.bcx.gcms"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "243982390497-0o6ip6t7epikoed8ifhl7fqccvlkaad6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCS72UTdCoxT--nGCChsNxhVlvAxHXwnjc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "243982390497-0o6ip6t7epikoed8ifhl7fqccvlkaad6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

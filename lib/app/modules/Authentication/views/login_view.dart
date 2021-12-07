@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:gcms/app/modules/commonWidgets/custom_text_button.dart';
 import 'package:get/get.dart';
 import 'package:provider/src/provider.dart';
 
@@ -105,52 +106,74 @@ class LoginView extends GetView<AuthenticationController> {
                         children: const [],
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 16.0),
-                      child: Obx(() {
-                        //We setting loader below
-                        Future.delayed(Duration.zero, () async {
-                          context
-                              .read<LoadingProvider>()
-                              .setLoad(controller.isProcessing.value);
-                        });
-                        //We dismiss keyboard below
-                        FocusScope.of(context)
-                            .requestFocus(new FocusNode()); //dismisses keyboard
-                        return CustomButton(
-                          text: (controller.isProcessing.value == true
-                              ? 'Processing'
-                              : 'Login'),
-                          style: GcmsTheme.lightTextTheme.bodyText2,
-                          onPressed: () {
-                            if (GetUtils.isEmail(
-                                controller.usernameController.text)) {
-                              if (GetUtils.isBlank(
-                                  controller.passwordController.text)) {
-                                ShowSnackBar(
-                                  "Password cannot be empty",
-                                  "Please provide a valid password.",
-                                  Colors.red,
-                                );
-                              } else {
-                                if (controller.isProcessing.value == false) {
-                                  controller.login({
-                                    'email': controller.usernameController.text,
-                                    'password':
-                                        controller.passwordController.text,
-                                  });
-                                }
-                              }
-                            } else {
-                              ShowSnackBar(
-                                "Invalid Email",
-                                "Please provide a valid email address.",
-                                Colors.red,
+                    Row(
+                      children: [
+                        Expanded(
+                          flex: 6,
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 16.0),
+                            child: Obx(() {
+                              //We setting loader below
+                              Future.delayed(Duration.zero, () async {
+                                context
+                                    .read<LoadingProvider>()
+                                    .setLoad(controller.isProcessing.value);
+                              });
+                              //We dismiss keyboard below
+                              FocusScope.of(context).requestFocus(
+                                  new FocusNode()); //dismisses keyboard
+                              return CustomButton(
+                                text: (controller.isProcessing.value == true
+                                    ? 'Processing'
+                                    : 'Login'),
+                                style: GcmsTheme.lightTextTheme.bodyText2,
+                                onPressed: () {
+                                  if (GetUtils.isEmail(
+                                      controller.usernameController.text)) {
+                                    if (GetUtils.isBlank(
+                                        controller.passwordController.text)) {
+                                      ShowSnackBar(
+                                        "Password cannot be empty",
+                                        "Please provide a valid password.",
+                                        Colors.red,
+                                      );
+                                    } else {
+                                      if (controller.isProcessing.value ==
+                                          false) {
+                                        controller.login({
+                                          'email': controller
+                                              .usernameController.text,
+                                          'password': controller
+                                              .passwordController.text,
+                                        });
+                                      }
+                                    }
+                                  } else {
+                                    ShowSnackBar(
+                                      "Invalid Email",
+                                      "Please provide a valid email address.",
+                                      Colors.red,
+                                    );
+                                  }
+                                },
                               );
-                            }
-                          },
-                        );
-                      }),
+                            }),
+                          ),
+                        ),
+                        Expanded(
+                            flex: 3,
+                            child: IconButton(
+                              padding: EdgeInsets.only(bottom: 12),
+                              splashRadius:25,
+                              icon: Icon(
+                                Icons.fingerprint
+                              ),
+                              iconSize: 65,
+                              color: kPrimaryColor,
+                              splashColor: Colors.grey,
+                              onPressed: () => controller.authenticateUser(),
+                            )),
+                      ],
                     ),
                     Padding(
                       padding: const EdgeInsets.only(bottom: 16.0),

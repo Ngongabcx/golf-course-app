@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/SetupScreen/competition_model.dart';
 import 'package:gcms/constants/constant.dart';
-import 'package:gcms/tempModels/competetion.dart';
 import 'package:gcms/theme/gcms_theme.dart';
 import 'package:get/get_utils/src/extensions/string_extensions.dart';
 
@@ -68,7 +67,7 @@ class CompetitionCard extends StatelessWidget {
                             backgroundColor: Colors.transparent,
                             color: Colors.black,
                           ),
-                          label: Text('Creator'),
+                          label: Text('Creator'), onSelected: (bool value) {  },
                         ),
                       ),
                     ],
