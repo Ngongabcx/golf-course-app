@@ -43,16 +43,12 @@ class HomeView extends GetView<HomeController> {
         elevation: 0,
         //centerTitle: true,
       ),
-      body: _controller.isProcessing.value == true
-          ? Loader()
-          : Obx(() {
-              Future.delayed(Duration.zero, () async {
-                context
-                    .read<LoadingProvider>()
-                    .setLoad(controller.isProcessing.value);
-              });
-              return HomeController.pages[_controller.selectedIndex.value];
-            }),
+      body: Obx(() {
+        return SizedBox(
+            child: _controller.isProcessing.value == true
+                ? Loader()
+                : HomeController.pages[_controller.selectedIndex.value]);
+      }),
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Theme.of(context).textSelectionTheme.selectionColor,
         currentIndex: controller.selectedIndex.value.toInt(),

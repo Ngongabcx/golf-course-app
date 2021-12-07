@@ -36,8 +36,14 @@ class ActiveGameScreenView extends GetView<ActiveGameScreenController> {
                   children: [
                     SearchCard(),
                     Expanded(
-                      child: _controller.matches.value.payload.length > 0
-                          ? Obx(
+                      child: _controller.matches.value.payload == null
+                          ? Center(
+                              child: Text(
+                                "No Matches.",
+                                style: Theme.of(context).textTheme.headline3,
+                              ),
+                            )
+                          : Obx(
                               () => ListView.builder(
                                 // 5
                                 itemCount:
@@ -52,20 +58,14 @@ class ActiveGameScreenView extends GetView<ActiveGameScreenController> {
                                     onTap: () {
                                       Get.to(
                                         CompetitionDetailView(
-                                            competition: matches[index]),
+                                            competition: _controller.matches.value.payload[index]),
                                       );
                                     },
                                     // 11
                                     child: CompetitionCard(
-                                        competition: matches[index]),
+                                        competition: _controller.matches.value.payload[index]),
                                   );
                                 },
-                              ),
-                            )
-                          : Center(
-                              child: Text(
-                                "No Matches.",
-                                style: Theme.of(context).textTheme.headline3,
                               ),
                             ),
                     ),
