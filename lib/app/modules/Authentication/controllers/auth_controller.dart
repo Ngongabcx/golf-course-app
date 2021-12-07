@@ -42,7 +42,7 @@ class AuthenticationController extends GetxController {
         isProcessing(false);
         print("ACCESSTOKEN ---> " + resp.info.accessToken);
         print("REFRESHTOKEN ---> " + resp.info.refreshToken);
-        ShowSnackBar("Success", "Login Successful.", kPrimaryColor);
+        ShowSnackBar("Success", "Login Successful.", kBottomContainerColour);
         storage.write("isLoggedIn", true);
         storage.write("accessToken", resp.info.accessToken);
         storage.write("refreshToken", resp.info.refreshToken);

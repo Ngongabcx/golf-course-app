@@ -7,9 +7,10 @@ import 'package:get/get.dart';
 import '../user_model.dart';
 
 class UserProvider extends GetConnect {
-   Future<Auth> refreshToken(Map data) async {
+  Future<Auth> refreshToken(Map data) async {
     try {
-      final response = await post("$kApiBaseURL/authmanagement/refreshToken", data);
+      final response =
+          await post("$kApiBaseURL/authmanagement/refreshToken", data);
       if (response.status.hasError) {
         return Future.error(response.body["errors"].join(","));
       } else {
@@ -21,11 +22,12 @@ class UserProvider extends GetConnect {
       return Future.error(exception);
     }
   }
+
   Future<String> getUserDetails(String id) async {
     try {
       final response = await get("$kApiBaseURL/members/$id");
       if (response.status.hasError) {
-        return Future.error(response.body["errors"].join(","));
+        return Future.error(response.statusText);
       } else {
         return response.bodyString;
       }
@@ -41,7 +43,8 @@ class UserProvider extends GetConnect {
       if (response.status.hasError) {
         return Future.error(response.statusText);
       } else {
-        List<dynamic> resp = List<dynamic>.from(jsonDecode(response.bodyString));
+        List<dynamic> resp =
+            List<dynamic>.from(jsonDecode(response.bodyString));
         return resp.map((item) => User.fromJson(item)).toList();
       }
     } catch (exception) {
@@ -49,6 +52,7 @@ class UserProvider extends GetConnect {
       return Future.error(exception);
     }
   }
+
   //Create user after account registration
   Future<User> createUser(Map data) async {
     try {

@@ -4,7 +4,6 @@ import 'package:gcms/app/modules/ActiveGameScreen/views/search_card.dart';
 import 'package:gcms/app/modules/commonWidgets/loader/loader.dart';
 import 'package:get/get.dart';
 import '../controllers/active_game_screen_controller.dart';
-import 'competition_detail_view.dart';
 
 class ActiveGameScreenView extends GetView<ActiveGameScreenController> {
   final _controller = Get.put(ActiveGameScreenController());
@@ -49,12 +48,7 @@ class ActiveGameScreenView extends GetView<ActiveGameScreenController> {
                                   // 7
                                   return GestureDetector(
                                     // 8
-                                    onTap: () {
-                                      Get.to(
-                                        CompetitionDetailView(
-                                            competition: matches[index]),
-                                      );
-                                    },
+                                    onTap: () {},
                                     // 11
                                     child: CompetitionCard(
                                         competition: matches[index]),
@@ -63,10 +57,7 @@ class ActiveGameScreenView extends GetView<ActiveGameScreenController> {
                               ),
                             )
                           : Center(
-                              child: Text(
-                                "No Matches.",
-                                style: Theme.of(context).textTheme.headline3,
-                              ),
+                              child: Text("No Matches."),
                             ),
                     ),
                   ],

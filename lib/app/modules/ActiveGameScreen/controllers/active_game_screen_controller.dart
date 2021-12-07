@@ -25,6 +25,7 @@ class ActiveGameScreenController extends GetxController {
   void increment() => count.value++;
 
   getActiveMatches() async {
+    print('GET ACTIVE MATCHES CALLED');
     try {
       isProcessing(true);
       await ActiveGamesProvider().getActiveMatches().then((resp) async {
