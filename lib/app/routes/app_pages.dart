@@ -1,4 +1,3 @@
-import 'package:gcms/app/modules/SetupScreen/competition_model.dart';
 import 'package:gcms/app/modules/home/views/match_invites_screen_view.dart';
 import 'package:get/get.dart';
 
@@ -11,8 +10,6 @@ import 'package:gcms/app/modules/Notifications/bindings/notifications_binding.da
 import 'package:gcms/app/modules/Notifications/views/notifications_view.dart';
 import 'package:gcms/app/modules/ResultsScreen/bindings/results_screen_binding.dart';
 import 'package:gcms/app/modules/ResultsScreen/views/results_screen_view.dart';
-import 'package:gcms/app/modules/ScoresInputScreen/bindings/scores_input_screen_binding.dart';
-import 'package:gcms/app/modules/ScoresInputScreen/views/scores_input_screen_view.dart';
 import 'package:gcms/app/modules/SettingScreen/bindings/setting_screen_binding.dart';
 import 'package:gcms/app/modules/SettingScreen/views/setting_screen_view.dart';
 import 'package:gcms/app/modules/SetupScreen/bindings/setup_screen_binding.dart';
@@ -20,7 +17,6 @@ import 'package:gcms/app/modules/SetupScreen/views/setup_screen_view.dart';
 import 'package:gcms/app/modules/ViewPlayersScreen/bindings/view_players_screen_binding.dart';
 import 'package:gcms/app/modules/ViewPlayersScreen/views/view_players_screen_view.dart';
 import 'package:gcms/app/modules/home/bindings/home_binding.dart';
-import 'package:gcms/app/modules/home/views/explore_screen_view.dart';
 import 'package:gcms/app/modules/home/views/home_view.dart';
 
 part 'app_routes.dart';

@@ -65,7 +65,7 @@ class JoinMatchCard extends StatelessWidget {
                             backgroundColor: Colors.transparent,
                             color: Colors.black,
                           ),
-                          label: Text('Creator'),
+                          label: Text('Creator'), onSelected: (bool value) {  },
                         ),
                       ),
                     ],

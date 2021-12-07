@@ -164,8 +164,10 @@ class LoginView extends GetView<AuthenticationController> {
                             flex: 3,
                             child: IconButton(
                               padding: EdgeInsets.only(bottom: 12),
-                              splashRadius: 25,
-                              icon: Icon(Icons.fingerprint),
+                              splashRadius:25,
+                              icon: Icon(
+                                Icons.fingerprint
+                              ),
                               iconSize: 65,
                               color: kPrimaryColor,
                               splashColor: Colors.grey,
