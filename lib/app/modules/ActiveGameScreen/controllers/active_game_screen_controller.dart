@@ -10,9 +10,9 @@ class ActiveGameScreenController extends GetxController {
   var isProcessing = false.obs;
   final count = 0.obs;
   @override
-  Future<void> onInit() async {
+  void onInit() {
     super.onInit();
-    await getActiveMatches();
+    getActiveMatches();
   }
 
   @override

@@ -1,9 +1,12 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:gcms/app/modules/SettingScreen/views/setting_screen_view.dart';
+import 'package:gcms/app/modules/commonWidgets/drawer.dart';
 import 'package:gcms/app/modules/commonWidgets/loader/loader.dart';
 import 'package:gcms/app/modules/commonWidgets/loader/loading_provider.dart';
 import 'package:gcms/app/modules/home/controllers/greeting.dart';
+import 'package:gcms/constants/constant.dart';
 import 'package:get/get.dart';
 import 'package:gcms/app/modules/home/controllers/home_controller.dart';
 import 'package:provider/src/provider.dart';
@@ -45,43 +48,7 @@ class HomeView extends GetView<HomeController> {
         elevation: 0,
         //centerTitle: true,
       ),
-      body: Obx(() {
-        return SizedBox(
-            child: _controller.isProcessing.value == true
-                ? Loader()
-                : HomeController.pages[_controller.selectedIndex.value]);
-      }),
-      drawer: Drawer(
-        // Add a ListView to the drawer. This ensures the user can scroll
-        // through the options in the drawer if there isn't enough vertical
-        // space to fit everything.
-        child: ListView(
-          // Important: Remove any padding from the ListView.
-          padding: EdgeInsets.zero,
-          children: [
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color: kPrimaryColor,
-              ),
-              child: Text('Drawer Header'),
-            ),
-            ListTile(
-              title: const Text('Item 1'),
-              onTap: () {
-                // Update the state of the app.
-                // ...
-              },
-            ),
-            ListTile(
-              title: const Text('Item 2'),
-              onTap: () {
-                // Update the state of the app.
-                // ...
-              },
-            ),
-          ],
-        ),
-      ),
+      drawer: GcmsDrawer(),
       body: _controller.isProcessing.value == true
           ? Loader()
           : Obx(() {
