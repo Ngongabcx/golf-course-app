@@ -2,11 +2,9 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/commonWidgets/loader/loader.dart';
-import 'package:gcms/app/modules/commonWidgets/loader/loading_provider.dart';
 import 'package:gcms/app/modules/home/controllers/greeting.dart';
 import 'package:get/get.dart';
 import 'package:gcms/app/modules/home/controllers/home_controller.dart';
-import 'package:provider/src/provider.dart';
 
 class HomeView extends GetView<HomeController> {
   @override

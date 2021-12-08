@@ -8,6 +8,7 @@ abstract class Routes {
   static const ACTIVE_GAME_SCREEN = _Paths.ACTIVE_GAME_SCREEN;
   static const SCORES_INPUT_SCREEN = _Paths.SCORES_INPUT_SCREEN;
   static const NOTIFICATIONS = _Paths.NOTIFICATIONS;
+  static const NOTIFICATION_DETAILS = _Paths.NOTIFICATION_DETAILS;
   static const VIEW_PLAYERS_SCREEN = _Paths.VIEW_PLAYERS_SCREEN;
   static const RESULTS_SCREEN = _Paths.RESULTS_SCREEN;
   static const SETUP_SCREEN = _Paths.SETUP_SCREEN;
@@ -22,6 +23,7 @@ abstract class _Paths {
   static const ACTIVE_GAME_SCREEN = '/active-game-screen';
   static const SCORES_INPUT_SCREEN = '/scores-input-screen';
   static const NOTIFICATIONS = '/notifications';
+  static const NOTIFICATION_DETAILS = '/notification-details';
   static const VIEW_PLAYERS_SCREEN = '/view-players-screen';
   static const RESULTS_SCREEN = '/results-screen';
   static const SETUP_SCREEN = '/setup-screen';

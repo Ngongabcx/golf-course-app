@@ -1,3 +1,4 @@
+import 'package:gcms/app/modules/Notifications/views/notification_details_view.dart';
 import 'package:gcms/app/modules/home/views/match_invites_screen_view.dart';
 import 'package:get/get.dart';
 
@@ -52,6 +53,11 @@ class AppPages {
     GetPage(
       name: _Paths.NOTIFICATIONS,
       page: () => NotificationsView(),
+      binding: NotificationsBinding(),
+    ),
+    GetPage(
+      name: _Paths.NOTIFICATION_DETAILS,
+      page: () => NotificationDetailsView(),
       binding: NotificationsBinding(),
     ),
     GetPage(

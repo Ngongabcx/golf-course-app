@@ -63,7 +63,7 @@ class SettingScreenController extends GetxController {
       UserProvider().createUser(data).then((resp) {
         clearTextEditingControllers();
         isProcessing(false);
-        ShowSnackBar("Success", "User Successfully Created.", kPrimaryColor);
+        ShowSnackBar("Success", "User Successfully Created.", Colors.green);
         Get.offAllNamed('/home');
       }, onError: (err) {
         isProcessing(false);
