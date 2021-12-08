@@ -35,7 +35,7 @@ class ActiveGameScreenView extends GetView<ActiveGameScreenController> {
                   children: [
                     SearchCard(),
                     Expanded(
-                      child: _controller.matches.value.payload.length > 0
+                      child: _controller.matches.value.payload == null
                           ? Obx(
                               () => ListView.builder(
                                 // 5

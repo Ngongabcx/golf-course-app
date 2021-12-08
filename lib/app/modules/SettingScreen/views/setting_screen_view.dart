@@ -69,6 +69,12 @@ class SettingScreenView extends GetView<SettingScreenController> {
                   leading: Icon(Icons.fingerprint),
                   onPressed: (BuildContext context) {},
                 ),
+                SettingsTile(
+                  title: 'Face ID',
+                  subtitle: 'Use face Id',
+                  leading: Icon(Icons.camera_alt_outlined),
+                  onPressed: (BuildContext context) {},
+                ),
               ],
             ),
             SettingsSection(
