@@ -1,8 +1,11 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:gcms/app/modules/SettingScreen/views/setting_screen_view.dart';
+import 'package:gcms/app/modules/commonWidgets/drawer.dart';
 import 'package:gcms/app/modules/commonWidgets/loader/loader.dart';
 import 'package:gcms/app/modules/home/controllers/greeting.dart';
+import 'package:gcms/constants/constant.dart';
 import 'package:get/get.dart';
 import 'package:gcms/app/modules/home/controllers/home_controller.dart';
 
@@ -27,26 +30,33 @@ class HomeView extends GetView<HomeController> {
             ),
             onPressed: () {
               // do something
+              Get.to(SettingScreenView());
             },
           ),
-          IconButton(
-              onPressed: () {
-                _controller.storage.erase();
-                Get.offAllNamed('/login');
-              },
-              icon: Icon(
-                Icons.exit_to_app,
-              ))
+          // IconButton(
+          //   onPressed: () {
+          //     _controller.storage.erase();
+          //     Get.offAllNamed('/login');
+          //   },
+          //   icon: Icon(
+          //     Icons.exit_to_app,
+          //   ),
+          // ),
         ],
         elevation: 0,
         //centerTitle: true,
       ),
-      body: Obx(() {
-        return SizedBox(
-            child: _controller.isProcessing.value == true
-                ? Loader()
-                : HomeController.pages[_controller.selectedIndex.value]);
-      }),
+      drawer: GcmsDrawer(),
+      body: _controller.isProcessing.value == true
+          ? Loader()
+          : Obx(() {
+              Future.delayed(Duration.zero, () async {
+                context
+                    .read<LoadingProvider>()
+                    .setLoad(controller.isProcessing.value);
+              });
+              return HomeController.pages[_controller.selectedIndex.value];
+            }),
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Theme.of(context).textSelectionTheme.selectionColor,
         currentIndex: controller.selectedIndex.value.toInt(),

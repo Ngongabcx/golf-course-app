@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/commonWidgets/customButton.dart';
 import 'package:gcms/app/modules/commonWidgets/textFormField.dart';
+import 'package:gcms/constants/constant.dart';
 import 'package:gcms/theme/gcms_theme.dart';
 import '../controllers/setting_screen_controller.dart';
 import 'package:get/get.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:gcms/app/modules/commonWidgets/build_form_builder_date_time_picker_view.dart.dart';
+import 'package:gcms/app/modules/commonWidgets/build_form_builder_dropdown.dart';
+import 'package:form_builder_image_picker/form_builder_image_picker.dart';
 
 class UserDetailsScreenView extends GetView<SettingScreenController> {
   final userController = Get.put(SettingScreenController());
-  var now = DateTime.now();
+  final now = DateTime.now();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,16 +79,24 @@ class UserDetailsScreenView extends GetView<SettingScreenController> {
                   false,
                 ),
               ),
+              // Padding(
+              //   padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+              //   child: CustomTextFormFieldWidget(
+              //     controller.genderController,
+              //     'Gender',
+              //     (s) {},
+              //     false,
+              //     false,
+              //     false,
+              //   ),
+              // ),
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                child: CustomTextFormFieldWidget(
-                  controller.genderController,
-                  'Gender',
-                  (s) {},
-                  false,
-                  false,
-                  false,
-                ),
+                child: BuildFormBuilderDateTimePickerView(),
+              ),
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                child: BuildFormBuilderDropdown(),
               ),
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
@@ -91,8 +105,25 @@ class UserDetailsScreenView extends GetView<SettingScreenController> {
                   'Handicap',
                   (s) {},
                   false,
+                  true,
                   false,
-                  false,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                child: FormBuilder(
+                  child: FormBuilderImagePicker(
+                    name: 'photos',
+                    decoration: const InputDecoration(
+                      labelText: 'Add profile picture',
+                      labelStyle: TextStyle(
+                        color: Color(0xFF95A1AC),
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    maxImages: 1,
+                  ),
                 ),
               ),
               const SizedBox(height: 25),

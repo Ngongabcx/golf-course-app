@@ -10,9 +10,9 @@ class ActiveGameScreenController extends GetxController {
   var isProcessing = false.obs;
   final count = 0.obs;
   @override
-  Future<void> onInit() async {
+  void onInit() {
     super.onInit();
-    await getActiveMatches();
+    getActiveMatches();
   }
 
   @override
@@ -25,6 +25,7 @@ class ActiveGameScreenController extends GetxController {
   void increment() => count.value++;
 
   getActiveMatches() async {
+    print('GET ACTIVE MATCHES CALLED');
     try {
       isProcessing(true);
       await ActiveGamesProvider().getActiveMatches().then((resp) async {
