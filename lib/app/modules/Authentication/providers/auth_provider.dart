@@ -11,7 +11,8 @@ class AuthProvider extends GetConnect {
     try {
       final response = await post("$kApiBaseURL/authmanagement/login", data);
       if (response.status.hasError) {
-        return Future.error(response.body["errors"].join(","));
+        print("RESPONSE ERROR --------->>>> ${response.statusText}");
+        return Future.error(response.statusText);
       } else {
         print('<<===LOGIN RESPONSE BODY==> ${response.body.toString()}');
         Map<String, dynamic> resp = jsonDecode(response.bodyString);
@@ -22,7 +23,8 @@ class AuthProvider extends GetConnect {
       return Future.error(exception);
     }
   }
-    Future<Auth> register(Map data) async {
+
+  Future<Auth> register(Map data) async {
     try {
       final response = await post("$kApiBaseURL/authmanagement/register", data);
       //final body = json.decode(response.bodyString);

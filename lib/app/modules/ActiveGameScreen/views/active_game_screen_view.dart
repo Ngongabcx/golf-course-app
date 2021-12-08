@@ -4,6 +4,7 @@ import 'package:gcms/app/modules/ActiveGameScreen/views/search_card.dart';
 import 'package:gcms/app/modules/commonWidgets/loader/loader.dart';
 import 'package:get/get.dart';
 import '../controllers/active_game_screen_controller.dart';
+import 'competition_detail_view.dart';
 
 class ActiveGameScreenView extends GetView<ActiveGameScreenController> {
   final _controller = Get.put(ActiveGameScreenController());
@@ -36,7 +37,13 @@ class ActiveGameScreenView extends GetView<ActiveGameScreenController> {
                     SearchCard(),
                     Expanded(
                       child: _controller.matches.value.payload == null
-                          ? Obx(
+                          ? Center(
+                              child: Text(
+                                "No Matches.",
+                                style: Theme.of(context).textTheme.headline3,
+                              ),
+                            )
+                          : Obx(
                               () => ListView.builder(
                                 // 5
                                 itemCount:
@@ -48,16 +55,18 @@ class ActiveGameScreenView extends GetView<ActiveGameScreenController> {
                                   // 7
                                   return GestureDetector(
                                     // 8
-                                    onTap: () {},
+                                    onTap: () {
+                                      Get.to(
+                                        CompetitionDetailView(
+                                            competition: _controller.matches.value.payload[index]),
+                                      );
+                                    },
                                     // 11
                                     child: CompetitionCard(
-                                        competition: matches[index]),
+                                        competition: _controller.matches.value.payload[index]),
                                   );
                                 },
                               ),
-                            )
-                          : Center(
-                              child: Text("No Matches."),
                             ),
                     ),
                   ],

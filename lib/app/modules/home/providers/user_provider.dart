@@ -12,7 +12,7 @@ class UserProvider extends GetConnect {
       final response =
           await post("$kApiBaseURL/authmanagement/refreshToken", data);
       if (response.status.hasError) {
-        return Future.error(response.body["errors"].join(","));
+        return Future.error(response.statusText);
       } else {
         Map<String, dynamic> resp = jsonDecode(response.bodyString);
         return Auth.fromJson(resp);
@@ -27,6 +27,7 @@ class UserProvider extends GetConnect {
     try {
       final response = await get("$kApiBaseURL/members/$id");
       if (response.status.hasError) {
+        print("RESPONSE ERROR --------->>>> ${response.statusText}");
         return Future.error(response.statusText);
       } else {
         return response.bodyString;

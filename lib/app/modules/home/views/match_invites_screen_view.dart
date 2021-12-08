@@ -36,8 +36,10 @@ class MatchInvitesScreenView extends GetView<HomeController> {
                   children: [
                     SearchCard(),
                     Expanded(
-                      child: _controller.matchInvites.value.payload.length > 0
-                          ? Obx(
+                      child: _controller.matchInvites.value.payload == null
+                          ? Center(
+                              child: Text("No Invitations."),
+                            ) : Obx(
                               () => ListView.builder(
                                 itemCount: _controller
                                     .matchInvites.value.payload.length,
@@ -60,9 +62,7 @@ class MatchInvitesScreenView extends GetView<HomeController> {
                               ),
                               // ),
                             )
-                          : Center(
-                              child: Text("No Invitations."),
-                            ),
+                          ,
                     ),
                   ],
                 ),
