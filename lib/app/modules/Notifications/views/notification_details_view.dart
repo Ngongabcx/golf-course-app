@@ -11,7 +11,7 @@ class NotificationDetailsView extends GetView {
         centerTitle: true,
       ),
       body: Center(
-        child: Text(
+        child: Text(  
           'NotificationDetailsView is working',
           style: TextStyle(fontSize: 20),
         ),
