@@ -12,7 +12,7 @@ List<Step> buildStep() {
   return [
     Step(
       title: Text('Sign up'),
-      content: buildSignUp(),
+      content: BuildSignUp(),
       isActive: signUpController.currentStep.value >= 0,
       state: signUpController.currentStep.value > 0
           ? StepState.complete

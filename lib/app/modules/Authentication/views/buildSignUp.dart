@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:gcms/app/modules/Authentication/controllers/auth_controller.dart';
 import 'package:gcms/app/modules/commonWidgets/customButton.dart';
 import 'package:gcms/app/modules/commonWidgets/loader/loading_provider.dart';
@@ -10,7 +9,7 @@ import 'package:gcms/theme/gcms_theme.dart';
 import 'package:get/get.dart';
 import 'package:provider/src/provider.dart';
 
-class buildSignUp extends GetView<AuthenticationController> {
+class BuildSignUp extends GetView<AuthenticationController> {
   final signUpController = Get.put(AuthenticationController());
   @override
   Widget build(BuildContext context) {
@@ -167,14 +166,14 @@ class buildSignUp extends GetView<AuthenticationController> {
 
   void submitForm() {
     if (GetUtils.isEmail(controller.signUpEmailController.text)) {
-      if (GetUtils!.isBlank!) {
+      if (controller.signUpPasswordController.text.isEmpty) {
         ShowSnackBar(
           "Password cannot be empty",
           "Please provide a valid password.",
           Colors.red,
         );
       } else {
-        if (GetUtils!.isBlank!) {
+        if (controller.signUpConfirmPasswordController.text.isEmpty) {
           ShowSnackBar(
             "Password cannot be empty",
             "Please provide a valid password.",
