@@ -93,7 +93,7 @@ class LoginView extends GetView<AuthenticationController> {
                                     child: Align(
                                       alignment: Alignment.centerLeft,
                                       child: CustomButton(
-                                          text: 'Log In',
+                                          text: 'Login',
                                           textStyle: GcmsTheme
                                               .lightTextTheme.bodyText2,
                                           onPressed: () {
