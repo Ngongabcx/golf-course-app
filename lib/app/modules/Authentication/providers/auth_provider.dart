@@ -11,11 +11,15 @@ class AuthProvider extends GetConnect {
     try {
       final response = await post("$kApiBaseURL/authmanagement/login", data);
       if (response.status.hasError) {
-        print("RESPONSE ERROR --------->>>> ${response.statusText}");
-        return Future.error(response.statusText);
+        if(response.statusCode == 400){
+         print("RESPONSE STATUS --------->>>> ${response.body["errors"].join(",")}");
+          return Future.error(response.body["errors"].join(","));
+        }
+        print("RESPONSE ERROR --------->>>> ${response.body.toString()}");
+        return Future.error(response.statusText.toString());
       } else {
         print('<<===LOGIN RESPONSE BODY==> ${response.body.toString()}');
-        Map<String, dynamic> resp = jsonDecode(response.bodyString);
+        Map<String, dynamic> resp = jsonDecode(response.bodyString.toString());
         return Auth.fromJson(resp);
       }
     } catch (exception) {
@@ -29,9 +33,9 @@ class AuthProvider extends GetConnect {
       final response = await post("$kApiBaseURL/authmanagement/register", data);
       //final body = json.decode(response.bodyString);
       if (response.status.hasError) {
-        return Future.error(response.statusText);
+        return Future.error(response.statusText.toString());
       } else {
-        Map<String, dynamic> resp = jsonDecode(response.bodyString);
+        Map<String, dynamic> resp = jsonDecode(response.bodyString.toString());
         return Auth.fromJson(resp);
       }
     } catch (exception) {

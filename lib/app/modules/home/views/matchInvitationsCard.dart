@@ -6,8 +6,8 @@ import 'package:get/get_utils/src/extensions/string_extensions.dart';
 
 class MatchInvitationsCard extends StatelessWidget {
   const MatchInvitationsCard({
-    Key key,
-    @required this.invitations,
+    Key? key,
+    required this.invitations,
   }) : super(key: key);
 
   final Payload invitations;
@@ -120,8 +120,7 @@ class MatchInvitationsCard extends StatelessWidget {
                 ),
                 Text(
                     invitations
-                            .compDate ??
-                        '',
+                            .compDate,
                     style: GcmsTheme
                         .darkTextTheme
                         .bodyText2),

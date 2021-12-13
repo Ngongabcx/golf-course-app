@@ -3,7 +3,6 @@ import 'package:gcms/app/modules/ActiveGameScreen/views/competition_detail_view.
 import 'package:gcms/app/modules/commonWidgets/loader/loader.dart';
 import 'package:gcms/app/modules/commonWidgets/search_card.dart';
 import 'package:gcms/app/modules/home/controllers/home_controller.dart';
-import 'package:gcms/theme/gcms_theme.dart';
 import 'package:get/get.dart';
 import 'matchInvitationsCard.dart';
 
@@ -42,19 +41,19 @@ class MatchInvitesScreenView extends GetView<HomeController> {
                             ) : Obx(
                               () => ListView.builder(
                                 itemCount: _controller
-                                    .matchInvites.value.payload.length,
+                                    .matchInvites.value.payload!.length,
                                 itemBuilder: (BuildContext context, int index) {
                                   return GestureDetector(
                                     onTap: () {
                                       Get.to(
                                         CompetitionDetailView(
-                                            competition: invitations[index]),
+                                            competition: invitations![index]),
                                       );
                                     },
                                     child: Padding(
                                       padding: const EdgeInsets.only(top: 20.0),
                                       child: MatchInvitationsCard(
-                                        invitations: invitations[index],
+                                        invitations: invitations![index],
                                       ),
                                     ),
                                   );

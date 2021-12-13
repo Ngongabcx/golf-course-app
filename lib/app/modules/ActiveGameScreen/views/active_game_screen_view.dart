@@ -47,7 +47,7 @@ class ActiveGameScreenView extends GetView<ActiveGameScreenController> {
                               () => ListView.builder(
                                 // 5
                                 itemCount:
-                                    _controller.matches.value.payload.length,
+                                    _controller.matches.value.payload!.length,
                                 // 6
                                 itemBuilder: (BuildContext context, int index) {
                                   // 7
@@ -58,12 +58,12 @@ class ActiveGameScreenView extends GetView<ActiveGameScreenController> {
                                     onTap: () {
                                       Get.to(
                                         CompetitionDetailView(
-                                            competition: _controller.matches.value.payload[index]),
+                                            competition: _controller.matches.value.payload![index]),
                                       );
                                     },
                                     // 11
                                     child: CompetitionCard(
-                                        competition: _controller.matches.value.payload[index]),
+                                        competition: _controller.matches.value.payload![index]),
                                   );
                                 },
                               ),

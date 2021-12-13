@@ -168,6 +168,7 @@ class ViewPlayersScreenView extends GetView<ViewPlayersScreenController> {
                     Padding(
                       padding: const EdgeInsets.only(bottom: 16.0),
                       child:CustomButton(
+                        textStyle: GcmsTheme.lightTextTheme.bodyText2,
                       text: "Go to Scores",
                       onPressed: () {
                         Get.toNamed("/scores-input-screen");

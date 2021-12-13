@@ -29,7 +29,7 @@ class SetupScreenController extends GetxController {
   final hole18options = [1, 18];
   var startingHoleOptions = <int>[].obs;
   var endingHoleOptions = <int>[].obs;
-  TextEditingController matchName;
+  late TextEditingController matchName;
   var currentSelectedGameType = '';
   bool strokePlay = false;
   bool steplefold = false;
@@ -89,7 +89,7 @@ class SetupScreenController extends GetxController {
       isProcessing(true);
       CompetitionProvider().createCompetition(data).then((resp) async {
         isProcessing(false);
-         Get.to(CompetitionDetailView(competition: resp.payload.first));
+         Get.to(CompetitionDetailView(competition: resp.payload!.first));
          }, onError: (err) {
         print("Error CREATING COMPETITION -->" + err.toString());
         isProcessing(false);
@@ -108,7 +108,7 @@ class SetupScreenController extends GetxController {
       CompetitionProvider().getCompetition(id).then((resp) async {
         print("COMPETITION SUCCESSFULLY FETCHED  ---> $resp");
         isProcessing(false);
-        Get.offAll(CompetitionDetailView(competition: resp.payload.first));
+        Get.offAll(CompetitionDetailView(competition: resp.payload!.first));
       }, onError: (err) {
         print("Error getting competition details -->" + err.toString());
         isProcessing(false);

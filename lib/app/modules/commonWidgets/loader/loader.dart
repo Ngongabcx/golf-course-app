@@ -3,17 +3,17 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class Loader extends StatefulWidget {
-  const Loader({Key key}) : super(key: key);
+  const Loader({Key? key}) : super(key: key);
 
   @override
   _LoaderState createState() => _LoaderState();
 }
 
 class _LoaderState extends State<Loader> with SingleTickerProviderStateMixin {
-   AnimationController controller;
-   Animation<double> animationRotation;
-   Animation<double> animationRadiusIn;
-   Animation<double> animationRadiusOut;
+   late AnimationController controller;
+   late Animation<double> animationRotation;
+   late Animation<double> animationRadiusIn;
+   late Animation<double> animationRadiusOut;
   final double initialRadius = 30.0;
   double radius = 0.0;
   @override
@@ -64,40 +64,40 @@ class _LoaderState extends State<Loader> with SingleTickerProviderStateMixin {
         child: Stack(
           children: [
             //Bigger dot
-            const Dot(radius: 20.0, color: Colors.black12),
+             Dot(radius: 20.0, color: Colors.black12),
             //Smaller dots
             Transform.translate(
                 offset: Offset(radius * cos(pi / 4), radius * sin(pi / 4)),
-                child: const Dot(radius: 5.0, color: Colors.teal)),
+                child:  Dot(radius: 5.0, color: Colors.teal)),
             //Smaller dots
             Transform.translate(
                 offset: Offset(
                     radius * cos(2 * pi / 4), radius * sin(2 * pi / 4)),
-                child: const Dot(radius: 5.0, color: Colors.orangeAccent)),
+                child:  Dot(radius: 5.0, color: Colors.orangeAccent)),
             Transform.translate(
                 offset: Offset(
                     radius * cos(3 * pi / 4), radius * sin(3 * pi / 4)),
-                child: const Dot(radius: 5.0, color: Colors.blueAccent)),
+                child:  Dot(radius: 5.0, color: Colors.blueAccent)),
             Transform.translate(
                 offset: Offset(
                     radius * cos(4 * pi / 4), radius * sin(4 * pi / 4)),
-                child: const Dot(radius: 5.0, color: Colors.tealAccent)),
+                child:  Dot(radius: 5.0, color: Colors.tealAccent)),
             Transform.translate(
                 offset: Offset(
                     radius * cos(5 * pi / 4), radius * sin(5 * pi / 4)),
-                child: const Dot(radius: 5.0, color: Colors.purpleAccent)),
+                child:  Dot(radius: 5.0, color: Colors.purpleAccent)),
             Transform.translate(
                 offset: Offset(
                     radius * cos(6 * pi / 4), radius * sin(6 * pi / 4)),
-                child: const Dot(radius: 5.0, color: Colors.amberAccent)),
+                child:  Dot(radius: 5.0, color: Colors.amberAccent)),
             Transform.translate(
                 offset: Offset(
                     radius * cos(7 * pi / 4), radius * sin(7 * pi / 4)),
-                child: const Dot(radius: 5.0, color: Colors.greenAccent)),
+                child:  Dot(radius: 5.0, color: Colors.greenAccent)),
             Transform.translate(
                 offset: Offset(
                     radius * cos(8 * pi / 4), radius * sin(8 * pi / 4)),
-                child: const Dot(radius: 5.0, color: Colors.redAccent)),
+                child:  Dot(radius: 5.0, color: Colors.redAccent)),
           ],
         ),
       ),
@@ -107,9 +107,9 @@ class _LoaderState extends State<Loader> with SingleTickerProviderStateMixin {
 
 class Dot extends StatelessWidget {
   const Dot({
-    Key key,
-     this.radius,
-     this.color,
+    Key? key,
+     required this.radius,
+     required this.color,
   }) : super(key: key);
   final double radius;
   final Color color;

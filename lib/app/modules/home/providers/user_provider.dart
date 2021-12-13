@@ -12,9 +12,9 @@ class UserProvider extends GetConnect {
       final response =
           await post("$kApiBaseURL/authmanagement/refreshToken", data);
       if (response.status.hasError) {
-        return Future.error(response.statusText);
+        return Future.error(response.statusText.toString());
       } else {
-        Map<String, dynamic> resp = jsonDecode(response.bodyString);
+        Map<String, dynamic> resp = jsonDecode(response.bodyString.toString());
         return Auth.fromJson(resp);
       }
     } catch (exception) {
@@ -27,10 +27,10 @@ class UserProvider extends GetConnect {
     try {
       final response = await get("$kApiBaseURL/members/$id");
       if (response.status.hasError) {
-        print("RESPONSE ERROR --------->>>> ${response.statusText}");
-        return Future.error(response.statusText);
+        print("RESPONSE ERROR ---->>----->>>> ${response.statusText}");
+        return Future.error(response.statusText.toString());
       } else {
-        return response.bodyString;
+        return response.bodyString.toString();
       }
     } catch (exception) {
       print('<<===GET USER DETAILS EXCEPTION==> $exception');
@@ -42,10 +42,10 @@ class UserProvider extends GetConnect {
     try {
       final response = await get("$kApiBaseURL/members");
       if (response.status.hasError) {
-        return Future.error(response.statusText);
+        return Future.error(response.statusText.toString());
       } else {
         List<dynamic> resp =
-            List<dynamic>.from(jsonDecode(response.bodyString));
+            List<dynamic>.from(jsonDecode(response.bodyString.toString()));
         return resp.map((item) => User.fromJson(item)).toList();
       }
     } catch (exception) {
@@ -60,9 +60,9 @@ class UserProvider extends GetConnect {
       final response = await post("$kApiBaseURL/members", data);
       //final body = json.decode(response.bodyString);
       if (response.status.hasError) {
-        return Future.error(response.statusText);
+        return Future.error(response.statusText.toString());
       } else {
-        Map<String, dynamic> resp = jsonDecode(response.bodyString);
+        Map<String, dynamic> resp = jsonDecode(response.bodyString.toString());
         return User.fromJson(resp);
       }
     } catch (exception) {

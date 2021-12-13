@@ -3,7 +3,7 @@ import 'package:gcms/constants/constant.dart';
 import 'package:gcms/theme/gcms_theme.dart';
 
 class CustomTextButton extends StatelessWidget {
-  const CustomTextButton({this.text, this.style, this.onPressed, this.icon});
+  const CustomTextButton({required this.text, required this.style, required this.onPressed, required this.icon});
 
   final String text;
   final TextStyle style;

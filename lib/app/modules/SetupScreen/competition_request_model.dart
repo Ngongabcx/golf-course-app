@@ -1,24 +1,24 @@
 class CompetitionRequest {
-  String compName;
-  int gametypeId;
-  double compFee;
-  String compDate;
-  String compTime;
-  String gameHoles;
-  int startingHole;
-  int courseId;
-  List<int> competitionPlayer;
+  String? compName;
+  int? gametypeId;
+  double? compFee;
+  String? compDate;
+  String? compTime;
+  String? gameHoles;
+  int? startingHole;
+  int? courseId;
+  List<int>? competitionPlayer;
 
   CompetitionRequest(
-      {this.compName,
-      this.gametypeId,
-      this.compFee,
-      this.compDate,
-      this.compTime,
-      this.gameHoles,
-      this.startingHole,
-      this.courseId,
-      this.competitionPlayer});
+      {required this.compName,
+      required this.gametypeId,
+      required this.compFee,
+      required this.compDate,
+      required this.compTime,
+      required this.gameHoles,
+      required this.startingHole,
+      required this.courseId,
+      required this.competitionPlayer});
 
   CompetitionRequest.fromJson(Map<String, dynamic> json) {
     compName = json['CompName'];

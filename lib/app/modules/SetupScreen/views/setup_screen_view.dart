@@ -7,6 +7,7 @@ import 'package:gcms/app/modules/commonWidgets/custom_single_select_drop_down.da
 import 'package:gcms/app/modules/commonWidgets/loader/loader.dart';
 import 'package:gcms/app/modules/commonWidgets/loader/loading_provider.dart';
 import 'package:gcms/constants/constant.dart';
+import 'package:gcms/theme/gcms_theme.dart';
 
 import 'package:get/get.dart';
 import 'package:provider/src/provider.dart';
@@ -75,7 +76,7 @@ class SetupScreenView extends GetView<SetupScreenController> {
                             List.generate(
                                 controller.lstCourses.length,
                                 (index) =>
-                                    controller.lstCourses[index].courseName),
+                                    controller.lstCourses[index].courseName.toString()),
                           );
                         }),
                         const SizedBox(height: 20),
@@ -98,7 +99,7 @@ class SetupScreenView extends GetView<SetupScreenController> {
                             List.generate(
                                 controller.lstPlayers.length,
                                 (index) =>
-                                    controller.lstPlayers[index].firstName),
+                                    controller.lstPlayers[index].firstName.toString()),
                           );
                         }),
                         const SizedBox(height: 20),
@@ -187,12 +188,12 @@ class SetupScreenView extends GetView<SetupScreenController> {
                                     child: Text(value.toString()),
                                   );
                                 }).toList(),
-                                onChanged: (int val) {
+                                onChanged: (int? val) {
                                   if (controller.startingHole.value != 0) {
                                     controller.endingHoleOptions
                                         .add(controller.startingHole.value);
                                   }
-                                  controller.startingHole.value = val;
+                                  controller.startingHole.value = val!.toInt();
                                   if (controller.numberOfHolesToPlay.value ==
                                       9) {
                                     controller.endingHoleOptions.clear();
@@ -233,8 +234,8 @@ class SetupScreenView extends GetView<SetupScreenController> {
                                     child: Text(value.toString()),
                                   );
                                 }).toList(),
-                                onChanged: (int val) {
-                                  controller.endingHole.value = val;
+                                onChanged: (int? val) {
+                                  controller.endingHole.value = val!.toInt();
                                   print(
                                       "ENding to play at ==> ${controller.endingHole.value}");
                                 },
@@ -378,25 +379,23 @@ class SetupScreenView extends GetView<SetupScreenController> {
                               FocusScope.of(context)
                                   .requestFocus(new FocusNode());
                               return CustomButton(
+                                textStyle: GcmsTheme.lightTextTheme.bodyText2,
                                 text: controller.isProcessing.value == true
                                     ? 'Processing'
                                     : 'Confirm',
                                 onPressed: () {
-                                  var comp = CompetitionRequest();
-                                  comp.compDate = controller.matchDate.value;
-                                  comp.compFee = 0.0;
-                                  comp.compName = controller.matchName.text;
-                                  comp.compTime = "09:09:09";
-                                  comp.competitionPlayer =
-                                      controller.selectedPlayers.cast<int>();
-                                  comp.courseId = int.parse(
-                                      controller.selectedCourseId.value);
-                                  comp.gameHoles = controller
-                                      .numberOfHolesToPlay.value
-                                      .toString();
-                                  comp.gametypeId = 1;
-                                  comp.startingHole =
-                                      controller.startingHole.value;
+                                  var comp = CompetitionRequest(
+                                    compName: controller.matchName.text,
+                                    gametypeId: 1,
+                                    compFee: 0.0,
+                                    compDate: controller.matchDate.value,
+                                    compTime: controller.matchTime.value,
+                                    gameHoles: controller.numberOfHolesToPlay.value.toString(),
+                                    startingHole: controller.startingHole.value,
+                                    courseId: int.parse(controller.selectedCourseId.value),
+                                    competitionPlayer:
+                                        controller.selectedPlayers.cast<int>(),
+                                  );
                                   controller.createCompetition(comp.toJson());
                                 },
                               );

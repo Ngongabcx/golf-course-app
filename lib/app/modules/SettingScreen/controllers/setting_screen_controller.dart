@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
 import 'package:gcms/app/modules/home/providers/user_provider.dart';
-import 'package:gcms/constants/constant.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class SettingScreenController extends GetxController {
   final userFormKey = GlobalKey<FormState>();
   var isProcessing = false.obs;
+  var biometricsSet = false.obs;
 
   var storage = GetStorage();
 
-  TextEditingController firstnameController,
+  late TextEditingController firstnameController,
       lastnameController,
       addressController,
       imageController,
@@ -40,21 +40,22 @@ class SettingScreenController extends GetxController {
   void onClose() {}
 
   String validateCreateUserForm() {
-    if (!GetUtils.isBlank(firstnameController)) {
+    if (firstnameController.text.isEmpty) {
       return 'Provide your first name';
     }
-    if (!GetUtils.isBlank(lastnameController)) {
+    if (lastnameController.text.isEmpty) {
       return 'Provide your last name';
     }
-    if (!GetUtils.isBlank(addressController)) {
+    if (addressController.text.isEmpty) {
       return 'Provide your address';
     }
     // if (!GetUtils.isBlank(value)) {
     //   return 'Provide your gender';
     // }
-    if (!GetUtils.isBlank(hcpController)) {
+    if (hcpController.text.isEmpty) {
       return 'Provide your handicap';
     }
+    return "";
   }
 
   void createUser(Map data) {

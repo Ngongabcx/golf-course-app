@@ -135,7 +135,7 @@ class UserDetailsScreenView extends GetView<SettingScreenController> {
                       text: (controller.isProcessing.value == true
                           ? 'Processing...'
                           : 'Submit'),
-                      style: GcmsTheme.lightTextTheme.bodyText2,
+                      textStyle: GcmsTheme.lightTextTheme.bodyText2,
                       onPressed: () {
                         controller.validateCreateUserForm();
                         controller.createUser({

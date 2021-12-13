@@ -12,7 +12,7 @@ class LocalNotificationsService {
             android: AndroidInitializationSettings("@mipmap/ic_launcher"));
 
     _notificationsPlugin.initialize(initializationSettings,
-        onSelectNotification: (String viewUri) async {
+        onSelectNotification: (String? viewUri) async {
       if (viewUri != null) {
         Get.toNamed("/$viewUri");
       }
@@ -34,8 +34,8 @@ class LocalNotificationsService {
 
       await _notificationsPlugin.show(
         id,
-        message.notification.title,
-        message.notification.body,
+        message.notification!.title,
+        message.notification!.body,
         notificationDetails,
         payload: message.data["viewUri"],
       );

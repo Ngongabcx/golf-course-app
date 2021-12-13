@@ -4,15 +4,15 @@ import 'package:gcms/constants/constant.dart';
 class ResultWidget extends StatelessWidget {
 
   final String text;
-  final TextStyle style;
+  final TextStyle? textStyle;
 
-  const ResultWidget({Key key, this.text, this.style}) : super(key: key);
+  const ResultWidget({Key? key, required this.text, required this.textStyle}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return RawMaterialButton(
       child: Text(text),
-      textStyle: (style),
+      textStyle: (textStyle),
       elevation: 4.0,
       fillColor: kPrimaryColor,
       constraints: const BoxConstraints.tightFor(

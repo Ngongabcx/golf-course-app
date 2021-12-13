@@ -61,20 +61,18 @@ class HomeController extends GetxController {
     //Its a stream hence we have to listen (for messages)
     FirebaseMessaging.onMessage.listen((message) {
       if (message.notification != null) {
-        print(message.notification.body);
-        print(message.notification.title);
+        print(message.notification!.body);
+        print(message.notification!.title);
       }
       LocalNotificationsService.displayNotification(message);
     });
     //Below line only works when notofication has been tapped/open whilst the app is running in the background
     //Its also a stream hance we havr to listen
     FirebaseMessaging.onMessageOpenedApp.listen((message) {
-      if (message.data != null) {
         final routeFromMessage = message.data["viewUri"];
         print(routeFromMessage);
         //We can push the notification to a specific view from here
         Get.toNamed("/$routeFromMessage");
-      }
     });
   }
 
@@ -102,8 +100,8 @@ class HomeController extends GetxController {
     try {
       isProcessing(true);
       UserProvider().refreshToken(data).then((resp) async {
-        storage.write("accessToken", resp.info.accessToken);
-        storage.write("refreshToken", resp.info.refreshToken);
+        storage.write("accessToken", resp.info!.accessToken);
+        storage.write("refreshToken", resp.info!.refreshToken);
         isProcessing(false);
       }, onError: (err) {
         ShowSnackBar("Error", err.toString(), Colors.red);
@@ -124,18 +122,18 @@ class HomeController extends GetxController {
         storage.write("user", resp);
         Map<String, dynamic> storedUser = jsonDecode(storage.read('user'));
         var usr = User.fromJson(storedUser);
-        if (usr.id.toString() == "" || usr.id.isBlank) {
+        if (usr.id.toString().isEmpty) {
           Get.to(UserDetailsScreenView());
         }
         storage.write("userId", usr.id.toString());
-        storage.write("hcp", usr.hcp.toInt());
-        storage.write("name", usr.firstName + " " + usr.lastName);
+        storage.write("hcp", usr.hcp!.toInt());
+        storage.write("name", usr.firstName.toString() + " " + usr.lastName.toString());
         storage.write("profilePic", usr.image);
         await getMatchInvites(usr.id.toString());
-        if (usr.isBlank) {
+        if (usr.username!.isEmpty) {
           ShowSnackBar("USER DETAILS Error", "NO USER INFO FOUND", Colors.blue);
         }
-        name.value = usr.firstName;
+        name.value = usr.firstName!;
         isProcessing(false);
       }, onError: (err) {
         isProcessing(false);

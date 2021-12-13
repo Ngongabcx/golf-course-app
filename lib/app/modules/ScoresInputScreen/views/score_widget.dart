@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 class ScoreWidget extends StatelessWidget {
 
   final String text;
-  final TextStyle style;
+  final TextStyle? textStyle;
 
-  const ScoreWidget({Key key, this.text, this.style}) : super(key: key);
+  const ScoreWidget({Key? key, required this.text, required this.textStyle}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return RawMaterialButton(
       child: Text(text),
-      textStyle: (style),
+      textStyle: (textStyle),
       fillColor: Color(0xFFF5F7F9),
       elevation: 0.0,
       highlightElevation: 0.0,

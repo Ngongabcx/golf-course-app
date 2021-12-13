@@ -7,7 +7,7 @@ import 'package:get/get_utils/src/extensions/string_extensions.dart';
 class CompetitionCard extends StatelessWidget {
   final Payload competition;
 
-  const CompetitionCard({Key key, this.competition}) : super(key: key);
+  const CompetitionCard({Key? key, required this.competition}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class CompetitionCard extends StatelessWidget {
               padding: const EdgeInsets.only(
                   left: 16.0, right: 16.0, top: 5.0, bottom: 5.0),
               child: Text(
-                competition.course.courseName ?? '',
+                competition.course.courseName,
                 style: Theme.of(context).textTheme.headline6,
               ),
             ),
@@ -41,7 +41,7 @@ class CompetitionCard extends StatelessWidget {
               padding:
                   const EdgeInsets.only(right: 16.0, left: 16.0, bottom: 16.0),
               child: Text(
-                competition.compName ?? '',
+                competition.compName,
                 style: Theme.of(context).textTheme.bodyText1,
               ),
             ),

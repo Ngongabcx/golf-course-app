@@ -11,9 +11,9 @@ class CourseProvider extends GetConnect {
     try {
       final response = await get("$kApiBaseURL/course");
       if (response.status.hasError) {
-        return Future.error(response.statusText);
+        return Future.error(response.statusText.toString());
       } else {
-        List<dynamic> resp = List<dynamic>.from(jsonDecode(response.bodyString));
+        List<dynamic> resp = List<dynamic>.from(jsonDecode(response.bodyString.toString()));
         return resp.map((item) => Course.fromJson(item)).toList();
       }
     } catch (exception) {

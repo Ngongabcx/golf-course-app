@@ -6,7 +6,7 @@ class SelectHolesCard extends StatelessWidget {
   final Widget cardChild;
   final Function() onPress;
 
-  const SelectHolesCard({Key key, this.color, this.cardChild, this.onPress}) : super(key: key);
+  const SelectHolesCard({Key? key, required this.color, required this.cardChild, required this.onPress}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,9 +1,9 @@
 class Auth {
-  Info info;
-  List<String> errors;
-  bool success;
+  Info? info;
+  List<String>? errors;
+  bool? success;
 
-  Auth({this.info, this.errors, this.success});
+  Auth({required this.info, required this.errors, required this.success});
 
   Auth.fromJson(Map<String, dynamic> json) {
     info = json['info'] != null ? Info.fromJson(json['info']) : null;
@@ -14,7 +14,7 @@ class Auth {
   Map<String, dynamic> toJson(decode) {
     final data = <String, dynamic>{};
     if (info != null) {
-      data['info'] = info.toJson();
+      data['info'] = info!.toJson();
     }
     data['errors'] = errors;
     data['success'] = success;
@@ -23,10 +23,10 @@ class Auth {
 }
 
 class Info {
-  String accessToken;
-  String refreshToken;
+  String? accessToken;
+  String? refreshToken;
 
-  Info({this.accessToken, this.refreshToken});
+  Info({required this.accessToken, required this.refreshToken});
 
   Info.fromJson(Map<String, dynamic> json) {
     accessToken = json['accessToken'];

@@ -19,7 +19,7 @@ class BcxIcons {
   BcxIcons._();
 
   static const _kFontFam = 'BcxIcons';
-  static const String _kFontPkg = null;
+  static const Null _kFontPkg = null;
 
   static const IconData golfing = IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }

@@ -1,20 +1,20 @@
 class Scorecard {
-  int id;
-  double score;
-  String timestamp;
-  double result;
-  bool confirmed;
-  int compplayerId;
-  int holeId;
+  int? id;
+  double? score;
+  String? timestamp;
+  double? result;
+  bool? confirmed;
+  int? compplayerId;
+  int? holeId;
 
   Scorecard(
-      {this.id,
-      this.score,
-      this.timestamp,
-      this.result,
-      this.confirmed,
-      this.compplayerId,
-      this.holeId});
+      {required this.id,
+      required this.score,
+      required this.timestamp,
+      required this.result,
+      required this.confirmed,
+      required this.compplayerId,
+      required this.holeId});
 
   Scorecard.fromJson(Map<String, dynamic> json) {
     id = json['id'];

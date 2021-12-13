@@ -18,7 +18,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
   get:
@@ -48,6 +48,7 @@ dependencies:
   overlay_support: ^1.2.1
   firebase_core: ^1.10.2
   flutter_local_notifications: ^9.1.4
+  form_builder_validators: ^7.2.0
 
 dev_dependencies:
   flutter_test:

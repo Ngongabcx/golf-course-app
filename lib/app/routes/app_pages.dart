@@ -23,7 +23,7 @@ import 'package:gcms/app/modules/home/views/home_view.dart';
 part 'app_routes.dart';
 
 class AppPages {
-  static const INITIAL = Routes.HOME;
+  static const INITIAL = Routes.NOTIFICATION_DETAILS;
 
   static final routes = [
     GetPage(

@@ -8,7 +8,7 @@ class OptionsCard extends StatelessWidget {
   final Function() onTapped;
   final Color color;
 
-  const OptionsCard({Key key, this.text1, this.icon, this.onTapped, this.color}) : super(key: key);
+  const OptionsCard({Key? key, required this.text1, required this.icon, required this.onTapped, required this.color}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

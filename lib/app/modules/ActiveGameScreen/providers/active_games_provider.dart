@@ -8,9 +8,9 @@ class ActiveGamesProvider extends GetConnect {
       final response = await get("$kApiBaseURL/competitions");
       if (response.status.hasError) {
         print('<<===GET COMPETITIONS  ERROR==> ${response.statusText}');
-        return Future.error(response.statusText);
+        return Future.error(response.statusText.toString());
       } else {
-        final resp = competitionFromJson(response.bodyString);
+        final resp = competitionFromJson(response.bodyString.toString());
         print('<<===GET COMPETITIONS  SUCCESSFUL==> ${response.bodyString}');
         return resp;
       }

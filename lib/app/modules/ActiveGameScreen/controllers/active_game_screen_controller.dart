@@ -32,9 +32,9 @@ class ActiveGameScreenController extends GetxController {
         matches.value = resp;
         print("MATCHES ---> ${matches.toString()}");
         debugPrint(
-            "NUMBER  OF  COMPETITIONS ---> ${matches.value.payload.length}");
+            "NUMBER  OF  COMPETITIONS ---> ${matches.value.payload!.length}");
         debugPrint(
-            "FIRST COMPETITION NAME ---> ${matches.value.payload.first.compName}");
+            "FIRST COMPETITION NAME ---> ${matches.value.payload!.first.compName}");
         isProcessing(false);
         print(isProcessing.value);
       }, onError: (err) {

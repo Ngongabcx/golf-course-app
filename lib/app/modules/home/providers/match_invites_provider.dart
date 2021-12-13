@@ -9,10 +9,10 @@ class MatchInvitesProvider extends GetConnect {
       final response = await get("$kApiBaseURL/invites/all/$id");
       if (response.status.hasError) {
         print('<<===GET MATCH INVITATIONS  ERROR==> ${response.statusText}');
-        return Future.error(response.statusText);
+        return Future.error(response.statusText.toString());
       } else {
         final resp =
-            competitionFromJson(response.bodyString);
+            competitionFromJson(response.bodyString.toString());
         print('<<===GET MATCH INVITATIONS  SUCCESSFUL==> ${response.bodyString}');
         return resp;
       }

@@ -12,10 +12,10 @@ class CompetitionProvider extends GetConnect {
     try {
       final response = await post("$kApiBaseURL/competitions", data);
       if (response.status.hasError) {
-        return Future.error(response.statusText);
+        return Future.error(response.statusText.toString());
       } else {
         print("SUCCESSFUL COMPETITION RESPONSE -->>> ${response.body.toString()}");
-        final resp = competitionFromJson(response.bodyString);
+        final resp = competitionFromJson(response.bodyString.toString());
         return resp;
       }
     } catch (exception) {
@@ -29,10 +29,10 @@ class CompetitionProvider extends GetConnect {
     try {
       final response = await get("$kApiBaseURL/competitions/$id");
       if (response.status.hasError) {
-        return Future.error(response.statusText);
+        return Future.error(response.statusText.toString());
       } else {
         Map<String, dynamic> resp =
-            Map<String, dynamic>.from(jsonDecode(response.bodyString));
+            Map<String, dynamic>.from(jsonDecode(response.bodyString.toString()));
         print("DECODED JSON TO MAP --> $resp");
         return Competition.fromJson(resp);
         //return resp['payload']['id'];

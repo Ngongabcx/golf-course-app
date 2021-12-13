@@ -1,24 +1,24 @@
 class Course {
-  int id;
-  String courseName;
-  String address;
-  String courseAbr;
-  String email;
-  String phoneNo;
-  String courseImage;
-  List<Holes> holes;
-  List<Payments> payments;
+  int? id;
+  String? courseName;
+  String? address;
+  String? courseAbr;
+  String? email;
+  String? phoneNo;
+  String? courseImage;
+  List<Holes>? holes;
+  List<Payments>? payments;
 
   Course(
-      {this.id,
-      this.courseName,
-      this.address,
-      this.courseAbr,
-      this.email,
-      this.phoneNo,
-      this.courseImage,
-      this.holes,
-      this.payments});
+      {required this.id,
+      required this.courseName,
+      required this.address,
+      required this.courseAbr,
+      required this.email,
+      required this.phoneNo,
+      required this.courseImage,
+      required this.holes,
+      required this.payments});
 
   Course.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -31,13 +31,13 @@ class Course {
     if (json['holes'] != null) {
       holes = <Holes>[];
       json['holes'].forEach((v) {
-        holes.add(Holes.fromJson(v));
+        holes!.add(Holes.fromJson(v));
       });
     }
     if (json['payments'] != null) {
       payments = <Payments>[];
       json['payments'].forEach((v) {
-        payments.add(Payments.fromJson(v));
+        payments!.add(Payments.fromJson(v));
       });
     }
   }
@@ -52,34 +52,34 @@ class Course {
     data['phoneNo'] = phoneNo;
     data['courseImage'] = courseImage;
     if (holes != null) {
-      data['holes'] = holes.map((v) => v.toJson()).toList();
+      data['holes'] = holes!.map((v) => v.toJson()).toList();
     }
     if (payments != null) {
-      data['payments'] = payments.map((v) => v.toJson()).toList();
+      data['payments'] = payments!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class Holes {
-  int id;
-  int holeNo;
-  int yellow;
-  int white;
-  int blue;
-  int red;
-  int par;
-  int stroke;
+  int? id;
+  int? holeNo;
+  int? yellow;
+  int? white;
+  int? blue;
+  int? red;
+  int? par;
+  int? stroke;
 
   Holes(
-      {this.id,
-      this.holeNo,
-      this.yellow,
-      this.white,
-      this.blue,
-      this.red,
-      this.par,
-      this.stroke});
+      {required this.id,
+      required this.holeNo,
+      required this.yellow,
+      required this.white,
+      required this.blue,
+      required this.red,
+      required this.par,
+      required this.stroke});
 
   Holes.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -107,13 +107,13 @@ class Holes {
 }
 
 class Payments {
-  int id;
-  String name;
-  String type;
-  String category;
-  double amount;
+  int? id;
+  String? name;
+  String? type;
+  String? category;
+  double? amount;
 
-  Payments({this.id, this.name, this.type, this.category, this.amount});
+  Payments({required this.id, required this.name, required this.type, required this.category, required this.amount});
 
   Payments.fromJson(Map<String, dynamic> json) {
     id = json['id'];

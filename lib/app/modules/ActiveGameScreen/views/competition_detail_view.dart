@@ -7,7 +7,7 @@ import 'package:gcms/theme/gcms_theme.dart';
 import 'package:get/get.dart';
 
 class CompetitionDetailView extends GetView {
-  CompetitionDetailView({@required this.competition});
+  CompetitionDetailView({required this.competition});
   final Payload competition;
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class CompetitionDetailView extends GetView {
         iconTheme: IconThemeData(color: Colors.black),
         automaticallyImplyLeading: true,
         title: Text(
-          competition.compName.capitalizeFirst,
+          competition.compName.capitalizeFirst.toString(),
           style: Theme.of(context).textTheme.headline3,
         ),
         centerTitle: true,
@@ -59,7 +59,7 @@ class CompetitionDetailView extends GetView {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    competition.compName.capitalizeFirst,
+                    competition.compName.capitalizeFirst.toString(),
                     style: Theme.of(context).textTheme.headline6,
                   ),
                   Text(
@@ -170,6 +170,7 @@ class CompetitionDetailView extends GetView {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 16.0),
                     child: CustomButton(
+                      textStyle: GcmsTheme.lightTextTheme.bodyText2,
                       text: "Play",
                       onPressed: () {
                         Get.offAll(ScoresInputScreenView(competition));

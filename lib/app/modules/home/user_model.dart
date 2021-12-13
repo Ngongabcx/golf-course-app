@@ -1,38 +1,38 @@
 class User {
-  int id;
-  String username;
-  String firstName;
-  String lastName;
+  int? id;
+  String? username;
+  String? firstName;
+  String? lastName;
   dynamic phoneNo;
-  String email;
-  String address;
+  String? email;
+  String? address;
   dynamic image;
-  String dob;
-  String gender;
-  int hcp;
-  String dateJoined;
-  String aspnetusersId;
-  Usertype usertype;
+  String? dob;
+  String? gender;
+  int? hcp;
+  String? dateJoined;
+  String? aspnetusersId;
+  Usertype? usertype;
   dynamic employmentDetails;
   dynamic membership;
 
   User(
-      {this.id,
-      this.username,
-      this.firstName,
-      this.lastName,
-      this.phoneNo,
-      this.email,
-      this.address,
-      this.image,
-      this.dob,
-      this.gender,
-      this.hcp,
-      this.dateJoined,
-      this.aspnetusersId,
-      this.usertype,
-      this.employmentDetails,
-      this.membership});
+      {required this.id,
+      required this.username,
+      required this.firstName,
+      required this.lastName,
+      required this.phoneNo,
+      required this.email,
+      required this.address,
+      required this.image,
+      required this.dob,
+      required this.gender,
+      required this.hcp,
+      required this.dateJoined,
+      required this.aspnetusersId,
+      required this.usertype,
+      required this.employmentDetails,
+      required this.membership});
 
   User.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -70,7 +70,7 @@ class User {
     data['dateJoined'] = dateJoined;
     data['aspnetusersId'] = aspnetusersId;
     if (usertype != null) {
-      data['usertype'] = usertype.toJson();
+      data['usertype'] = usertype!.toJson();
     }
     data['employmentDetails'] = employmentDetails;
     data['membership'] = membership;
@@ -79,11 +79,11 @@ class User {
 }
 
 class Usertype {
-  int id;
-  String name;
-  String description;
+  int? id;
+  String? name;
+  String? description;
 
-  Usertype({this.id, this.name, this.description});
+  Usertype({required this.id, required this.name, required this.description});
 
   Usertype.fromJson(Map<String, dynamic> json) {
     id = json['id'];

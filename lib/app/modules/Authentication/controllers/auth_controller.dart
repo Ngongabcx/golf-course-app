@@ -7,15 +7,15 @@ import 'package:local_auth/auth_strings.dart';
 import 'package:local_auth/local_auth.dart';
 
 class AuthenticationController extends GetxController {
+  var iamimportant = false.obs;
+  var isObscure = true.obs;
   var _localAuth = LocalAuthentication();
   var hasFingerPrintLock = false.obs;
   var hasFaceLock = false.obs;
   var isUserAuthenticated = false.obs;
-  final loginFormKey = GlobalKey<FormState>();
-  final signUpFormKey = GlobalKey<FormState>();
   var storage = GetStorage();
   var isProcessing = false.obs;
-  TextEditingController usernameController,
+  late final TextEditingController usernameController,
       passwordController,
       signUpEmailController,
       signUpPasswordController,
@@ -23,7 +23,7 @@ class AuthenticationController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-     _getAllBiometrics();
+    _getAllBiometrics();
     usernameController = TextEditingController();
     passwordController = TextEditingController();
     signUpEmailController = TextEditingController();
@@ -51,6 +51,7 @@ class AuthenticationController extends GetxController {
       ShowSnackBar("Error", 'Local Authentication not available', Colors.red);
     }
   }
+
   void authenticateUser() async {
     try {
       const androidMessage = const AndroidAuthMessages(
@@ -67,15 +68,16 @@ class AuthenticationController extends GetxController {
         androidAuthStrings: androidMessage,
       );
       if (isUserAuthenticated.value) {
-        ShowSnackBar( "Success", "You are authenticated",Colors.green);
+        ShowSnackBar("Success", "You are authenticated", Colors.green);
       } else {
-        ShowSnackBar( "Error", "Authentication Cancelled", Colors.red);
+        ShowSnackBar("Error", "Authentication Cancelled", Colors.red);
       }
     } catch (e) {
-      ShowSnackBar("Error", e.toString(),Colors.red);
+      ShowSnackBar("Error", e.toString(), Colors.red);
       print("EXCEPTION --> ${e.toString()}");
     }
   }
+
   // Save Data
   void login(Map data) {
     try {
@@ -83,12 +85,12 @@ class AuthenticationController extends GetxController {
       AuthProvider().login(data).then((resp) async {
         clearTextEditingControllers();
         isProcessing(false);
-        print("ACCESSTOKEN ---> " + resp.info.accessToken);
-        print("REFRESHTOKEN ---> " + resp.info.refreshToken);
+        print("ACCESSTOKEN ---> " + resp.info!.accessToken.toString());
+        print("REFRESHTOKEN ---> " + resp.info!.refreshToken.toString());
         ShowSnackBar("Success", "Login Successful.", Colors.green);
         storage.write("isLoggedIn", true);
-        storage.write("accessToken", resp.info.accessToken);
-        storage.write("refreshToken", resp.info.refreshToken);
+        storage.write("accessToken", resp.info!.accessToken);
+        storage.write("refreshToken", resp.info!.refreshToken);
         Get.offAllNamed('/home');
       }, onError: (err) {
         isProcessing(false);
@@ -109,8 +111,8 @@ class AuthenticationController extends GetxController {
         isProcessing(false);
         ShowSnackBar("Success", "Login Successful.", Colors.green);
         storage.write("isLoggedIn", true);
-        storage.write("accessToken", resp.info.accessToken);
-        storage.write("refreshToken", resp.info.refreshToken);
+        storage.write("accessToken", resp.info!.accessToken);
+        storage.write("refreshToken", resp.info!.refreshToken);
         Get.offAllNamed('/home');
       }, onError: (err) {
         isProcessing(false);

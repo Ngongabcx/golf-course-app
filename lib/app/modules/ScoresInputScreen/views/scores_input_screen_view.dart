@@ -83,7 +83,7 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                     Obx(() {
                                       return RoundButtonWidget(
                                         text:  _controller.gameHoles[_controller.holeIndex.value].holeNo.toString(),
-                                        style: Theme.of(context)
+                                        textStyle: Theme.of(context)
                                             .textTheme
                                             .bodyText2,
                                       );
@@ -107,7 +107,7 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                     Obx(() {
                                       return RoundButtonWidget(
                                         text:  _controller.gameHoles[_controller.holeIndex.value].par.toString(),
-                                        style: Theme.of(context)
+                                        textStyle: Theme.of(context)
                                             .textTheme
                                             .bodyText2,
                                       );
@@ -132,7 +132,7 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                       return RoundButtonWidget(
                                         text:
                                             _controller.gameHoles[_controller.holeIndex.value].stroke.toString(),
-                                        style: Theme.of(context)
+                                        textStyle: Theme.of(context)
                                             .textTheme
                                             .bodyText2,
                                       );
@@ -201,7 +201,7 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                       ScoreWidget(
                                         text:
                                             _controller.score.value.toString(),
-                                        style: Theme.of(context)
+                                        textStyle: Theme.of(context)
                                             .textTheme
                                             .bodyText2,
                                       ),
@@ -253,7 +253,7 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                       ResultWidget(
                                         text:
                                             _controller.result.value.toString(),
-                                        style:
+                                        textStyle:
                                             GcmsTheme.darkTextTheme.bodyText1,
                                       ),
                                     ],
@@ -267,6 +267,7 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                               Padding(
                                 padding: const EdgeInsets.only(top: 8.0),
                                 child: CustomButton(
+                                  textStyle:GcmsTheme.lightTextTheme.bodyText2,
                                   text: "Submit",
                                   onPressed: () {
                                     _controller.calculateResult();
@@ -423,10 +424,10 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                     decoration: BoxDecoration(
                                       border: Border(
                                         top: BorderSide(
-                                          color: Colors.grey[300],
+                                          color: Colors.grey,
                                         ),
                                         bottom: BorderSide(
-                                          color: Colors.grey[300],
+                                          color: Colors.grey,
                                         ),
                                       ),
                                     ),
@@ -460,6 +461,7 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                               Padding(
                                   padding: const EdgeInsets.only(top: 8.0),
                                   child: CustomButton(
+                                    textStyle: GcmsTheme.lightTextTheme.bodyText2,
                                     text: "End Match",
                                     onPressed: () {
                                       Get.defaultDialog(

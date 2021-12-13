@@ -4,16 +4,16 @@ import 'package:gcms/constants/constant.dart';
 class RoundButtonWidget extends StatelessWidget {
 
   final String text;
-  final TextStyle style;
+  final TextStyle? textStyle;
 
-  const RoundButtonWidget({Key key, this.text, this.style}) : super(key: key);
+  const RoundButtonWidget({Key? key, required this.text, required this.textStyle}) : super(key: key);
 
 
   @override
   Widget build(BuildContext context) {
     return RawMaterialButton(
       child: Text(text),
-      textStyle: (style),
+      textStyle: (textStyle),
       elevation: 4.0,
       fillColor: Color(0xFFFFFFFF),
       constraints: const BoxConstraints.tightFor(

@@ -4,10 +4,10 @@ import 'package:gcms/theme/gcms_theme.dart';
 class SubmitButton extends StatelessWidget {
 
   final String text;
-  final TextStyle style;
+  final TextStyle? style;
   final Function() onPressed;
 
-  const SubmitButton({Key key, this.text, this.style, this.onPressed}) : super(key: key);
+  const SubmitButton({Key? key, required this.text, required this.style, required this.onPressed}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

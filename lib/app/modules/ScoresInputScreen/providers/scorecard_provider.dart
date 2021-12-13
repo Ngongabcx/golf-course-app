@@ -16,9 +16,9 @@ class ScorecardProvider extends GetConnect {
       //final body = json.decode(response.bodyString);
       if (response.status.hasError) {
         print("POST SCORES RESPONSE  --> ${response.body.toString()}");
-        return Future.error(response.statusText);
+        return Future.error(response.statusText.toString());
       } else {
-        Map<String, dynamic> resp = jsonDecode(response.bodyString);
+        Map<String, dynamic> resp = jsonDecode(response.bodyString.toString());
         return Scorecard.fromJson(resp);
       }
     } catch (exception) {
