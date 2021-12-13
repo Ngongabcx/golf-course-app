@@ -1,13 +1,26 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
 import 'package:gcms/app/modules/home/providers/user_provider.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:image_picker/image_picker.dart';
 
 class SettingScreenController extends GetxController {
   final userFormKey = GlobalKey<FormState>();
   var isProcessing = false.obs;
   var biometricsSet = false.obs;
+  var selectedImagePath = ''.obs;
+  var selectedImageSize = ''.obs;
+  void getImage(ImageSource imageSource) async {
+    final pickedFile = await ImagePicker().pickImage(source: imageSource);
+    selectedImagePath.value = pickedFile!.path;
+    selectedImageSize.value =
+        ((File(selectedImagePath.value)).lengthSync() / 1024 / 1024)
+                .toStringAsFixed(2) +
+            'Mb';
+  }
 
   var storage = GetStorage();
 

@@ -14,6 +14,7 @@ abstract class Routes {
   static const SETUP_SCREEN = _Paths.SETUP_SCREEN;
   static const SETTING_SCREEN = _Paths.SETTING_SCREEN;
   static const JOIN_MATCH_SCREEN = _Paths.JOIN_MATCH_SCREEN;
+  static const COURSE = _Paths.COURSE;
 }
 
 abstract class _Paths {
@@ -29,4 +30,5 @@ abstract class _Paths {
   static const SETUP_SCREEN = '/setup-screen';
   static const SETTING_SCREEN = '/setting-screen';
   static const JOIN_MATCH_SCREEN = '/join-match-screen';
+  static const COURSE = '/course';
 }

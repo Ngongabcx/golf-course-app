@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:gcms/app/modules/commonWidgets/customButton.dart';
 import 'package:gcms/app/modules/commonWidgets/loader/loader.dart';
 import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
-import 'package:get/get.dart';
-
-import 'package:gcms/app/modules/commonWidgets/customButton.dart';
 import 'package:gcms/constants/constant.dart';
 import 'package:gcms/theme/gcms_theme.dart';
+import 'package:get/get.dart';
 
 import '../controllers/auth_controller.dart';
 import 'login_form_view.dart';
@@ -130,22 +129,25 @@ class LoginView extends GetView<AuthenticationController> {
                                           }),
                                     ),
                                   ),
-                                  Expanded(
-                                    flex: 2,
-                                    child: Align(
-                                      alignment: Alignment.centerRight,
-                                      child: IconButton(
-                                        padding: EdgeInsets.only(right: 14),
-                                        splashRadius: 25,
-                                        icon: Icon(Icons.fingerprint_outlined),
-                                        iconSize: 65,
-                                        color: kPrimaryColor,
-                                        splashColor: Colors.grey,
-                                        onPressed: () =>
-                                            _controller.authenticateUser(),
+                                  if (_controller.hasFingerPrintLock.value !=
+                                      true)
+                                    Expanded(
+                                      flex: 2,
+                                      child: Align(
+                                        alignment: Alignment.centerRight,
+                                        child: IconButton(
+                                          padding: EdgeInsets.only(right: 14),
+                                          splashRadius: 25,
+                                          icon:
+                                              Icon(Icons.fingerprint_outlined),
+                                          iconSize: 65,
+                                          color: kPrimaryColor,
+                                          splashColor: Colors.grey,
+                                          onPressed: () =>
+                                              _controller.authenticateUser(),
+                                        ),
                                       ),
                                     ),
-                                  ),
                                 ],
                               ),
                             ),

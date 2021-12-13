@@ -7,12 +7,14 @@ import 'package:local_auth/auth_strings.dart';
 import 'package:local_auth/local_auth.dart';
 
 class AuthenticationController extends GetxController {
+  var currentStep = 0.obs;
   var iamimportant = false.obs;
   var isObscure = true.obs;
   var _localAuth = LocalAuthentication();
   var hasFingerPrintLock = false.obs;
   var hasFaceLock = false.obs;
   var isUserAuthenticated = false.obs;
+  final signUpFormKey = GlobalKey<FormState>();
   var storage = GetStorage();
   var isProcessing = false.obs;
   late final TextEditingController usernameController,

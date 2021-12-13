@@ -11,7 +11,7 @@ import 'app/modules/home/views/home_view.dart';
 import 'app/routes/app_pages.dart';
 
 //Receives notifications when app is in background
-//This should always be a top level function i.e it shouldnt be in any class but rather outside the app scope
+//This should always be a top level function i.e it shouldn't be in any class but rather outside the app scope
 Future<void> notificationsBackgroundHandler(RemoteMessage message) async {
   print(message.data.toString());
   print(message.notification!.title);

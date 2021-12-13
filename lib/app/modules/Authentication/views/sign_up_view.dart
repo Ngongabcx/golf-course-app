@@ -1,255 +1,79 @@
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/Authentication/controllers/auth_controller.dart';
 import 'package:gcms/app/modules/commonWidgets/customButton.dart';
-import 'package:gcms/app/modules/commonWidgets/loader/loading_provider.dart';
-import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
-import 'package:gcms/app/modules/commonWidgets/textFormField.dart';
 import 'package:gcms/constants/constant.dart';
 import 'package:gcms/theme/gcms_theme.dart';
-
 import 'package:get/get.dart';
-import 'package:provider/src/provider.dart';
+
+import 'build_step.dart';
 
 class SignUpView extends GetView<AuthenticationController> {
   final signUpController = Get.put(AuthenticationController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-              fit: StackFit.expand,
-              children: [
-                // Image.asset(
-                //   "assets/images/bg.jpg",
-                //   fit: BoxFit.fill,
-                //   color: Colors.black.withOpacity(0.5),
-                //   colorBlendMode: BlendMode.darken,
-                // ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.start,
+      body: Theme(
+        data: Theme.of(context).copyWith(
+          colorScheme: ColorScheme.light(primary: kPrimaryColor),
+        ),
+        child: SafeArea(
+          child: Obx(
+            () => Stepper(
+              type: StepperType.horizontal,
+              steps: buildStep(),
+              currentStep: signUpController.currentStep.value,
+              onStepContinue: () {
+                if (signUpController.currentStep.value ==
+                    buildStep().length - 1) {
+                  print('Send data to the server');
+                } else {
+                  signUpController.currentStep.value++;
+                }
+              },
+              onStepCancel: () {
+                signUpController.currentStep.value == 0
+                    ? null
+                    : signUpController.currentStep.value--;
+              },
+              onStepTapped: (index) {
+                signUpController.currentStep.value = index;
+              },
+              controlsBuilder: (context, {onStepContinue, onStepCancel}) {
+                return Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 30),
+                  child: Container(
+                    child: Row(
                       children: [
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0, 70, 0, 30),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Expanded(
-                                flex: 2,
-                                child: Text(
-                                  'Sign Up',
-                                  textAlign: TextAlign.center,
-                                  style:
-                                      Theme.of(context).textTheme.headline1,
-                                ),
-                              ),
-                            ],
+                        if (signUpController.currentStep.value != 0)
+                          Expanded(
+                            child: CustomButton(
+                                text: 'Previous',
+                                textStyle: GcmsTheme.lightTextTheme.bodyText2,
+                                onPressed: onStepCancel),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0, 16, 0, 0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Expanded(
-                                child: CustomTextFormFieldWidget(
-                                  controller.signUpEmailController,
-                                  "Email",
-                                  (s) {},
-                                  false,
-                                  false,
-                                  true,
-                                ),
-                              ),
-                            ],
+                        if (signUpController.currentStep.value != 0)
+                          SizedBox(
+                            width: 16,
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0, 16, 0, 0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Expanded(
-                                child: CustomTextFormFieldWidget(
-                                  controller.signUpPasswordController,
-                                  "Password",
-                                  (s) {},
-                                  true,
-                                  false,
-                                  false,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0, 16, 0, 0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Expanded(
-                                child: CustomTextFormFieldWidget(
-                                  controller.signUpConfirmPasswordController,
-                                  "Confirm Password",
-                                  (s) {},
-                                  true,
-                                  false,
-                                  false,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0, 24, 0, 0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 16.0),
-                          child: Obx(() {
-                            //Returning loader and dismissing it once processing status changes
-                            Future.delayed(Duration.zero, () async {
-                              context
-                                  .read<LoadingProvider>()
-                                  .setLoad(controller.isProcessing.value);
-                            });
-                            //Dismissing keyboard
-                            FocusScope.of(context).requestFocus(new FocusNode());
-                            return CustomButton(
-                              text: (controller.isProcessing.value == true
-                                  ? 'Processing'
-                                  : 'Create Account'),
+                        Expanded(
+                          child: CustomButton(
+                              text: signUpController.currentStep.value ==
+                                      buildStep().length - 1
+                                  ? 'Submit'
+                                  : 'Next',
                               textStyle: GcmsTheme.lightTextTheme.bodyText2,
-                              onPressed: () {
-                                if (GetUtils.isEmail(
-                                    controller.signUpEmailController.text)) {
-                                  if (controller.signUpPasswordController.text.isEmpty) {
-                                    ShowSnackBar(
-                                      "Password cannot be empty",
-                                      "Please provide a valid password.",
-                                      Colors.red,
-                                    );
-                                  } else {
-                                    if (controller.signUpConfirmPasswordController.text.isEmpty) {
-                                      ShowSnackBar(
-                                        "Password cannot be empty",
-                                        "Please provide a valid password.",
-                                        Colors.red,
-                                      );
-                                    } else {
-                                      if (controller.signUpPasswordController
-                                              .text !=
-                                          controller
-                                              .signUpConfirmPasswordController
-                                              .text) {
-                                        ShowSnackBar(
-                                          "Password Error",
-                                          "Passwords entered did not match.",
-                                          Colors.red,
-                                        );
-                                      } else {
-                                        if (controller.isProcessing.value ==
-                                            false) {
-                                          controller.register({
-                                            'username': controller
-                                                .signUpEmailController.text,
-                                            'email': controller
-                                                .signUpEmailController.text,
-                                            'password': controller
-                                                .signUpPasswordController
-                                                .text,
-                                          });
-                                        }
-                                      }
-                                    }
-                                  }
-                                } else {
-                                  ShowSnackBar(
-                                    "Invalid Email",
-                                    "Please provide a valid email address.",
-                                    Colors.red,
-                                  );
-                                }
-                              },
-                            );
-                          }),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 16.0),
-                          child: InkWell(
-                            onTap: () {
-                              Get.back();
-                            },
-                            child: Ink(
-                              padding: EdgeInsets.symmetric(
-                                vertical: 8,
-                                horizontal: 16,
-                              ),
-                              decoration: BoxDecoration(
-                                border: Border(
-                                  top: BorderSide(
-                                    color: Colors.grey,
-                                  ),
-                                  bottom: BorderSide(
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                              ),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            bottom: 4.0),
-                                        child: Text(
-                                          "Already have an Account?",
-                                          style: TextStyle(
-                                            color: kPrimaryColor,
-                                            // fontWeight: FontWeight.bold,
-                                            fontSize: 16,
-                                          ),
-                                        ),
-                                      ),
-                                      Text(
-                                        'Login here.',
-                                        style: TextStyle(
-                                          color: Colors.grey[600],
-                                          fontSize: 14,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
+                              onPressed: onStepContinue),
                         ),
                       ],
                     ),
                   ),
-                ),
-              ],
+                );
+              },
             ),
+          ),
+        ),
+      ),
     );
   }
 }

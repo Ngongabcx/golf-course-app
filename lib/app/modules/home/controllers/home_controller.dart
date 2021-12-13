@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:gcms/app/modules/Authentication/views/user_details_screen_view.dart';
 import 'package:gcms/app/modules/Notifications/views/notifications_view.dart';
-import 'package:gcms/app/modules/SettingScreen/views/user_details_screen_view.dart';
 import 'package:gcms/app/modules/SetupScreen/competition_model.dart';
 import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
 import 'package:gcms/app/modules/home/providers/match_invites_provider.dart';
@@ -13,6 +13,7 @@ import 'package:gcms/app/services/local_notifications_service.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:jwt_decode/jwt_decode.dart';
+
 import '../user_model.dart';
 
 class HomeController extends GetxController {
@@ -69,10 +70,10 @@ class HomeController extends GetxController {
     //Below line only works when notofication has been tapped/open whilst the app is running in the background
     //Its also a stream hance we havr to listen
     FirebaseMessaging.onMessageOpenedApp.listen((message) {
-        final routeFromMessage = message.data["viewUri"];
-        print(routeFromMessage);
-        //We can push the notification to a specific view from here
-        Get.toNamed("/$routeFromMessage");
+      final routeFromMessage = message.data["viewUri"];
+      print(routeFromMessage);
+      //We can push the notification to a specific view from here
+      Get.toNamed("/$routeFromMessage");
     });
   }
 
@@ -127,7 +128,8 @@ class HomeController extends GetxController {
         }
         storage.write("userId", usr.id.toString());
         storage.write("hcp", usr.hcp!.toInt());
-        storage.write("name", usr.firstName.toString() + " " + usr.lastName.toString());
+        storage.write(
+            "name", usr.firstName.toString() + " " + usr.lastName.toString());
         storage.write("profilePic", usr.image);
         await getMatchInvites(usr.id.toString());
         if (usr.username!.isEmpty) {

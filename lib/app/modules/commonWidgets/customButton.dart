@@ -3,11 +3,12 @@ import 'package:gcms/constants/constant.dart';
 import 'package:gcms/theme/gcms_theme.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({required this.text, required this.textStyle, required this.onPressed});
+  const CustomButton(
+      {required this.text, required this.textStyle, required this.onPressed});
 
   final String text;
   final TextStyle? textStyle;
-  final Function() onPressed;
+  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
