@@ -48,7 +48,10 @@ dependencies:
   overlay_support: ^1.2.1
   firebase_core: ^1.10.2
   flutter_local_notifications: ^9.1.4
-  form_builder_validators: ^7.2.0
+  logger: ^1.1.0
+  image_picker: ^0.8.4+4
+  image_cropper: ^1.4.1
+  flutter_image_compress: ^1.1.0
 
 dev_dependencies:
   flutter_test:

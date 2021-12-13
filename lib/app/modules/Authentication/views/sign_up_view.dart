@@ -39,34 +39,32 @@ class SignUpView extends GetView<AuthenticationController> {
               onStepTapped: (index) {
                 signUpController.currentStep.value = index;
               },
-              controlsBuilder: (context, {onStepContinue, onStepCancel}) {
-                return Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 30),
-                  child: Container(
-                    child: Row(
-                      children: [
-                        if (signUpController.currentStep.value != 0)
-                          Expanded(
-                            child: CustomButton(
-                                text: 'Previous',
-                                textStyle: GcmsTheme.lightTextTheme.bodyText2,
-                                onPressed: onStepCancel),
-                          ),
-                        if (signUpController.currentStep.value != 0)
-                          SizedBox(
-                            width: 16,
-                          ),
+              controlsBuilder: (BuildContext context, ControlsDetails controls,
+                  {onStepContinue, onStepCancel}) {
+                return Container(
+                  child: Row(
+                    children: [
+                      if (signUpController.currentStep.value != 0)
                         Expanded(
                           child: CustomButton(
-                              text: signUpController.currentStep.value ==
-                                      buildStep().length - 1
-                                  ? 'Submit'
-                                  : 'Next',
+                              text: 'Previous',
                               textStyle: GcmsTheme.lightTextTheme.bodyText2,
-                              onPressed: onStepContinue),
+                              onPressed: onStepCancel),
                         ),
-                      ],
-                    ),
+                      if (signUpController.currentStep.value != 0)
+                        SizedBox(
+                          width: 16,
+                        ),
+                      Expanded(
+                        child: CustomButton(
+                            text: signUpController.currentStep.value ==
+                                    buildStep().length - 1
+                                ? 'Submit'
+                                : 'Next',
+                            textStyle: GcmsTheme.lightTextTheme.bodyText2,
+                            onPressed: onStepContinue),
+                      ),
+                    ],
                   ),
                 );
               },
