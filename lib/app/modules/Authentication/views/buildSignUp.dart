@@ -13,7 +13,6 @@ class BuildSignUp extends GetView<AuthenticationController> {
   final signUpController = Get.put(AuthenticationController());
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Form(
       key: signUpController.signUpFormKey,
       child: Column(
