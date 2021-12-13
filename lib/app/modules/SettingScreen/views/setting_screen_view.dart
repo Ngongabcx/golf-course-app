@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/Authentication/views/user_details_screen_view.dart';
 import 'package:gcms/app/modules/Notifications/views/notifications_view.dart';
+import 'package:gcms/bcx_icons_icons.dart';
 import 'package:get/get.dart';
 import 'package:settings_ui/settings_ui.dart';
 
@@ -74,7 +75,7 @@ class SettingScreenView extends GetView<SettingScreenController> {
               SettingsTile(
                 title: 'Face ID',
                 subtitle: 'Use face Id',
-                leading: Icon(Icons.camera_alt_outlined),
+                leading: Icon(BcxIcons.face_id,size: 30.0,),
                 onPressed: (BuildContext context) {},
               ),
             ],

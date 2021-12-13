@@ -9,13 +9,13 @@ class AuthProvider extends GetConnect {
   //LOGIN
   Future<Auth> login(Map data) async {
     try {
-      final response = await post("$kApiBaseURL/authmanagement/login", data);
+      final response = await post("$kApiBaseURL/authmanagement/login", data).timeout(Duration(seconds: 50));
       if (response.status.hasError) {
         if(response.statusCode == 400){
          print("RESPONSE STATUS --------->>>> ${response.body["errors"].join(",")}");
           return Future.error(response.body["errors"].join(","));
         }
-        print("RESPONSE ERROR --------->>>> ${response.body.toString()}");
+        print("RESPONSE ERROR --------->>>> ${response.statusText}");
         return Future.error(response.statusText.toString());
       } else {
         print('<<===LOGIN RESPONSE BODY==> ${response.body.toString()}');
