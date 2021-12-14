@@ -36,6 +36,7 @@ class AuthenticationController extends GetxController {
   @override
   void onReady() {
     super.onReady();
+    authenticateUser();
   }
 
   @override
