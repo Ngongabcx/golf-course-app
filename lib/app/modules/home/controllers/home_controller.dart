@@ -30,10 +30,10 @@ class HomeController extends GetxController {
   void onInit() async {
     super.onInit();
     LocalNotificationsService.initialize();
+    notifications();
     await validateTokenAndGetUser();
     // await checkIfUserFullyRegistered();
-    notifications();
-    Get.offAllNamed('/home');
+   // Get.offAllNamed('/home');
   }
 
   @override
@@ -42,7 +42,6 @@ class HomeController extends GetxController {
     super.onClose();
     name.value = '';
   }
-
   void onItemTapped(int index) {
     selectedIndex.value = index;
   }
@@ -134,9 +133,11 @@ class HomeController extends GetxController {
         await getMatchInvites(usr.id.toString());
         if (usr.username!.isEmpty) {
           ShowSnackBar("USER DETAILS Error", "NO USER INFO FOUND", Colors.blue);
+          Get.toNamed("/login");
         }
         name.value = usr.firstName!;
         isProcessing(false);
+         Get.offAllNamed('/home');
       }, onError: (err) {
         isProcessing(false);
         ShowSnackBar("Error", err.toString(), Colors.red);

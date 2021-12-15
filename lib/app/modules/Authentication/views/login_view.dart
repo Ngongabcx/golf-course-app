@@ -130,7 +130,7 @@ class LoginView extends GetView<AuthenticationController> {
                                     ),
                                   ),
                                   if (_controller.hasFingerPrintLock.value !=
-                                      true)
+                                      false)
                                     Expanded(
                                       flex: 2,
                                       child: Align(

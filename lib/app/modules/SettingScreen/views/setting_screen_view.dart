@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/Authentication/views/user_details_screen_view.dart';
 import 'package:gcms/app/modules/Notifications/views/notifications_view.dart';
+import 'package:gcms/app/modules/home/controllers/home_controller.dart';
 import 'package:gcms/bcx_icons_icons.dart';
 import 'package:get/get.dart';
 import 'package:settings_ui/settings_ui.dart';
@@ -9,6 +10,7 @@ import '../controllers/setting_screen_controller.dart';
 
 class SettingScreenView extends GetView<SettingScreenController> {
   // final AuthenticationController bioController = Get.find();
+  final _controller = Get.put(HomeController());
   bool _toggled = true;
   @override
   Widget build(BuildContext context) {
@@ -101,6 +103,7 @@ class SettingScreenView extends GetView<SettingScreenController> {
                 subtitle: 'Leave the application',
                 leading: Icon(Icons.exit_to_app),
                 onPressed: (BuildContext context) {
+                  _controller.storage.erase();
                   Get.offAllNamed('/login');
                 },
               ),
