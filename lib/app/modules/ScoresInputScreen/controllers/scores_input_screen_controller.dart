@@ -79,9 +79,9 @@ class ScoresInputScreenController extends GetxController {
          print("old hole --> ${gameHoles[holeIndex.value].holeNo}, old par --> ${gameHoles[holeIndex.value].par}");
         holeIndex.value++;
         ShowSnackBar(
-            "Success",
-            "Your score has been saved.",
-            Colors.green);
+            title: "Success",
+            message: "Your score has been saved.",
+            backgroundColor:Colors.green);
         print("Hole index after ${holeIndex.value}");
         print("new hole --> ${gameHoles[holeIndex.value].holeNo}, new par --> ${gameHoles[holeIndex.value].par}");
         score.value = 0;
@@ -90,12 +90,12 @@ class ScoresInputScreenController extends GetxController {
         isProcessing(false);
         print("POST SCORES ERROR ---> ${err.toString()}");
         ShowSnackBar(
-            "Error", "Failed to save scores please try again.", Colors.red);
+            title: "Error", message: "Failed to save scores please try again.", backgroundColor:Colors.red);
       });
     } catch (exception) {
       isProcessing(false);
       print("<---------EXCEPTION2--------->" + exception.toString());
-      ShowSnackBar("Exception", exception.toString(), Colors.red);
+      ShowSnackBar(title: "Exception", message:exception.toString(), backgroundColor:Colors.red);
     }
   }
 

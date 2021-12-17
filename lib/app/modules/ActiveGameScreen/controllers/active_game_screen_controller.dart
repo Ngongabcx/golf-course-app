@@ -39,12 +39,12 @@ class ActiveGameScreenController extends GetxController {
         print(isProcessing.value);
       }, onError: (err) {
         print("Error receiving matches -->" + err.toString());
-        ShowSnackBar("Error", err.toString(), Colors.red);
+        ShowSnackBar(title:"Error", message:err.toString(), backgroundColor:Colors.red);
         isProcessing(false);
       });
     } catch (exception) {
       print("Exception receiving matches  -->" + exception.toString());
-      ShowSnackBar("Exception", exception.toString(), Colors.red);
+      ShowSnackBar(title:"Exception", message:exception.toString(), backgroundColor:Colors.red);
       isProcessing(false);
     }
   }

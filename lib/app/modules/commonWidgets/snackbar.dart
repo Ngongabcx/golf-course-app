@@ -5,7 +5,7 @@ class ShowSnackBar {
   final String title;
   final String message;
   final Color backgroundColor;
-  ShowSnackBar(this.title, this.message, this.backgroundColor) {
+  ShowSnackBar({required this.title, required this.message, required this.backgroundColor}) {
 
     Get.snackbar(title, message,
         snackPosition: SnackPosition.BOTTOM,

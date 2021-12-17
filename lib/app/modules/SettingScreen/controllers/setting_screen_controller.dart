@@ -77,16 +77,16 @@ class SettingScreenController extends GetxController {
       UserProvider().createUser(data).then((resp) {
         clearTextEditingControllers();
         isProcessing(false);
-        ShowSnackBar("Success", "User Successfully Created.", Colors.green);
+        ShowSnackBar(title: "Success", message: "User Successfully Created.", backgroundColor:Colors.green);
         Get.offAllNamed('/home');
       }, onError: (err) {
         isProcessing(false);
-        ShowSnackBar("Error", err.toString(), Colors.red);
+        ShowSnackBar(title: "Error", message:err.toString(), backgroundColor:Colors.red);
       });
     } catch (exception) {
       isProcessing(false);
       print("<---------EXCEPTION2--------->" + exception.toString());
-      ShowSnackBar("Exception", exception.toString(), Colors.red);
+      ShowSnackBar(title: "Exception", message:exception.toString(), backgroundColor:Colors.red);
     }
   }
 

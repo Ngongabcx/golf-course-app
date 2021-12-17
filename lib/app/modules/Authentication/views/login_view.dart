@@ -101,9 +101,9 @@ class LoginView extends GetView<AuthenticationController> {
                                               if (controller.passwordController
                                                   .text.isEmpty) {
                                                 ShowSnackBar(
-                                                  "Password cannot be empty",
-                                                  "Please provide a valid password.",
-                                                  Colors.red,
+                                                  title: "Password cannot be empty",
+                                                  message: "Please provide a valid password.",
+                                                  backgroundColor:Colors.red,
                                                 );
                                               } else {
                                                 if (controller
@@ -121,9 +121,9 @@ class LoginView extends GetView<AuthenticationController> {
                                               }
                                             } else {
                                               ShowSnackBar(
-                                                "Invalid Email",
-                                                "Please provide a valid email address.",
-                                                Colors.red,
+                                                title: "Invalid Email",
+                                                message: "Please provide a valid email address.",
+                                                backgroundColor:Colors.red,
                                               );
                                             }
                                           }),

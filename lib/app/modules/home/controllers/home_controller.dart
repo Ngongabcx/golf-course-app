@@ -31,9 +31,7 @@ class HomeController extends GetxController {
     super.onInit();
     LocalNotificationsService.initialize();
     notifications();
-    await validateTokenAndGetUser();
-    // await checkIfUserFullyRegistered();
-   // Get.offAllNamed('/home');
+    validateTokenAndGetUser();
   }
 
   @override
@@ -92,8 +90,7 @@ class HomeController extends GetxController {
     }
     Map<String, dynamic> tkn = Jwt.parseJwt('${storage.read("accessToken")}');
     storage.write("aspUserID", tkn['Id']);
-    await getUserDetails(tkn['Id']);
-    isProcessing(false);
+    getUserDetails(tkn['Id']);
   }
 
   refreshToken(Map data) {
@@ -104,12 +101,12 @@ class HomeController extends GetxController {
         storage.write("refreshToken", resp.info!.refreshToken);
         isProcessing(false);
       }, onError: (err) {
-        ShowSnackBar("Error", err.toString(), Colors.red);
+        ShowSnackBar(title: "Error", message:err.toString(), backgroundColor:Colors.red);
         isProcessing(false);
         Get.offAllNamed('/login');
       });
     } catch (exception) {
-      ShowSnackBar("Exception", exception.toString(), Colors.red);
+      ShowSnackBar(title: "Exception", message:exception.toString(), backgroundColor:Colors.red);
       isProcessing(false);
       Get.offAllNamed('/login');
     }
@@ -132,7 +129,7 @@ class HomeController extends GetxController {
         storage.write("profilePic", usr.image);
         await getMatchInvites(usr.id.toString());
         if (usr.username!.isEmpty) {
-          ShowSnackBar("USER DETAILS Error", "NO USER INFO FOUND", Colors.blue);
+          ShowSnackBar(title:"USER DETAILS Error", message:"NO USER INFO FOUND", backgroundColor:Colors.blue);
           Get.toNamed("/login");
         }
         name.value = usr.firstName!;
@@ -140,12 +137,12 @@ class HomeController extends GetxController {
          Get.offAllNamed('/home');
       }, onError: (err) {
         isProcessing(false);
-        ShowSnackBar("Error", err.toString(), Colors.red);
+        ShowSnackBar(title: "Error", message:err.toString(), backgroundColor:Colors.red);
         Get.offAllNamed('/login');
       });
     } catch (exception) {
       isProcessing(false);
-      ShowSnackBar("Exception", exception.toString(), Colors.red);
+      ShowSnackBar(title: "Exception", message:exception.toString(), backgroundColor:Colors.red);
       Get.offAllNamed('/login');
     }
   }
@@ -157,11 +154,11 @@ class HomeController extends GetxController {
         matchInvites.value = resp;
         isProcessing(false);
       }, onError: (err) {
-        ShowSnackBar("Error", err.toString(), Colors.red);
+        ShowSnackBar(title: "Error", message:err.toString(), backgroundColor:Colors.red);
         isProcessing(false);
       });
     } catch (exception) {
-      ShowSnackBar("Exception", exception.toString(), Colors.red);
+      ShowSnackBar(title: "Exception", message:exception.toString(), backgroundColor:Colors.red);
       isProcessing(false);
     }
   }

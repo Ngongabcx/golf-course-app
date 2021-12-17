@@ -54,12 +54,12 @@ class SetupScreenController extends GetxController {
       }, onError: (err) {
         print("Error getting courses details -->" + err.toString());
         isProcessing(false);
-        ShowSnackBar("Error", err.toString(), Colors.red);
+        ShowSnackBar(title: "Error", message:err.toString(), backgroundColor:Colors.red);
       });
     } catch (exception) {
       print("Exception getting courses details -->" + exception.toString());
       isProcessing(false);
-      ShowSnackBar("Exception", exception.toString(), Colors.red);
+      ShowSnackBar(title: "Exception", message:exception.toString(), backgroundColor:Colors.red);
     }
   }
 
@@ -74,12 +74,12 @@ class SetupScreenController extends GetxController {
       }, onError: (err) {
         print("Error getting players details -->" + err.toString());
         isProcessing(false);
-        ShowSnackBar("Error", err.toString(), Colors.red);
+        ShowSnackBar(title: "Error", message:err.toString(), backgroundColor:Colors.red);
       });
     } catch (exception) {
       print("Exception getting players details -->" + exception.toString());
       isProcessing(false);
-      ShowSnackBar("Exception", exception.toString(), Colors.red);
+      ShowSnackBar(title: "Exception", message:exception.toString(), backgroundColor:Colors.red);
     }
   }
 
@@ -93,12 +93,12 @@ class SetupScreenController extends GetxController {
          }, onError: (err) {
         print("Error CREATING COMPETITION -->" + err.toString());
         isProcessing(false);
-        ShowSnackBar("Error", err.toString(), Colors.red);
+        ShowSnackBar(title: "Error", message:err.toString(), backgroundColor:Colors.red);
       });
     } catch (exception) {
       print("Exception CREATING COMPETITION -->" + exception.toString());
       isProcessing(false);
-      ShowSnackBar("Exception", exception.toString(), Colors.red);
+      ShowSnackBar(title: "Exception", message:exception.toString(), backgroundColor:Colors.red);
     }
   }
 
@@ -112,12 +112,12 @@ class SetupScreenController extends GetxController {
       }, onError: (err) {
         print("Error getting competition details -->" + err.toString());
         isProcessing(false);
-        ShowSnackBar("Error", err.toString(), Colors.red);
+        ShowSnackBar(title: "Error", message:err.toString(), backgroundColor:Colors.red);
       });
     } catch (exception) {
       print("Exception getting competition details -->" + exception.toString());
       isProcessing(false);
-      ShowSnackBar("Exception", exception.toString(), Colors.red);
+      ShowSnackBar(title: "Exception", message:exception.toString(), backgroundColor:Colors.red);
     }
   }
 

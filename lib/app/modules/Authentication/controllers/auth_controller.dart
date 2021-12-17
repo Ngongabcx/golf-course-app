@@ -33,12 +33,12 @@ class AuthenticationController extends GetxController {
     signUpEmailController = TextEditingController();
     signUpPasswordController = TextEditingController();
     signUpConfirmPasswordController = TextEditingController();
-    authenticateUser();
   }
 
   @override
   void onReady() {
     super.onReady();
+    authenticateUser();
   }
 
   @override
@@ -53,7 +53,7 @@ class AuthenticationController extends GetxController {
       hasFingerPrintLock.value =
           availableBiometrics.contains(BiometricType.fingerprint);
     } else {
-      ShowSnackBar("Error", 'Local Authentication not available', Colors.red);
+      ShowSnackBar(title:"Error", message:'Local Authentication not available', backgroundColor:Colors.red);
     }
   }
 
@@ -79,10 +79,10 @@ class AuthenticationController extends GetxController {
         //If biometrics (isBiometricsAuthenticationSet) is false then set it to true in storage
        // ShowSnackBar("Success", "You are authenticated", Colors.green);
       } else {
-        ShowSnackBar("Error", "Authentication Cancelled", Colors.red);
+        ShowSnackBar(title:"Error", message:"Authentication Cancelled", backgroundColor:Colors.red);
       }
     } catch (e) {
-      ShowSnackBar("Error", e.toString(), Colors.red);
+      ShowSnackBar(title:"Error", message:e.toString(), backgroundColor:Colors.red);
       print("BIOMETRICS AUTH EXCEPTION --> ${e.toString()}");
     }
   }
@@ -95,7 +95,7 @@ class AuthenticationController extends GetxController {
         clearTextEditingControllers();
         print("ACCESSTOKEN ---> " + resp.info!.accessToken.toString());
         print("REFRESHTOKEN ---> " + resp.info!.refreshToken.toString());
-        ShowSnackBar("Success", "Login Successful.", Colors.green);
+        ShowSnackBar(title:"Success", message:"Login Successful.", backgroundColor:Colors.green);
         storage.write("isLoggedIn", true);
         storage.write("accessToken", resp.info!.accessToken);
         storage.write("refreshToken", resp.info!.refreshToken);
@@ -103,12 +103,12 @@ class AuthenticationController extends GetxController {
         Get.offAllNamed('/home');
       }, onError: (err) {
         isProcessing(false);
-        ShowSnackBar("Error", err.toString(), Colors.red);
+        ShowSnackBar(title:"Error", message:err.toString(), backgroundColor:Colors.red);
       });
     } catch (exception) {
       isProcessing(false);
       print("<---------EXCEPTION2--------->" + exception.toString());
-      ShowSnackBar("Exception", exception.toString(), Colors.red);
+      ShowSnackBar(title:"Exception", message:exception.toString(), backgroundColor:Colors.red);
     }
   }
 
@@ -118,19 +118,19 @@ class AuthenticationController extends GetxController {
       AuthProvider().register(data).then((resp) {
         clearTextEditingControllers();
         isProcessing(false);
-        ShowSnackBar("Success", "Login Successful.", Colors.green);
+        ShowSnackBar(title:"Success", message:"Login Successful.", backgroundColor:Colors.green);
         storage.write("isLoggedIn", true);
         storage.write("accessToken", resp.info!.accessToken);
         storage.write("refreshToken", resp.info!.refreshToken);
         Get.offAllNamed('/home');
       }, onError: (err) {
         isProcessing(false);
-        ShowSnackBar("Error", err.toString(), Colors.red);
+        ShowSnackBar(title:"Error", message:err.toString(), backgroundColor:Colors.red);
       });
     } catch (exception) {
       isProcessing(false);
       print("<---------EXCEPTION2--------->" + exception.toString());
-      ShowSnackBar("Exception", exception.toString(), Colors.red);
+      ShowSnackBar(title:"Exception", message:exception.toString(), backgroundColor:Colors.red);
     }
   }
 

@@ -167,24 +167,24 @@ class BuildSignUp extends GetView<AuthenticationController> {
     if (GetUtils.isEmail(controller.signUpEmailController.text)) {
       if (controller.signUpPasswordController.text.isEmpty) {
         ShowSnackBar(
-          "Password cannot be empty",
-          "Please provide a valid password.",
-          Colors.red,
+          title: "Password cannot be empty",
+         message: "Please provide a valid password.",
+          backgroundColor:Colors.red,
         );
       } else {
         if (controller.signUpConfirmPasswordController.text.isEmpty) {
           ShowSnackBar(
-            "Password cannot be empty",
-            "Please provide a valid password.",
-            Colors.red,
+            title: "Password cannot be empty",
+            message: "Please provide a valid password.",
+            backgroundColor:Colors.red,
           );
         } else {
           if (controller.signUpPasswordController.text !=
               controller.signUpConfirmPasswordController.text) {
             ShowSnackBar(
-              "Password Error",
-              "Passwords entered did not match.",
-              Colors.red,
+              title: "Password Error",
+              message: "Passwords entered did not match.",
+              backgroundColor:Colors.red,
             );
           } else {
             if (controller.isProcessing.value == false) {
@@ -199,9 +199,9 @@ class BuildSignUp extends GetView<AuthenticationController> {
       }
     } else {
       ShowSnackBar(
-        "Invalid Email",
-        "Please provide a valid email address.",
-        Colors.red,
+        title: "Invalid Email",
+        message: "Please provide a valid email address.",
+        backgroundColor:Colors.red,
       );
     }
   }
