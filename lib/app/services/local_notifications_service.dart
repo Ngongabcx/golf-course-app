@@ -25,17 +25,17 @@ class LocalNotificationsService {
 
       final NotificationDetails notificationDetails = NotificationDetails(
           android: AndroidNotificationDetails(
-        "easyapproach",
-        "easyapproach channel",
-        channelDescription: "this is our channel",
-        importance: Importance.max,
+        "gcmsApp",
+        "gcmsApp channel",
+        channelDescription: "this is gcms important notification channel",
+        importance: Importance.high,
         priority: Priority.high,
       ));
 
       await _notificationsPlugin.show(
         id,
-        message.notification!.title,
-        message.notification!.body,
+        message.data['title'],
+        message.data['body'],
         notificationDetails,
         payload: message.data["viewUri"],
       );

@@ -24,6 +24,7 @@ class HomeController extends GetxController {
   var matchInvites = Competition().obs;
   static List<Widget> pages = <Widget>[
     ExploreScreenView(),
+    Icon(Icons.note_add_outlined),
     NotificationsView(),
   ];
   @override
@@ -40,12 +41,17 @@ class HomeController extends GetxController {
     super.onClose();
     name.value = '';
   }
+
   void onItemTapped(int index) {
     selectedIndex.value = index;
   }
 
   notifications() {
     print("==========NOTIFICATION FUNCTION CALLED=============");
+    FirebaseMessaging.instance.getToken().then((token) {
+      //we need to update user details with this token. This token doesnt change for a device
+      print("<<<<<<=====------FIREBASE DEVICE TOKEN    ---->  $token");
+    });
     //works when notification is opened whilst app is in terminated state
     FirebaseMessaging.instance.getInitialMessage().then((message) {
       if (message != null) {
@@ -74,12 +80,6 @@ class HomeController extends GetxController {
     });
   }
 
-  isRegistered() {
-    if (storage.read('user') == null) {
-      Get.to(UserDetailsScreenView());
-    }
-  }
-
   validateTokenAndGetUser() async {
     String token = storage.read("accessToken");
     if (Jwt.isExpired(token)) {
@@ -101,12 +101,18 @@ class HomeController extends GetxController {
         storage.write("refreshToken", resp.info!.refreshToken);
         isProcessing(false);
       }, onError: (err) {
-        ShowSnackBar(title: "Error", message:err.toString(), backgroundColor:Colors.red);
+        ShowSnackBar(
+            title: "Error",
+            message: err.toString(),
+            backgroundColor: Colors.red);
         isProcessing(false);
         Get.offAllNamed('/login');
       });
     } catch (exception) {
-      ShowSnackBar(title: "Exception", message:exception.toString(), backgroundColor:Colors.red);
+      ShowSnackBar(
+          title: "Exception",
+          message: exception.toString(),
+          backgroundColor: Colors.red);
       isProcessing(false);
       Get.offAllNamed('/login');
     }
@@ -129,20 +135,29 @@ class HomeController extends GetxController {
         storage.write("profilePic", usr.image);
         await getMatchInvites(usr.id.toString());
         if (usr.username!.isEmpty) {
-          ShowSnackBar(title:"USER DETAILS Error", message:"NO USER INFO FOUND", backgroundColor:Colors.blue);
+          ShowSnackBar(
+              title: "USER DETAILS Error",
+              message: "NO USER INFO FOUND",
+              backgroundColor: Colors.blue);
           Get.toNamed("/login");
         }
         name.value = usr.firstName!;
         isProcessing(false);
-         Get.offAllNamed('/home');
+        Get.offAllNamed('/home');
       }, onError: (err) {
         isProcessing(false);
-        ShowSnackBar(title: "Error", message:err.toString(), backgroundColor:Colors.red);
+        ShowSnackBar(
+            title: "Error",
+            message: err.toString(),
+            backgroundColor: Colors.red);
         Get.offAllNamed('/login');
       });
     } catch (exception) {
       isProcessing(false);
-      ShowSnackBar(title: "Exception", message:exception.toString(), backgroundColor:Colors.red);
+      ShowSnackBar(
+          title: "Exception",
+          message: exception.toString(),
+          backgroundColor: Colors.red);
       Get.offAllNamed('/login');
     }
   }
@@ -154,11 +169,17 @@ class HomeController extends GetxController {
         matchInvites.value = resp;
         isProcessing(false);
       }, onError: (err) {
-        ShowSnackBar(title: "Error", message:err.toString(), backgroundColor:Colors.red);
+        ShowSnackBar(
+            title: "Error",
+            message: err.toString(),
+            backgroundColor: Colors.red);
         isProcessing(false);
       });
     } catch (exception) {
-      ShowSnackBar(title: "Exception", message:exception.toString(), backgroundColor:Colors.red);
+      ShowSnackBar(
+          title: "Exception",
+          message: exception.toString(),
+          backgroundColor: Colors.red);
       isProcessing(false);
     }
   }

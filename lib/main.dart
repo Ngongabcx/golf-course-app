@@ -9,17 +9,20 @@ import 'package:get_storage/get_storage.dart';
 import 'app/modules/Authentication/views/login_view.dart';
 import 'app/modules/home/views/home_view.dart';
 import 'app/routes/app_pages.dart';
+import 'app/services/local_notifications_service.dart';
 
 //Receives notifications when app is in background
 //This should always be a top level function i.e it shouldn't be in any class but rather outside the app scope
 Future<void> notificationsBackgroundHandler(RemoteMessage message) async {
   print(message.data.toString());
-  print(message.notification!.title);
+ // print(message.notification!.title);
+  LocalNotificationsService.displayNotification(message);
 }
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await FirebaseMessaging.instance.subscribeToTopic('all');
   FirebaseMessaging.onBackgroundMessage(notificationsBackgroundHandler);
   await GetStorage.init();
   runApp(

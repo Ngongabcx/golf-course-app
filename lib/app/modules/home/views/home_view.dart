@@ -47,7 +47,7 @@ class HomeView extends GetView<HomeController> {
         //centerTitle: true,
       ),
       drawer: GcmsDrawer(),
-       body: Obx(() {
+      body: Obx(() {
         return SizedBox(
             child: _controller.isProcessing.value == true
                 ? Loader()
@@ -57,9 +57,9 @@ class HomeView extends GetView<HomeController> {
         selectedItemColor: Theme.of(context).textSelectionTheme.selectionColor,
         currentIndex: controller.selectedIndex.value.toInt(),
         onTap: controller.onItemTapped,
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.explore),
+            icon:  Icon(Icons.explore),
             label: 'Explore',
           ),
           BottomNavigationBarItem(
