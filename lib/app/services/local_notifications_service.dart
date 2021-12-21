@@ -1,5 +1,6 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:gcms/app/modules/home/controllers/home_controller.dart';
 import 'package:get/get.dart';
 
 class LocalNotificationsService {
@@ -20,6 +21,9 @@ class LocalNotificationsService {
   }
 
   static void displayNotification(RemoteMessage message) async {
+    //Save the notification to local db
+    HomeController.addNotification(
+        body: message.data['body'], title: message.data['title'],messageId:message.messageId.toString());
     try {
       final id = DateTime.now().millisecondsSinceEpoch ~/ 1000;
 

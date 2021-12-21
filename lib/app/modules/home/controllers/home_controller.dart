@@ -1,7 +1,9 @@
 import 'dart:convert';
 
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:gcms/app/modules/Notifications/controllers/notifications_controller.dart';
+import 'package:gcms/app/modules/Notifications/providers/sql_helper.dart';
+import 'package:gcms/app/services/notifications_func.dart';
 import 'package:gcms/app/modules/Authentication/views/user_details_screen_view.dart';
 import 'package:gcms/app/modules/Notifications/views/notifications_view.dart';
 import 'package:gcms/app/modules/SetupScreen/competition_model.dart';
@@ -17,6 +19,9 @@ import 'package:jwt_decode/jwt_decode.dart';
 import '../user_model.dart';
 
 class HomeController extends GetxController {
+  var notificationsList = List<Map<String, dynamic>>.empty(growable: true).obs;
+  ScrollController scrollController = ScrollController();
+  var isMoreDataAvailable = true.obs;
   var selectedIndex = 0.obs;
   var name = ''.obs;
   var storage = GetStorage();
@@ -33,6 +38,8 @@ class HomeController extends GetxController {
     LocalNotificationsService.initialize();
     notifications();
     validateTokenAndGetUser();
+    await refreshNotifications();
+    print("NOTIFICATIONS ARRAY OBS  ---> $notificationsList");
   }
 
   @override
@@ -44,40 +51,6 @@ class HomeController extends GetxController {
 
   void onItemTapped(int index) {
     selectedIndex.value = index;
-  }
-
-  notifications() {
-    print("==========NOTIFICATION FUNCTION CALLED=============");
-    FirebaseMessaging.instance.getToken().then((token) {
-      //we need to update user details with this token. This token doesnt change for a device
-      print("<<<<<<=====------FIREBASE DEVICE TOKEN    ---->  $token");
-    });
-    //works when notification is opened whilst app is in terminated state
-    FirebaseMessaging.instance.getInitialMessage().then((message) {
-      if (message != null) {
-        final routeFromMessage = message.data["viewUri"];
-        print(routeFromMessage);
-        //We can push the notification to a specific view from here
-        Get.toNamed("/$routeFromMessage");
-      }
-    });
-    //Below line Only displays message when the app is in the foreground
-    //Its a stream hence we have to listen (for messages)
-    FirebaseMessaging.onMessage.listen((message) {
-      if (message.notification != null) {
-        print(message.notification!.body);
-        print(message.notification!.title);
-      }
-      LocalNotificationsService.displayNotification(message);
-    });
-    //Below line only works when notofication has been tapped/open whilst the app is running in the background
-    //Its also a stream hance we havr to listen
-    FirebaseMessaging.onMessageOpenedApp.listen((message) {
-      final routeFromMessage = message.data["viewUri"];
-      print(routeFromMessage);
-      //We can push the notification to a specific view from here
-      Get.toNamed("/$routeFromMessage");
-    });
   }
 
   validateTokenAndGetUser() async {
@@ -182,5 +155,34 @@ class HomeController extends GetxController {
           backgroundColor: Colors.red);
       isProcessing(false);
     }
+  }
+
+  static refreshNotifications() async {
+    print("REFRESH NOTIFICATIONS CALLED.");
+    var notes = await SQLHelper.getNotifications();
+    HomeController().notificationsList.addAll(notes);
+  }
+
+// Insert a new notification to the database
+  static Future<void> addNotification(
+      {required String title, required String body, required messageId}) async {
+    await SQLHelper.createNotification(
+        body: body, title: title, messageId: messageId);
+    refreshNotifications();
+  }
+
+// Update an existing notification
+  static Future<void> updateNotification({required String messageId}) async {
+    await SQLHelper.updateNotification(messageId);
+    refreshNotifications();
+  }
+
+// Delete an notification
+  static void deleteNotification({required String messageId}) async {
+    await SQLHelper.deleteNotification(messageId: messageId);
+    // ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+    //   content: Text('Successfully deleted a journal!'),
+    // ));
+    refreshNotifications();
   }
 }
