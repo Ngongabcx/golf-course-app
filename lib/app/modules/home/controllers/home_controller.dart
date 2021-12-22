@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/Notifications/controllers/notifications_controller.dart';
 import 'package:gcms/app/modules/Notifications/providers/sql_helper.dart';
-import 'package:gcms/app/services/notifications_func.dart';
+import 'package:gcms/app/modules/utils/notifications_func.dart';
 import 'package:gcms/app/modules/Authentication/views/user_details_screen_view.dart';
 import 'package:gcms/app/modules/Notifications/views/notifications_view.dart';
 import 'package:gcms/app/modules/SetupScreen/competition_model.dart';

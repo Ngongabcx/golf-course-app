@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:gcms/app/modules/home/controllers/home_controller.dart';
-import 'package:get/get.dart';
 import 'package:sqflite/sqflite.dart' as sql;
 
 class SQLHelper {

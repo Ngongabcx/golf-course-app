@@ -1,20 +1,27 @@
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
 import 'package:gcms/app/modules/Authentication/auth_model.dart';
 import 'package:gcms/constants/constant.dart';
-import 'package:get/get.dart';
 
 import '../user_model.dart';
 
-class UserProvider extends GetConnect {
+class UserProvider {
+  final Dio dio = Dio(BaseOptions(
+    connectTimeout: kConnectionTimeout,
+    receiveTimeout: kReceiveTimeout,
+    baseUrl: kApiBaseURL,
+    contentType: 'application/json',
+    responseType: ResponseType.plain,
+  ));
   Future<Auth> refreshToken(Map data) async {
     try {
-      final response =
-          await post("$kApiBaseURL/authmanagement/refreshToken", data);
-      if (response.status.hasError) {
-        return Future.error(response.statusText.toString());
+      final response = await dio
+          .post("$kApiBaseURL/authmanagement/refreshToken", data: data);
+      if (response.statusCode != 200 || response.statusCode !=201) {
+        return Future.error(response.statusMessage.toString());
       } else {
-        Map<String, dynamic> resp = jsonDecode(response.bodyString.toString());
+        Map<String, dynamic> resp = jsonDecode(response.data.toString());
         return Auth.fromJson(resp);
       }
     } catch (exception) {
@@ -25,12 +32,12 @@ class UserProvider extends GetConnect {
 
   Future<String> getUserDetails(String id) async {
     try {
-      final response = await get("$kApiBaseURL/members/$id");
-      if (response.status.hasError) {
-        print("RESPONSE ERROR ---->>----->>>> ${response.statusText}");
-        return Future.error(response.statusText.toString());
+      final response = await dio.get("$kApiBaseURL/members/$id");
+      if (response.statusCode != 200) {
+        print("RESPONSE ERROR USER DETAILS ---->>----->>>> ${response.statusCode}");
+        return Future.error(response.statusMessage.toString());
       } else {
-        return response.bodyString.toString();
+        return response.data.toString();
       }
     } catch (exception) {
       print('<<===GET USER DETAILS EXCEPTION==> $exception');
@@ -40,12 +47,12 @@ class UserProvider extends GetConnect {
 
   Future<List<User>> getPlayers() async {
     try {
-      final response = await get("$kApiBaseURL/members");
-      if (response.status.hasError) {
-        return Future.error(response.statusText.toString());
+      final response = await dio.get("$kApiBaseURL/members");
+      if (response.statusCode != 200) {
+        return Future.error(response.statusMessage.toString());
       } else {
         List<dynamic> resp =
-            List<dynamic>.from(jsonDecode(response.bodyString.toString()));
+            List<dynamic>.from(jsonDecode(response.data.toString()));
         return resp.map((item) => User.fromJson(item)).toList();
       }
     } catch (exception) {
@@ -57,12 +64,12 @@ class UserProvider extends GetConnect {
   //Create user after account registration
   Future<User> createUser(Map data) async {
     try {
-      final response = await post("$kApiBaseURL/members", data);
+      final response = await dio.post("$kApiBaseURL/members", data: data);
       //final body = json.decode(response.bodyString);
-      if (response.status.hasError) {
-        return Future.error(response.statusText.toString());
+      if (response.statusCode != 200 || response.statusCode !=201) {
+        return Future.error(response.statusMessage.toString());
       } else {
-        Map<String, dynamic> resp = jsonDecode(response.bodyString.toString());
+        Map<String, dynamic> resp = jsonDecode(response.data.toString());
         return User.fromJson(resp);
       }
     } catch (exception) {

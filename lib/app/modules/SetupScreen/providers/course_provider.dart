@@ -1,19 +1,26 @@
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
 import 'package:gcms/constants/constant.dart';
-import 'package:get/get.dart';
 
 import '../course_model.dart';
 
-class CourseProvider extends GetConnect {
-
+class CourseProvider {
+  final Dio dio = Dio(BaseOptions(
+    connectTimeout: kConnectionTimeout,
+    receiveTimeout: kReceiveTimeout,
+    baseUrl: kApiBaseURL,
+    contentType: 'application/json',
+    responseType: ResponseType.plain,
+  ));
   Future<List<Course>> getCourses() async {
     try {
-      final response = await get("$kApiBaseURL/course");
-      if (response.status.hasError) {
-        return Future.error(response.statusText.toString());
+      final response = await dio.get("$kApiBaseURL/course");
+      if (response.statusCode != 200) {
+        return Future.error(response.statusMessage.toString());
       } else {
-        List<dynamic> resp = List<dynamic>.from(jsonDecode(response.bodyString.toString()));
+        List<dynamic> resp =
+            List<dynamic>.from(jsonDecode(response.data.toString()));
         return resp.map((item) => Course.fromJson(item)).toList();
       }
     } catch (exception) {

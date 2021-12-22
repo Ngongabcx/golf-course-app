@@ -38,4 +38,6 @@ const kWhiteGreyColor = Color(0xFFF9F9F9);
 const kDefaultPagePadding = EdgeInsets.symmetric(
   horizontal: 16,
 );
-const String kApiBaseURL = "https://gcms.azurewebsites.net/api";
+const String kApiBaseURL = "https://bcxz.azurewebsites.net/api";
+const int kConnectionTimeout = 20000;
+const int kReceiveTimeout = 10000;

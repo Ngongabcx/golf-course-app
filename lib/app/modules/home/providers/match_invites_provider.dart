@@ -1,19 +1,25 @@
+import 'package:dio/dio.dart';
 import 'package:gcms/app/modules/SetupScreen/competition_model.dart';
 import 'package:gcms/constants/constant.dart';
-import 'package:get/get.dart';
 
-class MatchInvitesProvider extends GetConnect {
+class MatchInvitesProvider {
+  final Dio dio = Dio(BaseOptions(
+    connectTimeout: kConnectionTimeout,
+    receiveTimeout: kReceiveTimeout,
+    baseUrl: kApiBaseURL,
+    contentType: 'application/json',
+    responseType: ResponseType.plain,
+  ));
   Future<Competition> getMatchInvites(String id) async {
     print("######---ID FOR FETCHING MATCH INVITATIONS   ---> $id");
     try {
-      final response = await get("$kApiBaseURL/invites/all/$id");
-      if (response.status.hasError) {
-        print('<<===GET MATCH INVITATIONS  ERROR==> ${response.statusText}');
-        return Future.error(response.statusText.toString());
+      final response = await dio.get("$kApiBaseURL/invites/all/$id");
+      if (response.statusCode != 200) {
+        print('<<===GET MATCH INVITATIONS  ERROR==> ${response.statusCode}');
+        return Future.error(response.statusMessage.toString());
       } else {
-        final resp =
-            competitionFromJson(response.bodyString.toString());
-        print('<<===GET MATCH INVITATIONS  SUCCESSFUL==> ${response.bodyString}');
+        final resp = competitionFromJson(response.data.toString());
+        print('<<===GET MATCH INVITATIONS  SUCCESSFUL==> ${response.data}');
         return resp;
       }
     } catch (exception) {

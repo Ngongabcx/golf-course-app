@@ -1,17 +1,26 @@
+import 'package:dio/dio.dart';
 import 'package:gcms/app/modules/SetupScreen/competition_model.dart';
 import 'package:gcms/constants/constant.dart';
-import 'package:get/get.dart';
 
-class ActiveGamesProvider extends GetConnect {
+class ActiveGamesProvider {
+  final Dio dio = Dio(BaseOptions(
+    connectTimeout: kConnectionTimeout,
+    receiveTimeout: kReceiveTimeout,
+    baseUrl: kApiBaseURL,
+    contentType: 'application/json',
+    responseType: ResponseType.plain,
+  ));
   Future<Competition> getActiveMatches() async {
     try {
-      final response = await get("$kApiBaseURL/competitions");
-      if (response.status.hasError) {
-        print('<<===GET COMPETITIONS  ERROR==> ${response.statusText}');
-        return Future.error(response.statusText.toString());
+      final response = await dio.get("$kApiBaseURL/competitions");
+      if (response.statusCode != 200) {
+        print(
+            '<<===GET COMPETITIONS  ERROR==> ${response.statusMessage.toString()}');
+        return Future.error(response.statusMessage.toString());
       } else {
-        final resp = competitionFromJson(response.bodyString.toString());
-        print('<<===GET COMPETITIONS  SUCCESSFUL==> ${response.bodyString}');
+        final resp = competitionFromJson(response.data.toString());
+        print(
+            '<<===GET COMPETITIONS  SUCCESSFUL==> ${response.data.toString()}');
         return resp;
       }
     } catch (exception) {
