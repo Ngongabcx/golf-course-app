@@ -1,14 +1,19 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/Authentication/providers/auth_provider.dart';
+import 'package:gcms/app/modules/Authentication/views/user_details_submit_form.dart';
 import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
-import 'package:gcms/app/modules/home/controllers/home_controller.dart';
+import 'package:gcms/app/modules/home/providers/user_provider.dart';
+import 'package:gcms/app/modules/home/user_model.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:jwt_decode/jwt_decode.dart';
 import 'package:local_auth/auth_strings.dart';
 import 'package:local_auth/local_auth.dart';
 
 class AuthenticationController extends GetxController {
-  final refreshTknController = HomeController();
+  final userFormKey = GlobalKey<FormState>();
   var currentStep = 0.obs;
   var iamimportant = false.obs;
   var isObscure = true.obs;
@@ -19,11 +24,19 @@ class AuthenticationController extends GetxController {
   final signUpFormKey = GlobalKey<FormState>();
   var storage = GetStorage();
   var isProcessing = false.obs;
+  var tkn;
   late final TextEditingController usernameController,
       passwordController,
       signUpEmailController,
       signUpPasswordController,
-      signUpConfirmPasswordController;
+      signUpConfirmPasswordController,
+      firstnameController,
+      lastnameController,
+      addressController,
+      imageController,
+      dobController,
+      genderController,
+      hcpController;
   @override
   void onInit() {
     super.onInit();
@@ -33,6 +46,13 @@ class AuthenticationController extends GetxController {
     signUpEmailController = TextEditingController();
     signUpPasswordController = TextEditingController();
     signUpConfirmPasswordController = TextEditingController();
+    firstnameController = TextEditingController();
+    lastnameController = TextEditingController();
+    addressController = TextEditingController();
+    imageController = TextEditingController();
+    dobController = TextEditingController();
+    genderController = TextEditingController();
+    hcpController = TextEditingController();
   }
 
   @override
@@ -53,7 +73,10 @@ class AuthenticationController extends GetxController {
       hasFingerPrintLock.value =
           availableBiometrics.contains(BiometricType.fingerprint);
     } else {
-      ShowSnackBar(title:"Error", message:'Local Authentication not available', backgroundColor:Colors.red);
+      ShowSnackBar(
+          title: "Error",
+          message: 'Local Authentication not available',
+          backgroundColor: Colors.red);
     }
   }
 
@@ -73,17 +96,20 @@ class AuthenticationController extends GetxController {
         androidAuthStrings: androidMessage,
       );
       if (isUserAuthenticated.value) {
-         await refreshTknController.validateTokenAndGetUser();
-        //refreshTknController.test();
-        //If biometrics has already been set up and has been recorded in storage as true -> Proceed to refresh token
-        //If biometrics (isBiometricsAuthenticationSet) is false then set it to true in storage
-       // ShowSnackBar("Success", "You are authenticated", Colors.green);
+        ShowSnackBar(
+            title: "Success",
+            message: "You are authenticated",
+            backgroundColor: Colors.green);
       } else {
-        ShowSnackBar(title:"Error", message:"Authentication Cancelled", backgroundColor:Colors.red);
+        ShowSnackBar(
+            title: "Error",
+            message: "Authentication Cancelled",
+            backgroundColor: Colors.red);
       }
     } catch (e) {
-      ShowSnackBar(title:"Error", message:e.toString(), backgroundColor:Colors.red);
-      print("BIOMETRICS AUTH EXCEPTION --> ${e.toString()}");
+      ShowSnackBar(
+          title: "Error", message: e.toString(), backgroundColor: Colors.red);
+      print("EXCEPTION --> ${e.toString()}");
     }
   }
 
@@ -93,44 +119,142 @@ class AuthenticationController extends GetxController {
       isProcessing(true);
       AuthProvider().login(data).then((resp) async {
         clearTextEditingControllers();
+        isProcessing(false);
         print("ACCESSTOKEN ---> " + resp.info!.accessToken.toString());
         print("REFRESHTOKEN ---> " + resp.info!.refreshToken.toString());
-        ShowSnackBar(title:"Success", message:"Login Successful.", backgroundColor:Colors.green);
+        ShowSnackBar(
+            title: "Success",
+            message: "Login Successful.",
+            backgroundColor: Colors.green);
         storage.write("isLoggedIn", true);
         storage.write("accessToken", resp.info!.accessToken);
         storage.write("refreshToken", resp.info!.refreshToken);
-        isProcessing(false);
         Get.offAllNamed('/home');
       }, onError: (err) {
         isProcessing(false);
-        ShowSnackBar(title:"Error", message:err.toString(), backgroundColor:Colors.red);
+        ShowSnackBar(
+            title: "Error",
+            message: err.toString(),
+            backgroundColor: Colors.red);
       });
     } catch (exception) {
       isProcessing(false);
       print("<---------EXCEPTION2--------->" + exception.toString());
-      ShowSnackBar(title:"Exception", message:exception.toString(), backgroundColor:Colors.red);
+      ShowSnackBar(
+          title: "Exception",
+          message: exception.toString(),
+          backgroundColor: Colors.red);
     }
   }
 
   void register(Map data) {
+    print(
+        "<<-----------REGISTERING USER ACCOUNT WITH PAYLOAD : $data ---------->");
     try {
       isProcessing(true);
-      AuthProvider().register(data).then((resp) {
+      AuthProvider().register(data).then((resp) async {
+        print('User data:${resp.info!.accessToken.toString()}');
         clearTextEditingControllers();
         isProcessing(false);
-        ShowSnackBar(title:"Success", message:"Login Successful.", backgroundColor:Colors.green);
-        storage.write("isLoggedIn", true);
         storage.write("accessToken", resp.info!.accessToken);
         storage.write("refreshToken", resp.info!.refreshToken);
-        Get.offAllNamed('/home');
+        Map<String, dynamic> tkn =
+            Jwt.parseJwt('${storage.read("accessToken")}');
+        storage.write("aspUserID", tkn['Id']);
+        print(tkn.toString());
+        userDetailsSubmitForm(tkn['Id']);
       }, onError: (err) {
         isProcessing(false);
-        ShowSnackBar(title:"Error", message:err.toString(), backgroundColor:Colors.red);
+        ShowSnackBar(
+            title: "Error",
+            message: err.toString(),
+            backgroundColor: Colors.red);
       });
     } catch (exception) {
       isProcessing(false);
       print("<---------EXCEPTION2--------->" + exception.toString());
-      ShowSnackBar(title:"Exception", message:exception.toString(), backgroundColor:Colors.red);
+      ShowSnackBar(
+          title: "Exception",
+          message: exception.toString(),
+          backgroundColor: Colors.red);
+    }
+  }
+
+  bool validateCreateUserForm() {
+    if (firstnameController.text.isEmpty) {
+      print('fIRST NAME: ${firstnameController.text}');
+      ShowSnackBar(
+        title: "First name cannot be empty",
+        message: "Provide your first name.",
+        backgroundColor: Colors.red,
+      );
+      return false;
+    }
+    if (lastnameController.text.isEmpty) {
+      ShowSnackBar(
+        title: "Last name cannot be empty",
+        message: "Please Provide your last name.",
+        backgroundColor: Colors.red,
+      );
+      return false;
+    }
+    if (addressController.text.isEmpty) {
+      ShowSnackBar(
+        title: "Address cannot be empty",
+        message: "Please Provide your address.",
+        backgroundColor: Colors.red,
+      );
+      return false;
+    }
+    // if (!GetUtils.isBlank(value)) {
+    //   return 'Provide your gender';
+    // }
+    if (hcpController.text.isEmpty) {
+      ShowSnackBar(
+        title: "Handicap cannot be empty",
+        message: "Please Provide your handicap.",
+        backgroundColor: Colors.red,
+      );
+      return false;
+    }
+    return true;
+  }
+
+  void createUser(Map data) {
+    print("<<-----------SAVING USER DETAILS WITH PAYLOAD : $data ---------->");
+    try {
+      isProcessing(true);
+      UserProvider().createUser(data).then((resp) {
+        clearTextEditingControllers();
+        storage.write("user", resp);
+        Map<String, dynamic> storedUser = jsonDecode(storage.read('user'));
+        var usr = User.fromJson(storedUser);
+        storage.write("userId", usr.id.toString());
+        storage.write("isLoggedIn", true);
+        storage.write("hcp", usr.hcp!.toInt());
+        storage.write(
+            "name", usr.firstName.toString() + " " + usr.lastName.toString());
+        storage.write("profilePic", usr.image);
+        isProcessing(false);
+        ShowSnackBar(
+            title: "Success",
+            message: "Account Successfully Created.",
+            backgroundColor: Colors.green);
+        Get.offAllNamed('/home');
+      }, onError: (err) {
+        isProcessing(false);
+        ShowSnackBar(
+            title: "Error",
+            message: err.toString(),
+            backgroundColor: Colors.red);
+      });
+    } catch (exception) {
+      isProcessing(false);
+      print("<---------EXCEPTION2--------->" + exception.toString());
+      ShowSnackBar(
+          title: "Exception",
+          message: exception.toString(),
+          backgroundColor: Colors.red);
     }
   }
 
@@ -141,5 +265,12 @@ class AuthenticationController extends GetxController {
     signUpEmailController.clear();
     signUpPasswordController.clear();
     signUpConfirmPasswordController.clear();
+    firstnameController.clear();
+    lastnameController.clear();
+    addressController.clear();
+    imageController.clear();
+    dobController.clear();
+    genderController.clear();
+    hcpController.clear();
   }
 }

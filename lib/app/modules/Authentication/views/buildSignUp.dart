@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/Authentication/controllers/auth_controller.dart';
-import 'package:gcms/app/modules/commonWidgets/customButton.dart';
-import 'package:gcms/app/modules/commonWidgets/loader/loading_provider.dart';
-import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
 import 'package:gcms/app/modules/commonWidgets/textFormField.dart';
 import 'package:gcms/constants/constant.dart';
-import 'package:gcms/theme/gcms_theme.dart';
 import 'package:get/get.dart';
-import 'package:provider/src/provider.dart';
 
 class BuildSignUp extends GetView<AuthenticationController> {
   final signUpController = Get.put(AuthenticationController());
@@ -84,28 +79,28 @@ class BuildSignUp extends GetView<AuthenticationController> {
               children: const [],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 16.0),
-            child: Obx(() {
-              //Returning loader and dismissing it once processing status changes
-              Future.delayed(Duration.zero, () async {
-                context
-                    .read<LoadingProvider>()
-                    .setLoad(controller.isProcessing.value);
-              });
-              //Dismissing keyboard
-              FocusScope.of(context).requestFocus(new FocusNode());
-              return CustomButton(
-                text: (controller.isProcessing.value == true
-                    ? 'Processing'
-                    : 'Create Account'),
-                textStyle: GcmsTheme.lightTextTheme.bodyText2,
-                onPressed: () {
-                  submitForm();
-                },
-              );
-            }),
-          ),
+          // Padding(
+          //   padding: const EdgeInsets.only(bottom: 16.0),
+          //   child: Obx(() {
+          //     //Returning loader and dismissing it once processing status changes
+          //     Future.delayed(Duration.zero, () async {
+          //       context
+          //           .read<LoadingProvider>()
+          //           .setLoad(controller.isProcessing.value);
+          //     });
+          //     //Dismissing keyboard
+          //     FocusScope.of(context).requestFocus(new FocusNode());
+          //     return CustomButton(
+          //       text: (controller.isProcessing.value == true
+          //           ? 'Processing'
+          //           : 'Create Account'),
+          //       textStyle: GcmsTheme.lightTextTheme.bodyText2,
+          //       onPressed: () {
+          //         submitForm();
+          //       },
+          //     );
+          //   }),
+          // ),
           Padding(
             padding: const EdgeInsets.only(bottom: 16.0),
             child: InkWell(
@@ -161,48 +156,5 @@ class BuildSignUp extends GetView<AuthenticationController> {
         ],
       ),
     );
-  }
-
-  void submitForm() {
-    if (GetUtils.isEmail(controller.signUpEmailController.text)) {
-      if (controller.signUpPasswordController.text.isEmpty) {
-        ShowSnackBar(
-          title: "Password cannot be empty",
-         message: "Please provide a valid password.",
-          backgroundColor:Colors.red,
-        );
-      } else {
-        if (controller.signUpConfirmPasswordController.text.isEmpty) {
-          ShowSnackBar(
-            title: "Password cannot be empty",
-            message: "Please provide a valid password.",
-            backgroundColor:Colors.red,
-          );
-        } else {
-          if (controller.signUpPasswordController.text !=
-              controller.signUpConfirmPasswordController.text) {
-            ShowSnackBar(
-              title: "Password Error",
-              message: "Passwords entered did not match.",
-              backgroundColor:Colors.red,
-            );
-          } else {
-            if (controller.isProcessing.value == false) {
-              controller.register({
-                'username': controller.signUpEmailController.text,
-                'email': controller.signUpEmailController.text,
-                'password': controller.signUpPasswordController.text,
-              });
-            }
-          }
-        }
-      }
-    } else {
-      ShowSnackBar(
-        title: "Invalid Email",
-        message: "Please provide a valid email address.",
-        backgroundColor:Colors.red,
-      );
-    }
   }
 }
