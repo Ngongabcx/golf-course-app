@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:gcms/app/modules/utils/slack_logger.dart';
 import 'package:gcms/constants/constant.dart';
 
 import '../competition_model.dart';
@@ -18,7 +19,7 @@ class CompetitionProvider {
         "PROVIDER RECEIVED DATA TO SEND AS CREATE COMPETITION REQUEST ----> $data");
     try {
       final response = await dio.post("$kApiBaseURL/competitions", data: data);
-      if (response.statusCode != 200 || response.statusCode !=201) {
+      if (response.statusCode !=201) {
         return Future.error(response.statusMessage.toString());
       } else {
         print(
@@ -27,6 +28,7 @@ class CompetitionProvider {
         return resp;
       }
     } catch (exception) {
+      logToChannel({"text":"$kError CREATE COMPETITION FAILURE\n $exception"});
       print('<<===CREATING COMPETITION EXCEPTION ==> $exception');
       return Future.error(exception);
     }
@@ -46,6 +48,7 @@ class CompetitionProvider {
         //return resp['payload']['id'];
       }
     } catch (exception) {
+      logToChannel({"text":"$kError GET COMPETITION FAILURE\n $exception"});
       print('<<===GET COMPETITION EXCEPTION ==> $exception');
       return Future.error(exception);
     }

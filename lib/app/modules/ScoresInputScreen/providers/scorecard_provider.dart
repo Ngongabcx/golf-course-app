@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:gcms/app/modules/utils/slack_logger.dart';
 import 'package:gcms/constants/constant.dart';
 
 import '../scorecard_model.dart';
@@ -21,7 +22,7 @@ class ScorecardProvider {
       final response =
           await dio.post("$kApiBaseURL/scorecards/$compId/$userId", data: data);
       //final body = json.decode(response.bodyString);
-      if (response.statusCode != 200 || response.statusCode !=201) {
+      if (response.statusCode !=201) {
         print("POST SCORES RESPONSE  --> ${response.data.toString()}");
         return Future.error(response.statusMessage.toString());
       } else {
@@ -29,6 +30,7 @@ class ScorecardProvider {
         return Scorecard.fromJson(resp);
       }
     } catch (exception) {
+      logToChannel({"text":"$kError POST SCORE CARD FAILURE\n $exception"});
       print('<<=== EXCEPTION ==> $exception');
       return Future.error(exception);
     }

@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:gcms/app/modules/SetupScreen/competition_model.dart';
+import 'package:gcms/app/modules/utils/slack_logger.dart';
 import 'package:gcms/constants/constant.dart';
 
 class MatchInvitesProvider {
@@ -23,6 +24,7 @@ class MatchInvitesProvider {
         return resp;
       }
     } catch (exception) {
+      logToChannel({"text":"$kError FETCH INVITATIONS FAILURE\n $exception"});
       print('<<===GET MATCH INVITATIONS EXCEPTION2==> $exception');
       return Future.error(exception);
     }
