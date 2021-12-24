@@ -9,7 +9,7 @@ class BaseProvider {
     baseUrl: kApiBaseURL,
     contentType: 'application/json',
     responseType: ResponseType.plain,
-    receiveDataWhenStatusError: true
+    receiveDataWhenStatusError: true,
   ));
   @override
   void onInit() {

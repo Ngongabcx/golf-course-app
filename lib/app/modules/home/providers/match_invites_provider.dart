@@ -1,32 +1,32 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:gcms/app/modules/SetupScreen/competition_model.dart';
+import 'package:gcms/app/modules/utils/base_provider.dart';
 import 'package:gcms/app/modules/utils/slack_logger.dart';
 import 'package:gcms/constants/constant.dart';
 
-class MatchInvitesProvider {
-  final Dio dio = Dio(BaseOptions(
-    connectTimeout: kConnectionTimeout,
-    receiveTimeout: kReceiveTimeout,
-    baseUrl: kApiBaseURL,
-    contentType: 'application/json',
-    responseType: ResponseType.plain,
-  ));
+class MatchInvitesProvider extends BaseProvider {
   Future<Competition> getMatchInvites(String id) async {
     print("######---ID FOR FETCHING MATCH INVITATIONS   ---> $id");
     try {
       final response = await dio.get("$kApiBaseURL/invites/all/$id");
-      if (response.statusCode != 200) {
-        print('<<===GET MATCH INVITATIONS  ERROR==> ${response.statusCode}');
-        return Future.error(response.statusMessage.toString());
-      } else {
-        final resp = competitionFromJson(response.data.toString());
-        print('<<===GET MATCH INVITATIONS  SUCCESSFUL==> ${response.data}');
-        return resp;
+      return competitionFromJson(response.data.toString());
+    } on DioError catch (exception) {
+      if (exception.response != null) {
+        if (exception.response!.statusCode == 400) {
+          Map<String, dynamic> res =
+              jsonDecode((exception.response!.data.toString()));
+          print("RESPONSE STATUS --------->>>> $res");
+          //return Future.error(exception.response!.data["error"].toString());
+          return Future.error(exception.response!.statusMessage.toString());
+        }
+        return Future.error(exception.response!.statusMessage.toString());
       }
-    } catch (exception) {
-      logToChannel({"text":"$kError FETCH INVITATIONS FAILURE\n $exception"});
-      print('<<===GET MATCH INVITATIONS EXCEPTION2==> $exception');
-      return Future.error(exception);
+      logToChannel({"text": "$kError GET MATCH INVITES FAILURE\n $exception"});
+      print('<<===GETTING MATCH INVITES EXCEPTION ==> $exception');
+      return Future.error(
+          "An error occured please check your internet connection.".toString());
     }
   }
 }
