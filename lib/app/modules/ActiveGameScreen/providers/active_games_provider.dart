@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:gcms/app/modules/SetupScreen/competition_model.dart';
 import 'package:gcms/app/modules/utils/base_provider.dart';
-import 'package:gcms/app/modules/utils/slack_logger.dart';
+import 'package:gcms/app/services/slack_logger.dart';
 import 'package:gcms/constants/constant.dart';
 
 class ActiveGamesProvider extends BaseProvider {

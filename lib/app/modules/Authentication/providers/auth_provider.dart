@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:gcms/app/modules/utils/base_provider.dart';
-import 'package:gcms/app/modules/utils/slack_logger.dart';
+import 'package:gcms/app/services/slack_logger.dart';
 import 'package:gcms/constants/constant.dart';
 
 import '../auth_model.dart';
