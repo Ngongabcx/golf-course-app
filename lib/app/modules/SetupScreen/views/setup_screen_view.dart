@@ -6,9 +6,9 @@ import 'package:gcms/app/modules/commonWidgets/custom_multi_select_drop_down.dar
 import 'package:gcms/app/modules/commonWidgets/custom_single_select_drop_down.dart';
 import 'package:gcms/app/modules/commonWidgets/loader/loader.dart';
 import 'package:gcms/app/modules/commonWidgets/loader/loading_provider.dart';
+import 'package:gcms/app/modules/commonWidgets/textFormField.dart';
 import 'package:gcms/constants/constant.dart';
 import 'package:gcms/theme/gcms_theme.dart';
-
 import 'package:get/get.dart';
 import 'package:provider/src/provider.dart';
 
@@ -42,26 +42,34 @@ class SetupScreenView extends GetView<SetupScreenController> {
                     padding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 20.0),
                     child: ListView(
                       children: [
-                        TextFormField(
-                          controller: controller.matchName,
-                          decoration: InputDecoration(
-                              fillColor: Colors.white,
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5.0),
-                                borderSide: const BorderSide(
-                                  color: Color(0xFF22C17B),
-                                ),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5.0),
-                                borderSide: const BorderSide(
-                                  color: Color(0xFF9C9D9E),
-                                ),
-                              ),
-                              labelText: 'Match Name',
-                              labelStyle:
-                                  Theme.of(context).textTheme.headline3),
+                        CustomTextFormFieldWidget(
+                          controller.matchName,
+                          "Match Name",
+                          (s) {},
+                          false,
+                          false,
+                          false,
                         ),
+                        // TextFormField(
+                        //   controller: controller.matchName,
+                        //   decoration: InputDecoration(
+                        //       fillColor: Colors.white,
+                        //       focusedBorder: OutlineInputBorder(
+                        //         borderRadius: BorderRadius.circular(5.0),
+                        //         borderSide: const BorderSide(
+                        //           color: Color(0xFF22C17B),
+                        //         ),
+                        //       ),
+                        //       enabledBorder: OutlineInputBorder(
+                        //         borderRadius: BorderRadius.circular(5.0),
+                        //         borderSide: const BorderSide(
+                        //           color: Color(0xFF9C9D9E),
+                        //         ),
+                        //       ),
+                        //       labelText: 'Match Name',
+                        //       labelStyle:
+                        //           Theme.of(context).textTheme.headline3),
+                        // ),
                         const SizedBox(height: 20),
                         Text(
                           'Select Golf Course',
@@ -75,8 +83,9 @@ class SetupScreenView extends GetView<SetupScreenController> {
                             true,
                             List.generate(
                                 controller.lstCourses.length,
-                                (index) =>
-                                    controller.lstCourses[index].courseName.toString()),
+                                (index) => controller
+                                    .lstCourses[index].courseName
+                                    .toString()),
                           );
                         }),
                         const SizedBox(height: 20),
@@ -98,8 +107,9 @@ class SetupScreenView extends GetView<SetupScreenController> {
                             true,
                             List.generate(
                                 controller.lstPlayers.length,
-                                (index) =>
-                                    controller.lstPlayers[index].firstName.toString()),
+                                (index) => controller
+                                    .lstPlayers[index].firstName
+                                    .toString()),
                           );
                         }),
                         const SizedBox(height: 20),
@@ -178,7 +188,7 @@ class SetupScreenView extends GetView<SetupScreenController> {
                             Obx(() {
                               return DropdownButton<int>(
                                 hint: Text(
-                                  'Start from',
+                                  'Front nine',
                                   style: Theme.of(context).textTheme.bodyText2,
                                 ),
                                 items: controller.startingHoleOptions
@@ -224,7 +234,7 @@ class SetupScreenView extends GetView<SetupScreenController> {
                             Obx(() {
                               return DropdownButton<int>(
                                 hint: Text(
-                                  'End At',
+                                  'Back nine',
                                   style: Theme.of(context).textTheme.bodyText2,
                                 ),
                                 items: controller.endingHoleOptions
@@ -390,9 +400,12 @@ class SetupScreenView extends GetView<SetupScreenController> {
                                     compFee: 0.0,
                                     compDate: controller.matchDate.value,
                                     compTime: controller.matchTime.value,
-                                    gameHoles: controller.numberOfHolesToPlay.value.toString(),
+                                    gameHoles: controller
+                                        .numberOfHolesToPlay.value
+                                        .toString(),
                                     startingHole: controller.startingHole.value,
-                                    courseId: int.parse(controller.selectedCourseId.value),
+                                    courseId: int.parse(
+                                        controller.selectedCourseId.value),
                                     competitionPlayer:
                                         controller.selectedPlayers.cast<int>(),
                                   );

@@ -1,10 +1,9 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/SetupScreen/controllers/setup_screen_controller.dart';
+import 'package:gcms/constants/constant.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/state_manager.dart';
-
-import 'package:gcms/constants/constant.dart';
 
 class CustomDropDown extends GetView {
   final String label;
@@ -36,14 +35,17 @@ class CustomDropDown extends GetView {
         labelStyle: TextStyle(color: Colors.grey),
         enabledBorder: OutlineInputBorder(
           borderSide: const BorderSide(
-            //color: Color(0xFFDBE2E7),
-            width: 0.5,
+            color: Color(0xFFDBE2E7),
+            width: 2,
           ),
+          borderRadius: BorderRadius.circular(8),
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: const BorderSide(
             color: kPrimaryColor,
+            width: 2,
           ),
+          borderRadius: BorderRadius.circular(8),
         ),
       ),
       onChanged: (value) {
