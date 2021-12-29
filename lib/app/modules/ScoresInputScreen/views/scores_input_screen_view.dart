@@ -50,10 +50,11 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                               Padding(
+                              Padding(
                                 padding: EdgeInsets.only(top: 0.0),
                                 child: CircleImage(
-                                  imageProvider: NetworkImage('${_controller.storage.read("profilePic")}'),
+                                  imageProvider: NetworkImage(
+                                      '${_controller.storage.read("profilePic")}'),
                                 ),
                               ),
                               Text(
@@ -82,7 +83,11 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                   children: [
                                     Obx(() {
                                       return RoundButtonWidget(
-                                        text:  _controller.gameHoles[_controller.holeIndex.value].holeNo.toString(),
+                                        text: _controller
+                                            .gameHoles[
+                                                _controller.holeIndex.value]
+                                            .holeNo
+                                            .toString(),
                                         textStyle: Theme.of(context)
                                             .textTheme
                                             .bodyText2,
@@ -106,7 +111,11 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                   children: [
                                     Obx(() {
                                       return RoundButtonWidget(
-                                        text:  _controller.gameHoles[_controller.holeIndex.value].par.toString(),
+                                        text: _controller
+                                            .gameHoles[
+                                                _controller.holeIndex.value]
+                                            .par
+                                            .toString(),
                                         textStyle: Theme.of(context)
                                             .textTheme
                                             .bodyText2,
@@ -130,8 +139,11 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                   children: [
                                     Obx(() {
                                       return RoundButtonWidget(
-                                        text:
-                                            _controller.gameHoles[_controller.holeIndex.value].stroke.toString(),
+                                        text: _controller
+                                            .gameHoles[
+                                                _controller.holeIndex.value]
+                                            .stroke
+                                            .toString(),
                                         textStyle: Theme.of(context)
                                             .textTheme
                                             .bodyText2,
@@ -267,7 +279,7 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                               Padding(
                                 padding: const EdgeInsets.only(top: 8.0),
                                 child: CustomButton(
-                                  textStyle:GcmsTheme.lightTextTheme.bodyText2,
+                                  textStyle: GcmsTheme.lightTextTheme.bodyText2,
                                   text: "Submit",
                                   onPressed: () {
                                     _controller.calculateResult();
@@ -284,7 +296,11 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                           'result': _controller.result.value
                                               .toString(),
                                           "confirmed": true,
-                                          "holeId": _controller.gameHoles[_controller.holeIndex.value].id.toString(),
+                                          "holeId": _controller
+                                              .gameHoles[
+                                                  _controller.holeIndex.value]
+                                              .id
+                                              .toString(),
                                         }, "${competition.id}",
                                             _controller.storage.read("userId"));
                                         Get.back();
@@ -328,93 +344,91 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                 child: InkWell(
                                   onTap: () {
                                     Get.bottomSheet(
-                                        Container(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(16.0),
-                                            child: Column(
-                                              children: [
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Padding(
+                                      Container(
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(16.0),
+                                          child: Column(
+                                            children: [
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Padding(
+                                                    padding: EdgeInsets.only(
+                                                        left: 20.0),
+                                                    child: Text(
+                                                      'Player',
+                                                      style: GcmsTheme
+                                                          .lightTextTheme
+                                                          .headline3,
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding: EdgeInsets.only(
+                                                        right: 14.0),
+                                                    child: Text(
+                                                      'Scores',
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .headline3,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              Row(
+                                                children: [
+                                                  const Padding(
+                                                    padding: EdgeInsets.only(
+                                                        left: 16.0, top: 16.0),
+                                                    child: Expanded(
+                                                      flex: 5,
+                                                      child: CircleAvatar(
+                                                        radius: 30.0,
+                                                        backgroundImage: AssetImage(
+                                                            'assets/images/Tiger-Woods.jpg'),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                    flex: 10,
+                                                    child: Padding(
                                                       padding: EdgeInsets.only(
                                                           left: 20.0),
                                                       child: Text(
-                                                        'Player',
-                                                        style: GcmsTheme
-                                                            .lightTextTheme
-                                                            .headline3,
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding: EdgeInsets.only(
-                                                          right: 14.0),
-                                                      child: Text(
-                                                        'Scores',
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .headline3,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    const Padding(
-                                                      padding: EdgeInsets.only(
-                                                          left: 16.0,
-                                                          top: 16.0),
-                                                      child: Expanded(
-                                                        flex: 5,
-                                                        child: CircleAvatar(
-                                                          radius: 30.0,
-                                                          backgroundImage:
-                                                              AssetImage(
-                                                                  'assets/images/Tiger-Woods.jpg'),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Expanded(
-                                                      flex: 10,
-                                                      child: Padding(
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                                left: 20.0),
-                                                        child: Text(
-                                                          'Tiger Woods (You)',
-                                                          style:
-                                                              Theme.of(context)
-                                                                  .textTheme
-                                                                  .bodyText1,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Expanded(
-                                                      flex: 2,
-                                                      child: Text(
-                                                        controller.result.value
-                                                            .toString(),
+                                                        'Tiger Woods (You)',
                                                         style: Theme.of(context)
                                                             .textTheme
                                                             .bodyText1,
                                                       ),
                                                     ),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
+                                                  ),
+                                                  Expanded(
+                                                    flex: 2,
+                                                    child: Text(
+                                                      controller.result.value
+                                                          .toString(),
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyText1,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
                                           ),
                                         ),
-                                        elevation: 20.0,
-                                        enableDrag: false,
-                                        backgroundColor: Colors.white,
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.only(
+                                      ),
+                                      elevation: 20.0,
+                                      enableDrag: false,
+                                      backgroundColor: Colors.white,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.only(
                                           topLeft: Radius.circular(30.0),
                                           topRight: Radius.circular(30.0),
-                                        )));
+                                        ),
+                                      ),
+                                    );
                                   },
                                   child: Ink(
                                     padding: EdgeInsets.symmetric(
@@ -461,7 +475,8 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                               Padding(
                                   padding: const EdgeInsets.only(top: 8.0),
                                   child: CustomButton(
-                                    textStyle: GcmsTheme.lightTextTheme.bodyText2,
+                                    textStyle:
+                                        GcmsTheme.lightTextTheme.bodyText2,
                                     text: "End Match",
                                     onPressed: () {
                                       Get.defaultDialog(
