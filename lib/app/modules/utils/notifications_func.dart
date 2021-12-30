@@ -1,5 +1,6 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:gcms/app/modules/home/controllers/home_controller.dart';
+import 'package:gcms/app/modules/Notifications/controllers/notifications_controller.dart';
+import 'package:gcms/app/modules/Notifications/providers/database/notifications_database.dart';
 import 'package:gcms/app/services/local_notifications_service.dart';
 import 'package:get/get.dart';
 
@@ -10,10 +11,10 @@ notifications() {
     print("<<<<<<=====------FIREBASE DEVICE TOKEN    ---->  $token");
   });
   //works when notification is opened whilst app is in terminated state
-  FirebaseMessaging.instance.getInitialMessage().then((message) {
+  FirebaseMessaging.instance.getInitialMessage().then((message) async {
     if (message != null) {
-      HomeController.updateNotification(
-          messageId: message.messageId.toString());
+     await NotificationsDatabase.instance.updateNotification(message.messageId.toString());
+      NotificationsController().refreshNotifications();
       final routeFromMessage = message.data["viewUri"];
       print(routeFromMessage);
 
@@ -29,8 +30,9 @@ notifications() {
   });
   //Below line only works when notofication has been tapped/open whilst the app is running in the background
   //Its also a stream hance we havr to listen
-  FirebaseMessaging.onMessageOpenedApp.listen((message) {
-    HomeController.updateNotification(messageId: message.messageId.toString());
+  FirebaseMessaging.onMessageOpenedApp.listen((message) async {
+   await NotificationsDatabase.instance.updateNotification(message.messageId.toString());
+    NotificationsController().refreshNotifications();
     final routeFromMessage = message.data["viewUri"];
     print(routeFromMessage);
     print("####PAYLOAD FROM API----> ${message.data["payload"]}");

@@ -33,7 +33,7 @@ class CompetitionCard extends StatelessWidget {
               padding: const EdgeInsets.only(
                   left: 16.0, right: 16.0, top: 5.0, bottom: 5.0),
               child: Text(
-                competition.course.courseName,
+                competition.course!.courseName.toString(),
                 style: Theme.of(context).textTheme.headline6,
               ),
             ),
@@ -41,7 +41,7 @@ class CompetitionCard extends StatelessWidget {
               padding:
                   const EdgeInsets.only(right: 16.0, left: 16.0, bottom: 16.0),
               child: Text(
-                competition.compName,
+                competition.compName.toString(),
                 style: Theme.of(context).textTheme.bodyText1,
               ),
             ),
@@ -73,7 +73,7 @@ class CompetitionCard extends StatelessWidget {
                     ],
                   ),
                   Text(
-                    competition.gametype.name
+                    competition.gametype?.name
                             .toString()
                             .split('.')
                             .last
@@ -85,7 +85,7 @@ class CompetitionCard extends StatelessWidget {
                   SizedBox(
                     height: 10.0,
                   ),
-                  Text(competition.compDate,
+                  Text(competition.compDate.toString(),
                       style: GcmsTheme.darkTextTheme.bodyText2),
                 ],
               ),

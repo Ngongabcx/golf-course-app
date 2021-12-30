@@ -38,7 +38,7 @@ class MatchInvitationsCard extends StatelessWidget {
                 bottom: 5.0),
             child: Text(
               invitations
-                      .course
+                      .course!
                       .courseName
                       .toString()
                       .split('.')
@@ -58,7 +58,7 @@ class MatchInvitationsCard extends StatelessWidget {
                 bottom: 16.0),
             child: Text(
               invitations
-                      .compName
+                      .compName!
                       .capitalizeFirst ??
                   '',
               style: Theme.of(context)
@@ -102,7 +102,7 @@ class MatchInvitationsCard extends StatelessWidget {
                 ),
                 Text(
                   invitations
-                          .gametype
+                          .gametype!
                           .name
                           .toString()
                           .split('.')
@@ -120,7 +120,7 @@ class MatchInvitationsCard extends StatelessWidget {
                 ),
                 Text(
                     invitations
-                            .compDate,
+                            .compDate.toString(),
                     style: GcmsTheme
                         .darkTextTheme
                         .bodyText2),

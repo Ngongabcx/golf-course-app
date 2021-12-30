@@ -1,10 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:gcms/app/modules/Notifications/controllers/notifications_controller.dart';
-import 'package:gcms/app/modules/Notifications/providers/sql_helper.dart';
+import 'package:gcms/app/modules/Notifications/models/notification_model.dart';
+import 'package:gcms/app/modules/Notifications/providers/database/notifications_database.dart';
 import 'package:gcms/app/modules/utils/notifications_func.dart';
-import 'package:gcms/app/modules/Authentication/views/user_details_screen_view.dart';
 import 'package:gcms/app/modules/Notifications/views/notifications_view.dart';
 import 'package:gcms/app/modules/SetupScreen/competition_model.dart';
 import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
@@ -19,9 +18,9 @@ import 'package:jwt_decode/jwt_decode.dart';
 import '../user_model.dart';
 
 class HomeController extends GetxController {
-  var notificationsList = List<Map<String, dynamic>>.empty(growable: true).obs;
+  var notificationsList = <FCMNotification>[].obs;
   ScrollController scrollController = ScrollController();
-  var isMoreDataAvailable = true.obs;
+  var isMoreDataAvailable = false.obs;
   var selectedIndex = 0.obs;
   var name = ''.obs;
   var storage = GetStorage();
@@ -39,14 +38,14 @@ class HomeController extends GetxController {
     notifications();
     validateTokenAndGetUser();
     await refreshNotifications();
-    print("NOTIFICATIONS ARRAY OBS  ---> $notificationsList");
+    print("NOTIFICATIONS ARRAY LENGTH  ---> ${notificationsList.first.body}");
   }
 
   @override
   void onClose() {
-    // TODO: implement onClose
     super.onClose();
     name.value = '';
+    NotificationsDatabase.instance.close();
   }
 
   void onItemTapped(int index) {
@@ -92,15 +91,14 @@ class HomeController extends GetxController {
   }
 
   getUserDetails(String id) async {
+    print("GETTING USER DETAILS   --> ID: $id");
     try {
       isProcessing(true);
       UserProvider().getUserDetails(id).then((resp) async {
+        print("RETURNED USER DETAILS --> ${resp.toString()}");
         storage.write("user", resp);
         Map<String, dynamic> storedUser = jsonDecode(storage.read('user'));
         var usr = User.fromJson(storedUser);
-        if (usr.id.toString().isEmpty) {
-          Get.to(UserDetailsScreenView());
-        }
         storage.write("userId", usr.id.toString());
         storage.write("hcp", usr.hcp!.toInt());
         storage.write(
@@ -136,9 +134,11 @@ class HomeController extends GetxController {
   }
 
   getMatchInvites(String id) async {
+    print("GET MATCH INVITES ----> ID: $id");
     try {
       isProcessing(true);
       await MatchInvitesProvider().getMatchInvites(id).then((resp) async {
+        print("GET MACTH INVITES RESPONSE  --> ${resp.toString()}");
         matchInvites.value = resp;
         isProcessing(false);
       }, onError: (err) {
@@ -157,29 +157,32 @@ class HomeController extends GetxController {
     }
   }
 
-  static refreshNotifications() async {
+  refreshNotifications() async {
     print("REFRESH NOTIFICATIONS CALLED.");
-    var notes = await SQLHelper.getNotifications();
-    HomeController().notificationsList.addAll(notes);
+    isProcessing.value = true;
+    var notification =
+        await NotificationsDatabase.instance.getAllNotifications();
+    notificationsList.addAll(notification);
+    print("NOTIFICATION LIST LENGTH ======= "+notificationsList.length.toString());
+    isProcessing.value = false;
   }
 
 // Insert a new notification to the database
-  static Future<void> addNotification(
-      {required String title, required String body, required messageId}) async {
-    await SQLHelper.createNotification(
-        body: body, title: title, messageId: messageId);
+  Future<void> addNotification({required FCMNotification notification}) async {
+    await NotificationsDatabase.instance.create(notification);
     refreshNotifications();
   }
 
 // Update an existing notification
-  static Future<void> updateNotification({required String messageId}) async {
-    await SQLHelper.updateNotification(messageId);
+  Future<void> updateNotification(
+      {required FCMNotification notification}) async {
+    await NotificationsDatabase.instance.update(notification);
     refreshNotifications();
   }
 
 // Delete an notification
-  static void deleteNotification({required String messageId}) async {
-    await SQLHelper.deleteNotification(messageId: messageId);
+  void deleteNotification({required int id}) async {
+    await NotificationsDatabase.instance.delete(id);
     // ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
     //   content: Text('Successfully deleted a journal!'),
     // ));

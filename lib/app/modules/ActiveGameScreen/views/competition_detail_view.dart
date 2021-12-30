@@ -17,7 +17,7 @@ class CompetitionDetailView extends GetView {
         iconTheme: IconThemeData(color: Colors.black),
         automaticallyImplyLeading: true,
         title: Text(
-          competition.compName.capitalizeFirst.toString(),
+          competition.compName!.capitalizeFirst.toString(),
           style: Theme.of(context).textTheme.headline3,
         ),
         centerTitle: true,
@@ -37,7 +37,7 @@ class CompetitionDetailView extends GetView {
                 ),
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: NetworkImage(competition.course.courseImage),
+                    image: NetworkImage(competition.course!.courseImage.toString()),
                     fit: BoxFit.fill,
                   ),
                   borderRadius: const BorderRadius.all(Radius.circular(5.0)),
@@ -47,10 +47,10 @@ class CompetitionDetailView extends GetView {
                 height: 5,
               ),
               Text(
-                competition.course.courseName,
+                competition.course!.courseName.toString(),
                 style: Theme.of(context).textTheme.headline5,
               ),
-              Text(competition.compDate,
+              Text(competition.compDate.toString(),
                   style: Theme.of(context).textTheme.subtitle2),
               const SizedBox(
                 height: 10,
@@ -59,7 +59,7 @@ class CompetitionDetailView extends GetView {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    competition.compName.capitalizeFirst.toString(),
+                    competition.compName!.capitalizeFirst.toString(),
                     style: Theme.of(context).textTheme.headline6,
                   ),
                   Text(
@@ -104,7 +104,7 @@ class CompetitionDetailView extends GetView {
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
                 physics: ScrollPhysics(),
-                itemCount: competition.competitionPlayer.length,
+                itemCount: competition.competitionPlayer!.length,
                 itemBuilder: (context, index) {
                   return Row(
                     children: [
@@ -113,7 +113,7 @@ class CompetitionDetailView extends GetView {
                         child: Expanded(
                           flex: 5,
                           child: competition
-                                      .competitionPlayer[index].player.image ==
+                                      .competitionPlayer![index].player!.image ==
                                   ""
                               ? CircleAvatar(
                                   radius: 30.0,
@@ -123,7 +123,7 @@ class CompetitionDetailView extends GetView {
                               : CircleAvatar(
                                   radius: 30.0,
                                   backgroundImage: NetworkImage(competition
-                                      .competitionPlayer[index].player.image),
+                                      .competitionPlayer![index].player!.image.toString()),
                                 ),
                         ),
                       ),
@@ -132,7 +132,7 @@ class CompetitionDetailView extends GetView {
                         child: Padding(
                           padding: EdgeInsets.only(left: 20.0),
                           child: Text(
-                            "${competition.competitionPlayer[index].player.firstname.toString().split('.').last.replaceAll('_', ' ').capitalizeFirst ?? ''}",
+                            "${competition.competitionPlayer![index].player!.firstname.toString().split('.').last.replaceAll('_', ' ').capitalizeFirst ?? ''}",
                             style: GcmsTheme.lightTextTheme.bodyText1,
                           ),
                         ),

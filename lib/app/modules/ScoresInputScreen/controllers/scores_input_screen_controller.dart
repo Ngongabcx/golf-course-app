@@ -31,13 +31,13 @@ class ScoresInputScreenController extends GetxController {
   void extractGameHolesArray(Payload competition) {
     print("EXTRACT GAME HOLES HAS BEEN CALLED!!!!");
     var totalHoles = competition.numberOfHoles;
-    remainingHoles.value = totalHoles;
+    remainingHoles.value = totalHoles!;
     var startingHole = competition.startingHole;
-    var holes = competition.course.holes;
+    var holes = competition.course?.holes;
     print("TOTAL HOLES ------------> $totalHoles");
     //get holes that are being payed accourding to the competition number of holes being played
     if (totalHoles == 18) {
-      gameHoles.addAll(holes);
+      gameHoles.addAll(holes!);
       print("GAME HOLES ----> ${gameHoles.first}");
     } else {
       if (startingHole == 1 || startingHole == 9) {
@@ -45,7 +45,7 @@ class ScoresInputScreenController extends GetxController {
         for (int h = 0; h < totalHoles; h++) {
           print("COUNT1  --> $count");
           var _gameHoles =
-              holes.where((course) => course.holeNo == count.value).toList();
+              holes!.where((course) => course.holeNo == count.value).toList();
           count.value++;
           print(h);
           print(holes[h]);
@@ -57,7 +57,7 @@ class ScoresInputScreenController extends GetxController {
         for (int h = 0; h < totalHoles; h++) {
           print("COUNT2  --> $count");
           var _gameHoles =
-              holes.where((course) => course.holeNo == count.value).toList();
+              holes!.where((course) => course.holeNo == count.value).toList();
           count.value++;
           print(h);
           print(holes[h]);
@@ -103,15 +103,15 @@ class ScoresInputScreenController extends GetxController {
     if (score > 0) {
       if (hcp >= 18) {
         int calc = hcp.value - 18;
-        if (gameHoles[holeIndex.value].stroke <= calc) {
-          result.value = (3 + (gameHoles[holeIndex.value].par - score.value)) + 1;
+        if (gameHoles[holeIndex.value].stroke! <= calc) {
+          result.value = (3 + (gameHoles[holeIndex.value].par! - score.value)) + 1;
         } else {
-          result.value = (3 + (gameHoles[holeIndex.value].par - score.value));
+          result.value = (3 + (gameHoles[holeIndex.value].par! - score.value));
         }
-      } else if (hcp < gameHoles[holeIndex.value].stroke) {
-        result.value = (2 + (gameHoles[holeIndex.value].par - score.value));
+      } else if (hcp.value < gameHoles[holeIndex.value].stroke!) {
+        result.value = (2 + (gameHoles[holeIndex.value].par! - score.value));
       } else {
-        result.value = (3 + (gameHoles[holeIndex.value].par - score.value));
+        result.value = (3 + (gameHoles[holeIndex.value].par! - score.value));
       }
 
       if (result.value <= 0) {
@@ -124,17 +124,17 @@ class ScoresInputScreenController extends GetxController {
   }
 
   String getInterpretation() {
-    if (result.value == (gameHoles[holeIndex.value].par - 1)) {
+    if (result.value == (gameHoles[holeIndex.value].par! - 1)) {
       return 'Good job you got a birdie ';
-    } else if (score.value == (gameHoles[holeIndex.value].par - 2)) {
+    } else if (score.value == (gameHoles[holeIndex.value].par! - 2)) {
       return 'Great job you got an Eagle !!!';
-    } else if (score.value == (gameHoles[holeIndex.value].par - 3)) {
+    } else if (score.value == (gameHoles[holeIndex.value].par! - 3)) {
       return 'Excellent you got an albertros';
     } else if (score.value == gameHoles[holeIndex.value].par) {
       return 'Not bad you got a Par';
-    } else if (score.value == (gameHoles[holeIndex.value].par + 1)) {
+    } else if (score.value == (gameHoles[holeIndex.value].par! + 1)) {
       return 'You got a Bogey';
-    } else if (score.value == (gameHoles[holeIndex.value].par + 1)) {
+    } else if (score.value == (gameHoles[holeIndex.value].par! + 1)) {
       return 'You got a Double Bogey';
     } else {
       return 'You have scored 0!!!';

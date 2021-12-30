@@ -10,11 +10,11 @@ String competitionToJson(Competition data) => json.encode(data.toJson());
 
 class Competition {
     Competition({
-         this.status,
-         this.success,
-         this.message,
-         this.error,
-         this.payload,
+        this.status,
+        this.success,
+        this.message,
+        this.error,
+        this.payload,
     });
 
     int? status;
@@ -42,34 +42,34 @@ class Competition {
 
 class Payload {
     Payload({
-        required this.id,
-        required this.compName,
-        required this.gametype,
-        required this.compFee,
-        required this.compDate,
-        required this.compTime,
-        required this.numberOfHoles,
-        required this.startingHole,
-        required this.course,
-        required this.competitionPlayer,
+        this.id,
+        this.compName,
+        this.gametype,
+        this.compFee,
+        this.compDate,
+        this.compTime,
+        this.numberOfHoles,
+        this.startingHole,
+        this.course,
+        this.competitionPlayer,
     });
 
-    int id;
-    String compName;
-    Type gametype;
-    double compFee;
-    String compDate;
-    String compTime;
-    int numberOfHoles;
-    int startingHole;
-    Course course;
-    List<CompetitionPlayer> competitionPlayer;
+    int? id;
+    String? compName;
+    Type? gametype;
+    double? compFee;
+    String? compDate;
+    String? compTime;
+    int? numberOfHoles;
+    int? startingHole;
+    Course? course;
+    List<CompetitionPlayer>? competitionPlayer;
 
     factory Payload.fromJson(Map<String, dynamic> json) => Payload(
         id: json["id"],
         compName: json["compName"],
         gametype: Type.fromJson(json["gametype"]),
-        compFee: json["compFee"].toDouble(),
+        compFee: json["compFee"],
         compDate: json["compDate"],
         compTime: json["compTime"],
         numberOfHoles: json["numberOfHoles"],
@@ -81,33 +81,35 @@ class Payload {
     Map<String, dynamic> toJson() => {
         "id": id,
         "compName": compName,
-        "gametype": gametype.toJson(),
+        "gametype": gametype!.toJson(),
         "compFee": compFee,
         "compDate": compDate,
         "compTime": compTime,
         "numberOfHoles": numberOfHoles,
         "startingHole": startingHole,
-        "course": course.toJson(),
-        "competitionPlayer": List<dynamic>.from(competitionPlayer.map((x) => x.toJson())),
+        "course": course!.toJson(),
+        "competitionPlayer": List<dynamic>.from(competitionPlayer!.map((x) => x.toJson())),
     };
 }
 
 class CompetitionPlayer {
     CompetitionPlayer({
-        required this.id,
-        required this.competitionId,
-        required this.competitionTime,
-        required this.player,
-        required this.competitionHcp,
-        required this.invitation,
+        this.id,
+        this.competitionId,
+        this.competitionTime,
+        this.player,
+        this.competitionHcp,
+        this.recordingScoreFor,
+        this.invitation,
     });
 
-    int id;
-    int competitionId;
-    String competitionTime;
-    Player player;
-    int competitionHcp;
-    Invitation invitation;
+    int? id;
+    int? competitionId;
+    String? competitionTime;
+    Player? player;
+    int? competitionHcp;
+    int? recordingScoreFor;
+    Invitation? invitation;
 
     factory CompetitionPlayer.fromJson(Map<String, dynamic> json) => CompetitionPlayer(
         id: json["id"],
@@ -115,6 +117,7 @@ class CompetitionPlayer {
         competitionTime: json["competitionTime"],
         player: Player.fromJson(json["player"]),
         competitionHcp: json["competitionHcp"],
+        recordingScoreFor: json["recordingScoreFor"],
         invitation: Invitation.fromJson(json["invitation"]),
     );
 
@@ -122,182 +125,129 @@ class CompetitionPlayer {
         "id": id,
         "competitionId": competitionId,
         "competitionTime": competitionTime,
-        "player": player.toJson(),
+        "player": player!.toJson(),
         "competitionHcp": competitionHcp,
-        "invitation": invitation.toJson(),
+        "recordingScoreFor": recordingScoreFor,
+        "invitation": invitation!.toJson(),
     };
 }
 
 class Invitation {
     Invitation({
-        required this.inviteId,
-        required this.status,
+        this.inviteId,
+        this.status,
     });
 
-    int inviteId;
-    Status? status;
+    int? inviteId;
+    String? status;
 
     factory Invitation.fromJson(Map<String, dynamic> json) => Invitation(
         inviteId: json["inviteId"],
-        status: statusValues.map![json["status"]],
+        status: json["status"],
     );
 
     Map<String, dynamic> toJson() => {
         "inviteId": inviteId,
-        "status": statusValues.reverse![status],
+        "status": status,
     };
 }
-
-enum Status { PENDING }
-
-final statusValues = EnumValues({
-    "pending": Status.PENDING
-});
 
 class Player {
     Player({
-        required this.id,
-        required this.firstname,
-        required this.lastname,
-        required this.address,
-        required this.image,
-        required this.dob,
-        required this.gender,
-        required this.hcp,
-        required this.dateJoined,
-        required this.aspnetuserDetails,
-        required this.usertype,
+        this.id,
+        this.firstname,
+        this.lastname,
+        this.address,
+        this.image,
+        this.dob,
+        this.gender,
+        this.hcp,
+        this.dateJoined,
+        this.aspnetuserDetails,
+        this.usertype,
+        this.recordingScoresFor,
     });
 
-    int id;
-    Firstname? firstname;
-    Lastname? lastname;
-    Address? address;
-    String image;
-    Dob? dob;
-    String gender;
-    int hcp;
-    DateJoined? dateJoined;
-    AspnetuserDetails aspnetuserDetails;
-    Type usertype;
+    int? id;
+    String? firstname;
+    String? lastname;
+    String? address;
+    String? image;
+    String? dob;
+    String? gender;
+    int? hcp;
+    String? dateJoined;
+    AspnetuserDetails? aspnetuserDetails;
+    Type? usertype;
+    Player? recordingScoresFor;
 
     factory Player.fromJson(Map<String, dynamic> json) => Player(
         id: json["id"],
-        firstname: firstnameValues.map![json["firstname"]],
-        lastname: lastnameValues.map![json["lastname"]],
-        address: addressValues.map![json["address"]],
+        firstname: json["firstname"],
+        lastname: json["lastname"],
+        address: json["address"],
         image: json["image"],
-        dob: dobValues.map![json["dob"]],
+        dob: json["dob"],
         gender: json["gender"],
         hcp: json["hcp"],
-        dateJoined: dateJoinedValues.map![json["dateJoined"]],
+        dateJoined: json["dateJoined"],
         aspnetuserDetails: AspnetuserDetails.fromJson(json["aspnetuserDetails"]),
         usertype: Type.fromJson(json["usertype"]),
+        recordingScoresFor: json["recordingScoresFor"] == null ? null : Player.fromJson(json["recordingScoresFor"]),
     );
 
     Map<String, dynamic> toJson() => {
         "id": id,
-        "firstname": firstnameValues.reverse![firstname],
-        "lastname": lastnameValues.reverse![lastname],
-        "address": addressValues.reverse![address],
+        "firstname": firstname,
+        "lastname": lastname,
+        "address": address,
         "image": image,
-        "dob": dobValues.reverse![dob],
+        "dob": dob,
         "gender": gender,
         "hcp": hcp,
-        "dateJoined": dateJoinedValues.reverse![dateJoined],
-        "aspnetuserDetails": aspnetuserDetails.toJson(),
-        "usertype": usertype.toJson(),
+        "dateJoined": dateJoined,
+        "aspnetuserDetails": aspnetuserDetails!.toJson(),
+        "usertype": usertype!.toJson(),
+        "recordingScoresFor": recordingScoresFor == null ? null : recordingScoresFor!.toJson(),
     };
 }
-
-enum Address { IBEX_HILL, CHIWALA, NDOLA }
-
-final addressValues = EnumValues({
-    "Chiwala": Address.CHIWALA,
-    "Ibex Hill": Address.IBEX_HILL,
-    "Ndola": Address.NDOLA
-});
 
 class AspnetuserDetails {
     AspnetuserDetails({
-        required this.id,
-        required this.username,
-        required this.phoneNumber,
-        required this.email,
+        this.id,
+        this.username,
+        this.phoneNumber,
+        this.email,
     });
 
-    String id;
-    Username? username;
-    String phoneNumber;
-    Email? email;
+    String? id;
+    String? username;
+    String? phoneNumber;
+    String? email;
 
     factory AspnetuserDetails.fromJson(Map<String, dynamic> json) => AspnetuserDetails(
         id: json["id"],
-        username: usernameValues.map![json["username"]],
+        username: json["username"],
         phoneNumber: json["phoneNumber"],
-        email: emailValues.map![json["email"]],
+        email: json["email"],
     );
 
     Map<String, dynamic> toJson() => {
         "id": id,
-        "username": usernameValues.reverse![username],
+        "username": username,
         "phoneNumber": phoneNumber,
-        "email": emailValues.reverse![email],
+        "email": email,
     };
 }
 
-enum Email { CHAINAMA_GMAIL_COM }
-
-final emailValues = EnumValues({
-    "chainama@gmail.com": Email.CHAINAMA_GMAIL_COM
-});
-
-enum Username { BWALYA_NG_ONGA, NICK_MWERENGA, LEONARD_CHINYAMA }
-
-final usernameValues = EnumValues({
-    "Bwalya Ng'onga": Username.BWALYA_NG_ONGA,
-    "Leonard-Chinyama": Username.LEONARD_CHINYAMA,
-    "Nick Mwerenga": Username.NICK_MWERENGA
-});
-
-enum DateJoined { THE_11182021120000_AM, THE_3152021120000_AM, THE_3202021120000_AM }
-
-final dateJoinedValues = EnumValues({
-    "11/18/2021 12:00:00 AM": DateJoined.THE_11182021120000_AM,
-    "3/15/2021 12:00:00 AM": DateJoined.THE_3152021120000_AM,
-    "3/20/2021 12:00:00 AM": DateJoined.THE_3202021120000_AM
-});
-
-enum Dob { THE_3192021120000_AM }
-
-final dobValues = EnumValues({
-    "3/19/2021 12:00:00 AM": Dob.THE_3192021120000_AM
-});
-
-enum Firstname { NG_ONGA, NICK, LEONARD_KAPOKOLO }
-
-final firstnameValues = EnumValues({
-    "Leonard Kapokolo": Firstname.LEONARD_KAPOKOLO,
-    "Ng'onga": Firstname.NG_ONGA,
-    "Nick": Firstname.NICK
-});
-
-enum Lastname { BWALYA, NICK, CHINYAMA }
-
-final lastnameValues = EnumValues({
-    "Bwalya": Lastname.BWALYA,
-    "Chinyama": Lastname.CHINYAMA,
-    "Nick": Lastname.NICK
-});
-
 class Type {
     Type({
-        required this.id,
-        required this.name,
-        required this.description,
+        this.id,
+        this.name,
+        this.description,
     });
 
-    int id;
+    int? id;
     Name? name;
     Description? description;
 
@@ -314,53 +264,53 @@ class Type {
     };
 }
 
-enum Description { THIS_IS_A_NORMAL_USER, A_GAME_PLAYED_BY_FOUR_PEOPLE }
+enum Description { THIS_IS_JUST_A_SAMPLE_TEST_USER, PLAYER_WITH_HIGHEST_RESULT_WINS }
 
 final descriptionValues = EnumValues({
-    "A game played by four people": Description.A_GAME_PLAYED_BY_FOUR_PEOPLE,
-    "This is a normal user": Description.THIS_IS_A_NORMAL_USER
+    "Player with highest result wins": Description.PLAYER_WITH_HIGHEST_RESULT_WINS,
+    "This is just a sample test user": Description.THIS_IS_JUST_A_SAMPLE_TEST_USER
 });
 
-enum Name { NORMAL_USER, STABLE_FORD }
+enum Name { NORMAL_USER, MELO_FORD }
 
 final nameValues = EnumValues({
-    "Normal User": Name.NORMAL_USER,
-    "Stable Ford": Name.STABLE_FORD
+    "Melo Ford": Name.MELO_FORD,
+    "Normal user": Name.NORMAL_USER
 });
 
 class Course {
     Course({
-        required this.id,
-        required this.courseName,
-        required this.address,
-        required this.courseAbr,
-        required this.email,
-        required this.phoneNo,
-        required this.courseImage,
-        required this.holes,
-        required this.payments,
+        this.id,
+        this.courseName,
+        this.address,
+        this.courseAbr,
+        this.email,
+        this.phoneNo,
+        this.courseImage,
+        this.holes,
+        this.payments,
     });
 
-    int id;
-    String courseName;
-    String address;
-    String courseAbr;
-    Email? email;
-    String phoneNo;
-    String courseImage;
-    List<Hole> holes;
-    List<Payment> payments;
+    int? id;
+    String? courseName;
+    String? address;
+    String? courseAbr;
+    String? email;
+    String? phoneNo;
+    String? courseImage;
+    List<Hole>? holes;
+    List<dynamic>? payments;
 
     factory Course.fromJson(Map<String, dynamic> json) => Course(
         id: json["id"],
         courseName: json["courseName"],
         address: json["address"],
         courseAbr: json["courseAbr"],
-        email: emailValues.map![json["email"]],
+        email: json["email"],
         phoneNo: json["phoneNo"],
         courseImage: json["courseImage"],
         holes: List<Hole>.from(json["holes"].map((x) => Hole.fromJson(x))),
-        payments: List<Payment>.from(json["payments"].map((x) => Payment.fromJson(x))),
+        payments: List<dynamic>.from(json["payments"].map((x) => x)),
     );
 
     Map<String, dynamic> toJson() => {
@@ -368,34 +318,34 @@ class Course {
         "courseName": courseName,
         "address": address,
         "courseAbr": courseAbr,
-        "email": emailValues.reverse![email],
+        "email": email,
         "phoneNo": phoneNo,
         "courseImage": courseImage,
-        "holes": List<dynamic>.from(holes.map((x) => x.toJson())),
-        "payments": List<dynamic>.from(payments.map((x) => x.toJson())),
+        "holes": List<dynamic>.from(holes!.map((x) => x.toJson())),
+        "payments": List<dynamic>.from(payments!.map((x) => x)),
     };
 }
 
 class Hole {
     Hole({
-        required this.id,
-        required this.holeNo,
-        required this.yellow,
-        required this.white,
-        required this.blue,
-        required this.red,
-        required this.par,
-        required this.stroke,
+        this.id,
+        this.holeNo,
+        this.yellow,
+        this.white,
+        this.blue,
+        this.red,
+        this.par,
+        this.stroke,
     });
 
-    int id;
-    int holeNo;
-    int yellow;
-    int white;
-    int blue;
-    int red;
-    int par;
-    int stroke;
+    int? id;
+    int? holeNo;
+    int? yellow;
+    int? white;
+    int? blue;
+    int? red;
+    int? par;
+    int? stroke;
 
     factory Hole.fromJson(Map<String, dynamic> json) => Hole(
         id: json["id"],
@@ -420,43 +370,11 @@ class Hole {
     };
 }
 
-class Payment {
-    Payment({
-        required this.id,
-        required this.name,
-        required this.type,
-        required this.category,
-        required this.amount,
-    });
-
-    int id;
-    Name? name;
-    String type;
-    String category;
-    double amount;
-
-    factory Payment.fromJson(Map<String, dynamic> json) => Payment(
-        id: json["id"],
-        name: nameValues.map![json["name"]],
-        type: json["type"],
-        category: json["category"],
-        amount: json["amount"],
-    );
-
-    Map<String, dynamic> toJson() => {
-        "id": id,
-        "name": nameValues.reverse![name],
-        "type": type,
-        "category": category,
-        "amount": amount,
-    };
-}
-
 class EnumValues<T> {
     Map<String, T>? map;
     Map<T, String>? reverseMap;
 
-     EnumValues(this.map);
+    EnumValues(this.map);
 
     Map<T, String>? get reverse {
         if (reverseMap == null) {

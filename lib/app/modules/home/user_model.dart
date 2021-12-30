@@ -6,7 +6,7 @@ class User {
   dynamic phoneNo;
   String? email;
   String? address;
-  dynamic image;
+  String? image;
   String? dob;
   String? gender;
   int? hcp;
@@ -17,22 +17,22 @@ class User {
   dynamic membership;
 
   User(
-      {required this.id,
-      required this.username,
-      required this.firstName,
-      required this.lastName,
-      required this.phoneNo,
-      required this.email,
-      required this.address,
-      required this.image,
-      required this.dob,
-      required this.gender,
-      required this.hcp,
-      required this.dateJoined,
-      required this.aspnetusersId,
-      required this.usertype,
-      required this.employmentDetails,
-      required this.membership});
+      {this.id,
+      this.username,
+      this.firstName,
+      this.lastName,
+      this.phoneNo,
+      this.email,
+      this.address,
+      this.image,
+      this.dob,
+      this.gender,
+      this.hcp,
+      this.dateJoined,
+      this.aspnetusersId,
+      this.usertype,
+      this.employmentDetails,
+      this.membership});
 
   User.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -49,7 +49,7 @@ class User {
     dateJoined = json['dateJoined'];
     aspnetusersId = json['aspnetusersId'];
     usertype =
-        json['usertype'] != null ? Usertype.fromJson(json['usertype']) : null;
+        json['usertype'] != null ? Usertype?.fromJson(json['usertype']) : null;
     employmentDetails = json['employmentDetails'];
     membership = json['membership'];
   }
@@ -83,7 +83,7 @@ class Usertype {
   String? name;
   String? description;
 
-  Usertype({required this.id, required this.name, required this.description});
+  Usertype({this.id, this.name, this.description});
 
   Usertype.fromJson(Map<String, dynamic> json) {
     id = json['id'];

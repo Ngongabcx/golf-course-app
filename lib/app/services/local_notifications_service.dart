@@ -1,5 +1,7 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:gcms/app/modules/Notifications/models/notification_model.dart';
+import 'package:gcms/app/modules/Notifications/providers/database/notifications_database.dart';
 import 'package:gcms/app/modules/home/controllers/home_controller.dart';
 import 'package:get/get.dart';
 
@@ -21,9 +23,14 @@ class LocalNotificationsService {
   }
 
   static void displayNotification(RemoteMessage message) async {
+    print("DISPLAY NOTIFICATION IN LOCAL NOTIFICATIONS FILE CALLED");
     //Save the notification to local db
-    HomeController.addNotification(
-        body: message.data['body'], title: message.data['title'],messageId:message.messageId.toString());
+    var notification = FCMNotification(
+        isRead: false,
+        messageId: message.messageId.toString(),
+        title: message.data['title'],
+        body: message.data['body'],
+        createdTime: DateTime.now());
     try {
       final id = DateTime.now().millisecondsSinceEpoch ~/ 1000;
 
@@ -43,6 +50,8 @@ class LocalNotificationsService {
         notificationDetails,
         payload: message.data["viewUri"],
       );
+      await NotificationsDatabase.instance.create(notification);
+      await HomeController().refreshNotifications();
     } on Exception catch (e) {
       print("Exception when displaying notification  --> ${e.toString()}");
     }

@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:gcms/app/modules/commonWidgets/customButton.dart';
 import 'package:gcms/app/modules/commonWidgets/textFormField.dart';
-import 'package:gcms/constants/constant.dart';
-import 'package:gcms/theme/gcms_theme.dart';
 import '../controllers/setting_screen_controller.dart';
 import 'package:get/get.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:gcms/app/modules/commonWidgets/build_form_builder_date_time_picker_view.dart.dart';
 import 'package:gcms/app/modules/commonWidgets/build_form_builder_dropdown.dart';
-import 'package:form_builder_image_picker/form_builder_image_picker.dart';
 
 class BuildUserDetails extends GetView<SettingScreenController> {
   final userController = Get.put(SettingScreenController());
