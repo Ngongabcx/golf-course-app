@@ -88,6 +88,7 @@ class SignUpView extends GetView<AuthenticationController> {
                                     .signUpPasswordController.text,
                               });
                             }
+                            userDetailsSubmitForm(id);
                           }
                           if (signUpController.currentStep.value == 1) {
                             if (signUpController.validateCreateUserForm()) {

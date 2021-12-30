@@ -191,6 +191,7 @@ class AuthenticationController extends GetxController {
       return false;
     }
     if (lastnameController.text.isEmpty) {
+      print('LAST NAME: ${lastnameController.text}');
       ShowSnackBar(
         title: "Last name cannot be empty",
         message: "Please Provide your last name.",
