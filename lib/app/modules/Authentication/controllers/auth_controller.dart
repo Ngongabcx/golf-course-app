@@ -182,7 +182,7 @@ class AuthenticationController extends GetxController {
 
   bool validateCreateUserForm() {
     if (firstnameController.text.isEmpty) {
-      print('fIRST NAME: ${firstnameController.text}');
+      print('FIRST NAME: ${firstnameController.text}');
       ShowSnackBar(
         title: "First name cannot be empty",
         message: "Provide your first name.",
