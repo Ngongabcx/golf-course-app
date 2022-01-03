@@ -7,7 +7,8 @@ import 'package:get/get_utils/src/extensions/string_extensions.dart';
 class CompetitionCard extends StatelessWidget {
   final Payload competition;
 
-  const CompetitionCard({Key? key, required this.competition}) : super(key: key);
+  const CompetitionCard({Key? key, required this.competition})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +47,7 @@ class CompetitionCard extends StatelessWidget {
               ),
             ),
             Container(
+              width: MediaQuery.of(context).size.width,
               padding:
                   const EdgeInsets.only(right: 16.0, left: 16.0, bottom: 16.0),
               child: Column(
@@ -67,7 +69,8 @@ class CompetitionCard extends StatelessWidget {
                             backgroundColor: Colors.transparent,
                             color: Colors.black,
                           ),
-                          label: Text('Creator'), onSelected: (bool value) {  },
+                          label: Text('Creator'),
+                          onSelected: (bool value) {},
                         ),
                       ),
                     ],

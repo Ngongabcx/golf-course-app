@@ -182,7 +182,7 @@ class AuthenticationController extends GetxController {
 
   bool validateCreateUserForm() {
     if (firstnameController.text.isEmpty) {
-      print('fIRST NAME: ${firstnameController.text}');
+      print('FIRST NAME: ${firstnameController.text}');
       ShowSnackBar(
         title: "First name cannot be empty",
         message: "Provide your first name.",
@@ -191,6 +191,7 @@ class AuthenticationController extends GetxController {
       return false;
     }
     if (lastnameController.text.isEmpty) {
+      print('LAST NAME: ${lastnameController.text}');
       ShowSnackBar(
         title: "Last name cannot be empty",
         message: "Please Provide your last name.",
