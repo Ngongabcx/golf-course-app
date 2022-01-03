@@ -18,6 +18,7 @@ import 'package:jwt_decode/jwt_decode.dart';
 import '../user_model.dart';
 
 class HomeController extends GetxController {
+  final keyRefresh = GlobalKey<RefreshIndicatorState>();
   var notificationsList = <FCMNotification>[].obs;
   ScrollController scrollController = ScrollController();
   var isMoreDataAvailable = false.obs;
@@ -37,8 +38,6 @@ class HomeController extends GetxController {
     LocalNotificationsService.initialize();
     notifications();
     validateTokenAndGetUser();
-    await refreshNotifications();
-    print("NOTIFICATIONS ARRAY LENGTH  ---> ${notificationsList.first.body}");
   }
 
   @override
@@ -142,10 +141,12 @@ class HomeController extends GetxController {
         matchInvites.value = resp;
         isProcessing(false);
       }, onError: (err) {
-        ShowSnackBar(
-            title: "Error",
-            message: err.toString(),
-            backgroundColor: Colors.red);
+        print("GET MATCH INVITES ERROR --> $err");
+        matchInvites.value = err;
+        // ShowSnackBar(
+        //     title: "Match Invites Error",
+        //     message: err.toString(),
+        //     backgroundColor: Colors.red);
         isProcessing(false);
       });
     } catch (exception) {
@@ -155,37 +156,5 @@ class HomeController extends GetxController {
           backgroundColor: Colors.red);
       isProcessing(false);
     }
-  }
-
-  refreshNotifications() async {
-    print("REFRESH NOTIFICATIONS CALLED.");
-    isProcessing.value = true;
-    var notification =
-        await NotificationsDatabase.instance.getAllNotifications();
-    notificationsList.addAll(notification);
-    print("NOTIFICATION LIST LENGTH ======= "+notificationsList.length.toString());
-    isProcessing.value = false;
-  }
-
-// Insert a new notification to the database
-  Future<void> addNotification({required FCMNotification notification}) async {
-    await NotificationsDatabase.instance.create(notification);
-    refreshNotifications();
-  }
-
-// Update an existing notification
-  Future<void> updateNotification(
-      {required FCMNotification notification}) async {
-    await NotificationsDatabase.instance.update(notification);
-    refreshNotifications();
-  }
-
-// Delete an notification
-  void deleteNotification({required int id}) async {
-    await NotificationsDatabase.instance.delete(id);
-    // ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-    //   content: Text('Successfully deleted a journal!'),
-    // ));
-    refreshNotifications();
   }
 }

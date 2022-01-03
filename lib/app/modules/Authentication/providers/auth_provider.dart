@@ -28,7 +28,7 @@ class AuthProvider extends BaseProvider {
         return Future.error(exception.response!.statusMessage.toString());
       }
       logToChannel({"text": "$kError LOGIN FAILURE\n $exception"});
-      print('<<===LOGIN EXCEPTION ==> ${exception.response!.statusCode}');
+      print('<<===LOGIN EXCEPTION ==> $exception');
       return Future.error(
           "An error occured please check your internet connection.".toString());
     }

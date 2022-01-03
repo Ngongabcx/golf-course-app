@@ -15,11 +15,12 @@ class MatchInvitesProvider extends BaseProvider {
     } on DioError catch (exception) {
       if (exception.response != null) {
         if (exception.response!.statusCode == 400) {
+       print("RESPONSE #### --------->>>> ${exception.response!.statusCode}");
           Map<String, dynamic> res =
               jsonDecode((exception.response!.data.toString()));
           print("RESPONSE STATUS --------->>>> $res");
           //return Future.error(exception.response!.data["error"].toString());
-          return Future.error(exception.response!.statusMessage.toString());
+          return competitionFromJson(exception.response!.data.toString());;
         }
         return Future.error(exception.response!.statusMessage.toString());
       }

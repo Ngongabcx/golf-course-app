@@ -39,8 +39,8 @@ const kDefaultPagePadding = EdgeInsets.symmetric(
   horizontal: 16,
 );
 const String kApiBaseURL = "https://bcxz.azurewebsites.net/api";
-const int kConnectionTimeout = 20000;
-const int kReceiveTimeout = 10000;
+const int kConnectionTimeout = 50000;
+const int kReceiveTimeout = 30000;
 const String kSlackLogChannelURL =
     "https://hooks.slack.com/services/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";
 /*-----------------DUBUG LEVELS--------------------*/

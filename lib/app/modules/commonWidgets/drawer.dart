@@ -41,10 +41,22 @@ class GcmsDrawer extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.settings),
             title: Text(
-              'settings',
+              'Settings',
               style: Theme.of(context).textTheme.bodyText1,
             ),
-            onTap: () {},
+            onTap: () {
+              Get.toNamed("/setting-screen");
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.notifications),
+            title: Text(
+              'Notifications',
+              style: Theme.of(context).textTheme.bodyText1,
+            ),
+            onTap: () {
+              Get.toNamed("/messages");
+            },
           ),
         ],
       ),

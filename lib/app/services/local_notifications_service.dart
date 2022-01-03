@@ -1,8 +1,8 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:gcms/app/modules/Messages/controllers/messages_controller.dart';
 import 'package:gcms/app/modules/Notifications/models/notification_model.dart';
 import 'package:gcms/app/modules/Notifications/providers/database/notifications_database.dart';
-import 'package:gcms/app/modules/home/controllers/home_controller.dart';
 import 'package:get/get.dart';
 
 class LocalNotificationsService {
@@ -51,7 +51,7 @@ class LocalNotificationsService {
         payload: message.data["viewUri"],
       );
       await NotificationsDatabase.instance.create(notification);
-      await HomeController().refreshNotifications();
+      await MessagesController().refreshNotifications();
     } on Exception catch (e) {
       print("Exception when displaying notification  --> ${e.toString()}");
     }
