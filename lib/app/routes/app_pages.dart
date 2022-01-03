@@ -1,3 +1,7 @@
+import 'package:gcms/app/modules/EventsScreen/bindings/event_screen_binding.dart';
+import 'package:gcms/app/modules/EventsScreen/views/event_screen_view.dart';
+import 'package:gcms/app/modules/TournamentsScreen/bindings/tournaments_screen_binding.dart';
+import 'package:gcms/app/modules/TournamentsScreen/views/tournaments_screen_view.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
 import 'package:gcms/app/modules/ActiveGameScreen/bindings/active_game_screen_binding.dart';
@@ -18,11 +22,31 @@ import 'package:gcms/app/modules/SetupScreen/bindings/setup_screen_binding.dart'
 import 'package:gcms/app/modules/SetupScreen/views/setup_screen_view.dart';
 import 'package:gcms/app/modules/ViewPlayersScreen/bindings/view_players_screen_binding.dart';
 import 'package:gcms/app/modules/ViewPlayersScreen/views/view_players_screen_view.dart';
-import 'package:gcms/app/modules/course/bindings/course_binding.dart';
-import 'package:gcms/app/modules/course/views/course_view.dart';
 import 'package:gcms/app/modules/home/bindings/home_binding.dart';
 import 'package:gcms/app/modules/home/views/home_view.dart';
 import 'package:gcms/app/modules/home/views/match_invites_screen_view.dart';
+import 'package:gcms/app/modules/CoursesScreen/bindings/course_binding.dart';
+import 'package:gcms/app/modules/CoursesScreen/views/course_view.dart';
+
+import '../modules/ActiveGameScreen/bindings/active_game_screen_binding.dart';
+import '../modules/ActiveGameScreen/views/active_game_screen_view.dart';
+import '../modules/Authentication/bindings/login_binding.dart';
+import '../modules/Authentication/views/login_view.dart';
+import '../modules/Authentication/views/sign_up_view.dart';
+import '../modules/Notifications/bindings/notifications_binding.dart';
+import '../modules/Notifications/views/notification_details_view.dart';
+import '../modules/Notifications/views/notifications_view.dart';
+import '../modules/ResultsScreen/bindings/results_screen_binding.dart';
+import '../modules/ResultsScreen/views/results_screen_view.dart';
+import '../modules/SettingScreen/bindings/setting_screen_binding.dart';
+import '../modules/SettingScreen/views/setting_screen_view.dart';
+import '../modules/SetupScreen/bindings/setup_screen_binding.dart';
+import '../modules/SetupScreen/views/setup_screen_view.dart';
+import '../modules/ViewPlayersScreen/bindings/view_players_screen_binding.dart';
+import '../modules/ViewPlayersScreen/views/view_players_screen_view.dart';
+import '../modules/home/bindings/home_binding.dart';
+import '../modules/home/views/home_view.dart';
+import '../modules/home/views/match_invites_screen_view.dart';
 
 part 'app_routes.dart';
 
@@ -98,6 +122,15 @@ class AppPages {
       name: _Paths.MESSAGES,
       page: () => MessagesView(),
       binding: MessagesBinding(),
+    ),
+    GetPage(
+      name: _Paths.EVENT_SCREEN,
+      page: () => EventScreenView(),
+      binding: EventScreenBinding(),),
+    GetPage(
+      name: _Paths.TOURNAMENTS_SCREEN,
+      page: () => TournamentsScreenView(),
+      binding: TournamentsScreenBinding(),
     ),
   ];
 }

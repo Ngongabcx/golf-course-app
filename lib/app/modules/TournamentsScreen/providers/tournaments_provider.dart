@@ -1,19 +1,16 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:gcms/app/modules/SetupScreen/competition_model.dart';
 import 'package:gcms/app/modules/utils/base_provider.dart';
 import 'package:gcms/app/services/slack_logger.dart';
 import 'package:gcms/constants/constant.dart';
 
-import '../course_model.dart';
-
-class CourseProvider extends BaseProvider {
-  Future<List<Course>> getCourses() async {
+class TournamentsProvider extends BaseProvider {
+  Future<Competition> getActiveMatches() async {
     try {
-      final response = await dio.get("$kApiBaseURL/CoursesScreen");
-      List<dynamic> resp =
-          List<dynamic>.from(jsonDecode(response.data.toString()));
-      return resp.map((item) => Course.fromJson(item)).toList();
+      final response = await dio.get("$kApiBaseURL/competitions");
+      return competitionFromJson(response.data.toString());
     } on DioError catch (exception) {
       if (exception.response != null) {
         if (exception.response!.statusCode == 400) {
@@ -24,8 +21,8 @@ class CourseProvider extends BaseProvider {
         }
         return Future.error(exception.response!.statusMessage.toString());
       }
-      logToChannel({"text": "$kError GET COURSES FAILURE\n $exception"});
-      print('<<===GETTING COURSES EXCEPTION ==> $exception');
+      logToChannel({"text": "$kError GET COMPETITION FAILURE\n $exception"});
+      print('<<===GETTING COMPETITION EXCEPTION ==> $exception');
       return Future.error(
           "An error occured please check your internet connection.".toString());
     }

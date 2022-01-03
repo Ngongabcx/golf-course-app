@@ -16,6 +16,8 @@ abstract class Routes {
   static const JOIN_MATCH_SCREEN = _Paths.JOIN_MATCH_SCREEN;
   static const COURSE = _Paths.COURSE;
   static const MESSAGES = _Paths.MESSAGES;
+  static const EVENT_SCREEN = _Paths.EVENT_SCREEN;
+  static const TOURNAMENTS_SCREEN = _Paths.TOURNAMENTS_SCREEN;
 }
 
 abstract class _Paths {
@@ -31,6 +33,8 @@ abstract class _Paths {
   static const SETUP_SCREEN = '/setup-screen';
   static const SETTING_SCREEN = '/setting-screen';
   static const JOIN_MATCH_SCREEN = '/join-match-screen';
-  static const COURSE = '/course';
   static const MESSAGES = '/messages';
+  static const COURSE = '/CoursesScreen';
+  static const EVENT_SCREEN = '/event-screen';
+  static const TOURNAMENTS_SCREEN = '/tournaments-screen';
 }

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:gcms/app/modules/commonWidgets/textFormField.dart';
-import '../controllers/setting_screen_controller.dart';
-import 'package:get/get.dart';
+import 'package:gcms/app/modules/Authentication/controllers/auth_controller.dart';
 import 'package:gcms/app/modules/commonWidgets/build_form_builder_date_time_picker_view.dart.dart';
 import 'package:gcms/app/modules/commonWidgets/build_form_builder_dropdown.dart';
+import 'package:gcms/app/modules/commonWidgets/textFormField.dart';
+import 'package:get/get.dart';
 
-class BuildUserDetails extends GetView<SettingScreenController> {
-  final userController = Get.put(SettingScreenController());
+class BuildUserDetails extends GetView<AuthenticationController> {
+  final userController = Get.put(AuthenticationController());
   final now = DateTime.now();
 
   @override
