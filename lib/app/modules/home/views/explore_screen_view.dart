@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gcms/bcx_icons_icons.dart';
-
 import 'package:get/get.dart';
+
 import 'card.dart';
 
 class ExploreScreenView extends GetView {
@@ -27,7 +27,9 @@ class ExploreScreenView extends GetView {
           text1: 'Tournaments',
           icon: Icons.sports_golf,
           color: Colors.white,
-          onTapped: () {},
+          onTapped: () {
+            Get.toNamed("/tournaments-screen");
+          },
         ),
         OptionsCard(
           text1: 'Matches',
@@ -45,23 +47,25 @@ class ExploreScreenView extends GetView {
             Get.toNamed("/join-match-screen");
           },
         ),
-        OptionsCard(
-          text1: 'Courses',
-          color: Colors.white,
-          icon: Icons.grass,
-          onTapped: () {},
-        ),
-        OptionsCard(
-          text1: 'Past Scores',
-          icon: Icons.sports_score,
-          color: Colors.white,
-          onTapped: () {},
-        ),
+        // OptionsCard(
+        //   text1: 'Courses',
+        //   color: Colors.white,
+        //   icon: Icons.grass,
+        //   onTapped: () {},
+        // ),
+        // OptionsCard(
+        //   text1: 'Past Scores',
+        //   icon: Icons.sports_score,
+        //   color: Colors.white,
+        //   onTapped: () {},
+        // ),
         OptionsCard(
           text1: 'Events',
           color: Colors.white,
           icon: FontAwesomeIcons.calendarCheck,
-          onTapped: () {},
+          onTapped: () {
+            Get.toNamed('/event-screen');
+          },
         ),
         OptionsCard(
           text1: 'Health',

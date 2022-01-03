@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:gcms/app/modules/SetupScreen/competition_model.dart';
+import 'package:gcms/app/modules/TournamentsScreen/tournament_model.dart';
 import 'package:gcms/constants/constant.dart';
 import 'package:gcms/theme/gcms_theme.dart';
-import 'package:get/get_utils/src/extensions/string_extensions.dart';
 
-class CompetitionCard extends StatelessWidget {
-  final Payload competition;
+class TournamentsCard extends StatelessWidget {
+  // final Payload tournament;
+  final Tournament tournament;
 
-  const CompetitionCard({Key? key, required this.competition})
-      : super(key: key);
+  const TournamentsCard({Key? key, required this.tournament}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +33,8 @@ class CompetitionCard extends StatelessWidget {
               padding: const EdgeInsets.only(
                   left: 16.0, right: 16.0, top: 5.0, bottom: 5.0),
               child: Text(
-                competition.course!.courseName.toString(),
+                tournament.course,
+                // tournament.course!.courseName.toString(),
                 style: Theme.of(context).textTheme.headline6,
               ),
             ),
@@ -42,53 +42,44 @@ class CompetitionCard extends StatelessWidget {
               padding:
                   const EdgeInsets.only(right: 16.0, left: 16.0, bottom: 16.0),
               child: Text(
-                competition.compName.toString(),
+                tournament.course,
+                // tournament.course!.courseName.toString(),
                 style: Theme.of(context).textTheme.bodyText1,
               ),
             ),
             Container(
               width: MediaQuery.of(context).size.width,
-              padding:
-                  const EdgeInsets.only(right: 16.0, left: 16.0, bottom: 16.0),
+              padding: const EdgeInsets.only(
+                  right: 16.0, left: 16.0, bottom: 16.0, top: 16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      // Text(
-                      //   'Leonard Chinyama',
-                      //   style: GcmsTheme.darkTextTheme.bodyText2,
-                      // ),
-                      SizedBox(
-                        width: 10.0,
+                      Text(
+                        tournament.compDate,
+                        // tournament.compDate.toString(),
+                        style: GcmsTheme.darkTextTheme.bodyText2,
                       ),
-                      Opacity(
-                        opacity: 0.50,
-                        child: FilterChip(
-                          labelStyle: TextStyle(
-                            backgroundColor: Colors.transparent,
-                            color: Colors.black,
-                          ),
-                          label: Text('Creator'),
-                          onSelected: (bool value) {},
-                        ),
+                      Text(
+                        tournament.compTime.toString(),
+                        style: GcmsTheme.darkTextTheme.bodyText2,
                       ),
                     ],
                   ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
                   Text(
-                    competition.gametype?.name
-                            .toString()
-                            .split('.')
-                            .last
-                            .replaceAll('_', ' ')
-                            .capitalizeFirst ??
-                        '',
+                    tournament.gametype,
+                    // tournament.gametype!.name.toString(),
                     style: GcmsTheme.darkTextTheme.bodyText2,
                   ),
                   SizedBox(
                     height: 10.0,
                   ),
-                  Text(competition.compDate.toString(),
+                  Text('${tournament.numberOfHoles} holes',
                       style: GcmsTheme.darkTextTheme.bodyText2),
                 ],
               ),
