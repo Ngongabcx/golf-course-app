@@ -12,6 +12,9 @@ import 'package:local_auth/auth_strings.dart';
 import 'package:local_auth/local_auth.dart';
 
 class AuthenticationController extends GetxController {
+  var selectedDate = ''.obs;
+  var genderOptions = ['Male', 'Female'];
+  var selectedGender = ''.obs;
   final userFormKey = GlobalKey<FormState>();
   var currentStep = 0.obs;
   var iamimportant = false.obs;

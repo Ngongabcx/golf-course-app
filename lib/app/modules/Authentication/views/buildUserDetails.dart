@@ -51,17 +51,7 @@ class BuildUserDetails extends GetView<AuthenticationController> {
               false,
             ),
           ),
-          // Padding(
-          //   padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-          //   child: CustomTextFormFieldWidget(
-          //     controller.genderController,
-          //     'Gender',
-          //     (s) {},
-          //     false,
-          //     false,
-          //     false,
-          //   ),
-          // ),
+
           Padding(
             padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
             child: BuildFormBuilderDateTimePickerView(),

@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 
 class SelectHolesCard extends StatelessWidget {
-
   final Color color;
   final Widget cardChild;
   final Function() onPress;
 
-  const SelectHolesCard({Key? key, required this.color, required this.cardChild, required this.onPress}) : super(key: key);
+  const SelectHolesCard(
+      {Key? key,
+      required this.color,
+      required this.cardChild,
+      required this.onPress})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +23,7 @@ class SelectHolesCard extends StatelessWidget {
         margin: EdgeInsets.only(top: 16.0),
         decoration: BoxDecoration(
           border: Border.all(
-            width: 1.0,
+            width: 2.0,
             color: color,
           ),
           color: Colors.white,

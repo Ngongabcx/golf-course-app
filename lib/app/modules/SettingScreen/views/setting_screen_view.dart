@@ -4,6 +4,7 @@ import 'package:gcms/app/modules/Notifications/views/notifications_view.dart';
 import 'package:gcms/app/modules/home/controllers/home_controller.dart';
 import 'package:gcms/bcx_icons_icons.dart';
 import 'package:get/get.dart';
+import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:settings_ui/settings_ui.dart';
 
 import '../controllers/setting_screen_controller.dart';
@@ -77,7 +78,10 @@ class SettingScreenView extends GetView<SettingScreenController> {
               SettingsTile(
                 title: 'Face ID',
                 subtitle: 'Use face Id',
-                leading: Icon(BcxIcons.face_id,size: 30.0,),
+                leading: Icon(
+                  BcxIcons.face_id,
+                  size: 30.0,
+                ),
                 onPressed: (BuildContext context) {},
               ),
             ],
