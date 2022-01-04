@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/Notifications/models/notification_model.dart';
 import 'package:gcms/app/modules/Notifications/providers/database/notifications_database.dart';
-import 'package:gcms/app/modules/utils/notifications_func.dart';
 import 'package:gcms/app/modules/Notifications/views/notifications_view.dart';
 import 'package:gcms/app/modules/SetupScreen/competition_model.dart';
 import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
@@ -36,7 +35,6 @@ class HomeController extends GetxController {
   void onInit() async {
     super.onInit();
     LocalNotificationsService.initialize();
-    notifications();
     validateTokenAndGetUser();
   }
 
@@ -72,18 +70,18 @@ class HomeController extends GetxController {
         storage.write("refreshToken", resp.info!.refreshToken);
         isProcessing(false);
       }, onError: (err) {
-        ShowSnackBar(
-            title: "Error",
-            message: err.toString(),
-            backgroundColor: Colors.red);
+        // ShowSnackBar(
+        //     title: "Error",
+        //     message: err.toString(),
+        //     backgroundColor: Colors.red);
         isProcessing(false);
         Get.offAllNamed('/login');
       });
     } catch (exception) {
-      ShowSnackBar(
-          title: "Exception",
-          message: exception.toString(),
-          backgroundColor: Colors.red);
+      // ShowSnackBar(
+      //     title: "Exception",
+      //     message: exception.toString(),
+      //     backgroundColor: Colors.red);
       isProcessing(false);
       Get.offAllNamed('/login');
     }
@@ -96,28 +94,29 @@ class HomeController extends GetxController {
       UserProvider().getUserDetails(id).then((resp) async {
         print("RETURNED USER DETAILS --> ${resp.toString()}");
         storage.write("user", resp);
-        Map<String, dynamic> storedUser = jsonDecode(storage.read('user'));
-        var usr = User.fromJson(storedUser);
+        var usrPayload = userFromJson(storage.read('user'));
+        var usr = usrPayload.payload!.first;
         storage.write("userId", usr.id.toString());
         storage.write("hcp", usr.hcp!.toInt());
+        storage.write("userId", usr.aspNetUsers!.email.toString());
         storage.write(
-            "name", usr.firstName.toString() + " " + usr.lastName.toString());
+            "name", usr.fname.toString() + " " + usr.lname.toString());
         storage.write("profilePic", usr.image);
         await getMatchInvites(usr.id.toString());
-        if (usr.username!.isEmpty) {
+        if (usr.aspNetUsers!.userName!.isEmpty) {
           ShowSnackBar(
               title: "USER DETAILS Error",
               message: "NO USER INFO FOUND",
               backgroundColor: Colors.blue);
           Get.toNamed("/login");
         }
-        name.value = usr.firstName!;
+        name.value = usr.fname!;
         isProcessing(false);
         Get.offAllNamed('/home');
       }, onError: (err) {
         isProcessing(false);
         ShowSnackBar(
-            title: "Error",
+            title: "Get User Error",
             message: err.toString(),
             backgroundColor: Colors.red);
         Get.offAllNamed('/login');
@@ -142,7 +141,13 @@ class HomeController extends GetxController {
         isProcessing(false);
       }, onError: (err) {
         print("GET MATCH INVITES ERROR --> $err");
-        matchInvites.value = err;
+        matchInvites.value = Competition(
+            status: 404,
+            success: false,
+            message: "No Invitations",
+            error: "",
+            payload: []);
+        //matchInvites.value = err;
         // ShowSnackBar(
         //     title: "Match Invites Error",
         //     message: err.toString(),

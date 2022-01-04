@@ -19,7 +19,7 @@ class SetupScreenController extends GetxController {
   var numberOfHolesToPlay = 0.obs;
   var isProcessing = false.obs;
   var lstCourses = <Course>[].obs;
-  var lstPlayers = <User>[].obs;
+  var lstPlayers = <Payload>[].obs;
   var selectedPlayers = [].obs;
   var currentSelectedHole = ''.obs;
   var startingHole = 0.obs;
@@ -68,8 +68,8 @@ class SetupScreenController extends GetxController {
     try {
       isProcessing(true);
       UserProvider().getPlayers().then((resp) async {
-        lstPlayers.addAll(resp);
-        print("PLAYERS SUCCESSFULLY FETCHED  ---> ${resp.first.firstName}");
+        //lstPlayers.addAll(resp);
+        print("PLAYERS SUCCESSFULLY FETCHED  ---> ${resp.first.fname}");
         isProcessing(false);
       }, onError: (err) {
         print("Error getting players details -->" + err.toString());

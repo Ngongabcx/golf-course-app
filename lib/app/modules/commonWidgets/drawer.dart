@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:gcms/app/modules/home/controllers/home_controller.dart';
 import 'package:gcms/constants/constant.dart';
-import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 
 class GcmsDrawer extends StatelessWidget {
-  const GcmsDrawer({Key? key}) : super(key: key);
+  final controller = Get.put(HomeController());
+   GcmsDrawer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,13 +17,13 @@ class GcmsDrawer extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          const UserAccountsDrawerHeader(
+           UserAccountsDrawerHeader(
             currentAccountPicture: CircleAvatar(
-              backgroundImage: AssetImage('assets/images/Tiger-Woods.jpg'),
+              backgroundImage: NetworkImage("${controller.storage.read("profilePic")}"),
             ),
-            accountEmail: Text('tiger.woods@example.com'),
+            accountEmail: Text("${controller.storage.read("email")}"),
             accountName: Text(
-              'Tiger Woods',
+              "${controller.storage.read("name")}",
               style: TextStyle(fontSize: 24.0),
             ),
             decoration: BoxDecoration(

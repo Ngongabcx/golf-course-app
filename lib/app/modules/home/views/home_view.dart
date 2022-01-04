@@ -1,18 +1,16 @@
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/SettingScreen/views/setting_screen_view.dart';
 import 'package:gcms/app/modules/commonWidgets/drawer.dart';
 import 'package:gcms/app/modules/commonWidgets/loader/loader.dart';
 import 'package:gcms/app/modules/home/controllers/greeting.dart';
-import 'package:gcms/constants/constant.dart';
 import 'package:get/get.dart';
 import 'package:gcms/app/modules/home/controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
+    final _controller = Get.put(HomeController());
   @override
   Widget build(BuildContext context) {
-    final _controller = Get.put(HomeController());
     return Scaffold(
       appBar: AppBar(
         title: Text(

@@ -76,7 +76,7 @@ class Payload {
         compTime: json["compTime"],
         numberOfHoles: json["numberOfHoles"],
         startingHole: json["startingHole"],
-        course: Course.fromJson(json["CoursesScreen"]),
+        course: Course.fromJson(json["course"]),
         competitionPlayer: List<CompetitionPlayer>.from(
             json["competitionPlayer"]
                 .map((x) => CompetitionPlayer.fromJson(x))),
@@ -91,7 +91,7 @@ class Payload {
         "compTime": compTime,
         "numberOfHoles": numberOfHoles,
         "startingHole": startingHole,
-        "CoursesScreen": course!.toJson(),
+        "Course": course!.toJson(),
         "competitionPlayer":
             List<dynamic>.from(competitionPlayer!.map((x) => x.toJson())),
       };

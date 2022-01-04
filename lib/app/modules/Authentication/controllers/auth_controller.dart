@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/Authentication/providers/auth_provider.dart';
@@ -228,13 +227,14 @@ class AuthenticationController extends GetxController {
       UserProvider().createUser(data).then((resp) {
         clearTextEditingControllers();
         storage.write("user", resp);
-        Map<String, dynamic> storedUser = jsonDecode(storage.read('user'));
-        var usr = User.fromJson(storedUser);
+        var usrPayload = userFromJson(storage.read('user'));
+        var usr = usrPayload.payload!.first;
         storage.write("userId", usr.id.toString());
+        storage.write("userId", usr.aspNetUsers!.email.toString());
         storage.write("isLoggedIn", true);
         storage.write("hcp", usr.hcp!.toInt());
         storage.write(
-            "name", usr.firstName.toString() + " " + usr.lastName.toString());
+            "name", usr.fname.toString() + " " + usr.lname.toString());
         storage.write("profilePic", usr.image);
         isProcessing(false);
         ShowSnackBar(

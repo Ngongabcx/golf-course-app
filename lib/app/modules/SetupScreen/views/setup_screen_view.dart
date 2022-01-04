@@ -108,7 +108,7 @@ class SetupScreenView extends GetView<SetupScreenController> {
                             List.generate(
                                 controller.lstPlayers.length,
                                 (index) => controller
-                                    .lstPlayers[index].firstName
+                                    .lstPlayers[index].fname
                                     .toString()),
                           );
                         }),

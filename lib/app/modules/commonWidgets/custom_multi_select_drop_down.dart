@@ -56,7 +56,7 @@ class CustomDropDownMultiSelect extends GetView {
           _controller.selectedPlayers.clear();
           for (int i = 0; i < value.length; i++) {
             var _players = _controller.lstPlayers
-                .where((v) => v.firstName == value[i])
+                .where((v) => v.fname == value[i])
                 .toList();
             print(i);
             print(value[i]);

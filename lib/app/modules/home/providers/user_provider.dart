@@ -21,7 +21,7 @@ class UserProvider extends BaseProvider {
           Map<String, dynamic> res =
               jsonDecode((exception.response!.data.toString()));
           print("RESPONSE STATUS --------->>>> $res");
-          return Future.error(exception.response!.data["error"].toString());
+          return Future.error(res["errors"].toString());
         }
         return Future.error(exception.response!.statusMessage.toString());
       }
@@ -35,14 +35,16 @@ class UserProvider extends BaseProvider {
   Future<String> getUserDetails(String id) async {
     try {
       print("USER ID _---->>> $id");
-      final response = await dio.get("$kApiBaseURL/members/$id");
+      final response = await dio.get("$kNewApiBaseURL/api/users/$id");
+      print(
+          "RESPONSE GET USER DETAILS --------->>>> ${response.statusMessage}");
       return response.data.toString();
     } on DioError catch (exception) {
       if (exception.response != null) {
         if (exception.response!.statusCode == 400) {
           Map<String, dynamic> res =
               jsonDecode((exception.response!.data.toString()));
-          print("RESPONSE STATUS --------->>>> $res");
+          print("RESPONSE GET USER DETAILS --------->>>> $res");
           return Future.error(exception.response!.data["error"].toString());
         }
         return Future.error(exception.response!.statusMessage.toString());
@@ -54,12 +56,12 @@ class UserProvider extends BaseProvider {
     }
   }
 
-  Future<List<User>> getPlayers() async {
+  Future<List<Payload>> getPlayers() async {
     try {
-      final response = await dio.get("$kApiBaseURL/members");
+      final response = await dio.get("$kNewApiBaseURL/api/users");
       List<dynamic> resp =
-          List<dynamic>.from(jsonDecode(response.data.toString()));
-      return resp.map((item) => User.fromJson(item)).toList();
+          List<dynamic>.from(jsonDecode(response.data["payload"].toString()));
+      return resp.map((item) => Payload.fromJson(item)).toList();
     } on DioError catch (exception) {
       if (exception.response != null) {
         if (exception.response!.statusCode == 400) {
@@ -80,7 +82,7 @@ class UserProvider extends BaseProvider {
   //Create user after account registration
   Future<User> createUser(Map data) async {
     try {
-      final response = await dio.post("$kApiBaseURL/members", data: data);
+      final response = await dio.post("$kNewApiBaseURL/api/users", data: data);
       Map<String, dynamic> resp = jsonDecode(response.data.toString());
       return User.fromJson(resp);
     } on DioError catch (exception) {

@@ -9,6 +9,7 @@ import 'package:get_storage/get_storage.dart';
 
 import 'app/modules/Authentication/views/login_view.dart';
 import 'app/modules/home/views/home_view.dart';
+import 'app/modules/utils/notifications_func.dart';
 import 'app/routes/app_pages.dart';
 import 'app/services/local_notifications_service.dart';
 
@@ -16,7 +17,7 @@ import 'app/services/local_notifications_service.dart';
 //This should always be a top level function i.e it shouldn't be in any class but rather outside the app scope
 Future<void> notificationsBackgroundHandler(RemoteMessage message) async {
   print(message.data.toString());
- // print(message.notification!.title);
+  // print(message.notification!.title);
   LocalNotificationsService.displayNotification(message);
 }
 
@@ -30,12 +31,13 @@ void main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
+  notifications();
   runApp(
     GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: "GCMS APP",
       home: GetStorage().read("isLoggedIn") == true ? HomeView() : LoginView(),
-     //  initialRoute: AppPages.INITIAL,
+      //  initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
       theme: GcmsTheme.light(),
     ),

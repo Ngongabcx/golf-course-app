@@ -17,7 +17,7 @@ class TournamentDetailsView extends GetView {
         iconTheme: IconThemeData(color: Colors.black),
         automaticallyImplyLeading: true,
         title: Text(
-          tournament.compName!,
+          tournament.compName,
           style: Theme.of(context).textTheme.headline3,
         ),
         centerTitle: true,
