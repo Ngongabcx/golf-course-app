@@ -75,7 +75,6 @@ class SignUpView extends GetView<AuthenticationController> {
                             : 'Next',
                         textStyle: GcmsTheme.lightTextTheme.bodyText2,
                         onPressed: () async {
-                          var id;
                           if (signUpController.currentStep.value == 2) {
                             print('Send data to the server');
                             Get.toNamed("/login");
@@ -88,7 +87,6 @@ class SignUpView extends GetView<AuthenticationController> {
                                 'password': userController
                                     .signUpPasswordController.text,
                               });
-                              userDetailsSubmitForm(id);
                             }
                           }
 
