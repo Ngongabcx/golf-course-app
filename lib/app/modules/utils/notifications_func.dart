@@ -4,6 +4,7 @@ import 'package:gcms/app/modules/Messages/controllers/messages_controller.dart';
 import 'package:gcms/app/modules/Notifications/providers/database/notifications_database.dart';
 import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
 import 'package:gcms/app/services/local_notifications_service.dart';
+import 'package:gcms/constants/constant.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -28,6 +29,10 @@ notifications() {
 
       //We can push the notification to a specific view from here
       if (message.data["isConfirmScore"]) {
+        ShowSnackBar(
+            title: message.data["title"],
+            message: message.data["body"],
+            backgroundColor: kPrimaryColor);
         Get.defaultDialog(
             title: "Confirm Score",
             content: message.data["body"],
@@ -68,6 +73,11 @@ notifications() {
     final routeFromMessage = message.data["viewUri"];
     print(routeFromMessage);
     if (message.data["isConfirmScore"]) {
+      ShowSnackBar(
+          title: message.data["title"],
+          message: message.data["body"],
+          backgroundColor: kPrimaryColor);
+
       Get.defaultDialog(
           title: "Confirm Score",
           content: message.data["body"],
