@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:gcms/app/modules/Authentication/controllers/auth_controller.dart';
 import 'package:gcms/constants/constant.dart';
 
 import 'package:get/get.dart';
 
 class BuildFormBuilderDropdown extends GetView {
-  final genderOptions = ['Male', 'Female'];
+  final AuthenticationController _controller = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return FormBuilderDropdown(
@@ -50,12 +52,15 @@ class BuildFormBuilderDropdown extends GetView {
           fontWeight: FontWeight.normal,
         ),
       ),
-      items: genderOptions
+      items: _controller.genderOptions
           .map((gender) => DropdownMenuItem(
                 value: gender,
                 child: Text('$gender'),
               ))
           .toList(),
+      onChanged: (value) {
+        _controller.selectedGender.value = value.toString();
+      },
     );
   }
 }

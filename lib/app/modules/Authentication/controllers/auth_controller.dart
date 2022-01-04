@@ -1,7 +1,5 @@
-
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/Authentication/providers/auth_provider.dart';
-import 'package:gcms/app/modules/Authentication/views/user_details_submit_form.dart';
 import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
 import 'package:gcms/app/modules/home/providers/user_provider.dart';
 import 'package:gcms/app/modules/home/user_model.dart';
@@ -149,7 +147,29 @@ class AuthenticationController extends GetxController {
     }
   }
 
-  void register(Map data) {
+  void registration(Map data) {
+    print("REGISTRATION MAP --> $data");
+    var registered = register({
+      'username': data["username"],
+      'email': data["email"],
+      'password': data["password"]
+    });
+    if (registered) {
+      createUser({
+        'Fname': data["firstname"],
+        'Lname': data["lastname"],
+        'address': data["address"],
+        'gender': data["gender"],
+        'hcp': data["hcp"],
+        "dob": data["dob"],
+        "usertypeId": 1,
+        'AspNetUsersId': storage.read("aspUserID").toString(),
+        "FcmToken": storage.read("fcmToken").toString(),
+      });
+    }
+  }
+
+  bool register(Map data) {
     print(
         "<<-----------REGISTERING USER ACCOUNT WITH PAYLOAD : $data ---------->");
     try {
@@ -164,13 +184,14 @@ class AuthenticationController extends GetxController {
             Jwt.parseJwt('${storage.read("accessToken")}');
         storage.write("aspUserID", tkn['Id']);
         print(tkn.toString());
-        userDetailsSubmitForm(tkn['Id']);
+        return true;
       }, onError: (err) {
         isProcessing(false);
         ShowSnackBar(
             title: "Error",
             message: err.toString(),
             backgroundColor: Colors.red);
+        return false;
       });
     } catch (exception) {
       isProcessing(false);
@@ -179,7 +200,9 @@ class AuthenticationController extends GetxController {
           title: "Exception",
           message: exception.toString(),
           backgroundColor: Colors.red);
+      return false;
     }
+    return true;
   }
 
   bool validateCreateUserForm() {
@@ -247,6 +270,9 @@ class AuthenticationController extends GetxController {
         Get.offAllNamed('/home');
       }, onError: (err) {
         isProcessing(false);
+        //TODO : You need to delete the account if creation has failed
+        //TODO: Write a delete account function and call it from here
+        //TODO: Also call that function when an exception is thrown
         ShowSnackBar(
             title: "Error",
             message: err.toString(),

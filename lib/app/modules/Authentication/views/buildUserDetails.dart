@@ -21,7 +21,7 @@ class BuildUserDetails extends GetView<AuthenticationController> {
           Padding(
             padding: const EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
             child: CustomTextFormFieldWidget(
-              controller.firstnameController,
+              userController.firstnameController,
               'First name',
               (s) {},
               false,
@@ -32,7 +32,7 @@ class BuildUserDetails extends GetView<AuthenticationController> {
           Padding(
             padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
             child: CustomTextFormFieldWidget(
-              controller.lastnameController,
+              userController.lastnameController,
               'Last name',
               (s) {},
               false,
@@ -43,7 +43,7 @@ class BuildUserDetails extends GetView<AuthenticationController> {
           Padding(
             padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
             child: CustomTextFormFieldWidget(
-              controller.addressController,
+              userController.addressController,
               'Address',
               (s) {},
               false,
@@ -63,7 +63,7 @@ class BuildUserDetails extends GetView<AuthenticationController> {
           Padding(
             padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
             child: CustomTextFormFieldWidget(
-              controller.hcpController,
+              userController.hcpController,
               'Handicap',
               (s) {},
               false,
@@ -78,23 +78,23 @@ class BuildUserDetails extends GetView<AuthenticationController> {
           //     alignment: FractionalOffset.bottomCenter,
           //     child: Obx(
           //       () => CustomButton(
-          //         text: (controller.isProcessing.value == true
+          //         text: (userController.isProcessing.value == true
           //             ? 'Processing...'
           //             : 'Submit'),
           //         style: GcmsTheme.lightTextTheme.bodyText2,
           //         onPressed: () {
-          //           controller.validateCreateUserForm();
-          //           controller.createUser({
-          //             'firstname': controller.firstnameController.text,
-          //             'lastname': controller.lastnameController.text,
-          //             'address': controller.addressController.text,
-          //             'gender': controller.genderController.text,
-          //             'hcp': controller.hcpController.text,
+          //           userController.validateCreateUserForm();
+          //           userController.createUser({
+          //             'firstname': userController.firstnameController.text,
+          //             'lastname': userController.lastnameController.text,
+          //             'address': userController.addressController.text,
+          //             'gender': userController.genderController.text,
+          //             'hcp': userController.hcpController.text,
           //             "dob": "2021/03/19",
           //             "dateJoined": now.toString(),
           //             "usertypeId": 2,
           //             'aspnetusersId':
-          //                 controller.storage.read('aspUserID').toString(),
+          //                 userController.storage.read('aspUserID').toString(),
           //           });
           //         },
           //       ),

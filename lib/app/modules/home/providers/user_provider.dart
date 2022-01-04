@@ -87,12 +87,6 @@ class UserProvider extends BaseProvider {
       return User.fromJson(resp);
     } on DioError catch (exception) {
       if (exception.response != null) {
-        if (exception.response!.statusCode == 400) {
-          Map<String, dynamic> res =
-              jsonDecode((exception.response!.data.toString()));
-          print("RESPONSE STATUS --------->>>> $res");
-          return Future.error(exception.response!.data["error"].toString());
-        }
         return Future.error(exception.response!.statusMessage.toString());
       }
       logToChannel({"text": "$kError CREATE USER FAILURE\n $exception"});

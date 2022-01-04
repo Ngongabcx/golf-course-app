@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:gcms/app/modules/Authentication/controllers/auth_controller.dart';
 import 'package:gcms/constants/constant.dart';
 
 import 'package:get/get.dart';
 
 class BuildFormBuilderDateTimePickerView extends GetView {
+ final AuthenticationController _controller = Get.find();
   @override
   Widget build(BuildContext context) {
     return FormBuilderDateTimePicker(
@@ -40,6 +42,10 @@ class BuildFormBuilderDateTimePickerView extends GetView {
         fontSize: 16,
         fontWeight: FontWeight.normal,
       ),
+      onChanged: (newSelectedDate) {
+        _controller.selectedDate.value = newSelectedDate.toString();
+        print(newSelectedDate);
+      },
     );
   }
 }

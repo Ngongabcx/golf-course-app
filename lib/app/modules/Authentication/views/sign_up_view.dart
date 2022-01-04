@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/Authentication/controllers/auth_controller.dart';
-import 'package:gcms/app/modules/Authentication/views/user_details_submit_form.dart';
 import 'package:gcms/app/modules/commonWidgets/customButton.dart';
 import 'package:gcms/constants/constant.dart';
 import 'package:gcms/theme/gcms_theme.dart';
@@ -75,20 +74,30 @@ class SignUpView extends GetView<AuthenticationController> {
                             : 'Next',
                         textStyle: GcmsTheme.lightTextTheme.bodyText2,
                         onPressed: () async {
-                          var id;
                           if (signUpController.currentStep.value == 2) {
                             print('Send data to the server');
-                            Get.toNamed("/login");
-                            if (userController.isProcessing.value == false) {
-                              userController.register({
+                            if (signUpController.isProcessing.value == false) {
+                              signUpController.registration({
                                 'username':
-                                    userController.signUpEmailController.text,
+                                    signUpController.signUpEmailController.text,
                                 'email':
-                                    userController.signUpEmailController.text,
-                                'password': userController
+                                    signUpController.signUpEmailController.text,
+                                'password': signUpController
                                     .signUpPasswordController.text,
+                                'firstname':
+                                    signUpController.firstnameController.text,
+                                'lastname':
+                                    signUpController.lastnameController.text,
+                                'address':
+                                    signUpController.addressController.text,
+                                'gender': signUpController.selectedGender.value,
+                                'hcp': signUpController.hcpController.text,
+                                "dob": signUpController.selectedDate.value,
+                                "usertypeId": 1,
+                                "FcmToken": signUpController.storage
+                                    .read("fcmToken")
+                                    .toString(),
                               });
-                              userDetailsSubmitForm(id);
                             }
                           }
 
