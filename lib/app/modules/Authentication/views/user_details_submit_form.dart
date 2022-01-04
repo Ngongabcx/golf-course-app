@@ -11,11 +11,12 @@ void userDetailsSubmitForm(String id) {
     'firstname': userController.firstnameController.text,
     'lastname': userController.lastnameController.text,
     'address': userController.addressController.text,
-    'gender': userController.genderController.text,
+    'gender': userController.selectedGender.value,
     'hcp': userController.hcpController.text,
-    "dob": "2021/03/19",
+    "dob": userController.selectedDate.value,
     "dateJoined": now.toString(),
-    "usertypeId": 2,
+    "usertypeId": 1,
     'aspnetusersId': id,
+    "FcmToken": userController.storage.read("fcmToken").toString(),
   });
 }

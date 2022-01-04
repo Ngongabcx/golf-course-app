@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gcms/app/components/submit_button.dart';
 import 'package:gcms/theme/gcms_theme.dart';
-
 import 'package:get/get.dart';
 
 import '../controllers/results_screen_controller.dart';
@@ -130,7 +129,8 @@ class ResultsScreenView extends GetView<ResultsScreenController> {
                         flex: 5,
                         child: CircleAvatar(
                           radius: 30.0,
-                          backgroundImage: AssetImage('assets/images/Tiger-Woods.jpg'),
+                          backgroundImage:
+                              AssetImage('assets/images/Tiger-Woods.jpg'),
                         ),
                       ),
                     ),

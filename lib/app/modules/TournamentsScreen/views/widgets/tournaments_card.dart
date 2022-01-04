@@ -33,9 +33,9 @@ class TournamentsCard extends StatelessWidget {
               padding: const EdgeInsets.only(
                   left: 16.0, right: 16.0, top: 5.0, bottom: 5.0),
               child: Text(
-                tournament.course,
+                tournament.compName,
                 // tournament.course!.courseName.toString(),
-                style: Theme.of(context).textTheme.headline6,
+                style: Theme.of(context).textTheme.bodyText1,
               ),
             ),
             Padding(
@@ -44,7 +44,7 @@ class TournamentsCard extends StatelessWidget {
               child: Text(
                 tournament.course,
                 // tournament.course!.courseName.toString(),
-                style: Theme.of(context).textTheme.bodyText1,
+                style: Theme.of(context).textTheme.headline6,
               ),
             ),
             Container(

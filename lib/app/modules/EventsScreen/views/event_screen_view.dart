@@ -12,13 +12,21 @@ class EventScreenView extends GetView<EventScreenController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Events'),
+        backgroundColor: Colors.white,
+        iconTheme: const IconThemeData(color: Colors.black),
+        automaticallyImplyLeading: true,
+        title: Text(
+          ' Events',
+          style: Theme.of(context).textTheme.headline3,
+        ),
+        actions: [],
         centerTitle: true,
+        elevation: 4,
       ),
       body: SafeArea(
         child: Container(
           height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
           padding: const EdgeInsets.all(20.0),
           child: Column(
             children: [

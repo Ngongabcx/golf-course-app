@@ -13,8 +13,16 @@ class TournamentsScreenView extends GetView<TournamentsScreenController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Tournaments'),
+        backgroundColor: Colors.white,
+        iconTheme: const IconThemeData(color: Colors.black),
+        automaticallyImplyLeading: true,
+        title: Text(
+          ' Tournaments',
+          style: Theme.of(context).textTheme.headline3,
+        ),
+        actions: [],
         centerTitle: true,
+        elevation: 4,
       ),
       body: SafeArea(
         child: Container(

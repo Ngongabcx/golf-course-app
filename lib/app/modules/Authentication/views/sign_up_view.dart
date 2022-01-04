@@ -78,7 +78,7 @@ class SignUpView extends GetView<AuthenticationController> {
                           var id;
                           if (signUpController.currentStep.value == 2) {
                             print('Send data to the server');
-                            Get.toNamed("/home");
+                            Get.toNamed("/login");
                             if (userController.isProcessing.value == false) {
                               userController.register({
                                 'username':
@@ -88,8 +88,8 @@ class SignUpView extends GetView<AuthenticationController> {
                                 'password': userController
                                     .signUpPasswordController.text,
                               });
+                              userDetailsSubmitForm(id);
                             }
-                            userDetailsSubmitForm(id);
                           }
 
                           if (signUpController.currentStep.value == 1) {

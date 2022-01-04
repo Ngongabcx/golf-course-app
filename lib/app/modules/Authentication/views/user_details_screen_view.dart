@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../SettingScreen/controllers/setting_screen_controller.dart';
 import 'package:get/get.dart';
-import '../../SettingScreen/views/buildUserDetails.dart';
+
+import 'buildUserDetails.dart';
 
 class UserDetailsScreenView extends GetView {
   @override

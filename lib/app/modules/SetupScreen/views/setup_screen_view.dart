@@ -107,8 +107,7 @@ class SetupScreenView extends GetView<SetupScreenController> {
                             true,
                             List.generate(
                                 controller.lstPlayers.length,
-                                (index) => controller
-                                    .lstPlayers[index].fname
+                                (index) => controller.lstPlayers[index].fname
                                     .toString()),
                           );
                         }),
@@ -140,7 +139,7 @@ class SetupScreenView extends GetView<SetupScreenController> {
                                 cardChild: Padding(
                                   padding: EdgeInsets.only(top: 10.0),
                                   child: Text(
-                                    '9 Holes',
+                                    'Front nine',
                                     style:
                                         Theme.of(context).textTheme.bodyText1,
                                     textAlign: TextAlign.center,
@@ -171,7 +170,7 @@ class SetupScreenView extends GetView<SetupScreenController> {
                                 cardChild: Padding(
                                   padding: EdgeInsets.only(top: 10.0),
                                   child: Text(
-                                    '18 Holes',
+                                    'Back nine',
                                     style:
                                         Theme.of(context).textTheme.bodyText1,
                                     textAlign: TextAlign.center,
@@ -181,87 +180,100 @@ class SetupScreenView extends GetView<SetupScreenController> {
                             }),
                           ],
                         ),
-                        const SizedBox(height: 20),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Obx(() {
-                              return DropdownButton<int>(
-                                hint: Text(
-                                  'Front nine',
-                                  style: Theme.of(context).textTheme.bodyText2,
-                                ),
-                                items: controller.startingHoleOptions
-                                    .map((int value) {
-                                  return DropdownMenuItem<int>(
-                                    value: value,
-                                    child: Text(value.toString()),
-                                  );
-                                }).toList(),
-                                onChanged: (int? val) {
-                                  if (controller.startingHole.value != 0) {
-                                    controller.endingHoleOptions
-                                        .add(controller.startingHole.value);
-                                  }
-                                  controller.startingHole.value = val!.toInt();
-                                  if (controller.numberOfHolesToPlay.value ==
-                                      9) {
-                                    controller.endingHoleOptions.clear();
-                                    if (val == 1) {
-                                      controller.endingHoleOptions.add(9);
-                                      controller.endingHole.value = 9;
-                                    } else if (val == 9) {
-                                      controller.endingHoleOptions.add(1);
-                                      controller.endingHole.value = 1;
-                                    } else if (val == 10) {
-                                      controller.endingHoleOptions.add(18);
-                                      controller.endingHole.value = 18;
-                                    } else if (val == 18) {
-                                      controller.endingHoleOptions.add(10);
-                                      controller.endingHole.value = 10;
-                                    }
-                                  } else {
-                                    controller.endingHoleOptions
-                                        .removeWhere((item) => item == val);
-                                  }
-                                  print(
-                                      "Starting to play from ==> ${controller.startingHole.value}");
-                                  print(
-                                      "Ending at options ==> ${controller.endingHoleOptions}");
-                                },
-                              );
-                            }),
-                            Obx(() {
-                              return DropdownButton<int>(
-                                hint: Text(
-                                  'Back nine',
-                                  style: Theme.of(context).textTheme.bodyText2,
-                                ),
-                                items: controller.endingHoleOptions
-                                    .map((int value) {
-                                  return DropdownMenuItem<int>(
-                                    value: value,
-                                    child: Text(value.toString()),
-                                  );
-                                }).toList(),
-                                onChanged: (int? val) {
-                                  controller.endingHole.value = val!.toInt();
-                                  print(
-                                      "ENding to play at ==> ${controller.endingHole.value}");
-                                },
-                              );
-                            }),
-                          ],
-                        ),
+                        // const SizedBox(height: 20),
+                        // Row(
+                        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        //   children: [
+                        //     Obx(() {
+                        //       return DropdownButton<int>(
+                        //         hint: Text(
+                        //           'Front nine',
+                        //           style: Theme.of(context).textTheme.bodyText2,
+                        //         ),
+                        //         items: controller.startingHoleOptions
+                        //             .map((int value) {
+                        //           return DropdownMenuItem<int>(
+                        //             value: value,
+                        //             child: Text(value.toString()),
+                        //           );
+                        //         }).toList(),
+                        //         onChanged: (int? val) {
+                        //           if (controller.startingHole.value != 0) {
+                        //             controller.endingHoleOptions
+                        //                 .add(controller.startingHole.value);
+                        //           }
+                        //           controller.startingHole.value = val!.toInt();
+                        //           if (controller.numberOfHolesToPlay.value ==
+                        //               9) {
+                        //             controller.endingHoleOptions.clear();
+                        //             if (val == 1) {
+                        //               controller.endingHoleOptions.add(9);
+                        //               controller.endingHole.value = 9;
+                        //             } else if (val == 9) {
+                        //               controller.endingHoleOptions.add(1);
+                        //               controller.endingHole.value = 1;
+                        //             } else if (val == 10) {
+                        //               controller.endingHoleOptions.add(18);
+                        //               controller.endingHole.value = 18;
+                        //             } else if (val == 18) {
+                        //               controller.endingHoleOptions.add(10);
+                        //               controller.endingHole.value = 10;
+                        //             }
+                        //           } else {
+                        //             controller.endingHoleOptions
+                        //                 .removeWhere((item) => item == val);
+                        //           }
+                        //           print(
+                        //               "Starting to play from ==> ${controller.startingHole.value}");
+                        //           print(
+                        //               "Ending at options ==> ${controller.endingHoleOptions}");
+                        //         },
+                        //       );
+                        //     }),
+                        //     Obx(() {
+                        //       return DropdownButton<int>(
+                        //         hint: Text(
+                        //           'Back nine',
+                        //           style: Theme.of(context).textTheme.bodyText2,
+                        //         ),
+                        //         items: controller.endingHoleOptions
+                        //             .map((int value) {
+                        //           return DropdownMenuItem<int>(
+                        //             value: value,
+                        //             child: Text(value.toString()),
+                        //           );
+                        //         }).toList(),
+                        //         onChanged: (int? val) {
+                        //           controller.endingHole.value = val!.toInt();
+                        //           print(
+                        //               "Ending to play at ==> ${controller.endingHole.value}");
+                        //         },
+                        //       );
+                        //     }),
+                        //   ],
+                        // ),
                         const SizedBox(height: 20),
                         Container(
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              RaisedButton(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(5.0)),
+                              ElevatedButton(
+                                style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          Colors.white),
+                                  shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5.0),
+                                      side: BorderSide(
+                                        color: Color(0xFFDBE2E7),
+                                        width: 2.0,
+                                      ),
+                                    ),
+                                  ),
+                                ),
                                 onPressed: () {
                                   DatePicker.showDatePicker(context,
                                       theme: const DatePickerTheme(
@@ -315,15 +327,26 @@ class SetupScreenView extends GetView<SetupScreenController> {
                                     ],
                                   ),
                                 ),
-                                color: Colors.white,
                               ),
                               const SizedBox(
                                 height: 20.0,
                               ),
-                              RaisedButton(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(5.0)),
-                                elevation: 4.0,
+                              ElevatedButton(
+                                style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          Colors.white),
+                                  shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5.0),
+                                      side: BorderSide(
+                                        color: Color(0xFFDBE2E7),
+                                        width: 2.0,
+                                      ),
+                                    ),
+                                  ),
+                                ),
                                 onPressed: () {
                                   DatePicker.showTimePicker(context,
                                       theme: const DatePickerTheme(
@@ -375,7 +398,6 @@ class SetupScreenView extends GetView<SetupScreenController> {
                                     ],
                                   ),
                                 ),
-                                color: Colors.white,
                               )
                             ],
                           ),

@@ -18,6 +18,7 @@ abstract class Routes {
   static const MESSAGES = _Paths.MESSAGES;
   static const EVENT_SCREEN = _Paths.EVENT_SCREEN;
   static const TOURNAMENTS_SCREEN = _Paths.TOURNAMENTS_SCREEN;
+  static const HEALTH = _Paths.HEALTH;
 }
 
 abstract class _Paths {
@@ -37,4 +38,5 @@ abstract class _Paths {
   static const COURSE = '/CoursesScreen';
   static const EVENT_SCREEN = '/event-screen';
   static const TOURNAMENTS_SCREEN = '/tournaments-screen';
+  static const HEALTH = '/health';
 }

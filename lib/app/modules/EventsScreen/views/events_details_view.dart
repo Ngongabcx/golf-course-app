@@ -52,7 +52,7 @@ class EventsDetailsView extends GetView {
                       ),
                     ),
                     Expanded(
-                      flex: 2,
+                      flex: 1,
                       child: Icon(
                         Icons.calendar_today_outlined,
                         size: 30.0,
@@ -60,7 +60,7 @@ class EventsDetailsView extends GetView {
                       ),
                     ),
                     Expanded(
-                      flex: 4,
+                      flex: 3,
                       child: Text(
                         event.date,
                         style: Theme.of(context).textTheme.bodyText2,
@@ -82,7 +82,7 @@ class EventsDetailsView extends GetView {
                       ),
                     ),
                     Expanded(
-                      flex: 10,
+                      flex: 6,
                       child: Text(event.location),
                     ),
                   ],
