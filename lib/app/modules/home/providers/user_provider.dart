@@ -59,9 +59,8 @@ class UserProvider extends BaseProvider {
   Future<List<Payload>> getPlayers() async {
     try {
       final response = await dio.get("$kNewApiBaseURL/api/users");
-      List<dynamic> resp =
-          List<dynamic>.from(jsonDecode(response.data["payload"].toString()));
-      return resp.map((item) => Payload.fromJson(item)).toList();
+      var user = userFromJson(response.data.toString());
+      return user.payload!.toList();
     } on DioError catch (exception) {
       if (exception.response != null) {
         if (exception.response!.statusCode == 400) {

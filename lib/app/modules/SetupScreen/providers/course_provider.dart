@@ -8,12 +8,11 @@ import 'package:gcms/constants/constant.dart';
 import '../course_model.dart';
 
 class CourseProvider extends BaseProvider {
-  Future<List<Course>> getCourses() async {
+  Future<List<Payload>> getCourses() async {
     try {
-      final response = await dio.get("$kApiBaseURL/CoursesScreen");
-      List<dynamic> resp =
-          List<dynamic>.from(jsonDecode(response.data.toString()));
-      return resp.map((item) => Course.fromJson(item)).toList();
+      final response = await dio.get("$kNewApiBaseURL/api/courses");
+      final competition = competitionFromJson(response.data.toString());
+      return competition.payload!.toList();
     } on DioError catch (exception) {
       if (exception.response != null) {
         if (exception.response!.statusCode == 400) {

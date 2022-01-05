@@ -4,10 +4,10 @@ import 'package:gcms/app/modules/SetupScreen/providers/competition_provider.dart
 import 'package:gcms/app/modules/SetupScreen/providers/course_provider.dart';
 import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
 import 'package:gcms/app/modules/home/providers/user_provider.dart';
-import 'package:gcms/app/modules/home/user_model.dart';
+import 'package:gcms/app/modules/home/user_model.dart' as userModel;
 import 'package:get/get.dart';
 
-import '../course_model.dart';
+import '../course_model.dart' as courseModel;
 
 class SetupScreenController extends GetxController {
   var selectedCourseId = ''.obs;
@@ -18,8 +18,8 @@ class SetupScreenController extends GetxController {
   ];
   var numberOfHolesToPlay = 0.obs;
   var isProcessing = false.obs;
-  var lstCourses = <Course>[].obs;
-  var lstPlayers = <Payload>[].obs;
+  var lstCourses = <courseModel.Payload>[].obs;
+  var lstPlayers = <userModel.Payload>[].obs;
   var selectedPlayers = [].obs;
   var currentSelectedHole = ''.obs;
   var startingHole = 0.obs;
