@@ -13,6 +13,7 @@ class CompetitionProvider extends BaseProvider {
         "PROVIDER RECEIVED DATA TO SEND AS CREATE COMPETITION REQUEST ----> $data");
     try {
       final response = await dio.post("$kApiBaseURL/competitions", data: data);
+      print("CREATE COMPETITION RESPONDED WITN --> ${response.data.toString()}");
       return competitionFromJson(response.data.toString());
     } on DioError catch (exception) {
       if (exception.response != null) {

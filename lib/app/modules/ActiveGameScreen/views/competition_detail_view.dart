@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/ScoresInputScreen/views/scores_input_screen_view.dart';
 import 'package:gcms/app/modules/SetupScreen/competition_model.dart';
+import 'package:gcms/app/modules/SetupScreen/controllers/setup_screen_controller.dart';
 import 'package:gcms/app/modules/commonWidgets/customButton.dart';
 import 'package:gcms/theme/gcms_theme.dart';
 
@@ -9,6 +10,7 @@ import 'package:get/get.dart';
 class CompetitionDetailView extends GetView {
   CompetitionDetailView({required this.competition});
   final Payload competition;
+  final SetupScreenController _controller = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +39,8 @@ class CompetitionDetailView extends GetView {
                 ),
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: NetworkImage(competition.course!.courseImage.toString()),
+                    image: NetworkImage(
+                        competition.course!.courseImage.toString()),
                     fit: BoxFit.fill,
                   ),
                   borderRadius: const BorderRadius.all(Radius.circular(5.0)),
@@ -112,8 +115,8 @@ class CompetitionDetailView extends GetView {
                         padding: EdgeInsets.only(left: 16.0, top: 16.0),
                         child: Expanded(
                           flex: 5,
-                          child: competition
-                                      .competitionPlayer![index].player!.image ==
+                          child: competition.competitionPlayer![index].player!
+                                      .image ==
                                   ""
                               ? CircleAvatar(
                                   radius: 30.0,
@@ -123,7 +126,8 @@ class CompetitionDetailView extends GetView {
                               : CircleAvatar(
                                   radius: 30.0,
                                   backgroundImage: NetworkImage(competition
-                                      .competitionPlayer![index].player!.image.toString()),
+                                      .competitionPlayer![index].player!.image
+                                      .toString()),
                                 ),
                         ),
                       ),
@@ -173,7 +177,13 @@ class CompetitionDetailView extends GetView {
                       textStyle: GcmsTheme.lightTextTheme.bodyText2,
                       text: "Play",
                       onPressed: () {
-                        Get.offAll(ScoresInputScreenView(competition));
+                        // var competitionPlayers = competition.competitionPlayer;
+                        // var loggedInPlayer = competitionPlayers!.firstWhere(
+                        //     (item) =>
+                        //         item.player!.id ==
+                        //         _controller.storage.read("userId"));
+                        // var recordingFor = loggedInPlayer.recordingScoreFor;
+                        // Get.offAll(ScoresInputScreenView(competition,recordingFor));
                       },
                     ),
                   ),

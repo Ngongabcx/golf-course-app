@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gcms/constants/constant.dart';
 
 class RefreshWidget extends StatefulWidget {
   final GlobalKey<RefreshIndicatorState> keyRefresh;
@@ -25,6 +26,7 @@ class _RefreshWidgetState extends State<RefreshWidget> {
       Platform.isAndroid ? buildAndroidList() : buildIOSList();
 
   Widget buildAndroidList() => RefreshIndicator(
+        color: kPrimaryColor,
         key: widget.keyRefresh,
         onRefresh: widget.onRefresh,
         child: widget.child,

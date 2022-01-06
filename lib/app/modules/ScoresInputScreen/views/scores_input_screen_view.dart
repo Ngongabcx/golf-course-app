@@ -17,7 +17,8 @@ import '../controllers/scores_input_screen_controller.dart';
 class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
   final _controller = Get.put(ScoresInputScreenController());
   final Payload competition;
-  ScoresInputScreenView(this.competition);
+  final Player recordingFor;
+  ScoresInputScreenView(this.competition, this.recordingFor);
   @override
   Widget build(BuildContext context) {
     _controller.extractGameHolesArray(competition);

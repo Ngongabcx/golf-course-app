@@ -6,6 +6,7 @@ import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
 import 'package:gcms/app/modules/home/providers/user_provider.dart';
 import 'package:gcms/app/modules/home/user_model.dart' as userModel;
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import '../course_model.dart' as courseModel;
 
@@ -16,6 +17,7 @@ class SetupScreenController extends GetxController {
     {"PlayerId": 15},
     {"PlayerId": 18}
   ];
+  var storage = GetStorage();
   var numberOfHolesToPlay = 0.obs;
   var isProcessing = false.obs;
   var lstCourses = <courseModel.Payload>[].obs;
@@ -24,7 +26,7 @@ class SetupScreenController extends GetxController {
   var currentSelectedHole = ''.obs;
   var startingHole = 0.obs;
   var endingHole = 0.obs;
-  final hole9options = [1, 9,10, 18];
+  final hole9options = [1, 9, 10, 18];
   var holeCorrespondingValue = [].obs;
   final hole18options = [1, 18];
   var startingHoleOptions = <int>[].obs;
@@ -54,12 +56,18 @@ class SetupScreenController extends GetxController {
       }, onError: (err) {
         print("Error getting courses details -->" + err.toString());
         isProcessing(false);
-        ShowSnackBar(title: "Error", message:err.toString(), backgroundColor:Colors.red);
+        ShowSnackBar(
+            title: "Error",
+            message: err.toString(),
+            backgroundColor: Colors.red);
       });
     } catch (exception) {
       print("Exception getting courses details -->" + exception.toString());
       isProcessing(false);
-      ShowSnackBar(title: "Exception", message:exception.toString(), backgroundColor:Colors.red);
+      ShowSnackBar(
+          title: "Exception",
+          message: exception.toString(),
+          backgroundColor: Colors.red);
     }
   }
 
@@ -68,18 +76,24 @@ class SetupScreenController extends GetxController {
     try {
       isProcessing(true);
       UserProvider().getPlayers().then((resp) async {
-        //lstPlayers.addAll(resp);
+        lstPlayers.addAll(resp);
         print("PLAYERS SUCCESSFULLY FETCHED  ---> ${resp.first.fname}");
         isProcessing(false);
       }, onError: (err) {
         print("Error getting players details -->" + err.toString());
         isProcessing(false);
-        ShowSnackBar(title: "Error", message:err.toString(), backgroundColor:Colors.red);
+        ShowSnackBar(
+            title: "Error",
+            message: err.toString(),
+            backgroundColor: Colors.red);
       });
     } catch (exception) {
       print("Exception getting players details -->" + exception.toString());
       isProcessing(false);
-      ShowSnackBar(title: "Exception", message:exception.toString(), backgroundColor:Colors.red);
+      ShowSnackBar(
+          title: "Exception",
+          message: exception.toString(),
+          backgroundColor: Colors.red);
     }
   }
 
@@ -89,16 +103,22 @@ class SetupScreenController extends GetxController {
       isProcessing(true);
       CompetitionProvider().createCompetition(data).then((resp) async {
         isProcessing(false);
-         Get.to(CompetitionDetailView(competition: resp.payload!.first));
-         }, onError: (err) {
+        Get.to(CompetitionDetailView(competition: resp.payload!.first));
+      }, onError: (err) {
         print("Error CREATING COMPETITION -->" + err.toString());
         isProcessing(false);
-        ShowSnackBar(title: "Error", message:err.toString(), backgroundColor:Colors.red);
+        ShowSnackBar(
+            title: "Error",
+            message: err.toString(),
+            backgroundColor: Colors.red);
       });
     } catch (exception) {
       print("Exception CREATING COMPETITION -->" + exception.toString());
       isProcessing(false);
-      ShowSnackBar(title: "Exception", message:exception.toString(), backgroundColor:Colors.red);
+      ShowSnackBar(
+          title: "Exception",
+          message: exception.toString(),
+          backgroundColor: Colors.red);
     }
   }
 
@@ -112,12 +132,18 @@ class SetupScreenController extends GetxController {
       }, onError: (err) {
         print("Error getting competition details -->" + err.toString());
         isProcessing(false);
-        ShowSnackBar(title: "Error", message:err.toString(), backgroundColor:Colors.red);
+        ShowSnackBar(
+            title: "Error",
+            message: err.toString(),
+            backgroundColor: Colors.red);
       });
     } catch (exception) {
       print("Exception getting competition details -->" + exception.toString());
       isProcessing(false);
-      ShowSnackBar(title: "Exception", message:exception.toString(), backgroundColor:Colors.red);
+      ShowSnackBar(
+          title: "Exception",
+          message: exception.toString(),
+          backgroundColor: Colors.red);
     }
   }
 

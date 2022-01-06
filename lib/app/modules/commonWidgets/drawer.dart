@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/home/controllers/home_controller.dart';
 import 'package:gcms/constants/constant.dart';
 import 'package:get/get.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
 
 class GcmsDrawer extends StatelessWidget {
   final controller = Get.put(HomeController());

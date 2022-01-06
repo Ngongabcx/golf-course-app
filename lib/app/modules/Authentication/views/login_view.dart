@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gcms/app/modules/commonWidgets/customButton.dart';
 import 'package:gcms/app/modules/commonWidgets/loader/loader.dart';
 import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
+import 'package:gcms/bcx_icons_icons.dart';
 import 'package:gcms/constants/constant.dart';
 import 'package:gcms/theme/gcms_theme.dart';
 import 'package:get/get.dart';
@@ -129,8 +130,8 @@ class LoginView extends GetView<AuthenticationController> {
                                           }),
                                     ),
                                   ),
-                                  if (_controller.hasFingerPrintLock.value !=
-                                      false)
+                                  if (_controller.storage.read("isBiometricActivated")  ==
+                                      true)
                                     Expanded(
                                       flex: 2,
                                       child: Align(
@@ -138,13 +139,13 @@ class LoginView extends GetView<AuthenticationController> {
                                         child: IconButton(
                                           padding: EdgeInsets.only(right: 14),
                                           splashRadius: 25,
-                                          icon:
-                                              Icon(Icons.fingerprint_outlined),
+                                          icon: _controller.storage.read("hasFingerPrintLock") ?
+                                              Icon(Icons.fingerprint_outlined) : Icon(BcxIcons.face_id),
                                           iconSize: 65,
                                           color: kPrimaryColor,
                                           splashColor: Colors.grey,
                                           onPressed: () =>
-                                              _controller.authenticateUser(),
+                                              _controller.authenticateUser(true),
                                         ),
                                       ),
                                     ),

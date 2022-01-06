@@ -25,10 +25,12 @@ notifications() {
           .updateNotification(message.messageId.toString());
       MessagesController().refreshNotifications();
       final routeFromMessage = message.data["viewUri"];
+      final confirmScore = message.data["isConfirmScore"];
       print(routeFromMessage);
+      print("IS CONFIRM SCORE valuE FRom MESSAGE Data -----> $routeFromMessage");
 
       //We can push the notification to a specific view from here
-      if (message.data["isConfirmScore"]) {
+      if (confirmScore) {
         ShowSnackBar(
             title: message.data["title"],
             message: message.data["body"],
@@ -71,8 +73,10 @@ notifications() {
         .updateNotification(message.messageId.toString());
     MessagesController().refreshNotifications();
     final routeFromMessage = message.data["viewUri"];
-    print(routeFromMessage);
-    if (message.data["isConfirmScore"]) {
+      final confirmScore = message.data["isConfirmScore"];
+      print(routeFromMessage);
+      print("IS CONFIRM SCORE valuE FRom MESSAGE Data -----> $routeFromMessage");
+    if (confirmScore) {
       ShowSnackBar(
           title: message.data["title"],
           message: message.data["body"],

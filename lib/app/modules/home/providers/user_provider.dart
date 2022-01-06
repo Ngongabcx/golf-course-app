@@ -57,6 +57,7 @@ class UserProvider extends BaseProvider {
   }
 
   Future<List<Payload>> getPlayers() async {
+    print("---------------------EXECUTING GET PLAYERS PROVIDER-------------------------");
     try {
       final response = await dio.get("$kNewApiBaseURL/api/users");
       var user = userFromJson(response.data.toString());

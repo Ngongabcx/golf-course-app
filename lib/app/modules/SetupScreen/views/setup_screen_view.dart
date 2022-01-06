@@ -139,7 +139,7 @@ class SetupScreenView extends GetView<SetupScreenController> {
                                 cardChild: Padding(
                                   padding: EdgeInsets.only(top: 10.0),
                                   child: Text(
-                                    'Front nine',
+                                    'Nine',
                                     style:
                                         Theme.of(context).textTheme.bodyText1,
                                     textAlign: TextAlign.center,
@@ -170,7 +170,7 @@ class SetupScreenView extends GetView<SetupScreenController> {
                                 cardChild: Padding(
                                   padding: EdgeInsets.only(top: 10.0),
                                   child: Text(
-                                    'Back nine',
+                                    'Eighteen',
                                     style:
                                         Theme.of(context).textTheme.bodyText1,
                                     textAlign: TextAlign.center,
@@ -417,7 +417,8 @@ class SetupScreenView extends GetView<SetupScreenController> {
                                     : 'Confirm',
                                 onPressed: () {
                                   var comp = CompetitionRequest(
-                                    compName: controller.matchName.text,
+                                    //compName: controller.matchName.text,
+                                    compName: "Test",
                                     gametypeId: 1,
                                     compFee: 0.0,
                                     compDate: controller.matchDate.value,

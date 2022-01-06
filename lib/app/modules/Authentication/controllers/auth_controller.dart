@@ -18,8 +18,8 @@ class AuthenticationController extends GetxController {
   var iamimportant = false.obs;
   var isObscure = true.obs;
   var _localAuth = LocalAuthentication();
-  var hasFingerPrintLock = false.obs;
-  var hasFaceLock = false.obs;
+  bool hasFingerPrintLock = false;
+  bool hasFaceLock = false;
   var isUserAuthenticated = false.obs;
   final signUpFormKey = GlobalKey<FormState>();
   var storage = GetStorage();
@@ -58,7 +58,7 @@ class AuthenticationController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    authenticateUser();
+    //authenticateUser();
   }
 
   @override
@@ -69,46 +69,51 @@ class AuthenticationController extends GetxController {
     if (hasLocalAuthentication) {
       List<BiometricType> availableBiometrics =
           await _localAuth.getAvailableBiometrics();
-      hasFaceLock.value = availableBiometrics.contains(BiometricType.face);
-      hasFingerPrintLock.value =
+      hasFaceLock = availableBiometrics.contains(BiometricType.face);
+      hasFingerPrintLock =
           availableBiometrics.contains(BiometricType.fingerprint);
+      storage.write("hasFaceLock", hasFaceLock);
+      storage.write("hasFingerPrintLock", hasFingerPrintLock);
     } else {
-      ShowSnackBar(
-          title: "Error",
-          message: 'Local Authentication not available',
-          backgroundColor: Colors.red);
+      storage.write("hasFaceLock", hasFaceLock);
+      storage.write("hasFingerPrintLock", hasFingerPrintLock);
     }
   }
 
-  void authenticateUser() async {
+  void authenticateUser(bool isLoggingIn) async {
     try {
       const androidMessage = const AndroidAuthMessages(
         cancelButton: 'Cancel',
         goToSettingsButton: 'settings',
-        goToSettingsDescription: 'Please set up your Fingerprint/Face.',
+        goToSettingsDescription: 'Please set up your Fingerprint/Face Id.',
         biometricHint: 'Verify your identity',
       );
       isUserAuthenticated.value = await _localAuth.authenticate(
-        localizedReason: 'Authenticate Yourself',
+        localizedReason: 'Please provide authetication',
         biometricOnly: true,
         useErrorDialogs: true,
         stickyAuth: true,
         androidAuthStrings: androidMessage,
       );
       if (isUserAuthenticated.value) {
-        ShowSnackBar(
+        if (!isLoggingIn) {
+          storage.write("isBiometricActivated",true);
+          ShowSnackBar(
             title: "Success",
-            message: "You are authenticated",
+            message: "Authentication feature successfully activated.",
             backgroundColor: Colors.green);
+        } else {
+          //Log user in
+        }
       } else {
-        ShowSnackBar(
-            title: "Error",
-            message: "Authentication Cancelled",
-            backgroundColor: Colors.red);
+        // ShowSnackBar(
+        //     title: "Error",
+        //     message: "Authentication Cancelled",
+        //     backgroundColor: Colors.red);
       }
     } catch (e) {
-      ShowSnackBar(
-          title: "Error", message: e.toString(), backgroundColor: Colors.red);
+      // ShowSnackBar(
+      //     title: "Error", message: e.toString(), backgroundColor: Colors.red);
       print("EXCEPTION --> ${e.toString()}");
     }
   }

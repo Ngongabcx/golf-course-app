@@ -11,7 +11,7 @@ class CustomDropDownMultiSelect extends GetView {
   final bool showClearButton;
   final bool showSearchField;
   final List<String> itemList;
-  SetupScreenController _controller = Get.find();
+  final SetupScreenController _controller = Get.find();
 
   CustomDropDownMultiSelect(
     this.label,

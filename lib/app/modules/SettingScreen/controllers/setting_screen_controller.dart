@@ -1,8 +1,10 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:gcms/app/modules/Authentication/controllers/auth_controller.dart';
 import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
 import 'package:gcms/app/modules/home/providers/user_provider.dart';
+import 'package:gcms/constants/constant.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
@@ -77,16 +79,48 @@ class SettingScreenController extends GetxController {
       UserProvider().createUser(data).then((resp) {
         clearTextEditingControllers();
         isProcessing(false);
-        ShowSnackBar(title: "Success", message: "User Successfully Created.", backgroundColor:Colors.green);
+        ShowSnackBar(
+            title: "Success",
+            message: "User Successfully Created.",
+            backgroundColor: Colors.green);
         Get.offAllNamed('/home');
       }, onError: (err) {
         isProcessing(false);
-        ShowSnackBar(title: "Error", message:err.toString(), backgroundColor:Colors.red);
+        ShowSnackBar(
+            title: "Error",
+            message: err.toString(),
+            backgroundColor: Colors.red);
       });
     } catch (exception) {
       isProcessing(false);
       print("<---------EXCEPTION2--------->" + exception.toString());
-      ShowSnackBar(title: "Exception", message:exception.toString(), backgroundColor:Colors.red);
+      ShowSnackBar(
+          title: "Exception",
+          message: exception.toString(),
+          backgroundColor: Colors.red);
+    }
+  }
+
+  void biometricsSecurity() {
+    bool isSecSet = storage.read("isBiometricActivated");
+    if (isSecSet) {
+      Get.defaultDialog(
+          title: "Authentication",
+          content: Text(
+            "You will not be able to login using finger print/ face ID after turning off this feature. Turn off?",style: TextStyle(fontSize: 13),
+          ),
+          confirmTextColor: kWhiteColor,
+          onConfirm: () {
+            storage.write("isBiometricActivated", false);
+            Get.toNamed("/setting-screen");
+            ShowSnackBar(
+                title: "Success",
+                message: "Authentification feature successully turned off.",
+                backgroundColor: Colors.green);
+          },
+          onCancel: () {});
+    } else {
+      AuthenticationController().authenticateUser(false);
     }
   }
 

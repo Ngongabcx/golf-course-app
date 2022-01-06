@@ -10,7 +10,7 @@ import '../course_model.dart';
 class CourseProvider extends BaseProvider {
   Future<List<Payload>> getCourses() async {
     try {
-      final response = await dio.get("$kNewApiBaseURL/api/courses");
+      final response = await dio.get("$kNewApiBaseURL/api/courses?holes=true");
       final competition = competitionFromJson(response.data.toString());
       return competition.payload!.toList();
     } on DioError catch (exception) {

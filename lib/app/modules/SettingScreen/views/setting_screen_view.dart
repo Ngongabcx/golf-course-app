@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:gcms/app/modules/Authentication/controllers/auth_controller.dart';
 import 'package:gcms/app/modules/Authentication/views/user_details_screen_view.dart';
 import 'package:gcms/app/modules/Notifications/views/notifications_view.dart';
-import 'package:gcms/app/modules/home/controllers/home_controller.dart';
 import 'package:gcms/bcx_icons_icons.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:settings_ui/settings_ui.dart';
 
 import '../controllers/setting_screen_controller.dart';
 
 class SettingScreenView extends GetView<SettingScreenController> {
   // final AuthenticationController bioController = Get.find();
-  final _controller = Get.put(HomeController());
-  bool _toggled = true;
+  final _controller = Get.put(SettingScreenController());
+  //bool _toggled = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,7 +72,10 @@ class SettingScreenView extends GetView<SettingScreenController> {
                 title: 'Fingerprint',
                 subtitle: 'Use fingerprint',
                 leading: Icon(Icons.fingerprint),
-                onPressed: (BuildContext context) {},
+                enabled: _controller.storage.read("hasFingerPrintLock"),
+                onPressed: (BuildContext context) {
+                  _controller.biometricsSecurity();
+                },
               ),
               SettingsTile(
                 title: 'Face ID',
@@ -82,7 +84,10 @@ class SettingScreenView extends GetView<SettingScreenController> {
                   BcxIcons.face_id,
                   size: 30.0,
                 ),
-                onPressed: (BuildContext context) {},
+                enabled: _controller.storage.read("hasFaceLock"),
+                onPressed: (BuildContext context) {
+                  _controller.biometricsSecurity();
+                },
               ),
             ],
           ),

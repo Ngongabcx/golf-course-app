@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/Notifications/models/notification_model.dart';
 import 'package:gcms/app/modules/Notifications/providers/database/notifications_database.dart';
@@ -46,7 +44,17 @@ class HomeController extends GetxController {
   }
 
   void onItemTapped(int index) {
-    selectedIndex.value = index;
+    switch (index) {
+      case 0:
+        Get.to(() => ExploreScreenView());
+        break;
+      case 1:
+        Icon(Icons.note_add_outlined);
+        break;
+      case 2:
+        Get.toNamed("/messages");
+        break;
+    }
   }
 
   validateTokenAndGetUser() async {
