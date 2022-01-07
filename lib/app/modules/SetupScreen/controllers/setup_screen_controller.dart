@@ -12,11 +12,6 @@ import '../course_model.dart' as courseModel;
 
 class SetupScreenController extends GetxController {
   var selectedCourseId = ''.obs;
-  var tempPlayersList = [
-    {"PlayerId": 8},
-    {"PlayerId": 15},
-    {"PlayerId": 18}
-  ];
   var storage = GetStorage();
   var numberOfHolesToPlay = 0.obs;
   var isProcessing = false.obs;
