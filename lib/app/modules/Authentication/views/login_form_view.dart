@@ -49,36 +49,55 @@ class LoginFormView extends GetView {
           //         FilteringTextInputFormatter.allow(RegExp('[0-9]')),
           //       ],
           decoration: InputDecoration(
-              fillColor: kWhiteColor,
-              counterStyle: TextStyle(
-                height: double.minPositive,
+            fillColor: kWhiteColor,
+            counterStyle: TextStyle(
+              height: double.minPositive,
+            ),
+            counterText: "",
+            prefixText: textPrefix,
+            prefixStyle: TextStyle(color: kPrimaryColor),
+            filled: true,
+            labelText: label,
+            labelStyle: const TextStyle(
+              color: Color(0xFF95A1AC),
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
+            border: InputBorder.none,
+            suffixIcon: pass
+                ? Obx(
+                    () => IconButton(
+                      onPressed: () {
+                        _controller.isObscure.value =
+                            !_controller.isObscure.value;
+                      },
+                      icon: _controller.isObscure.value
+                          ? Icon(
+                              Icons.visibility_off,
+                              color: kPrimaryColor,
+                            )
+                          : Icon(
+                              Icons.visibility,
+                              color: kPrimaryColor,
+                            ),
+                    ),
+                  )
+                : null,
+            enabledBorder: OutlineInputBorder(
+              borderSide: const BorderSide(
+                color: Color(0xFFDBE2E7),
+                width: 2,
               ),
-              counterText: "",
-              prefixText: textPrefix,
-              prefixStyle: TextStyle(color: kPrimaryColor),
-              filled: true,
-              labelText: label,
-              labelStyle: TextStyle(color: kPrimaryColor),
-              border: InputBorder.none,
-              suffixIcon: pass
-                  ? Obx(
-                      () => IconButton(
-                        onPressed: () {
-                          _controller.isObscure.value =
-                              !_controller.isObscure.value;
-                        },
-                        icon: _controller.isObscure.value
-                            ? Icon(
-                                Icons.visibility_off,
-                                color: kPrimaryColor,
-                              )
-                            : Icon(
-                                Icons.visibility,
-                                color: kPrimaryColor,
-                              ),
-                      ),
-                    )
-                  : null),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: const BorderSide(
+                color: kPrimaryColor,
+                width: 2,
+              ),
+              borderRadius: BorderRadius.circular(8),
+            ),
+          ),
         ),
       ),
     );

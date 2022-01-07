@@ -48,41 +48,42 @@ class _LogInFormState extends State<LogInForm> {
                 FilteringTextInputFormatter.allow(RegExp('[0-9]')),
               ],
         decoration: InputDecoration(
-            fillColor: kWhiteColor,
-            counterStyle: TextStyle(
-              height: double.minPositive,
-            ),
-            counterText: "",
-            prefixText: textPrefix,
-            prefixStyle: Theme.of(context)
-                .textTheme
-                .bodyText1!
-                .copyWith(color: kPrimaryColor),
-            filled: true,
-            labelText: label,
-            labelStyle: Theme.of(context)
-                .textTheme
-                .bodyText1!
-                .copyWith(color: kPrimaryColor),
-            border: InputBorder.none,
-            suffixIcon: pass
-                ? IconButton(
-                    onPressed: () {
-                      setState(() {
-                        _isObscure = !_isObscure;
-                      });
-                    },
-                    icon: _isObscure
-                        ? Icon(
-                            Icons.visibility_off,
-                            color: kPrimaryColor,
-                          )
-                        : Icon(
-                            Icons.visibility,
-                            color: Colors.blueAccent,
-                          ),
-                  )
-                : null),
+          fillColor: kWhiteColor,
+          counterStyle: TextStyle(
+            height: double.minPositive,
+          ),
+          counterText: "",
+          prefixText: textPrefix,
+          prefixStyle: Theme.of(context)
+              .textTheme
+              .bodyText1!
+              .copyWith(color: kPrimaryColor),
+          filled: true,
+          labelText: label,
+          labelStyle: Theme.of(context)
+              .textTheme
+              .bodyText1!
+              .copyWith(color: kPrimaryColor),
+          border: InputBorder.none,
+          suffixIcon: pass
+              ? IconButton(
+                  onPressed: () {
+                    setState(() {
+                      _isObscure = !_isObscure;
+                    });
+                  },
+                  icon: _isObscure
+                      ? Icon(
+                          Icons.visibility_off,
+                          color: kPrimaryColor,
+                        )
+                      : Icon(
+                          Icons.visibility,
+                          color: Colors.blueAccent,
+                        ),
+                )
+              : null,
+        ),
       ),
     );
   }

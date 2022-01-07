@@ -14,7 +14,7 @@ class EventInfo extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                'Find Interesting\nEvents to attend\nat any Golf club',
+                'Find Interesting Events\nto attend',
                 style: Theme.of(context).textTheme.headline2,
               ),
             ],

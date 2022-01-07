@@ -18,8 +18,6 @@ class MatchInvitesScreenView extends GetView<HomeController> {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.height,
           child: _controller.isProcessing.value == true
               ? Loader()
               : Column(
