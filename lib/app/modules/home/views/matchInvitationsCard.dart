@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:gcms/app/modules/SetupScreen/competition_model.dart';
 import 'package:gcms/constants/constant.dart';
 import 'package:gcms/theme/gcms_theme.dart';
@@ -14,123 +15,89 @@ class MatchInvitationsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      clipBehavior: Clip.antiAlias,
-      child: Column(
-        crossAxisAlignment:
-            CrossAxisAlignment.start,
+    return Container(
+      height: 110,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Row(
         children: [
-          ListTile(
-            leading: Icon(
-              Icons.calendar_today,
-            ),
-            title: Text('Today'),
-            trailing: Icon(
-              Icons.more_horiz,
-              color: Colors.black,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-                left: 16.0,
-                right: 16.0,
-                top: 5.0,
-                bottom: 5.0),
-            child: Text(
-              invitations
-                      .course!
-                      .courseName
-                      .toString()
-                      .split('.')
-                      .last
-                      .replaceAll('_', ' ')
-                      .capitalizeFirst ??
-                  '',
-              style: Theme.of(context)
-                  .textTheme
-                  .headline6,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-                right: 16.0,
-                left: 16.0,
-                bottom: 16.0),
-            child: Text(
-              invitations
-                      .compName!
-                      .capitalizeFirst ??
-                  '',
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyText1,
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.only(
-                right: 16.0,
-                left: 16.0,
-                bottom: 16.0),
-            child: Column(
-              crossAxisAlignment:
-                  CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: Text(''),
-                    ),
-                    SizedBox(
-                      width: 10.0,
-                    ),
-                    Opacity(
-                      opacity: 0.50,
-                      child: FilterChip(
-                        labelStyle: TextStyle(
-                          backgroundColor:
-                              Colors
-                                  .transparent,
-                          color: Colors.black,
-                        ),
-                        label:
-                            Text('Creator'),
-                        onSelected:
-                            (bool value) {},
+          Expanded(
+            child: Container(
+              padding: EdgeInsets.only(
+                top: 20,
+                left: 10,
+                right: 10,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        invitations.course!.courseName
+                                .toString()
+                                .split('.')
+                                .last
+                                .replaceAll('_', ' ')
+                                .capitalizeFirst ??
+                            '',
+                        style: Theme.of(context).textTheme.headline6,
                       ),
-                    ),
-                  ],
-                ),
-                Text(
-                  invitations
-                          .gametype!
-                          .name
-                          .toString()
-                          .split('.')
-                          .last
-                          .replaceAll(
-                              '_', ' ')
-                          .capitalizeFirst ??
-                      '',
-                  style: GcmsTheme
-                      .darkTextTheme
-                      .bodyText2,
-                ),
-                SizedBox(
-                  height: 10.0,
-                ),
-                Text(
-                    invitations
-                            .compDate.toString(),
-                    style: GcmsTheme
-                        .darkTextTheme
-                        .bodyText2),
-              ],
+                      Icon(
+                        Icons.arrow_forward_ios_outlined,
+                        size: 15,
+                      ),
+                    ],
+                  ),
+                  Text(
+                    invitations.compName!.capitalizeFirst ?? '',
+                    style: Theme.of(context).textTheme.bodyText1,
+                  ),
+                  SizedBox(
+                    height: 2,
+                  ),
+                  Text(invitations.compDate.toString(),
+                      style: GcmsTheme.darkTextTheme.bodyText2),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Row(
+                    children: [
+                      SvgPicture.asset(
+                        'assets/images/golf.svg',
+                        color: kPrimaryColor,
+                        width: 100,
+                        height: 15,
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        '18 holes',
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        invitations.gametype!.name
+                                .toString()
+                                .split('.')
+                                .last
+                                .replaceAll('_', ' ')
+                                .capitalizeFirst ??
+                            '',
+                        style: GcmsTheme.darkTextTheme.bodyText2,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-            decoration: BoxDecoration(
-              color: kPrimaryColor
-                  .withOpacity(0.9),
-            ),
-          ),
+          )
         ],
       ),
     );

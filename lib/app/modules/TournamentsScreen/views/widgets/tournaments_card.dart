@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:gcms/app/modules/TournamentsScreen/tournament_model.dart';
 import 'package:gcms/constants/constant.dart';
-import 'package:gcms/theme/gcms_theme.dart';
 
 class TournamentsCard extends StatelessWidget {
   // final Payload tournament;
@@ -11,46 +11,21 @@ class TournamentsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 20.0),
-      child: Card(
-        clipBehavior: Clip.antiAlias,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ListTile(
-              leading: Icon(
-                Icons.calendar_today,
-                color: Colors.black,
+    return Container(
+      height: 110,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Row(
+        children: [
+          Expanded(
+            child: Container(
+              padding: EdgeInsets.only(
+                top: 20,
+                left: 10,
+                right: 10,
               ),
-              title: Text('Today'),
-              trailing: Icon(
-                Icons.bookmark_outline,
-                color: Colors.black,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(
-                  left: 16.0, right: 16.0, top: 5.0, bottom: 5.0),
-              child: Text(
-                tournament.compName,
-                // tournament.course!.courseName.toString(),
-                style: Theme.of(context).textTheme.bodyText1,
-              ),
-            ),
-            Padding(
-              padding:
-                  const EdgeInsets.only(right: 16.0, left: 16.0, bottom: 16.0),
-              child: Text(
-                tournament.course,
-                // tournament.course!.courseName.toString(),
-                style: Theme.of(context).textTheme.headline6,
-              ),
-            ),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              padding: const EdgeInsets.only(
-                  right: 16.0, left: 16.0, bottom: 16.0, top: 16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -58,37 +33,62 @@ class TournamentsCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        tournament.compDate,
-                        // tournament.compDate.toString(),
-                        style: GcmsTheme.darkTextTheme.bodyText2,
+                        tournament.course,
+                        style: Theme.of(context).textTheme.headline3,
                       ),
+                      Icon(
+                        Icons.arrow_forward_ios_outlined,
+                        size: 15,
+                      ),
+                    ],
+                  ),
+                  Text(
+                    tournament.compName,
+                    style: Theme.of(context).textTheme.headline6,
+                  ),
+                  SizedBox(
+                    height: 2,
+                  ),
+                  Row(
+                    children: [
                       Text(
-                        tournament.compTime.toString(),
-                        style: GcmsTheme.darkTextTheme.bodyText2,
+                        '${tournament.compDate} ${tournament.compTime}',
+                        style: Theme.of(context).textTheme.bodyText2,
                       ),
                     ],
                   ),
                   SizedBox(
-                    height: 10.0,
+                    height: 15,
                   ),
-                  Text(
-                    tournament.gametype,
-                    // tournament.gametype!.name.toString(),
-                    style: GcmsTheme.darkTextTheme.bodyText2,
+                  Row(
+                    children: [
+                      SvgPicture.asset(
+                        'assets/images/golf.svg',
+                        color: kPrimaryColor,
+                        width: 100,
+                        height: 15,
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        '${tournament.numberOfHoles} holes',
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        tournament.gametype,
+                        style: Theme.of(context).textTheme.bodyText2,
+                      ),
+                    ],
                   ),
-                  SizedBox(
-                    height: 10.0,
-                  ),
-                  Text('${tournament.numberOfHoles} holes',
-                      style: GcmsTheme.darkTextTheme.bodyText2),
                 ],
               ),
-              decoration: BoxDecoration(
-                color: kPrimaryColor.withOpacity(0.9),
-              ),
             ),
-          ],
-        ),
+          )
+        ],
       ),
     );
   }
