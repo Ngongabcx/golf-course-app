@@ -37,10 +37,45 @@ class ScoresInputScreenController extends GetxController {
     print("TOTAL HOLES ------------> $totalHoles");
     //get holes that are being payed accourding to the competition number of holes being played
     if (totalHoles == 18) {
-      gameHoles.addAll(holes!);
+      if (startingHole==1) {
+        //front nine logic
+        count.value = 1;
+        for (int h = 0; h < totalHoles; h++) {
+          print("COUNT2  --> $count");
+          var _gameHoles =
+              holes!.where((course) => course.holeNo == count.value).toList();
+          count.value++;
+          print(h);
+          print(holes[h]);
+          gameHoles.addAll(_gameHoles);
+        }
+      } else {
+        //this is the back nine logic i.e starting hole is 10 ending at 1
+        count.value = 10;
+        for (int h = 0; h < totalHoles; h++) {
+          print("COUNT2  --> $count");
+          var _gameHoles =
+              holes!.where((course) => course.holeNo == count.value).toList();
+          count.value++;
+          print(h);
+          print(holes[h]);
+          gameHoles.addAll(_gameHoles);
+        }
+        count.value = 1;
+        for (int h = 0; h < 9; h++) {
+          print("COUNT2  --> $count");
+          var _gameHoles =
+              holes!.where((course) => course.holeNo == count.value).toList();
+          count.value++;
+          print(h);
+          print(holes[h]);
+          gameHoles.addAll(_gameHoles);
+        }
+      }
       print("GAME HOLES ----> ${gameHoles.first}");
     } else {
-      if (startingHole == 1 || startingHole == 9) {
+      //Here we are playing 9 holes
+      if (startingHole == 1) {
         count.value = 1;
         for (int h = 0; h < totalHoles; h++) {
           print("COUNT1  --> $count");
@@ -51,8 +86,8 @@ class ScoresInputScreenController extends GetxController {
           print(holes[h]);
           gameHoles.addAll(_gameHoles);
         }
-      }
-      if (startingHole == 10 || startingHole == 18) {
+      }else {
+        //starting hole is 10
         count.value = 10;
         for (int h = 0; h < totalHoles; h++) {
           print("COUNT2  --> $count");
