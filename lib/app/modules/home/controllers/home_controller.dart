@@ -106,7 +106,7 @@ class HomeController extends GetxController {
         var usr = usrPayload.payload!.first;
         storage.write("userId", usr.id.toString());
         storage.write("hcp", usr.hcp!.toInt());
-        storage.write("userId", usr.aspNetUsers!.email.toString());
+        storage.write("username", usr.aspNetUsers!.userName.toString());
         storage.write(
             "name", usr.fname.toString() + " " + usr.lname.toString());
         storage.write("profilePic", usr.image);

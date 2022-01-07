@@ -261,7 +261,7 @@ class AuthenticationController extends GetxController {
         var usrPayload = userFromJson(storage.read('user'));
         var usr = usrPayload.payload!.first;
         storage.write("userId", usr.id.toString());
-        storage.write("userId", usr.aspNetUsers!.email.toString());
+        storage.write("username", usr.aspNetUsers!.userName.toString());
         storage.write("isLoggedIn", true);
         storage.write("hcp", usr.hcp!.toInt());
         storage.write(

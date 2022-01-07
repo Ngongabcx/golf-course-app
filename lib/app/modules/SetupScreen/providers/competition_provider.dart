@@ -14,7 +14,8 @@ class CompetitionProvider extends BaseProvider {
         "PROVIDER RECEIVED DATA TO SEND AS CREATE COMPETITION REQUEST ----> $data");
     try {
       final response = await dio.post("$kApiBaseURL/competitions", data: data);
-      print("CREATE COMPETITION RESPONDED WITN --> ${response.data.toString()}");
+      print(
+          "CREATE COMPETITION RESPONDED WITN --> ${response.data.toString()}");
       return competitionFromJson(response.data.toString());
     } on DioError catch (exception) {
       if (exception.response != null) {
@@ -56,10 +57,15 @@ class CompetitionProvider extends BaseProvider {
           "An error occured please check your internet connection.".toString());
     }
   }
-    Future<compPlayer.CompetitionPlayer> getCompetitionPlayer(String playerId,String competitionId) async {
-    print("PROVIDER RECEIVED IDS TO PASS AS GET COMPETITION PLAYER REQUEST ----> Player: $playerId , Competition: $competitionId");
+
+  Future<compPlayer.CompetitionPlayer> getCompetitionPlayer(
+      String competitionId , String playerId) async {
+    print(
+        "PROVIDER RECEIVED IDS TO PASS AS GET COMPETITION PLAYER REQUEST ----> Player: $playerId , Competition: $competitionId");
+    var url = "$kNewApiBaseURL/api/competitionplayers/$competitionId/$playerId";
+    print("URL   --> $url");
     try {
-      final response = await dio.get("$kNewApiBaseURL/api/competitionplayers/$competitionId/$playerId");
+      final response = await dio.get("$url");
       return compPlayer.competitionPlayerFromJson(response.data.toString());
     } on DioError catch (exception) {
       if (exception.response != null) {
@@ -71,7 +77,8 @@ class CompetitionProvider extends BaseProvider {
         }
         return Future.error(exception.response!.statusMessage.toString());
       }
-      logToChannel({"text": "$kError GET COMPETITION PLAYER FAILURE\n $exception"});
+      logToChannel(
+          {"text": "$kError GET COMPETITION PLAYER FAILURE\n $exception"});
       print('<<===GETTING COMPETITION PLAYER EXCEPTION ==> $exception');
       return Future.error(
           "An error occured please check your internet connection.".toString());

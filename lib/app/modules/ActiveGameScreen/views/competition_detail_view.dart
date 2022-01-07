@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/ScoresInputScreen/views/scores_input_screen_view.dart';
 import 'package:gcms/app/modules/SetupScreen/competition_model.dart';
-import 'package:gcms/app/modules/SetupScreen/competition_player_model.dart' as compPlayer;
+import 'package:gcms/app/modules/SetupScreen/competition_player_model.dart'
+    as compPlayer;
 
 import 'package:gcms/app/modules/SetupScreen/controllers/setup_screen_controller.dart';
+import 'package:gcms/app/modules/SetupScreen/providers/competition_provider.dart';
 import 'package:gcms/app/modules/commonWidgets/customButton.dart';
 import 'package:gcms/theme/gcms_theme.dart';
 
@@ -12,7 +14,7 @@ import 'package:get/get.dart';
 class CompetitionDetailView extends GetView {
   CompetitionDetailView({required this.competition});
   final Payload competition;
-  final SetupScreenController _controller = Get.find();
+  final _controller = Get.put(SetupScreenController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,11 +70,11 @@ class CompetitionDetailView extends GetView {
                     style: Theme.of(context).textTheme.headline6,
                   ),
                   Text(
-                    "Strokeplay",
+                    "${competition.gametype!.name.toString().split('.').last.replaceAll('_', ' ').capitalizeFirst ?? ''}",
                     style: Theme.of(context).textTheme.headline6,
                   ),
                   Text(
-                    '18 Holes',
+                    competition.numberOfHoles.toString(),
                     style: Theme.of(context).textTheme.headline6,
                   ),
                 ],
@@ -122,8 +124,9 @@ class CompetitionDetailView extends GetView {
                                   ""
                               ? CircleAvatar(
                                   radius: 30.0,
-                                  backgroundImage: AssetImage(
-                                      'assets/images/Tiger-Woods.jpg'),
+                                  backgroundImage: AssetImage(competition
+                                      .competitionPlayer![index].player!.image
+                                      .toString()),
                                 )
                               : CircleAvatar(
                                   radius: 30.0,
@@ -181,9 +184,13 @@ class CompetitionDetailView extends GetView {
                       onPressed: () async {
                         var competitionId = competition.id.toString();
                         var playerId = _controller.storage.read("userId");
-                       compPlayer.CompetitionPlayer recordingScoresFor = await controller.getCompetitionPlayer(competitionId, playerId);
-                        Get.offAll(
-                            ScoresInputScreenView(competition, recordingScoresFor.payload!.first.recordingScoresFor));
+                        compPlayer.CompetitionPlayer recordingScoresFor =
+                            await CompetitionProvider().getCompetitionPlayer(
+                                competitionId, playerId);
+                        Get.offAll(ScoresInputScreenView(
+                            competition,
+                            recordingScoresFor
+                                .payload!.first.recordingScoresFor));
                       },
                     ),
                   ),
