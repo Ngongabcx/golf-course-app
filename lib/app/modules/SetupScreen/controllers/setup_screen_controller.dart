@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/ActiveGameScreen/views/competition_detail_view.dart';
+import 'package:gcms/app/modules/SetupScreen/competition_model.dart';
 import 'package:gcms/app/modules/SetupScreen/providers/competition_provider.dart';
 import 'package:gcms/app/modules/SetupScreen/providers/course_provider.dart';
 import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
@@ -115,6 +116,38 @@ class SetupScreenController extends GetxController {
           message: exception.toString(),
           backgroundColor: Colors.red);
     }
+  }
+
+  Future<CompetitionPlayer> getCompetitionPlayer(
+      String playerId, String competitionId) {
+    try {
+      isProcessing(true);
+      CompetitionProvider().getCompetitionPlayer(playerId, competitionId).then(
+          (resp) async {
+        print("COMPETITION SUCCESSFULLY FETCHED  ---> $resp");
+        isProcessing(false);
+        return resp;
+      }, onError: (err) {
+        print("Error getting competition details -->" + err.toString());
+        isProcessing(false);
+        ShowSnackBar(
+            title: "Error",
+            message: err.toString(),
+            backgroundColor: Colors.red);
+
+      return Future.error(err.toString());
+      });
+    } catch (exception) {
+      print("Exception getting competition details -->" + exception.toString());
+      isProcessing(false);
+      ShowSnackBar(
+          title: "Exception",
+          message: exception.toString(),
+          backgroundColor: Colors.red);
+      return Future.error(exception.toString());
+    }
+     return Future.error(
+          "An error occured please check your internet connection.".toString());
   }
 
   getCompetition(int id) {

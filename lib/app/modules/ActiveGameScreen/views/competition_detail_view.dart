@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/ScoresInputScreen/views/scores_input_screen_view.dart';
 import 'package:gcms/app/modules/SetupScreen/competition_model.dart';
+import 'package:gcms/app/modules/SetupScreen/competition_player_model.dart' as compPlayer;
+
 import 'package:gcms/app/modules/SetupScreen/controllers/setup_screen_controller.dart';
 import 'package:gcms/app/modules/commonWidgets/customButton.dart';
 import 'package:gcms/theme/gcms_theme.dart';
@@ -176,14 +178,12 @@ class CompetitionDetailView extends GetView {
                     child: CustomButton(
                       textStyle: GcmsTheme.lightTextTheme.bodyText2,
                       text: "Play",
-                      onPressed: () {
-                        // var competitionPlayers = competition.competitionPlayer;
-                        // var loggedInPlayer = competitionPlayers!.firstWhere(
-                        //     (item) =>
-                        //         item.player!.id ==
-                        //         _controller.storage.read("userId"));
-                        // var recordingFor = loggedInPlayer.recordingScoreFor;
-                        // Get.offAll(ScoresInputScreenView(competition,recordingFor));
+                      onPressed: () async {
+                        var competitionId = competition.id.toString();
+                        var playerId = _controller.storage.read("userId");
+                       compPlayer.CompetitionPlayer recordingScoresFor = await controller.getCompetitionPlayer(competitionId, playerId);
+                        Get.offAll(
+                            ScoresInputScreenView(competition, recordingScoresFor.payload!.first.recordingScoresFor));
                       },
                     ),
                   ),

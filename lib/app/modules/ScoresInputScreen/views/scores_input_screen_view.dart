@@ -5,6 +5,8 @@ import 'package:gcms/app/modules/ActiveGameScreen/views/update_score_button.dart
 import 'package:gcms/app/modules/ScoresInputScreen/views/result_widget.dart';
 import 'package:gcms/app/modules/ScoresInputScreen/views/score_widget.dart';
 import 'package:gcms/app/modules/SetupScreen/competition_model.dart';
+import 'package:gcms/app/modules/SetupScreen/competition_player_model.dart'
+    as compPlayer;
 import 'package:gcms/app/modules/commonWidgets/customButton.dart';
 import 'package:gcms/app/modules/commonWidgets/loader/loader.dart';
 import 'package:gcms/constants/constant.dart';
@@ -17,7 +19,7 @@ import '../controllers/scores_input_screen_controller.dart';
 class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
   final _controller = Get.put(ScoresInputScreenController());
   final Payload competition;
-  final Player recordingFor;
+  final compPlayer.Player? recordingFor;
   ScoresInputScreenView(this.competition, this.recordingFor);
   @override
   Widget build(BuildContext context) {
@@ -54,16 +56,16 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                               Padding(
                                 padding: EdgeInsets.only(top: 0.0),
                                 child: CircleImage(
-                                  imageProvider: NetworkImage(
-                                      '${_controller.storage.read("profilePic")}'),
+                                  imageProvider:
+                                      NetworkImage('${recordingFor!.image}'),
                                 ),
                               ),
                               Text(
-                                '${_controller.storage.read("name")}',
+                                '${recordingFor!.fname} ${recordingFor!.lname}',
                                 style: Theme.of(context).textTheme.headline2,
                               ),
                               Text(
-                                'hcp ${_controller.hcp.value.toString()}',
+                                'hcp ${recordingFor!.hcp}',
                                 style: Theme.of(context).textTheme.bodyText2,
                               ),
                             ],
@@ -303,7 +305,7 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                               .id
                                               .toString(),
                                         }, "${competition.id}",
-                                            _controller.storage.read("userId"));
+                                            "${recordingFor!.id}");
                                         Get.back();
                                       },
                                       onCancel: () {},
@@ -379,7 +381,7 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                               ),
                                               Row(
                                                 children: [
-                                                  const Padding(
+                                                  Padding(
                                                     padding: EdgeInsets.only(
                                                         left: 16.0, top: 16.0),
                                                     child: Expanded(
@@ -387,7 +389,7 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                                       child: CircleAvatar(
                                                         radius: 30.0,
                                                         backgroundImage: AssetImage(
-                                                            'assets/images/Tiger-Woods.jpg'),
+                                                            "${recordingFor!.image}"),
                                                       ),
                                                     ),
                                                   ),
@@ -397,7 +399,7 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                                       padding: EdgeInsets.only(
                                                           left: 20.0),
                                                       child: Text(
-                                                        'Tiger Woods (You)',
+                                                        '${recordingFor!.fname} ${recordingFor!.lname}',
                                                         style: Theme.of(context)
                                                             .textTheme
                                                             .bodyText1,
