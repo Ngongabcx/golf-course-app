@@ -3,12 +3,11 @@ import 'package:gcms/app/modules/ScoresInputScreen/views/scores_input_screen_vie
 import 'package:gcms/app/modules/SetupScreen/competition_model.dart';
 import 'package:gcms/app/modules/SetupScreen/competition_player_model.dart'
     as compPlayer;
-
 import 'package:gcms/app/modules/SetupScreen/controllers/setup_screen_controller.dart';
 import 'package:gcms/app/modules/SetupScreen/providers/competition_provider.dart';
 import 'package:gcms/app/modules/commonWidgets/customButton.dart';
+import 'package:gcms/constants/constant.dart';
 import 'package:gcms/theme/gcms_theme.dart';
-
 import 'package:get/get.dart';
 
 class CompetitionDetailView extends GetView {
@@ -18,6 +17,7 @@ class CompetitionDetailView extends GetView {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: kBackgroundColor,
       appBar: AppBar(
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(color: Colors.black),
@@ -185,8 +185,8 @@ class CompetitionDetailView extends GetView {
                         var competitionId = competition.id.toString();
                         var playerId = _controller.storage.read("userId");
                         compPlayer.CompetitionPlayer recordingScoresFor =
-                            await CompetitionProvider().getCompetitionPlayer(
-                                competitionId, playerId);
+                            await CompetitionProvider()
+                                .getCompetitionPlayer(competitionId, playerId);
                         Get.offAll(ScoresInputScreenView(
                             competition,
                             recordingScoresFor

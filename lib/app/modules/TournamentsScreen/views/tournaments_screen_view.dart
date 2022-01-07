@@ -25,8 +25,24 @@ class TournamentsScreenView extends GetView<TournamentsScreenController> {
                 leftCallBack: () => Get.back(),
                 rightCallBack: () => Get.to(SettingScreenView()),
               ),
-              SizedBox(
-                height: 20.0,
+              Container(
+                margin: EdgeInsets.only(top: 30),
+                padding: EdgeInsets.symmetric(horizontal: 25),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Flexible(
+                          child: Text(
+                            'Your list of Tournaments',
+                            style: Theme.of(context).textTheme.headline2,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
               Container(
                 margin: EdgeInsets.only(top: 20),

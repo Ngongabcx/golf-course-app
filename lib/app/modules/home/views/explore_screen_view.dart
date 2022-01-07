@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:gcms/bcx_icons_icons.dart';
 import 'package:gcms/constants/constant.dart';
 import 'package:get/get.dart';
 
@@ -18,7 +17,7 @@ class ExploreScreenView extends GetView {
       children: <Widget>[
         OptionsCard(
           text1: 'Create Match',
-          icon: BcxIcons.golfing,
+          icon: Icons.add_box_outlined,
           color: kPrimaryColor,
           onTapped: () {
             Get.toNamed("/match-setup");

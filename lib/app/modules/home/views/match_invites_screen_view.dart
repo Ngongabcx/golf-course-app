@@ -6,6 +6,7 @@ import 'package:gcms/app/modules/commonWidgets/custom_appbar.dart';
 import 'package:gcms/app/modules/commonWidgets/loader/loader.dart';
 import 'package:gcms/app/modules/commonWidgets/search_card.dart';
 import 'package:gcms/app/modules/home/controllers/home_controller.dart';
+import 'package:gcms/constants/constant.dart';
 import 'package:get/get.dart';
 
 import 'matchInvitationsCard.dart';
@@ -16,6 +17,7 @@ class MatchInvitesScreenView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     var invitations = _controller.matchInvites.value.payload;
     return Scaffold(
+      backgroundColor: kBackgroundColor,
       body: SafeArea(
         child: Container(
           child: _controller.isProcessing.value == true
@@ -29,6 +31,21 @@ class MatchInvitesScreenView extends GetView<HomeController> {
                       rightCallBack: () => Get.to(SettingScreenView()),
                     ),
                     Container(
+                      margin: EdgeInsets.only(top: 30),
+                      padding: EdgeInsets.symmetric(horizontal: 25),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Flexible(
+                            child: Text(
+                              'Your list of Match Invitations',
+                              style: Theme.of(context).textTheme.headline2,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
                       margin: EdgeInsets.only(top: 20),
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       child: SearchCard(),
@@ -39,12 +56,12 @@ class MatchInvitesScreenView extends GetView<HomeController> {
                               child: Text("No Invitations."),
                             )
                           : Expanded(
-                                child: MatchInviteListView(
-                                    controller: _controller,
-                                    invitations: invitations),
-                              ),
-                              // ),
+                              child: MatchInviteListView(
+                                  controller: _controller,
+                                  invitations: invitations),
                             ),
+                      // ),
+                    ),
                   ],
                 ),
         ),
