@@ -10,6 +10,7 @@ import 'package:gcms/app/modules/commonWidgets/textFormField.dart';
 import 'package:gcms/constants/constant.dart';
 import 'package:gcms/theme/gcms_theme.dart';
 import 'package:get/get.dart';
+// ignore: implementation_imports
 import 'package:provider/src/provider.dart';
 
 import '../competition_request_model.dart';

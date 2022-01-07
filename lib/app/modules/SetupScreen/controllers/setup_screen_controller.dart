@@ -13,7 +13,8 @@ import '../course_model.dart' as courseModel;
 class SetupScreenController extends GetxController {
   var selectedCourseId = ''.obs;
   var storage = GetStorage();
-  var holes = ['1', '10'].obs;
+  var holes = ['9', '18'].obs;
+  var startHoleOptions = ['1', '10'];
   var numberOfHolesToPlay = 0.obs;
   var isProcessing = false.obs;
   var lstCourses = <courseModel.Payload>[].obs;

@@ -87,7 +87,17 @@ class MatchSetupView extends GetView<SetupScreenController> {
                             hint: 'Select number of holes',
                             listItems: controller.holes,
                             callback: (value) {
-                              controller.currentSelectedHole.value = value;
+                              controller.numberOfHolesToPlay.value = value;
+                            },
+                          ),
+                          const SizedBox(height: 20),
+                          BuildFormBuilderDropdown(
+                            name: 'Starting Hole',
+                            label: '',
+                            hint: 'Select starting hole',
+                            listItems: controller.startHoleOptions,
+                            callback: (value) {
+                              controller.startingHole.value = value;
                             },
                           ),
                           SizedBox(
