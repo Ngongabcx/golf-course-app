@@ -5,7 +5,7 @@ import 'package:gcms/constants/constant.dart';
 import 'package:get/get.dart';
 
 class CustomDatePicker extends GetView {
-  final AuthenticationController _controller = Get.find();
+  final _controller = Get.put(AuthenticationController());
 
   final String name;
   final String label;

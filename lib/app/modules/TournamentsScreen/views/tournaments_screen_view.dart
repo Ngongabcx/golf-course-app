@@ -9,7 +9,6 @@ import 'package:get/get.dart';
 import '../controllers/tournaments_screen_controller.dart';
 
 class TournamentsScreenView extends GetView<TournamentsScreenController> {
-  final _controller = Get.put(TournamentsScreenController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(

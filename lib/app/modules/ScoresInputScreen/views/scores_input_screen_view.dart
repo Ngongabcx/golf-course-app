@@ -409,7 +409,7 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                                   Expanded(
                                                     flex: 2,
                                                     child: Text(
-                                                      controller.result.value
+                                                      _controller.result.value
                                                           .toString(),
                                                       style: Theme.of(context)
                                                           .textTheme

@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:gcms/app/modules/Authentication/controllers/auth_controller.dart';
 import 'package:gcms/constants/constant.dart';
 import 'package:get/get.dart';
 
 class BuildFormBuilderDropdown extends GetView {
-  final AuthenticationController _controller = Get.find();
   final String name;
   final String label;
   final String hint;

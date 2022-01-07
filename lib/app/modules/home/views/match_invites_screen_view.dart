@@ -38,15 +38,13 @@ class MatchInvitesScreenView extends GetView<HomeController> {
                           ? Center(
                               child: Text("No Invitations."),
                             )
-                          : Obx(
-                              () => Expanded(
+                          : Expanded(
                                 child: MatchInviteListView(
                                     controller: _controller,
                                     invitations: invitations),
                               ),
                               // ),
                             ),
-                    ),
                   ],
                 ),
         ),
