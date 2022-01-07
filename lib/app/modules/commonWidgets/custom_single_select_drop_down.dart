@@ -26,13 +26,17 @@ class CustomDropDown extends GetView {
       items: itemList,
       label: label,
       hint: hint,
+      popupBackgroundColor: Colors.white,
       popupItemDisabled: (String s) => s.startsWith('I'),
       dropdownSearchDecoration: InputDecoration(
-        constraints: BoxConstraints(maxHeight: 60.0),
+        constraints: BoxConstraints(maxHeight: 70.0),
         isDense: true,
         isCollapsed: false,
         labelText: label,
-        labelStyle: TextStyle(color: Colors.grey),
+        labelStyle: TextStyle(
+          color: Color(0xFF95A1AC),
+          fontWeight: FontWeight.bold,
+        ),
         enabledBorder: OutlineInputBorder(
           borderSide: const BorderSide(
             color: Color(0xFFDBE2E7),

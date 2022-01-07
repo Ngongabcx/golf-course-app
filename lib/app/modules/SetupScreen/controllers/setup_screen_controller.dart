@@ -18,6 +18,7 @@ class SetupScreenController extends GetxController {
     {"PlayerId": 18}
   ];
   var storage = GetStorage();
+  var holes = ['1', '10', '18'].obs;
   var numberOfHolesToPlay = 0.obs;
   var isProcessing = false.obs;
   var lstCourses = <courseModel.Payload>[].obs;
@@ -31,7 +32,7 @@ class SetupScreenController extends GetxController {
   final hole18options = [1, 18];
   var startingHoleOptions = <int>[].obs;
   var endingHoleOptions = <int>[].obs;
-  late TextEditingController matchName;
+  late TextEditingController matchname;
   var currentSelectedGameType = '';
   bool strokePlay = false;
   bool steplefold = false;
@@ -41,7 +42,7 @@ class SetupScreenController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    matchName = TextEditingController();
+    matchname = TextEditingController();
     getPlayers();
     getCourses();
   }

@@ -107,7 +107,8 @@ class SettingScreenController extends GetxController {
       Get.defaultDialog(
           title: "Authentication",
           content: Text(
-            "You will not be able to login using finger print/ face ID after turning off this feature. Turn off?",style: TextStyle(fontSize: 13),
+            "You will not be able to login using finger print/ face ID after turning off this feature. Turn off?",
+            style: TextStyle(fontSize: 13),
           ),
           confirmTextColor: kWhiteColor,
           onConfirm: () {

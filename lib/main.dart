@@ -36,6 +36,7 @@ void main() async {
   runApp(
     GetMaterialApp(
       debugShowCheckedModeBanner: false,
+
       title: "GCMS APP",
       home: GetStorage().read("isLoggedIn") == true ? HomeView() : LoginView(),
       //  initialRoute: AppPages.INITIAL,

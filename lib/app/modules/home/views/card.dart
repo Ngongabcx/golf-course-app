@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gcms/constants/constant.dart';
-import 'package:gcms/theme/gcms_theme.dart';
 
 class OptionsCard extends StatelessWidget {
   final String text1;
@@ -8,7 +6,13 @@ class OptionsCard extends StatelessWidget {
   final Function() onTapped;
   final Color color;
 
-  const OptionsCard({Key? key, required this.text1, required this.icon, required this.onTapped, required this.color}) : super(key: key);
+  const OptionsCard(
+      {Key? key,
+      required this.text1,
+      required this.icon,
+      required this.onTapped,
+      required this.color})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +23,7 @@ class OptionsCard extends StatelessWidget {
           children: [
             Text(
               text1,
-              style: GcmsTheme.darkTextTheme.bodyText1,
+              style: Theme.of(context).textTheme.bodyText1,
             ),
             Align(
               alignment: Alignment.center,
@@ -33,7 +37,7 @@ class OptionsCard extends StatelessWidget {
         ),
         padding: const EdgeInsets.all(8),
         decoration: const BoxDecoration(
-          color: kPrimaryColor,
+          color: Colors.white,
           borderRadius: BorderRadius.all(
             Radius.circular(10.0),
           ),

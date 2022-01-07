@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gcms/constants/constant.dart';
-
 import 'package:get/get.dart';
 
 class CustomTextFormFieldWidget extends GetView {
@@ -27,7 +26,7 @@ class CustomTextFormFieldWidget extends GetView {
           : isEmail
               ? TextInputType.emailAddress
               : TextInputType.text,
-     // validator: (()=>onValidate()),
+      // validator: (()=>onValidate()),
       obscureText: isObscure,
       decoration: InputDecoration(
         labelText: label,

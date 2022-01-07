@@ -43,7 +43,7 @@ class SetupScreenView extends GetView<SetupScreenController> {
                     child: ListView(
                       children: [
                         CustomTextFormFieldWidget(
-                          controller.matchName,
+                          controller.matchname,
                           "Match Name",
                           (s) {},
                           false,

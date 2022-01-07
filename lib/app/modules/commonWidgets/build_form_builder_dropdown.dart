@@ -2,18 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:gcms/app/modules/Authentication/controllers/auth_controller.dart';
 import 'package:gcms/constants/constant.dart';
-
 import 'package:get/get.dart';
 
 class BuildFormBuilderDropdown extends GetView {
   final AuthenticationController _controller = Get.find();
+  final String name;
+  final String label;
+  final String hint;
+  final List<String> listItems;
+  final Function callback;
+
+  BuildFormBuilderDropdown(
+      {required this.name,
+      required this.label,
+      required this.hint,
+      required this.listItems,
+      required this.callback});
 
   @override
   Widget build(BuildContext context) {
     return FormBuilderDropdown(
-      name: 'gender',
+      name: name,
       decoration: InputDecoration(
-        labelText: 'Gender',
+        labelText: label,
         labelStyle: const TextStyle(
           color: Color(0xFF95A1AC),
           fontSize: 16,
@@ -45,22 +56,20 @@ class BuildFormBuilderDropdown extends GetView {
       // initialValue: 'Male',
       allowClear: true,
       hint: Text(
-        'Select Gender',
+        hint,
         style: const TextStyle(
           color: Color(0xFF95A1AC),
           fontSize: 16,
-          fontWeight: FontWeight.normal,
+          fontWeight: FontWeight.bold,
         ),
       ),
-      items: _controller.genderOptions
-          .map((gender) => DropdownMenuItem(
-                value: gender,
-                child: Text('$gender'),
+      items: listItems
+          .map((item) => DropdownMenuItem(
+                value: item,
+                child: Text('$item'),
               ))
           .toList(),
-      onChanged: (value) {
-        _controller.selectedGender.value = value.toString();
-      },
+      onChanged: (value) => (callback),
     );
   }
 }
