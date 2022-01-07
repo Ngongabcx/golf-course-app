@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/ActiveGameScreen/views/competition_detail_view.dart';
+import 'package:gcms/app/modules/SetupScreen/competition_model.dart';
+import 'package:gcms/app/modules/SetupScreen/competition_player_model.dart' as compPlayer;
 import 'package:gcms/app/modules/SetupScreen/providers/competition_provider.dart';
 import 'package:gcms/app/modules/SetupScreen/providers/course_provider.dart';
 import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
@@ -12,11 +14,6 @@ import '../course_model.dart' as courseModel;
 
 class SetupScreenController extends GetxController {
   var selectedCourseId = ''.obs;
-  var tempPlayersList = [
-    {"PlayerId": 8},
-    {"PlayerId": 15},
-    {"PlayerId": 18}
-  ];
   var storage = GetStorage();
   var holes = ['1', '10', '18'].obs;
   var numberOfHolesToPlay = 0.obs;
@@ -122,6 +119,38 @@ class SetupScreenController extends GetxController {
           backgroundColor: Colors.red);
     }
   }
+
+  // Future<compPlayer.CompetitionPlayer> getCompetitionPlayer(
+  //     String playerId, String competitionId) {
+  //   try {
+  //     isProcessing(true);
+  //     CompetitionProvider().getCompetitionPlayer(competitionId,playerId).then(
+  //         (resp) async {
+  //       print("COMPETITION SUCCESSFULLY FETCHED  ---> $resp");
+  //       isProcessing(false);
+  //       return resp;
+  //     }, onError: (err) {
+  //       print("Error getting competition details -->" + err.toString());
+  //       isProcessing(false);
+  //       ShowSnackBar(
+  //           title: "Error",
+  //           message: err.toString(),
+  //           backgroundColor: Colors.red);
+
+  //     return Future.error(err.toString());
+  //     });
+  //   } catch (exception) {
+  //     print("Exception getting competition details -->" + exception.toString());
+  //     isProcessing(false);
+  //     ShowSnackBar(
+  //         title: "Exception",
+  //         message: exception.toString(),
+  //         backgroundColor: Colors.red);
+  //     return Future.error(exception.toString());
+  //   }
+  //    return Future.error(
+  //         "An error occured please check your internet connection.".toString());
+  // }
 
   getCompetition(int id) {
     try {
