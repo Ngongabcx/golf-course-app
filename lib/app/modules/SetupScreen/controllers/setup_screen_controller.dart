@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/ActiveGameScreen/views/competition_detail_view.dart';
-import 'package:gcms/app/modules/SetupScreen/competition_model.dart';
-import 'package:gcms/app/modules/SetupScreen/competition_player_model.dart' as compPlayer;
 import 'package:gcms/app/modules/SetupScreen/providers/competition_provider.dart';
 import 'package:gcms/app/modules/SetupScreen/providers/course_provider.dart';
 import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
@@ -15,7 +13,8 @@ import '../course_model.dart' as courseModel;
 class SetupScreenController extends GetxController {
   var selectedCourseId = ''.obs;
   var storage = GetStorage();
-  var holes = ['1', '10', '18'].obs;
+  var holes = ['9', '18'].obs;
+  var startHoleOptions = ['1', '10'];
   var numberOfHolesToPlay = 0.obs;
   var isProcessing = false.obs;
   var lstCourses = <courseModel.Payload>[].obs;

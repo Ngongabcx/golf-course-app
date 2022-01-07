@@ -168,6 +168,121 @@ class MatchSetupView extends GetView<SetupScreenController> {
                           ),
                   ),
                 ],
+                margin: EdgeInsets.only(top: 40),
+                child: controller.isProcessing.value == true
+                    ? Loader()
+                    : Column(
+                        children: [
+                          CustomTextFormFieldWidget(
+                            controller.matchname,
+                            "Match Name",
+                            (s) {},
+                            false,
+                            false,
+                            false,
+                          ),
+                          const SizedBox(height: 20),
+                          Obx(() {
+                            return CustomDropDown(
+                              "Select Golf Course",
+                              "Select Golf Course",
+                              true,
+                              List.generate(
+                                  controller.lstCourses.length,
+                                  (index) => controller
+                                      .lstCourses[index].courseName
+                                      .toString()),
+                            );
+                          }),
+                          const SizedBox(height: 20),
+                          Obx(() {
+                            Future.delayed(Duration.zero, () async {
+                              context
+                                  .read<LoadingProvider>()
+                                  .setLoad(controller.isProcessing.value);
+                            });
+                            return CustomDropDownMultiSelect(
+                              "Select players",
+                              "List of players",
+                              true,
+                              true,
+                              List.generate(
+                                  controller.lstPlayers.length,
+                                  (index) => controller.lstPlayers[index].fname
+                                      .toString()),
+                            );
+                          }),
+                          const SizedBox(height: 20),
+                          BuildFormBuilderDropdown(
+                            name: 'Hole',
+                            label: '',
+                            hint: 'Select number of holes',
+                            listItems: controller.holes,
+                            callback: (value) {
+                              controller.numberOfHolesToPlay.value = value;
+                            },
+                          ),
+                          const SizedBox(height: 20),
+                          BuildFormBuilderDropdown(
+                            name: 'Starting Hole',
+                            label: '',
+                            hint: 'Select starting hole',
+                            listItems: controller.startHoleOptions,
+                            callback: (value) {
+                              controller.startingHole.value = value;
+                            },
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          CustomDatePicker(
+                            label: 'Pick match date',
+                            name: 'Match Date',
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          CustomTimePicker(
+                            label: 'Pick match Time',
+                            name: 'Match Time',
+                          ),
+                          const SizedBox(height: 30),
+                          Align(
+                            alignment: FractionalOffset.bottomCenter,
+                            child: Obx(
+                              () {
+                                //Dismissing the keyboard
+                                return CustomButton(
+                                  textStyle: GcmsTheme.lightTextTheme.bodyText2,
+                                  text: controller.isProcessing.value == true
+                                      ? 'Processing'
+                                      : 'Confirm',
+                                  onPressed: () {
+                                    var comp = CompetitionRequest(
+                                      compName: controller.matchname.text,
+                                      gametypeId: 1,
+                                      compFee: 0.0,
+                                      compDate: controller.matchDate.value,
+                                      compTime: controller.matchTime.value,
+                                      gameHoles: controller
+                                          .numberOfHolesToPlay.value
+                                          .toString(),
+                                      startingHole:
+                                          controller.startingHole.value,
+                                      courseId: int.parse(
+                                          controller.selectedCourseId.value),
+                                      competitionPlayer: controller
+                                          .selectedPlayers
+                                          .cast<int>(),
+                                    );
+                                    controller.createCompetition(comp.toJson());
+                                  },
+                                );
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
               ),
             ],
           ),
