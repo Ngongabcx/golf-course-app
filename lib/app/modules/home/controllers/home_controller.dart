@@ -8,6 +8,8 @@ import 'package:gcms/app/modules/home/providers/match_invites_provider.dart';
 import 'package:gcms/app/modules/home/providers/user_provider.dart';
 import 'package:gcms/app/modules/home/views/explore_screen_view.dart';
 import 'package:gcms/app/services/local_notifications_service.dart';
+import 'package:gcms/app/services/slack_logger.dart';
+import 'package:gcms/constants/constant.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:jwt_decode/jwt_decode.dart';
@@ -119,6 +121,8 @@ class HomeController extends GetxController {
           Get.toNamed("/login");
         }
         name.value = usr.fname!;
+        var fcmToken = usr.fcmToken.toString();
+        await processUserDeviceFcmToken(fcmToken, id);
         isProcessing(false);
         Get.offAllNamed('/home');
       }, onError: (err) {
@@ -168,6 +172,28 @@ class HomeController extends GetxController {
           message: exception.toString(),
           backgroundColor: Colors.red);
       isProcessing(false);
+    }
+  }
+
+  processUserDeviceFcmToken(String savedFcmToken, String id) {
+    var deviceFcmToken = storage.read("fcmToken").toString();
+    if (savedFcmToken != deviceFcmToken) {
+      //Update fcm token in the db because device has changed
+      var data = {
+        "FcmToken": storage.read("fcmToken").toString(),
+      };
+      try {
+        isProcessing(true);
+        UserProvider().updateUserDetails(data, id).then((resp) async {
+          isProcessing(false);
+        }, onError: (err) {
+          isProcessing(false);
+          //SEND SLACK ERROR MESSAGE
+        });
+      } catch (exception) {
+        isProcessing(false);
+        //SEND SLACK EXCEPTION MESSAGE
+      }
     }
   }
 }
