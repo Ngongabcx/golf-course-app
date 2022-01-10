@@ -388,7 +388,7 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                                       flex: 5,
                                                       child: CircleAvatar(
                                                         radius: 30.0,
-                                                        backgroundImage: AssetImage(
+                                                        backgroundImage: NetworkImage(
                                                             "${recordingFor!.image}"),
                                                       ),
                                                     ),

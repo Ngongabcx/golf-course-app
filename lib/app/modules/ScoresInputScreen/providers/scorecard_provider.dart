@@ -21,7 +21,7 @@ class ScorecardProvider extends BaseProvider {
         if (exception.response!.statusCode == 400) {
           Map<String, dynamic> res =
               jsonDecode((exception.response!.data.toString()));
-          print("RESPONSE EXCEPTION --------->>>> $exception");
+          print("RESPONSE EXCEPTION --------->>>> $res");
           return Future.error(exception.response!.data["error"].toString());
         }
         print("RESPONSE EXCEPTION --------->>>> $exception");
