@@ -50,6 +50,7 @@ class Payload {
         this.gender,
         this.dateJoined,
         this.image,
+        this.imageThumbnail,
         this.hcp,
         this.fcmToken,
         this.aspNetUsers,
@@ -64,6 +65,7 @@ class Payload {
     String? gender;
     DateTime? dateJoined;
     String? image;
+    String? imageThumbnail;
     int? hcp;
     String? fcmToken;
     AspNetUsers? aspNetUsers;
@@ -78,8 +80,9 @@ class Payload {
         gender: json["gender"],
         dateJoined: DateTime.parse(json["dateJoined"]),
         image: json["image"],
+        imageThumbnail: json["imageThumbnail"],
         hcp: json["hcp"],
-        fcmToken: json["fcmToken"] == null ? null : json["fcmToken"],
+        fcmToken: json["fcmToken"],
         aspNetUsers: AspNetUsers.fromJson(json["aspNetUsers"]),
         usertype: Usertype.fromJson(json["usertype"]),
     );
@@ -93,8 +96,9 @@ class Payload {
         "gender": gender,
         "dateJoined": dateJoined!.toIso8601String(),
         "image": image,
+        "imageThumbnail": imageThumbnail,
         "hcp": hcp,
-        "fcmToken": fcmToken == null ? null : fcmToken,
+        "fcmToken": fcmToken,
         "aspNetUsers": aspNetUsers!.toJson(),
         "usertype": usertype!.toJson(),
     };

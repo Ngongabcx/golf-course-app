@@ -21,7 +21,7 @@ class ExploreScreenView extends GetView {
           icon: BcxIcons.golfing,
           color: kPrimaryColor,
           onTapped: () {
-            Get.toNamed("/match-setup");
+            Get.toNamed("/setup-screen");
           },
         ),
         OptionsCard(

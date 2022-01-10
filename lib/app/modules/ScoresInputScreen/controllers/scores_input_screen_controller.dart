@@ -95,7 +95,6 @@ class ScoresInputScreenController extends GetxController {
               holes!.where((course) => course.holeNo == count.value).toList();
           count.value++;
           print(h);
-          print(holes[h]);
           gameHoles.addAll(_gameHoles);
         }
       }
