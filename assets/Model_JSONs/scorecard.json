@@ -1,0 +1,26 @@
+{
+	"status": 200,
+	"success": true,
+	"message": "Records retrieved successfully",
+	"error": "",
+	"payload": {
+		"id": 22,
+		"score": 2.0,
+		"timestamp": "09:26:30.8300974",
+		"result": 14.0,
+		"confirmed": true,
+		"holeId": 4,
+		"hole": {
+			"id": 4,
+			"holeNo": 1,
+			"yellow": 244,
+			"white": 233,
+			"blue": 222,
+			"red": 211,
+			"par": 13,
+			"stroke": 4,
+			"courseId": 5
+		},
+		"competitionplayerId": 174
+	}
+}
