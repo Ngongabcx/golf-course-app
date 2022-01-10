@@ -419,7 +419,7 @@ class SetupScreenView extends GetView<SetupScreenController> {
                                 onPressed: () {
                                   var comp = CompetitionRequest(
                                     //compName: controller.matchName.text,
-                                    compName: "Test",
+                                    compName: "Test ${DateTime.now()}",
                                     gametypeId: 1,
                                     compFee: 0.0,
                                     compDate: controller.matchDate.value,
@@ -427,7 +427,7 @@ class SetupScreenView extends GetView<SetupScreenController> {
                                     gameHoles: controller
                                         .numberOfHolesToPlay.value
                                         .toString(),
-                                    startingHole: controller.startingHole.value,
+                                    startingHole: 1,
                                     courseId: int.parse(
                                         controller.selectedCourseId.value),
                                     competitionPlayer:

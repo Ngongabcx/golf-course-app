@@ -20,7 +20,7 @@ class ExploreScreenView extends GetView {
           icon: Icons.add_box_outlined,
           color: kPrimaryColor,
           onTapped: () {
-            Get.toNamed("/match-setup");
+            Get.toNamed("/setup-screen");
           },
         ),
         OptionsCard(
