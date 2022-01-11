@@ -17,13 +17,19 @@ class LocalNotificationsService {
     _notificationsPlugin.initialize(initializationSettings,
         onSelectNotification: (String? viewUri) async {
       if (viewUri != null) {
+        print("U R L is not EMPTY------------------------");
         Get.toNamed("/$viewUri");
+      } else {
+        print("U R L is EMPTY------------------------");
+        Get.defaultDialog(
+            title: "Wehave successfully opend the dialog yipee!!");
       }
     });
   }
 
   static void displayNotification(RemoteMessage message) async {
     print("DISPLAY NOTIFICATION IN LOCAL NOTIFICATIONS FILE CALLED");
+    print("NOTIFICATION DATA ---> ${message.data.toString()}");
     //Save the notification to local db
     var notification = FCMNotification(
         isRead: false,

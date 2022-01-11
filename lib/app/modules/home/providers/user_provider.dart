@@ -55,6 +55,30 @@ class UserProvider extends BaseProvider {
           "An error occured please check your internet connection.".toString());
     }
   }
+    Future<String> updateUserDetails(Map payload, String id) async {
+    try {
+      print("NEW FCM TOKEN _---->>> $payload");
+      final response = await dio.put("$kNewApiBaseURL/api/users/$id",data:payload);
+      print(
+          "RESPONSE UPDATE USER DETAILS --------->>>> ${response.statusMessage}");
+      return response.data.toString();
+    } on DioError catch (exception) {
+      if (exception.response != null) {
+        if (exception.response!.statusCode == 400) {
+          Map<String, dynamic> res =
+              jsonDecode((exception.response!.data.toString()));
+          print("RESPONSE UPDATE USER DETAILS --------->>>> $res");
+           logToChannel({"text": "$kFatal UPDATE USER DETAILS FAILURE\n $exception"});
+          return Future.error(exception.response!.data["error"].toString());
+        }
+        return Future.error(exception.response!.statusMessage.toString());
+      }
+      logToChannel({"text": "$kFatal UPDATE USER DETAILS FAILURE\n $exception"});
+      print('<<===UPDATING USER DETAILS EXCEPTION ==> $exception');
+      return Future.error(
+          "An error occured please check your internet connection.".toString());
+    }
+  }
 
   Future<List<Payload>> getPlayers() async {
     print("---------------------EXECUTING GET PLAYERS PROVIDER-------------------------");
