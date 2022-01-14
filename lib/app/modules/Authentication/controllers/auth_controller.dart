@@ -97,11 +97,11 @@ class AuthenticationController extends GetxController {
       );
       if (isUserAuthenticated.value) {
         if (!isLoggingIn) {
-          storage.write("isBiometricActivated",true);
+          storage.write("isBiometricActivated", true);
           ShowSnackBar(
-            title: "Success",
-            message: "Authentication feature successfully activated.",
-            backgroundColor: Colors.green);
+              title: "Success",
+              message: "Authentication feature successfully activated.",
+              backgroundColor: Colors.green);
         } else {
           //Log user in
         }
@@ -261,6 +261,7 @@ class AuthenticationController extends GetxController {
         var usrPayload = userFromJson(storage.read('user'));
         var usr = usrPayload.payload!.first;
         storage.write("userId", usr.id.toString());
+        print(storage.read("userId"));
         storage.write("username", usr.aspNetUsers!.userName.toString());
         storage.write("isLoggedIn", true);
         storage.write("hcp", usr.hcp!.toInt());

@@ -51,15 +51,24 @@ class HomeView extends GetView<HomeController> {
         onTap: controller.onItemTapped,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.explore),
+            icon: Icon(
+              Icons.explore_outlined,
+              color: Colors.black,
+            ),
             label: 'Explore',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.leaderboard),
+            icon: Icon(
+              Icons.leaderboard_outlined,
+              color: Colors.black,
+            ),
             label: 'Leaderboard',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.notifications),
+            icon: Icon(
+              Icons.notifications_outlined,
+              color: Colors.black,
+            ),
             label: 'Notifications',
           ),
         ],

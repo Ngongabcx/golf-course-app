@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:gcms/app/modules/Events/controllers/events_controller.dart';
 import 'package:gcms/app/modules/Events/course.dart';
 import 'package:gcms/constants/constant.dart';
+import 'package:get/get.dart';
 
 class EventFilterList extends StatelessWidget {
+  var controller = Get.put(EventsController());
   final int selected;
   final Function callBack;
   final Course events;
+
   EventFilterList(this.selected, this.callBack, this.events);
 
   @override
@@ -19,17 +23,21 @@ class EventFilterList extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) => GestureDetector(
                 onTap: () => callBack(index),
-                child: Container(
-                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: selected == index ? kPrimaryColor : Colors.white,
-                  ),
-                  child: Text(
-                    category[index],
-                    style: Theme.of(context).textTheme.bodyText1,
-                  ),
-                ),
+                child: Obx(() {
+                  return Container(
+                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: controller.selected == index
+                          ? kPrimaryColor
+                          : Colors.white,
+                    ),
+                    child: Text(
+                      category[index],
+                      style: Theme.of(context).textTheme.bodyText1,
+                    ),
+                  );
+                }),
               ),
           separatorBuilder: (_, index) => SizedBox(
                 width: 20,

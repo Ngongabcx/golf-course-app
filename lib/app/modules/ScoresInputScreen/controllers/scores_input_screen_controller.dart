@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/ScoresInputScreen/providers/scorecard_provider.dart';
 import 'package:gcms/app/modules/SetupScreen/competition_model.dart';
+import 'package:gcms/app/modules/SetupScreen/competition_player_model.dart'
+    as compPlayer;
 import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -16,6 +18,7 @@ class ScoresInputScreenController extends GetxController {
   var remainingHoles = 0.obs;
   var holeIndex = 0.obs;
   var count = 0.obs;
+  var compPlayers = <compPlayer.Payload>[].obs;
   @override
   void onInit() {
     super.onInit();
@@ -37,7 +40,7 @@ class ScoresInputScreenController extends GetxController {
     print("TOTAL HOLES ------------> $totalHoles");
     //get holes that are being payed accourding to the competition number of holes being played
     if (totalHoles == 18) {
-      if (startingHole==1) {
+      if (startingHole == 1) {
         //front nine logic
         count.value = 1;
         for (int h = 0; h < totalHoles; h++) {
@@ -86,7 +89,7 @@ class ScoresInputScreenController extends GetxController {
           print(holes[h]);
           gameHoles.addAll(_gameHoles);
         }
-      }else {
+      } else {
         //starting hole is 10
         count.value = 10;
         for (int h = 0; h < totalHoles; h++) {
@@ -110,26 +113,60 @@ class ScoresInputScreenController extends GetxController {
       ScorecardProvider().addScorecard(data, compId, userId).then((resp) {
         isProcessing(false);
         print("Hole index before ${holeIndex.value}");
-         print("old hole --> ${gameHoles[holeIndex.value].holeNo}, old par --> ${gameHoles[holeIndex.value].par}");
+        print(
+            "old hole --> ${gameHoles[holeIndex.value].holeNo}, old par --> ${gameHoles[holeIndex.value].par}");
         holeIndex.value++;
         ShowSnackBar(
             title: "Success",
             message: "Your score has been saved.",
-            backgroundColor:Colors.green);
+            backgroundColor: Colors.green);
         print("Hole index after ${holeIndex.value}");
-        print("new hole --> ${gameHoles[holeIndex.value].holeNo}, new par --> ${gameHoles[holeIndex.value].par}");
+        print(
+            "new hole --> ${gameHoles[holeIndex.value].holeNo}, new par --> ${gameHoles[holeIndex.value].par}");
         score.value = 0;
         result.value = 0;
       }, onError: (err) {
         isProcessing(false);
         print("POST SCORES ERROR ---> ${err.toString()}");
         ShowSnackBar(
-            title: "Error", message: "Failed to save scores please try again.", backgroundColor:Colors.red);
+            title: "Error",
+            message: "Failed to save scores please try again.",
+            backgroundColor: Colors.red);
       });
     } catch (exception) {
       isProcessing(false);
       print("<---------EXCEPTION2--------->" + exception.toString());
-      ShowSnackBar(title: "Exception", message:exception.toString(), backgroundColor:Colors.red);
+      ShowSnackBar(
+          title: "Exception",
+          message: exception.toString(),
+          backgroundColor: Colors.red);
+    }
+  }
+
+  getAllPlayers(String competitionId) {
+    try {
+      isProcessing(true);
+      ScorecardProvider().getAllCompetitionPlayers(competitionId).then(
+          (resp) async {
+        compPlayers.addAll(resp);
+        print("COMPETITION PLAYERS SUCCESSFULLY FETCHED  ---> $resp");
+        isProcessing(false);
+      }, onError: (err) {
+        print("Error getting competition players details -->" + err.toString());
+        isProcessing(false);
+        ShowSnackBar(
+            title: "Error",
+            message: err.toString(),
+            backgroundColor: Colors.red);
+      });
+    } catch (exception) {
+      print("Exception getting competition players details -->" +
+          exception.toString());
+      isProcessing(false);
+      ShowSnackBar(
+          title: "Exception",
+          message: exception.toString(),
+          backgroundColor: Colors.red);
     }
   }
 
@@ -138,7 +175,8 @@ class ScoresInputScreenController extends GetxController {
       if (hcp >= 18) {
         int calc = hcp.value - 18;
         if (gameHoles[holeIndex.value].stroke! <= calc) {
-          result.value = (3 + (gameHoles[holeIndex.value].par! - score.value)) + 1;
+          result.value =
+              (3 + (gameHoles[holeIndex.value].par! - score.value)) + 1;
         } else {
           result.value = (3 + (gameHoles[holeIndex.value].par! - score.value));
         }

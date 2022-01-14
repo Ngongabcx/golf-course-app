@@ -148,7 +148,7 @@ class HomeController extends GetxController {
     try {
       isProcessing(true);
       await MatchInvitesProvider().getMatchInvites(id).then((resp) async {
-        print("GET MACTH INVITES RESPONSE  --> ${resp.toString()}");
+        print("GET MATCH INVITES RESPONSE  --> ${resp.toString()}");
         matchInvites.value = resp;
         isProcessing(false);
       }, onError: (err) {

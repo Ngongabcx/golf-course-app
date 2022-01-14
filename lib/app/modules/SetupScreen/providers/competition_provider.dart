@@ -15,7 +15,7 @@ class CompetitionProvider extends BaseProvider {
     try {
       final response = await dio.post("$kApiBaseURL/competitions", data: data);
       print(
-          "CREATE COMPETITION RESPONDED WITN --> ${response.data.toString()}");
+          "CREATE COMPETITION RESPONDED WITH --> ${response.data.toString()}");
       return competitionFromJson(response.data.toString());
     } on DioError catch (exception) {
       if (exception.response != null) {
@@ -59,13 +59,14 @@ class CompetitionProvider extends BaseProvider {
   }
 
   Future<compPlayer.CompetitionPlayer> getCompetitionPlayer(
-      String competitionId , String playerId) async {
+      String competitionId, String playerId) async {
     print(
         "PROVIDER RECEIVED IDS TO PASS AS GET COMPETITION PLAYER REQUEST ----> Player: $playerId , Competition: $competitionId");
     var url = "$kNewApiBaseURL/api/competitionplayers/$competitionId/$playerId";
     print("URL   --> $url");
     try {
       final response = await dio.get("$url");
+      print('Response ---> ${response.data}');
       return compPlayer.competitionPlayerFromJson(response.data.toString());
     } on DioError catch (exception) {
       if (exception.response != null) {
@@ -79,7 +80,7 @@ class CompetitionProvider extends BaseProvider {
       }
       logToChannel(
           {"text": "$kError GET COMPETITION PLAYER FAILURE\n $exception"});
-      print('<<===GETTING COMPETITION PLAYER EXCEPTION ==> $exception');
+      print('<<=== GETTING COMPETITION PLAYER EXCEPTION ==> $exception');
       return Future.error(
           "An error occured please check your internet connection.".toString());
     }

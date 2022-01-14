@@ -3,17 +3,24 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:gcms/constants/constant.dart';
 import 'package:get/get.dart';
 
-class CustomDatePicker extends GetView {
+class ListNumberDropdown extends GetView {
   final String name;
-  final String label;
-  final Function(DateTime?)? callback;
+  final String? label;
+  final String? hint;
+  final List<int> listItems;
+  final Function(int?)? callback;
 
-  CustomDatePicker({required this.name, required this.label, this.callback});
+  ListNumberDropdown(
+      {required this.name,
+      this.label,
+      this.hint,
+      required this.listItems,
+      this.callback});
+
   @override
   Widget build(BuildContext context) {
-    return FormBuilderDateTimePicker(
+    return FormBuilderDropdown(
       name: name,
-      inputType: InputType.date,
       decoration: InputDecoration(
         labelText: label,
         labelStyle: const TextStyle(
@@ -44,6 +51,22 @@ class CustomDatePicker extends GetView {
         fontSize: 16,
         fontWeight: FontWeight.normal,
       ),
+      // initialValue: 'Male',
+      allowClear: true,
+      hint: Text(
+        hint!,
+        style: const TextStyle(
+          color: Color(0xFF95A1AC),
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      items: listItems
+          .map((item) => DropdownMenuItem(
+                value: item,
+                child: Text('$item'),
+              ))
+          .toList(),
       onChanged: callback,
     );
   }

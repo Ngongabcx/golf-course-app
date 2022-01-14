@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/commonWidgets/refresh_widget.dart';
 import 'package:gcms/constants/constant.dart';
-
 import 'package:get/get.dart';
 
 import '../controllers/messages_controller.dart';
@@ -10,9 +9,18 @@ class MessagesView extends GetView<MessagesController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: kBackgroundColor,
         appBar: AppBar(
-          title: Text('Notifications'),
+          backgroundColor: kBackgroundColor,
+          title: Text(
+            'Notifications',
+            style: Theme.of(context).textTheme.bodyText1,
+          ),
+          iconTheme: IconThemeData(
+            color: Colors.black,
+          ),
           centerTitle: true,
+          elevation: 0.0,
         ),
         body: Obx(() {
           return controller.isProcessing.value == true
@@ -64,8 +72,10 @@ class MessagesView extends GetView<MessagesController> {
                                                 controller
                                                     .notificationsList[index]
                                                     .title,
-                                                style:
-                                                    TextStyle(fontSize: 16,color: Colors.grey[600],),
+                                                style: TextStyle(
+                                                  fontSize: 16,
+                                                  color: Colors.grey[600],
+                                                ),
                                               ),
                                               Text(
                                                 controller
@@ -73,7 +83,6 @@ class MessagesView extends GetView<MessagesController> {
                                                     .body,
                                                 style: TextStyle(
                                                   fontSize: 14,
-
                                                 ),
                                               ),
                                             ],

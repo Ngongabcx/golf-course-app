@@ -17,6 +17,7 @@ class LoginView extends GetView<AuthenticationController> {
   Widget build(BuildContext context) {
     return Obx(
       () => Scaffold(
+        backgroundColor: kBackgroundColor,
         body: _controller.isProcessing.value
             ? Loader()
             : SingleChildScrollView(
@@ -102,9 +103,11 @@ class LoginView extends GetView<AuthenticationController> {
                                               if (controller.passwordController
                                                   .text.isEmpty) {
                                                 ShowSnackBar(
-                                                  title: "Password cannot be empty",
-                                                  message: "Please provide a valid password.",
-                                                  backgroundColor:Colors.red,
+                                                  title:
+                                                      "Password cannot be empty",
+                                                  message:
+                                                      "Please provide a valid password.",
+                                                  backgroundColor: Colors.red,
                                                 );
                                               } else {
                                                 if (controller
@@ -123,14 +126,16 @@ class LoginView extends GetView<AuthenticationController> {
                                             } else {
                                               ShowSnackBar(
                                                 title: "Invalid Email",
-                                                message: "Please provide a valid email address.",
-                                                backgroundColor:Colors.red,
+                                                message:
+                                                    "Please provide a valid email address.",
+                                                backgroundColor: Colors.red,
                                               );
                                             }
                                           }),
                                     ),
                                   ),
-                                  if (_controller.storage.read("isBiometricActivated")  ==
+                                  if (_controller.storage
+                                          .read("isBiometricActivated") ==
                                       true)
                                     Expanded(
                                       flex: 2,
@@ -139,13 +144,15 @@ class LoginView extends GetView<AuthenticationController> {
                                         child: IconButton(
                                           padding: EdgeInsets.only(right: 14),
                                           splashRadius: 25,
-                                          icon: _controller.storage.read("hasFingerPrintLock") ?
-                                              Icon(Icons.fingerprint_outlined) : Icon(BcxIcons.face_id),
+                                          icon: _controller.storage
+                                                  .read("hasFingerPrintLock")
+                                              ? Icon(Icons.fingerprint_outlined)
+                                              : Icon(BcxIcons.face_id),
                                           iconSize: 65,
                                           color: kPrimaryColor,
                                           splashColor: Colors.grey,
-                                          onPressed: () =>
-                                              _controller.authenticateUser(true),
+                                          onPressed: () => _controller
+                                              .authenticateUser(true),
                                         ),
                                       ),
                                     ),

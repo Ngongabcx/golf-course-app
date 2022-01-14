@@ -3,19 +3,19 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:gcms/constants/constant.dart';
 import 'package:get/get.dart';
 
-class BuildFormBuilderDropdown extends GetView {
+class ListStringDropdown extends GetView {
   final String name;
-  final String label;
-  final String hint;
+  final String? label;
+  final String? hint;
   final List<String> listItems;
-  final Function callback;
+  final Function(String?)? callback;
 
-  BuildFormBuilderDropdown(
+  ListStringDropdown(
       {required this.name,
-      required this.label,
-      required this.hint,
+      this.label,
+      this.hint,
       required this.listItems,
-      required this.callback});
+      this.callback});
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +54,7 @@ class BuildFormBuilderDropdown extends GetView {
       // initialValue: 'Male',
       allowClear: true,
       hint: Text(
-        hint,
+        hint!,
         style: const TextStyle(
           color: Color(0xFF95A1AC),
           fontSize: 16,
@@ -67,7 +67,7 @@ class BuildFormBuilderDropdown extends GetView {
                 child: Text('$item'),
               ))
           .toList(),
-      onChanged: (value) => (callback),
+      onChanged: callback,
     );
   }
 }

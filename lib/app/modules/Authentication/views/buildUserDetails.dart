@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/Authentication/controllers/auth_controller.dart';
-import 'package:gcms/app/modules/commonWidgets/build_form_builder_dropdown.dart';
 import 'package:gcms/app/modules/commonWidgets/custom_date_time_picker.dart.dart';
+import 'package:gcms/app/modules/commonWidgets/list_string_dropdown.dart';
 import 'package:gcms/app/modules/commonWidgets/textFormField.dart';
 import 'package:get/get.dart';
 
@@ -57,17 +57,21 @@ class BuildUserDetails extends GetView<AuthenticationController> {
             child: CustomDatePicker(
               label: 'Pick your date of birth ',
               name: 'Date of Birth',
+              callback: (newSelectedDate) {
+                userController.selectedDate.value = newSelectedDate.toString();
+                print(newSelectedDate);
+              },
             ),
           ),
           Padding(
             padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-            child: BuildFormBuilderDropdown(
+            child: ListStringDropdown(
               name: 'gender',
               label: '',
               hint: 'Select your gender',
               listItems: userController.genderOptions,
               callback: (value) {
-                userController.selectedGender.value = value;
+                userController.selectedGender.value = value!;
               },
             ),
           ),

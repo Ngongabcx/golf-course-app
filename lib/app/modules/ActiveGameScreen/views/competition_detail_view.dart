@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/ScoresInputScreen/views/scores_input_screen_view.dart';
+import 'package:gcms/app/modules/SettingScreen/views/setting_screen_view.dart';
 import 'package:gcms/app/modules/SetupScreen/competition_model.dart';
 import 'package:gcms/app/modules/SetupScreen/competition_player_model.dart'
     as compPlayer;
 import 'package:gcms/app/modules/SetupScreen/controllers/setup_screen_controller.dart';
 import 'package:gcms/app/modules/SetupScreen/providers/competition_provider.dart';
 import 'package:gcms/app/modules/commonWidgets/customButton.dart';
+import 'package:gcms/app/modules/commonWidgets/custom_appbar.dart';
 import 'package:gcms/constants/constant.dart';
 import 'package:gcms/theme/gcms_theme.dart';
 import 'package:get/get.dart';
@@ -18,137 +20,157 @@ class CompetitionDetailView extends GetView {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kBackgroundColor,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        iconTheme: IconThemeData(color: Colors.black),
-        automaticallyImplyLeading: true,
-        title: Text(
-          competition.compName!.capitalizeFirst.toString(),
-          style: Theme.of(context).textTheme.headline3,
-        ),
-        centerTitle: true,
-        elevation: 0,
-      ),
-      body: SafeArea(
-        child: Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.height,
-          padding: EdgeInsets.only(left: 20, right: 20),
-          child: ListView(
-            children: [
-              Container(
-                constraints: const BoxConstraints.expand(
-                  width: 550,
-                  height: 150,
+      body: Column(
+        children: [
+          CustomAppBar(
+            Icons.arrow_back_ios_outlined,
+            Icons.settings_outlined,
+            leftCallBack: () => Get.back(),
+            rightCallBack: () => Get.to(SettingScreenView()),
+          ),
+          const SizedBox(
+            height: 20.0,
+          ),
+          Container(
+            margin: EdgeInsets.only(top: 20),
+            padding: EdgeInsets.symmetric(horizontal: 25),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  competition.compName!.capitalizeFirst.toString(),
+                  // tournament.compName!,
+                  style: Theme.of(context).textTheme.headline5,
                 ),
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: NetworkImage(
-                        competition.course!.courseImage.toString()),
-                    fit: BoxFit.fill,
-                  ),
-                  borderRadius: const BorderRadius.all(Radius.circular(5.0)),
+                SizedBox(
+                  height: 20.0,
                 ),
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-              Text(
-                competition.course!.courseName.toString(),
-                style: Theme.of(context).textTheme.headline5,
-              ),
-              Text(competition.compDate.toString(),
-                  style: Theme.of(context).textTheme.subtitle2),
-              const SizedBox(
-                height: 10,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    competition.compName!.capitalizeFirst.toString(),
-                    style: Theme.of(context).textTheme.headline6,
-                  ),
-                  Text(
-                    "${competition.gametype!.name.toString().split('.').last.replaceAll('_', ' ').capitalizeFirst ?? ''}",
-                    style: Theme.of(context).textTheme.headline6,
-                  ),
-                  Text(
-                    competition.numberOfHoles.toString(),
-                    style: Theme.of(context).textTheme.headline6,
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 25.0,
-                width: 500.0,
-                child: Divider(
-                  color: Color(0xFFF6F6F6),
-                  thickness: 3.0,
+                Text(
+                  competition.course!.courseName.toString(),
+                  // tournament.course.toString(),
                 ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(left: 0.0),
-                    child: Text(
-                      'Players',
-                      style: GcmsTheme.lightTextTheme.headline3,
+                SizedBox(
+                  height: 20.0,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Icon(
+                      Icons.access_time,
+                      size: 30.0,
+                      color: kPrimaryColor,
                     ),
-                  ),
-                  // Padding(
-                  //   padding: EdgeInsets.only(left: 16.0),
-                  //   child: Text(
-                  //     'Options',
-                  //     style: GcmsTheme.lightTextTheme.headline3,
-                  //   ),
-                  // ),
-                ],
-              ),
-              Expanded(
-                  child: ListView.builder(
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Expanded(
+                      child: Text(
+                        competition.compTime.toString(),
+                        // tournament.compTime.toString(),
+                        style: Theme.of(context).textTheme.bodyText2,
+                      ),
+                    ),
+                    Icon(
+                      Icons.calendar_today_outlined,
+                      size: 30.0,
+                      color: kPrimaryColor,
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Expanded(
+                      child: Text(
+                        competition.compDate.toString(),
+                        // tournament.compDate.toString(),
+                        style: Theme.of(context).textTheme.bodyText2,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  children: [
+                    Icon(
+                      Icons.location_on,
+                      size: 30.0,
+                      color: kPrimaryColor,
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Expanded(
+                      child: Text(
+                        competition.course!.courseName.toString(),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(
+            height: 25.0,
+          ),
+          Container(
+            margin: EdgeInsets.only(top: 20),
+            padding: EdgeInsets.symmetric(horizontal: 25),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Players',
+                  style: GcmsTheme.lightTextTheme.headline3,
+                ),
+                Text(
+                  'Options',
+                  style: GcmsTheme.lightTextTheme.headline3,
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 25),
+              child: ListView.builder(
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
                 physics: ScrollPhysics(),
                 itemCount: competition.competitionPlayer!.length,
                 itemBuilder: (context, index) {
-                  return Row(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(left: 16.0, top: 16.0),
-                        child: Expanded(
-                          flex: 5,
-                          child: competition.competitionPlayer![index].player!
-                                      .image ==
-                                  ""
-                              ? CircleAvatar(
-                                  radius: 30.0,
-                                  backgroundImage: AssetImage(competition
-                                      .competitionPlayer![index].player!.image
-                                      .toString()),
-                                )
-                              : CircleAvatar(
-                                  radius: 30.0,
-                                  backgroundImage: NetworkImage(competition
-                                      .competitionPlayer![index].player!.image
-                                      .toString()),
-                                ),
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            competition.competitionPlayer![index].player!
+                                        .image ==
+                                    ""
+                                ? CircleAvatar(
+                                    radius: 30.0,
+                                    backgroundImage: AssetImage(competition
+                                        .competitionPlayer![index].player!.image
+                                        .toString()),
+                                  )
+                                : CircleAvatar(
+                                    radius: 30.0,
+                                    backgroundImage: NetworkImage(competition
+                                        .competitionPlayer![index].player!.image
+                                        .toString()),
+                                  ),
+                            SizedBox(
+                              width: 10.0,
+                            ),
+                            Text(
+                              "${competition.competitionPlayer![index].player!.firstname.toString().split('.').last.replaceAll('_', ' ').capitalizeFirst ?? ''}",
+                              style: GcmsTheme.lightTextTheme.bodyText1,
+                            ),
+                          ],
                         ),
-                      ),
-                      Expanded(
-                        flex: 10,
-                        child: Padding(
-                          padding: EdgeInsets.only(left: 20.0),
-                          child: Text(
-                            "${competition.competitionPlayer![index].player!.firstname.toString().split('.').last.replaceAll('_', ' ').capitalizeFirst ?? ''}",
-                            style: GcmsTheme.lightTextTheme.bodyText1,
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 2,
-                        child: PopupMenuButton<int>(
+                        PopupMenuButton<int>(
                           onSelected: (item) => onSelected(context, item),
                           itemBuilder: (context) => [
                             PopupMenuItem(
@@ -161,44 +183,37 @@ class CompetitionDetailView extends GetView {
                             ),
                           ],
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   );
                 },
-              )),
-              const SizedBox(
-                height: 50.0,
-                width: 500.0,
-                child: Divider(
-                  color: Color(0xFFF6F6F6),
-                  thickness: 3.0,
-                ),
               ),
-              Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 16.0),
-                    child: CustomButton(
-                      textStyle: GcmsTheme.lightTextTheme.bodyText2,
-                      text: "Play",
-                      onPressed: () async {
-                        var competitionId = competition.id.toString();
-                        var playerId = _controller.storage.read("userId");
-                        compPlayer.CompetitionPlayer recordingScoresFor =
-                            await CompetitionProvider()
-                                .getCompetitionPlayer(competitionId, playerId);
-                        Get.offAll(ScoresInputScreenView(
-                            competition,
-                            recordingScoresFor
-                                .payload!.first.recordingScoresFor));
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            ],
+            ),
           ),
-        ),
+          Container(
+            margin: EdgeInsets.only(top: 20, bottom: 20),
+            padding: EdgeInsets.symmetric(horizontal: 25),
+            child: CustomButton(
+              textStyle: GcmsTheme.lightTextTheme.bodyText2,
+              text: "Play",
+              onPressed: () async {
+                var competitionId = competition.id.toString();
+                print('COMPETITION ID ---------> $competitionId');
+                var playerId = _controller.storage.read("userId");
+                print('PLAYER ID --------> $playerId');
+                compPlayer.CompetitionPlayer recordingScoresFor =
+                    await CompetitionProvider()
+                        .getCompetitionPlayer(competitionId, playerId);
+                Get.offAll(ScoresInputScreenView(competition,
+                    recordingScoresFor.payload!.first.recordingScoresFor));
+                print('COMPETITION ---------> $competition');
+                print(
+                    'PLAYER FIRST NAME ----------> ${recordingScoresFor.payload!.first.recordingScoresFor}');
+                print('Go to scores page');
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

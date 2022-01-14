@@ -7,14 +7,18 @@ import 'package:gcms/app/modules/home/providers/user_provider.dart';
 import 'package:gcms/app/modules/home/user_model.dart' as userModel;
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:intl/intl.dart';
 
 import '../course_model.dart' as courseModel;
 
 class SetupScreenController extends GetxController {
+  final DateFormat formatter = DateFormat('yyyy-MM-dd');
+  var selectedDate = DateTime.now().obs;
+  var selectedTime = 'Not set'.obs;
   var selectedCourseId = ''.obs;
   var storage = GetStorage();
-  var holes = ['9', '18'].obs;
-  var startHoleOptions = ['1', '10'];
+  var holes = [9, 18];
+  var startHoleOptions = [1, 10];
   var numberOfHolesToPlay = 0.obs;
   var isProcessing = false.obs;
   var lstCourses = <courseModel.Payload>[].obs;
@@ -103,7 +107,7 @@ class SetupScreenController extends GetxController {
         isProcessing(false);
         Get.to(() => CompetitionDetailView(competition: resp.payload!.first));
       }, onError: (err) {
-        print("Error CREATING COMPETITION -->" + err.toString());
+        print("ERROR CREATING COMPETITION -->" + err.toString());
         isProcessing(false);
         ShowSnackBar(
             title: "Error",

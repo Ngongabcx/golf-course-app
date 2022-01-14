@@ -19,58 +19,59 @@ class ActiveGameScreenView extends GetView<ActiveGameScreenController> {
     return Scaffold(
       backgroundColor: kBackgroundColor,
       body: SafeArea(
-          child: Obx(
-        () => Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.height,
-          child: _controller.isProcessing.value == true
-              ? Loader()
-              : Column(
-                  children: [
-                    CustomAppBar(
-                      Icons.arrow_back_ios_outlined,
-                      Icons.settings_outlined,
-                      leftCallBack: () => Get.back(),
-                      rightCallBack: () => Get.to(SettingScreenView()),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(top: 30),
-                      padding: EdgeInsets.symmetric(horizontal: 25),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Flexible(
-                            child: Text(
-                              'Your list of Matches',
-                              style: Theme.of(context).textTheme.headline2,
-                            ),
-                          ),
-                        ],
+        child: Obx(
+          () => Container(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.height,
+            child: _controller.isProcessing.value == true
+                ? Loader()
+                : Column(
+                    children: [
+                      CustomAppBar(
+                        Icons.arrow_back_ios_outlined,
+                        Icons.settings_outlined,
+                        leftCallBack: () => Get.back(),
+                        rightCallBack: () => Get.to(SettingScreenView()),
                       ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(top: 20),
-                      padding: EdgeInsets.symmetric(horizontal: 20),
-                      child: SearchCard(),
-                    ),
-                    Expanded(
-                      child: _controller.matches.value.payload == null
-                          ? Center(
+                      Container(
+                        margin: EdgeInsets.only(top: 20),
+                        padding: EdgeInsets.symmetric(horizontal: 25),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Flexible(
                               child: Text(
-                                "No Matches.",
-                                style: Theme.of(context).textTheme.headline3,
+                                'Your list of Matches',
+                                style: Theme.of(context).textTheme.headline2,
                               ),
-                            )
-                          : Padding(
-                              padding: const EdgeInsets.only(top: 20.0),
-                              child:
-                                  ActiveGamesListView(controller: _controller),
                             ),
-                    ),
-                  ],
-                ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(top: 20),
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        child: SearchCard(),
+                      ),
+                      Expanded(
+                        child: _controller.matches.value.payload == null
+                            ? Center(
+                                child: Text(
+                                  "No Matches.",
+                                  style: Theme.of(context).textTheme.headline3,
+                                ),
+                              )
+                            : Padding(
+                                padding: const EdgeInsets.only(top: 10.0),
+                                child: ActiveGamesListView(
+                                    controller: _controller),
+                              ),
+                      ),
+                    ],
+                  ),
+          ),
         ),
-      )),
+      ),
     );
   }
 }

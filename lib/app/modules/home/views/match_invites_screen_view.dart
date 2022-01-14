@@ -31,7 +31,7 @@ class MatchInvitesScreenView extends GetView<HomeController> {
                       rightCallBack: () => Get.to(SettingScreenView()),
                     ),
                     Container(
-                      margin: EdgeInsets.only(top: 30),
+                      margin: EdgeInsets.only(top: 20),
                       padding: EdgeInsets.symmetric(horizontal: 25),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,

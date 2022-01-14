@@ -30,7 +30,7 @@ class EventsView extends GetView<EventsController> {
           ),
           EventInfo(),
           Container(
-            margin: EdgeInsets.only(top: 10),
+            margin: EdgeInsets.only(top: 0),
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: SearchCard(),
           ),

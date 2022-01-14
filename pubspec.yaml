@@ -55,6 +55,7 @@ dependencies:
   sqflite: ^2.0.1
   dio: ^4.0.4
   smooth_page_indicator: ^1.0.0+2
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:

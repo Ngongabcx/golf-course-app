@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/Authentication/controllers/auth_controller.dart';
 import 'package:gcms/app/modules/commonWidgets/customButton.dart';
+import 'package:gcms/app/modules/home/views/home_view.dart';
 import 'package:gcms/constants/constant.dart';
 import 'package:gcms/theme/gcms_theme.dart';
 import 'package:get/get.dart';
@@ -111,6 +112,7 @@ class SignUpView extends GetView<AuthenticationController> {
                               controls.onStepContinue!();
                             }
                           }
+                          Get.to(() => HomeView());
                         },
                       ),
                     ),

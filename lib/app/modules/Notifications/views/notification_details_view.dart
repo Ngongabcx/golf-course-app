@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/commonWidgets/textFormField.dart';
 import 'package:gcms/constants/constant.dart';
-
 import 'package:get/get.dart';
 
 class NotificationDetailsView extends GetView {
@@ -9,6 +8,7 @@ class NotificationDetailsView extends GetView {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: kBackgroundColor,
       appBar: AppBar(
         title: Text('NotificationDetailsView'),
         centerTitle: true,
@@ -53,7 +53,8 @@ class NotificationDetailsView extends GetView {
               fontWeight: FontWeight.normal,
             ),
           ),
-          CustomTextFormFieldWidget(textEditingController, "TEST2", () {}, false, false, false)
+          CustomTextFormFieldWidget(
+              textEditingController, "TEST2", () {}, false, false, false)
         ],
       )),
     );
