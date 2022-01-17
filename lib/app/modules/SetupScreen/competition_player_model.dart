@@ -235,10 +235,10 @@ class Scorecard {
   });
 
   int? id;
-  int? score;
+  double? score;
   String? timestamp;
   bool? confirmed;
-  int? result;
+  double? result;
   int? holeNo;
 
   factory Scorecard.fromJson(Map<String, dynamic> json) => Scorecard(

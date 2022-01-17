@@ -339,7 +339,7 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                                   .toString(),
                                               'result': _controller.result.value
                                                   .toString(),
-                                              "confirmed": true,
+                                              "confirmed": false,
                                               "holeId": _controller
                                                   .gameHoles[_controller
                                                       .holeIndex.value]

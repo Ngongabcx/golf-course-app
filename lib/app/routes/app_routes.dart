@@ -21,6 +21,7 @@ abstract class Routes {
   static const HEALTH = _Paths.HEALTH;
   static const EVENTS = _Paths.EVENTS;
   static const MATCH_SETUP = _Paths.MATCH_SETUP;
+  static const CONFIRM_RESULTS = _Paths.CONFIRM_RESULTS;
 }
 
 abstract class _Paths {
@@ -43,4 +44,5 @@ abstract class _Paths {
   static const HEALTH = '/health';
   static const EVENTS = '/events';
   static const MATCH_SETUP = '/match-setup';
+  static const CONFIRM_RESULTS = '/confirm-results';
 }

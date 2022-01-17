@@ -1,3 +1,5 @@
+import 'package:gcms/app/modules/ScoresInputScreen/bindings/scores_input_screen_binding.dart';
+import 'package:gcms/app/modules/ScoresInputScreen/views/confirm_results_screen.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
 import '../modules/ActiveGameScreen/bindings/active_game_screen_binding.dart';
@@ -35,7 +37,7 @@ import '../modules/matchSetup/views/match_setup_view.dart';
 part 'app_routes.dart';
 
 class AppPages {
-  static const INITIAL = Routes.NOTIFICATION_DETAILS;
+  static const INITIAL = Routes.CONFIRM_RESULTS;
 
   static final routes = [
     GetPage(
@@ -62,6 +64,11 @@ class AppPages {
     //   page: () => ScoresInputScreenView(),
     //   binding: ScoresInputScreenBinding(),
     // ),
+    GetPage(
+      name: _Paths.CONFIRM_RESULTS,
+      page: () => ConfirmResultsScreenView(),
+       binding: ScoresInputScreenBinding(),
+     ),
     GetPage(
       name: _Paths.NOTIFICATIONS,
       page: () => NotificationsView(),

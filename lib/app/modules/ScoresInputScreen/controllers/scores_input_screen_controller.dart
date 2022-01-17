@@ -142,7 +142,34 @@ class ScoresInputScreenController extends GetxController {
           backgroundColor: Colors.red);
     }
   }
-
+   updateScorecard(Map data, String scorecardId) {
+    try {
+      isProcessing(true);
+      ScorecardProvider().updateScorecard(data, scorecardId).then((resp) {
+        isProcessing(false);
+        ShowSnackBar(
+            title: "Success",
+            message: "Your score has been saved.",
+            backgroundColor: Colors.green);
+        score.value = 0;
+        result.value = 0;
+      }, onError: (err) {
+        isProcessing(false);
+        print("UPDATE SCORES ERROR ---> ${err.toString()}");
+        ShowSnackBar(
+            title: "Error",
+            message: "Failed to update score please try again.",
+            backgroundColor: Colors.red);
+      });
+    } catch (exception) {
+      isProcessing(false);
+      print("<---------EXCEPTION2--------->" + exception.toString());
+      ShowSnackBar(
+          title: "Exception",
+          message: exception.toString(),
+          backgroundColor: Colors.red);
+    }
+  }
   getAllPlayers(String competitionId) {
     try {
       isProcessing(true);

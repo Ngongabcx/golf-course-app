@@ -35,6 +35,31 @@ class ScorecardProvider extends BaseProvider {
           "An error occured please check your internet connection.".toString());
     }
   }
+  Future<Scorecard> updateScorecard(data, scorecardId) async {
+    var url = "$kNewApiBaseURL/api/scorecards/$scorecardId";
+    print("Posting scores --> $data");
+    print("POST SCORES URL CREATED --> $url");
+    try {
+      final response = await dio.post(url, data: data);
+      Map<String, dynamic> resp = jsonDecode(response.data.toString());
+      return Scorecard.fromJson(resp);
+    } on DioError catch (exception) {
+      if (exception.response != null) {
+        if (exception.response!.statusCode == 400) {
+          Map<String, dynamic> res =
+              jsonDecode((exception.response!.data.toString()));
+          print("RESPONSE EXCEPTION --------->>>> $res");
+          return Future.error(exception.response!.data["error"].toString());
+        }
+        print("RESPONSE EXCEPTION --------->>>> $exception");
+        return Future.error(exception.response!.statusMessage.toString());
+      }
+      logToChannel({"text": "$kError UPDATE SCORE CARD FAILURE\n $exception"});
+      print('<<===UPDATING SCORE CARD EXCEPTION ==> $exception');
+      return Future.error(
+          "An error occured please check your internet connection.".toString());
+    }
+  }
 
   Future<List<compPlayer.Payload>> getAllCompetitionPlayers(
       String competitionId) async {

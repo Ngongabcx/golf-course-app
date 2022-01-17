@@ -15,10 +15,11 @@ class LocalNotificationsService {
             android: AndroidInitializationSettings("@mipmap/ic_launcher"));
 
     _notificationsPlugin.initialize(initializationSettings,
-        onSelectNotification: (String? viewUri) async {
-      if (viewUri != null) {
+        onSelectNotification: (String? payload) async {
+      print("NOTIFICATION COMP DATA --> $payload");
+      if (payload != null) {
         print("U R L is not EMPTY------------------------");
-        Get.toNamed("/$viewUri");
+        //Get.toNamed("/$viewUri");
       } else {
         print("U R L is EMPTY------------------------");
         Get.defaultDialog(
@@ -54,7 +55,7 @@ class LocalNotificationsService {
         message.data['title'],
         message.data['body'],
         notificationDetails,
-        payload: message.data["viewUri"],
+        payload: message.data["payload"],
       );
       await NotificationsDatabase.instance.create(notification);
       await MessagesController().refreshNotifications();
