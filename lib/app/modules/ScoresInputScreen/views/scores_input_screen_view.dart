@@ -523,7 +523,8 @@ class ResultsBottomSheet extends StatelessWidget {
                     flex: 5,
                     child: CircleAvatar(
                       radius: 30.0,
-                      backgroundImage: NetworkImage("${recordingFor!.image}"),
+                      backgroundImage: NetworkImage(
+                          "${_controller.compPlayers.first.player!.image}"),
                     ),
                   ),
                 ),

@@ -204,8 +204,10 @@ class CompetitionDetailView extends GetView {
                 compPlayer.CompetitionPlayer recordingScoresFor =
                     await CompetitionProvider()
                         .getCompetitionPlayer(competitionId, playerId);
-                Get.offAll(ScoresInputScreenView(competition,
-                    recordingScoresFor.payload!.first.recordingScoresFor));
+                Get.offAll(ScoresInputScreenView(
+                  competition,
+                  recordingScoresFor.payload!.first.recordingScoresFor,
+                ));
                 print('COMPETITION ---------> $competition');
                 print(
                     'PLAYER FIRST NAME ----------> ${recordingScoresFor.payload!.first.recordingScoresFor}');
