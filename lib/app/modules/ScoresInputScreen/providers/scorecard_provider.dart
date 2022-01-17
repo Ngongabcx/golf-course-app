@@ -40,7 +40,7 @@ class ScorecardProvider extends BaseProvider {
       String competitionId) async {
     print(
         "PROVIDER RECEIVED IDS TO PASS AS GET COMPETITION PLAYER REQUEST Competition: $competitionId");
-    var url = "$kNewApiBaseURL/api/competitionplayers/$competitionId";
+    var url = "$kNewApiBaseURL/api/competitionplayers/all/$competitionId";
     print("URL   --> $url");
     try {
       final response = await dio.get("$url");

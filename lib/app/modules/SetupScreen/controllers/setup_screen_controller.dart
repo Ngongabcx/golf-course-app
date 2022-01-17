@@ -70,6 +70,7 @@ class SetupScreenController extends GetxController {
           message: exception.toString(),
           backgroundColor: Colors.red);
     }
+    lstCourses.refresh();
   }
 
   getPlayers() {
@@ -96,6 +97,7 @@ class SetupScreenController extends GetxController {
           message: exception.toString(),
           backgroundColor: Colors.red);
     }
+    lstPlayers.refresh();
   }
 
   createCompetition(Map data) {

@@ -89,33 +89,40 @@ class ActiveGamesListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 25),
-      child: ListView.builder(
-        // 5
-        itemCount: _controller.matches.value.payload!.length,
-        // 6
-        itemBuilder: (BuildContext context, int index) {
-          // 7
+      child: RefreshIndicator(
+        onRefresh: _pullRefresh,
+        child: ListView.builder(
+          // 5
+          itemCount: _controller.matches.value.payload!.length,
+          // 6
+          itemBuilder: (BuildContext context, int index) {
+            // 7
 
-          // 7
-          return Obx(() {
-            return GestureDetector(
-              // 8
-              onTap: () {
-                Get.to(
-                  CompetitionDetailView(
+            // 7
+            return Obx(() {
+              return GestureDetector(
+                // 8
+                onTap: () {
+                  Get.to(
+                    CompetitionDetailView(
+                        competition: _controller.matches.value.payload![index]),
+                  );
+                },
+                // 11
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 20.0),
+                  child: CompetitionCard(
                       competition: _controller.matches.value.payload![index]),
-                );
-              },
-              // 11
-              child: Padding(
-                padding: const EdgeInsets.only(top: 20.0),
-                child: CompetitionCard(
-                    competition: _controller.matches.value.payload![index]),
-              ),
-            );
-          });
-        },
+                ),
+              );
+            });
+          },
+        ),
       ),
     );
+  }
+
+  Future<void> _pullRefresh() async {
+    await _controller.getActiveMatches();
   }
 }

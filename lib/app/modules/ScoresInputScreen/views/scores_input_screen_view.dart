@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gcms/app/components/circle_image.dart';
 import 'package:gcms/app/components/round_button_widget.dart';
@@ -46,8 +47,10 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                               onTap: () {
                                 Get.bottomSheet(
                                   ResultsBottomSheet(
-                                      recordingFor: recordingFor,
-                                      controller: _controller),
+                                    recordingFor: recordingFor,
+                                    controller: _controller,
+                                    competition: competition,
+                                  ),
                                   elevation: 20.0,
                                   enableDrag: false,
                                   backgroundColor: Colors.white,
@@ -387,8 +390,11 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                     padding: const EdgeInsets.only(top: 6.0),
                                     child: InkWell(
                                       onTap: () {
+                                        _controller.getAllPlayers(
+                                            competition.id.toString());
                                         Get.bottomSheet(
                                           ResultsBottomSheet(
+                                              competition: competition,
                                               recordingFor: recordingFor,
                                               controller: _controller),
                                           elevation: 20.0,
@@ -482,75 +488,104 @@ class ResultsBottomSheet extends StatelessWidget {
   const ResultsBottomSheet({
     Key? key,
     required this.recordingFor,
+    required this.competition,
     required ScoresInputScreenController controller,
   })  : _controller = controller,
         super(key: key);
 
   final compPlayer.Player? recordingFor;
   final ScoresInputScreenController _controller;
+  final Payload competition;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(left: 20.0),
-                  child: Text(
-                    'Player',
-                    style: GcmsTheme.lightTextTheme.headline3,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(right: 14.0),
-                  child: Text(
-                    'Scores',
-                    style: Theme.of(context).textTheme.headline3,
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(left: 16.0, top: 16.0),
-                  child: Expanded(
-                    flex: 5,
-                    child: CircleAvatar(
-                      radius: 30.0,
-                      backgroundImage: NetworkImage(
-                          "${_controller.compPlayers.first.player!.image}"),
+    return Obx(
+      () => _controller.isProcessing.value == true
+          ? Center(child: CircularProgressIndicator())
+          : Container(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(left: 20.0),
+                          child: Text(
+                            'Player',
+                            style: GcmsTheme.lightTextTheme.headline3,
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(right: 14.0),
+                          child: Text(
+                            'Scores',
+                            style: Theme.of(context).textTheme.headline3,
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                ),
-                Expanded(
-                  flex: 10,
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 20.0),
-                    child: Text(
-                      '${recordingFor!.fname} ${recordingFor!.lname}',
-                      style: Theme.of(context).textTheme.bodyText1,
+                    RefreshIndicator(
+                      onRefresh: _pullRefresh,
+                      child: Container(
+                        margin: EdgeInsets.symmetric(vertical: 8.0),
+                        height: 360.0,
+                        child: ListView.builder(
+                          scrollDirection: Axis.vertical,
+                          shrinkWrap: true,
+                          physics: ScrollPhysics(),
+                          itemCount: _controller.compPlayers.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Row(
+                              children: [
+                                Padding(
+                                  padding:
+                                      EdgeInsets.only(left: 16.0, top: 16.0),
+                                  child: Expanded(
+                                    flex: 5,
+                                    child: CircleAvatar(
+                                      radius: 30.0,
+                                      backgroundImage: NetworkImage(
+                                          "${_controller.compPlayers[index].player!.image}"),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 10,
+                                  child: Padding(
+                                    padding: EdgeInsets.only(left: 20.0),
+                                    child: Text(
+                                      '${_controller.compPlayers[index].player!.fname} ${_controller.compPlayers[index].player!.lname}',
+                                      style:
+                                          Theme.of(context).textTheme.bodyText1,
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 2,
+                                  child: Text(
+                                    _controller.compPlayers[index].totalResult
+                                        .toString(),
+                                    style:
+                                        Theme.of(context).textTheme.bodyText1,
+                                  ),
+                                ),
+                              ],
+                            );
+                          },
+                        ),
+                      ),
                     ),
-                  ),
+                  ],
                 ),
-                Expanded(
-                  flex: 2,
-                  child: Text(
-                    _controller.result.value.toString(),
-                    style: Theme.of(context).textTheme.bodyText1,
-                  ),
-                ),
-              ],
+              ),
             ),
-          ],
-        ),
-      ),
     );
+  }
+
+  Future<void> _pullRefresh() async {
+    await _controller.getAllPlayers(competition.id.toString());
   }
 }
 
