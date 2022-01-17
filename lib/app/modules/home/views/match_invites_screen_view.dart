@@ -85,24 +85,32 @@ class MatchInviteListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 25),
-      child: ListView.builder(
-        itemCount: _controller.matchInvites.value.payload!.length,
-        itemBuilder: (BuildContext context, int index) {
-          return GestureDetector(
-            onTap: () {
-              Get.to(
-                CompetitionDetailView(competition: invitations![index]),
-              );
-            },
-            child: Padding(
-              padding: const EdgeInsets.only(top: 20.0),
-              child: MatchInvitationsCard(
-                invitations: invitations![index],
+      child: RefreshIndicator(
+        onRefresh: _pullRefresh,
+        child: ListView.builder(
+          itemCount: _controller.matchInvites.value.payload!.length,
+          itemBuilder: (BuildContext context, int index) {
+            return GestureDetector(
+              onTap: () {
+                Get.to(
+                  CompetitionDetailView(competition: invitations![index]),
+                );
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(top: 20.0),
+                child: MatchInvitationsCard(
+                  invitations: invitations![index],
+                ),
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
+  }
+
+  Future<void> _pullRefresh() async {
+    await _controller.getMatchInvites(
+        _controller.matchInvites.value.payload!.first.id.toString());
   }
 }

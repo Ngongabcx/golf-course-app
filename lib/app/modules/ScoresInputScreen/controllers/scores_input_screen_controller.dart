@@ -176,8 +176,12 @@ class ScoresInputScreenController extends GetxController {
       ScorecardProvider().getAllCompetitionPlayers(competitionId).then(
           (resp) async {
         compPlayers.addAll(resp);
-        print("COMPETITION PLAYERS SUCCESSFULLY FETCHED  ---> $resp");
+
+        print(
+            "COMPETITION PLAYERS SUCCESSFULLY FETCHED  ---> ${compPlayers.first.player!.fname}");
         isProcessing(false);
+        print(
+            "COMPETITION PLAYERS SUCCESSFULLY FETCHED  ---> ${isProcessing.value}");
       }, onError: (err) {
         print("Error getting competition players details -->" + err.toString());
         isProcessing(false);
