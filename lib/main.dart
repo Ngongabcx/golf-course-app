@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import 'app/modules/Authentication/views/login_view.dart';
-import 'app/modules/ScoresInputScreen/views/confirm_results_screen.dart';
 import 'app/modules/home/views/home_view.dart';
 import 'app/modules/utils/notifications_func.dart';
 import 'app/routes/app_pages.dart';

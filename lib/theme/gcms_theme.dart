@@ -72,6 +72,9 @@ class GcmsTheme {
   static ThemeData light() {
     return ThemeData(
       primarySwatch: kPrimaryColorMaterialized,
+      inputDecorationTheme: InputDecorationTheme(
+        labelStyle: TextStyle(color: kPrimaryColor),
+      ),
       fontFamily: GoogleFonts.lexendDeca().fontFamily,
       brightness: Brightness.light,
       checkboxTheme: CheckboxThemeData(

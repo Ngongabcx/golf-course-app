@@ -134,6 +134,9 @@ class AuthenticationController extends GetxController {
         storage.write("isLoggedIn", true);
         storage.write("accessToken", resp.info!.accessToken);
         storage.write("refreshToken", resp.info!.refreshToken);
+        Map<String, dynamic> tkn =
+            Jwt.parseJwt('${resp.info!.accessToken}');
+        storage.write("aspUserID", tkn['Id']);
         Get.offAllNamed('/home');
       }, onError: (err) {
         isProcessing(false);
@@ -152,29 +155,67 @@ class AuthenticationController extends GetxController {
     }
   }
 
-  void registration(Map data) {
+  registration(Map data) async {
     print("REGISTRATION MAP --> $data");
-    var registered = register({
+    register({
       'username': data["username"],
       'email': data["email"],
       'password': data["password"]
-    });
-    if (registered) {
-      createUser({
+    },{
         'Fname': data["firstname"],
         'Lname': data["lastname"],
         'address': data["address"],
         'gender': data["gender"],
         'hcp': data["hcp"],
         "dob": data["dob"],
-        "usertypeId": 1,
+        "UsertypeId": 1,
         'AspNetUsersId': storage.read("aspUserID").toString(),
         "FcmToken": storage.read("fcmToken").toString(),
       });
+  }
+  void createUser(Map data) {
+    print("<<-----------SAVING USER DETAILS WITH PAYLOAD : $data ---------->");
+    try {
+      isProcessing(true);
+      UserProvider().createUser(data).then((resp) {
+        clearTextEditingControllers();
+        storage.write("user", resp);
+        var usrPayload = userFromJson(storage.read('user'));
+        var usr = usrPayload.payload!.first;
+        storage.write("userId", usr.id.toString());
+        print(storage.read("userId"));
+        storage.write("username", usr.aspNetUsers!.userName.toString());
+        storage.write("isLoggedIn", true);
+        storage.write("hcp", usr.hcp!.toInt());
+        storage.write(
+            "name", usr.fname.toString() + " " + usr.lname.toString());
+        storage.write("profilePic", usr.image);
+        isProcessing(false);
+        ShowSnackBar(
+            title: "Success",
+            message: "Account Successfully Created.",
+            backgroundColor: Colors.green);
+        Get.offAllNamed('/home');
+      }, onError: (err) {
+        isProcessing(false);
+        //TODO : You need to delete the account if creation has failed
+        //TODO: Write a delete account function and call it from here
+        //TODO: Also call that function when an exception is thrown
+        ShowSnackBar(
+            title: "Error",
+            message: err.toString(),
+            backgroundColor: Colors.red);
+      });
+    } catch (exception) {
+      isProcessing(false);
+      print("<---------EXCEPTION2--------->" + exception.toString());
+      ShowSnackBar(
+          title: "Exception",
+          message: exception.toString(),
+          backgroundColor: Colors.red);
     }
   }
-
-  bool register(Map data) {
+  register(Map data,Map data2)  {
     print(
         "<<-----------REGISTERING USER ACCOUNT WITH PAYLOAD : $data ---------->");
     try {
@@ -189,14 +230,13 @@ class AuthenticationController extends GetxController {
             Jwt.parseJwt('${storage.read("accessToken")}');
         storage.write("aspUserID", tkn['Id']);
         print(tkn.toString());
-        return true;
+        createUser(data2);
       }, onError: (err) {
         isProcessing(false);
         ShowSnackBar(
             title: "Error",
             message: err.toString(),
             backgroundColor: Colors.red);
-        return false;
       });
     } catch (exception) {
       isProcessing(false);
@@ -205,9 +245,7 @@ class AuthenticationController extends GetxController {
           title: "Exception",
           message: exception.toString(),
           backgroundColor: Colors.red);
-      return false;
     }
-    return true;
   }
 
   bool validateCreateUserForm() {
@@ -251,48 +289,7 @@ class AuthenticationController extends GetxController {
     return true;
   }
 
-  void createUser(Map data) {
-    print("<<-----------SAVING USER DETAILS WITH PAYLOAD : $data ---------->");
-    try {
-      isProcessing(true);
-      UserProvider().createUser(data).then((resp) {
-        clearTextEditingControllers();
-        storage.write("user", resp);
-        var usrPayload = userFromJson(storage.read('user'));
-        var usr = usrPayload.payload!.first;
-        storage.write("userId", usr.id.toString());
-        print(storage.read("userId"));
-        storage.write("username", usr.aspNetUsers!.userName.toString());
-        storage.write("isLoggedIn", true);
-        storage.write("hcp", usr.hcp!.toInt());
-        storage.write(
-            "name", usr.fname.toString() + " " + usr.lname.toString());
-        storage.write("profilePic", usr.image);
-        isProcessing(false);
-        ShowSnackBar(
-            title: "Success",
-            message: "Account Successfully Created.",
-            backgroundColor: Colors.green);
-        Get.offAllNamed('/home');
-      }, onError: (err) {
-        isProcessing(false);
-        //TODO : You need to delete the account if creation has failed
-        //TODO: Write a delete account function and call it from here
-        //TODO: Also call that function when an exception is thrown
-        ShowSnackBar(
-            title: "Error",
-            message: err.toString(),
-            backgroundColor: Colors.red);
-      });
-    } catch (exception) {
-      isProcessing(false);
-      print("<---------EXCEPTION2--------->" + exception.toString());
-      ShowSnackBar(
-          title: "Exception",
-          message: exception.toString(),
-          backgroundColor: Colors.red);
-    }
-  }
+
 
   // clear the controllers
   void clearTextEditingControllers() {

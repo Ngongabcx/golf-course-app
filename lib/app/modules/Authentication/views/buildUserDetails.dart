@@ -4,6 +4,7 @@ import 'package:gcms/app/modules/commonWidgets/custom_date_time_picker.dart.dart
 import 'package:gcms/app/modules/commonWidgets/list_string_dropdown.dart';
 import 'package:gcms/app/modules/commonWidgets/textFormField.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class BuildUserDetails extends GetView<AuthenticationController> {
   final userController = Get.put(AuthenticationController());
@@ -58,8 +59,9 @@ class BuildUserDetails extends GetView<AuthenticationController> {
               label: 'Pick your date of birth ',
               name: 'Date of Birth',
               callback: (newSelectedDate) {
-                userController.selectedDate.value = newSelectedDate.toString();
-                print(newSelectedDate);
+                String formattedDate = DateFormat('yyyy-MM-dd'). format(newSelectedDate!);
+                userController.selectedDate.value = formattedDate.toString();
+                print(formattedDate);
               },
             ),
           ),

@@ -15,6 +15,7 @@ import 'package:gcms/app/modules/commonWidgets/textFormField.dart';
 import 'package:gcms/constants/constant.dart';
 import 'package:gcms/theme/gcms_theme.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/src/provider.dart';
 
 class MatchSetupView extends StatelessWidget {
@@ -138,9 +139,10 @@ class MatchSetupView extends StatelessWidget {
                             label: 'Pick match Time',
                             name: 'Match Time',
                             callback: (newSelectedDate) {
+                                  String formattedTime = DateFormat('kk:mm'). format(newSelectedDate!);
                               _controller.selectedTime.value =
-                                  newSelectedDate.toString();
-                              print(newSelectedDate);
+                                  formattedTime.toString();
+                              print(formattedTime);
                             },
                           ),
                         ],
@@ -166,13 +168,13 @@ class MatchSetupView extends StatelessWidget {
                                 compFee: 0.0,
                                 compDate: _controller.formatter
                                     .format(_controller.selectedDate.value),
-                                compTime: _controller.selectedTime.value,
+                                time: _controller.selectedTime.value,
                                 gameHoles: _controller.numberOfHolesToPlay.value
-                                    .toString(),
+                                    ,
                                 startingHole: _controller.startingHole.value,
                                 courseId: int.parse(
                                     _controller.selectedCourseId.value),
-                                competitionPlayer:
+                                playerIds:
                                     _controller.selectedPlayers.cast<int>(),
                               );
                               _controller.createCompetition(comp.toJson());

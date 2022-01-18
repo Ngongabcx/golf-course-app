@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gcms/app/components/circle_image.dart';
 import 'package:gcms/app/components/round_button_widget.dart';
@@ -526,54 +525,57 @@ class ResultsBottomSheet extends StatelessWidget {
                         ),
                       ],
                     ),
-                    RefreshIndicator(
-                      onRefresh: _pullRefresh,
-                      child: Container(
-                        margin: EdgeInsets.symmetric(vertical: 8.0),
-                        height: 360.0,
-                        child: ListView.builder(
-                          scrollDirection: Axis.vertical,
-                          shrinkWrap: true,
-                          physics: ScrollPhysics(),
-                          itemCount: _controller.compPlayers.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Row(
-                              children: [
-                                Padding(
-                                  padding:
-                                      EdgeInsets.only(left: 16.0, top: 16.0),
-                                  child: Expanded(
-                                    flex: 5,
-                                    child: CircleAvatar(
-                                      radius: 30.0,
-                                      backgroundImage: NetworkImage(
-                                          "${_controller.compPlayers[index].player!.image}"),
+                    Expanded(
+                      child: RefreshIndicator(
+                        onRefresh: _pullRefresh,
+                        child: Container(
+                          margin: EdgeInsets.symmetric(vertical: 8.0),
+                          height: 360.0,
+                          child: ListView.builder(
+                            scrollDirection: Axis.vertical,
+                            shrinkWrap: true,
+                            physics: ScrollPhysics(),
+                            itemCount: _controller.compPlayers.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Row(
+                                children: [
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.only(left: 16.0, top: 16.0),
+                                    child: Expanded(
+                                      flex: 5,
+                                      child: CircleAvatar(
+                                        radius: 30.0,
+                                        backgroundImage: NetworkImage(
+                                            "${_controller.compPlayers[index].player!.image}"),
+                                      ),
                                     ),
                                   ),
-                                ),
-                                Expanded(
-                                  flex: 10,
-                                  child: Padding(
-                                    padding: EdgeInsets.only(left: 20.0),
+                                  Expanded(
+                                    flex: 10,
+                                    child: Padding(
+                                      padding: EdgeInsets.only(left: 20.0),
+                                      child: Text(
+                                        '${_controller.compPlayers[index].player!.fname} ${_controller.compPlayers[index].player!.lname}',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText1,
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    flex: 2,
                                     child: Text(
-                                      '${_controller.compPlayers[index].player!.fname} ${_controller.compPlayers[index].player!.lname}',
+                                      _controller.compPlayers[index].totalResult
+                                          .toString(),
                                       style:
                                           Theme.of(context).textTheme.bodyText1,
                                     ),
                                   ),
-                                ),
-                                Expanded(
-                                  flex: 2,
-                                  child: Text(
-                                    _controller.compPlayers[index].totalResult
-                                        .toString(),
-                                    style:
-                                        Theme.of(context).textTheme.bodyText1,
-                                  ),
-                                ),
-                              ],
-                            );
-                          },
+                                ],
+                              );
+                            },
+                          ),
                         ),
                       ),
                     ),

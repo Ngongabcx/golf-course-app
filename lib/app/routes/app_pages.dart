@@ -22,8 +22,6 @@ import '../modules/ResultsScreen/bindings/results_screen_binding.dart';
 import '../modules/ResultsScreen/views/results_screen_view.dart';
 import '../modules/SettingScreen/bindings/setting_screen_binding.dart';
 import '../modules/SettingScreen/views/setting_screen_view.dart';
-import '../modules/SetupScreen/bindings/setup_screen_binding.dart';
-import '../modules/SetupScreen/views/setup_screen_view.dart';
 import '../modules/TournamentsScreen/bindings/tournaments_screen_binding.dart';
 import '../modules/TournamentsScreen/views/tournaments_screen_view.dart';
 import '../modules/ViewPlayersScreen/bindings/view_players_screen_binding.dart';
@@ -88,11 +86,6 @@ class AppPages {
       name: _Paths.RESULTS_SCREEN,
       page: () => ResultsScreenView(),
       binding: ResultsScreenBinding(),
-    ),
-    GetPage(
-      name: _Paths.SETUP_SCREEN,
-      page: () => SetupScreenView(),
-      binding: SetupScreenBinding(),
     ),
     GetPage(
       name: _Paths.SETTING_SCREEN,

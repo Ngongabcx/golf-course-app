@@ -1,14 +1,11 @@
 {
-	"CompName": "Just a new Tournament1",
-	"GametypeId": 1,
-	"CompFee": 2500,
-	"CompDate": "2021-10-12",
-	"CompTime": "00:00:00",
-	"GameHoles": "9",
-	"startingHole": 9,
-	"CourseId": 2,
-	"CompetitionPlayer": [
-		8,
-		15
-	]
+  "CompName": "Parsing dates 22",
+  "CompFee": 20.59,
+  "CompDate": "2022-01-4",
+  "time": "10:10:10",
+  "gameHoles": 18,
+  "startingHole": 1,
+  "gametypeId": 1,
+  "courseId": 1,
+  "playerIds": [3, 4]
 }

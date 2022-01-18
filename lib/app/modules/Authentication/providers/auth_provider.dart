@@ -47,7 +47,7 @@ class AuthProvider extends BaseProvider {
           Map<String, dynamic> res =
               jsonDecode((exception.response!.data.toString()));
           print("RESPONSE STATUS --------->>>> $res");
-          return Future.error(exception.response!.data["error"].toString());
+          return Future.error(exception.response!.data["errors"].toString());
         }
         return Future.error(exception.response!.statusMessage.toString());
       }

@@ -8,8 +8,6 @@ import 'package:gcms/app/modules/home/providers/match_invites_provider.dart';
 import 'package:gcms/app/modules/home/providers/user_provider.dart';
 import 'package:gcms/app/modules/home/views/explore_screen_view.dart';
 import 'package:gcms/app/services/local_notifications_service.dart';
-import 'package:gcms/app/services/slack_logger.dart';
-import 'package:gcms/constants/constant.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:jwt_decode/jwt_decode.dart';
@@ -35,7 +33,7 @@ class HomeController extends GetxController {
   void onInit() async {
     super.onInit();
     LocalNotificationsService.initialize();
-    validateTokenAndGetUser();
+    await validateToken();
   }
 
   @override
@@ -59,17 +57,19 @@ class HomeController extends GetxController {
     }
   }
 
-  validateTokenAndGetUser() async {
-    String token = storage.read("accessToken");
-    if (Jwt.isExpired(token)) {
-      await refreshToken({
-        'accessToken': token.toString(),
-        'refreshToken': storage.read("refreshToken").toString(),
-      });
+  validateToken() async {
+    if (storage.read("accessToken") != null) {
+      String token = storage.read("accessToken");
+      if (Jwt.isExpired(token)) {
+        await refreshToken({
+          'accessToken': token.toString(),
+          'refreshToken': storage.read("refreshToken").toString(),
+        });
+      }
+    } else {
+      Get.offAllNamed('/login');
     }
-    Map<String, dynamic> tkn = Jwt.parseJwt('${storage.read("accessToken")}');
-    storage.write("aspUserID", tkn['Id']);
-    getUserDetails(tkn['Id']);
+    getUserDetails();
   }
 
   refreshToken(Map data) {
@@ -80,24 +80,17 @@ class HomeController extends GetxController {
         storage.write("refreshToken", resp.info!.refreshToken);
         isProcessing(false);
       }, onError: (err) {
-        // ShowSnackBar(
-        //     title: "Error",
-        //     message: err.toString(),
-        //     backgroundColor: Colors.red);
         isProcessing(false);
         Get.offAllNamed('/login');
       });
     } catch (exception) {
-      // ShowSnackBar(
-      //     title: "Exception",
-      //     message: exception.toString(),
-      //     backgroundColor: Colors.red);
       isProcessing(false);
       Get.offAllNamed('/login');
     }
   }
 
-  getUserDetails(String id) async {
+  Future getUserDetails() async {
+    String id = storage.read("aspUserID");
     print("GETTING USER DETAILS   --> ID: $id");
     try {
       isProcessing(true);
@@ -112,7 +105,6 @@ class HomeController extends GetxController {
         storage.write(
             "name", usr.fname.toString() + " " + usr.lname.toString());
         storage.write("profilePic", usr.image);
-        await getMatchInvites(usr.id.toString());
         if (usr.aspNetUsers!.userName!.isEmpty) {
           ShowSnackBar(
               title: "USER DETAILS Error",
@@ -123,8 +115,9 @@ class HomeController extends GetxController {
         name.value = usr.fname!;
         var fcmToken = usr.fcmToken.toString();
         await processUserDeviceFcmToken(fcmToken, id);
+        await getMatchInvites(usr.id.toString());
         isProcessing(false);
-        Get.offAllNamed('/home');
+        //Get.offAllNamed('/home');
       }, onError: (err) {
         isProcessing(false);
         ShowSnackBar(
@@ -159,11 +152,6 @@ class HomeController extends GetxController {
             message: "No Invitations",
             error: "",
             payload: []);
-        //matchInvites.value = err;
-        // ShowSnackBar(
-        //     title: "Match Invites Error",
-        //     message: err.toString(),
-        //     backgroundColor: Colors.red);
         isProcessing(false);
       });
     } catch (exception) {

@@ -4,363 +4,340 @@
 
 import 'dart:convert';
 
-Competition competitionFromJson(String str) =>
-    Competition.fromJson(json.decode(str));
+Competition competitionFromJson(String str) => Competition.fromJson(json.decode(str));
 
 String competitionToJson(Competition data) => json.encode(data.toJson());
 
 class Competition {
-  Competition({
-    this.status,
-    this.success,
-    this.message,
-    this.error,
-    this.payload,
-  });
+    Competition({
+        this.status,
+        this.success,
+        this.message,
+        this.error,
+        this.payload,
+    });
 
-  int? status;
-  bool? success;
-  String? message;
-  String? error;
-  List<Payload>? payload;
+    int? status;
+    bool? success;
+    String? message;
+    String? error;
+    List<Payload>? payload;
 
-  factory Competition.fromJson(Map<String, dynamic> json) => Competition(
+    factory Competition.fromJson(Map<String, dynamic> json) => Competition(
         status: json["status"],
         success: json["success"],
         message: json["message"],
         error: json["error"],
-        payload:
-            List<Payload>.from(json["payload"].map((x) => Payload.fromJson(x))),
-      );
+        payload: List<Payload>.from(json["payload"].map((x) => Payload.fromJson(x))),
+    );
 
-  Map<String, dynamic> toJson() => {
+    Map<String, dynamic> toJson() => {
         "status": status,
         "success": success,
         "message": message,
         "error": error,
         "payload": List<dynamic>.from(payload!.map((x) => x.toJson())),
-      };
+    };
 }
 
 class Payload {
-  Payload({
-    this.id,
-    this.compName,
-    this.gametype,
-    this.compFee,
-    this.compDate,
-    this.compTime,
-    this.numberOfHoles,
-    this.startingHole,
-    this.course,
-    this.competitionPlayer,
-  });
+    Payload({
+        this.id,
+        this.compName,
+        this.compFee,
+        this.compDate,
+        this.compTime,
+        this.gameHoles,
+        this.startingHole,
+        this.isTournament,
+        this.gametype,
+        this.course,
+        this.competitionPlayers,
+    });
 
-  int? id;
-  String? compName;
-  Type? gametype;
-  double? compFee;
-  String? compDate;
-  String? compTime;
-  int? numberOfHoles;
-  int? startingHole;
-  Course? course;
-  List<CompetitionPlayer>? competitionPlayer;
+    int? id;
+    String? compName;
+    double? compFee;
+    DateTime? compDate;
+    String? compTime;
+    int? gameHoles;
+    int? startingHole;
+    bool? isTournament;
+    Gametype? gametype;
+    Course? course;
+    List<CompetitionPlayer>? competitionPlayers;
 
-  factory Payload.fromJson(Map<String, dynamic> json) => Payload(
+    factory Payload.fromJson(Map<String, dynamic> json) => Payload(
         id: json["id"],
         compName: json["compName"],
-        gametype: Type.fromJson(json["gametype"]),
         compFee: json["compFee"],
-        compDate: json["compDate"],
+        compDate: DateTime.parse(json["compDate"]),
         compTime: json["compTime"],
-        numberOfHoles: json["numberOfHoles"],
+        gameHoles: json["gameHoles"],
         startingHole: json["startingHole"],
+        isTournament: json["isTournament"],
+        gametype: Gametype.fromJson(json["gametype"]),
         course: Course.fromJson(json["course"]),
-        competitionPlayer: List<CompetitionPlayer>.from(
-            json["competitionPlayer"]
-                .map((x) => CompetitionPlayer.fromJson(x))),
-      );
+        competitionPlayers: List<CompetitionPlayer>.from(json["competitionPlayers"].map((x) => CompetitionPlayer.fromJson(x))),
+    );
 
-  Map<String, dynamic> toJson() => {
+    Map<String, dynamic> toJson() => {
         "id": id,
         "compName": compName,
-        "gametype": gametype!.toJson(),
         "compFee": compFee,
-        "compDate": compDate,
+        "compDate": compDate!.toIso8601String(),
         "compTime": compTime,
-        "numberOfHoles": numberOfHoles,
+        "gameHoles": gameHoles,
         "startingHole": startingHole,
-        "Course": course!.toJson(),
-        "competitionPlayer":
-            List<dynamic>.from(competitionPlayer!.map((x) => x.toJson())),
-      };
+        "isTournament": isTournament,
+        "gametype": gametype!.toJson(),
+        "course": course!.toJson(),
+        "competitionPlayers": List<dynamic>.from(competitionPlayers!.map((x) => x.toJson())),
+    };
 }
 
 class CompetitionPlayer {
-  CompetitionPlayer({
-    this.id,
-    this.competitionId,
-    this.competitionTime,
-    this.player,
-    this.competitionHcp,
-    this.recordingScoreFor,
-    this.invitation,
-  });
+    CompetitionPlayer({
+        this.id,
+        this.compTime,
+        this.compHcp,
+        this.player,
+        this.inviteStatus,
+        this.colorcode,
+        this.recordingScoresFor,
+    });
 
-  int? id;
-  int? competitionId;
-  String? competitionTime;
-  Player? player;
-  int? competitionHcp;
-  int? recordingScoreFor;
-  Invitation? invitation;
+    int? id;
+    String? compTime;
+    int? compHcp;
+    Player? player;
+    Gametype? inviteStatus;
+    Colorcode? colorcode;
+    Player? recordingScoresFor;
 
-  factory CompetitionPlayer.fromJson(Map<String, dynamic> json) =>
-      CompetitionPlayer(
+    factory CompetitionPlayer.fromJson(Map<String, dynamic> json) => CompetitionPlayer(
         id: json["id"],
-        competitionId: json["competitionId"],
-        competitionTime: json["competitionTime"],
+        compTime: json["compTime"],
+        compHcp: json["compHcp"],
         player: Player.fromJson(json["player"]),
-        competitionHcp: json["competitionHcp"],
-        recordingScoreFor: json["recordingScoreFor"],
-        invitation: Invitation.fromJson(json["invitation"]),
-      );
+        inviteStatus: Gametype.fromJson(json["inviteStatus"]),
+        colorcode: Colorcode.fromJson(json["colorcode"]),
+        recordingScoresFor: Player.fromJson(json["recordingScoresFor"]),
+    );
 
-  Map<String, dynamic> toJson() => {
+    Map<String, dynamic> toJson() => {
         "id": id,
-        "competitionId": competitionId,
-        "competitionTime": competitionTime,
+        "compTime": compTime,
+        "compHcp": compHcp,
         "player": player!.toJson(),
-        "competitionHcp": competitionHcp,
-        "recordingScoreFor": recordingScoreFor,
-        "invitation": invitation!.toJson(),
-      };
+        "inviteStatus": inviteStatus!.toJson(),
+        "colorcode": colorcode!.toJson(),
+        "recordingScoresFor": recordingScoresFor!.toJson(),
+    };
 }
 
-class Invitation {
-  Invitation({
-    this.inviteId,
-    this.status,
-  });
+class Colorcode {
+    Colorcode({
+        this.id,
+        this.color,
+        this.description,
+    });
 
-  int? inviteId;
-  String? status;
+    int? id;
+    String? color;
+    String? description;
 
-  factory Invitation.fromJson(Map<String, dynamic> json) => Invitation(
-        inviteId: json["inviteId"],
-        status: json["status"],
-      );
+    factory Colorcode.fromJson(Map<String, dynamic> json) => Colorcode(
+        id: json["id"],
+        color: json["color"],
+        description: json["description"],
+    );
 
-  Map<String, dynamic> toJson() => {
-        "inviteId": inviteId,
-        "status": status,
-      };
+    Map<String, dynamic> toJson() => {
+        "id": id,
+        "color": color,
+        "description": description,
+    };
+}
+
+class Gametype {
+    Gametype({
+        this.id,
+        this.name,
+        this.description,
+    });
+
+    int? id;
+    String? name;
+    String? description;
+
+    factory Gametype.fromJson(Map<String, dynamic> json) => Gametype(
+        id: json["id"],
+        name: json["name"],
+        description: json["description"],
+    );
+
+    Map<String, dynamic> toJson() => {
+        "id": id,
+        "name": name,
+        "description": description,
+    };
 }
 
 class Player {
-  Player({
-    this.id,
-    this.firstname,
-    this.lastname,
-    this.address,
-    this.image,
-    this.dob,
-    this.gender,
-    this.hcp,
-    this.dateJoined,
-    this.aspnetuserDetails,
-    this.usertype,
-    this.recordingScoresFor,
-  });
+    Player({
+        this.id,
+        this.fname,
+        this.lname,
+        this.address,
+        this.dob,
+        this.gender,
+        this.dateJoined,
+        this.image,
+        this.hcp,
+        this.fcmToken,
+        this.aspNetUsers,
+    });
 
-  int? id;
-  String? firstname;
-  String? lastname;
-  String? address;
-  String? image;
-  String? dob;
-  String? gender;
-  int? hcp;
-  String? dateJoined;
-  AspnetuserDetails? aspnetuserDetails;
-  Type? usertype;
-  Player? recordingScoresFor;
+    int? id;
+    String? fname;
+    String? lname;
+    String? address;
+    DateTime? dob;
+    String? gender;
+    DateTime? dateJoined;
+    String? image;
+    int? hcp;
+    String? fcmToken;
+    AspNetUsers? aspNetUsers;
 
-  factory Player.fromJson(Map<String, dynamic> json) => Player(
+    factory Player.fromJson(Map<String, dynamic> json) => Player(
         id: json["id"],
-        firstname: json["firstname"],
-        lastname: json["lastname"],
+        fname: json["fname"],
+        lname: json["lname"],
         address: json["address"],
-        image: json["image"],
-        dob: json["dob"],
+        dob: DateTime.parse(json["dob"]),
         gender: json["gender"],
+        dateJoined: DateTime.parse(json["dateJoined"]),
+        image: json["image"],
         hcp: json["hcp"],
-        dateJoined: json["dateJoined"],
-        aspnetuserDetails:
-            AspnetuserDetails.fromJson(json["aspnetuserDetails"]),
-        usertype: Type.fromJson(json["usertype"]),
-        recordingScoresFor: json["recordingScoresFor"] == null
-            ? null
-            : Player.fromJson(json["recordingScoresFor"]),
-      );
+        fcmToken: json["fcmToken"],
+        aspNetUsers: AspNetUsers.fromJson(json["aspNetUsers"]),
+    );
 
-  Map<String, dynamic> toJson() => {
+    Map<String, dynamic> toJson() => {
         "id": id,
-        "firstname": firstname,
-        "lastname": lastname,
+        "fname": fname,
+        "lname": lname,
         "address": address,
-        "image": image,
-        "dob": dob,
+        "dob": dob!.toIso8601String(),
         "gender": gender,
+        "dateJoined": dateJoined!.toIso8601String(),
+        "image": image,
         "hcp": hcp,
-        "dateJoined": dateJoined,
-        "aspnetuserDetails": aspnetuserDetails!.toJson(),
-        "usertype": usertype!.toJson(),
-        "recordingScoresFor":
-            recordingScoresFor == null ? null : recordingScoresFor!.toJson(),
-      };
+        "fcmToken": fcmToken,
+        "aspNetUsers": aspNetUsers!.toJson(),
+    };
 }
 
-class AspnetuserDetails {
-  AspnetuserDetails({
-    this.id,
-    this.username,
-    this.phoneNumber,
-    this.email,
-  });
+class AspNetUsers {
+    AspNetUsers({
+        this.id,
+        this.userName,
+        this.email,
+        this.phoneNumber,
+    });
 
-  String? id;
-  String? username;
-  String? phoneNumber;
-  String? email;
+    String? id;
+    String? userName;
+    String? email;
+    dynamic phoneNumber;
 
-  factory AspnetuserDetails.fromJson(Map<String, dynamic> json) =>
-      AspnetuserDetails(
+    factory AspNetUsers.fromJson(Map<String, dynamic> json) => AspNetUsers(
         id: json["id"],
-        username: json["username"],
-        phoneNumber: json["phoneNumber"],
+        userName: json["userName"],
         email: json["email"],
-      );
+        phoneNumber: json["phoneNumber"],
+    );
 
-  Map<String, dynamic> toJson() => {
+    Map<String, dynamic> toJson() => {
         "id": id,
-        "username": username,
-        "phoneNumber": phoneNumber,
+        "userName": userName,
         "email": email,
-      };
+        "phoneNumber": phoneNumber,
+    };
 }
-
-class Type {
-  Type({
-    this.id,
-    this.name,
-    this.description,
-  });
-
-  int? id;
-  Name? name;
-  Description? description;
-
-  factory Type.fromJson(Map<String, dynamic> json) => Type(
-        id: json["id"],
-        name: nameValues.map![json["name"]],
-        description: descriptionValues.map![json["description"]],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "name": nameValues.reverse![name],
-        "description": descriptionValues.reverse![description],
-      };
-}
-
-enum Description {
-  THIS_IS_JUST_A_SAMPLE_TEST_USER,
-  PLAYER_WITH_HIGHEST_RESULT_WINS
-}
-
-final descriptionValues = EnumValues({
-  "Player with highest result wins":
-      Description.PLAYER_WITH_HIGHEST_RESULT_WINS,
-  "This is just a sample test user": Description.THIS_IS_JUST_A_SAMPLE_TEST_USER
-});
-
-enum Name { NORMAL_USER, MELO_FORD }
-
-final nameValues =
-    EnumValues({"Melo Ford": Name.MELO_FORD, "Normal user": Name.NORMAL_USER});
 
 class Course {
-  Course({
-    this.id,
-    this.courseName,
-    this.address,
-    this.courseAbr,
-    this.email,
-    this.phoneNo,
-    this.courseImage,
-    this.holes,
-    this.payments,
-  });
+    Course({
+        this.id,
+        this.courseName,
+        this.courseAbr,
+        this.address,
+        this.phoneNo,
+        this.email,
+        this.courseImage,
+        this.imageThumbnail,
+        this.holes,
+    });
 
-  int? id;
-  String? courseName;
-  String? address;
-  String? courseAbr;
-  String? email;
-  String? phoneNo;
-  String? courseImage;
-  List<Hole>? holes;
-  List<dynamic>? payments;
+    int? id;
+    String? courseName;
+    String? courseAbr;
+    String? address;
+    String? phoneNo;
+    String? email;
+    String? courseImage;
+    String? imageThumbnail;
+    List<Hole>? holes;
 
-  factory Course.fromJson(Map<String, dynamic> json) => Course(
+    factory Course.fromJson(Map<String, dynamic> json) => Course(
         id: json["id"],
         courseName: json["courseName"],
-        address: json["address"],
         courseAbr: json["courseAbr"],
-        email: json["email"],
+        address: json["address"],
         phoneNo: json["phoneNo"],
+        email: json["email"],
         courseImage: json["courseImage"],
+        imageThumbnail: json["imageThumbnail"],
         holes: List<Hole>.from(json["holes"].map((x) => Hole.fromJson(x))),
-        payments: List<dynamic>.from(json["payments"].map((x) => x)),
-      );
+    );
 
-  Map<String, dynamic> toJson() => {
+    Map<String, dynamic> toJson() => {
         "id": id,
         "courseName": courseName,
-        "address": address,
         "courseAbr": courseAbr,
-        "email": email,
+        "address": address,
         "phoneNo": phoneNo,
+        "email": email,
         "courseImage": courseImage,
+        "imageThumbnail": imageThumbnail,
         "holes": List<dynamic>.from(holes!.map((x) => x.toJson())),
-        "payments": List<dynamic>.from(payments!.map((x) => x)),
-      };
+    };
 }
 
 class Hole {
-  Hole({
-    this.id,
-    this.holeNo,
-    this.yellow,
-    this.white,
-    this.blue,
-    this.red,
-    this.par,
-    this.stroke,
-  });
+    Hole({
+        this.id,
+        this.holeNo,
+        this.yellow,
+        this.white,
+        this.blue,
+        this.red,
+        this.par,
+        this.stroke,
+    });
 
-  int? id;
-  int? holeNo;
-  int? yellow;
-  int? white;
-  int? blue;
-  int? red;
-  int? par;
-  int? stroke;
+    int? id;
+    int? holeNo;
+    int? yellow;
+    int? white;
+    int? blue;
+    int? red;
+    int? par;
+    int? stroke;
 
-  factory Hole.fromJson(Map<String, dynamic> json) => Hole(
+    factory Hole.fromJson(Map<String, dynamic> json) => Hole(
         id: json["id"],
         holeNo: json["holeNo"],
         yellow: json["yellow"],
@@ -369,9 +346,9 @@ class Hole {
         red: json["red"],
         par: json["par"],
         stroke: json["stroke"],
-      );
+    );
 
-  Map<String, dynamic> toJson() => {
+    Map<String, dynamic> toJson() => {
         "id": id,
         "holeNo": holeNo,
         "yellow": yellow,
@@ -380,19 +357,5 @@ class Hole {
         "red": red,
         "par": par,
         "stroke": stroke,
-      };
-}
-
-class EnumValues<T> {
-  Map<String, T>? map;
-  Map<T, String>? reverseMap;
-
-  EnumValues(this.map);
-
-  Map<T, String>? get reverse {
-    if (reverseMap == null) {
-      reverseMap = map!.map((k, v) => new MapEntry(v, k));
-    }
-    return reverseMap;
-  }
+    };
 }
