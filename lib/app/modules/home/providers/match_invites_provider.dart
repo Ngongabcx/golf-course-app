@@ -20,7 +20,7 @@ class MatchInvitesProvider extends BaseProvider {
               jsonDecode((exception.response!.data.toString()));
           print("RESPONSE STATUS --------->>>> $res");
           //return Future.error(exception.response!.data["error"].toString());
-          return competitionFromJson(exception.response!.data.toString());;
+          return competitionFromJson(exception.response!.data.toString());
         }
         return Future.error(exception.response!.statusMessage.toString());
       }
