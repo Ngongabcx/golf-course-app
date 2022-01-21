@@ -55,10 +55,12 @@ class UserProvider extends BaseProvider {
           "An error occured please check your internet connection.".toString());
     }
   }
-    Future<String> updateUserDetails(Map payload, String id) async {
+
+  Future<String> updateUserDetails(Map payload, String id) async {
     try {
       print("NEW FCM TOKEN _---->>> $payload");
-      final response = await dio.put("$kNewApiBaseURL/api/users/$id",data:payload);
+      final response =
+          await dio.put("$kNewApiBaseURL/api/users/$id", data: payload);
       print(
           "RESPONSE UPDATE USER DETAILS --------->>>> ${response.statusMessage}");
       return response.data.toString();
@@ -68,12 +70,14 @@ class UserProvider extends BaseProvider {
           Map<String, dynamic> res =
               jsonDecode((exception.response!.data.toString()));
           print("RESPONSE UPDATE USER DETAILS --------->>>> $res");
-           logToChannel({"text": "$kFatal UPDATE USER DETAILS FAILURE\n $exception"});
+          logToChannel(
+              {"text": "$kFatal UPDATE USER DETAILS FAILURE\n $exception"});
           return Future.error(exception.response!.data["error"].toString());
         }
         return Future.error(exception.response!.statusMessage.toString());
       }
-      logToChannel({"text": "$kFatal UPDATE USER DETAILS FAILURE\n $exception"});
+      logToChannel(
+          {"text": "$kFatal UPDATE USER DETAILS FAILURE\n $exception"});
       print('<<===UPDATING USER DETAILS EXCEPTION ==> $exception');
       return Future.error(
           "An error occured please check your internet connection.".toString());
@@ -81,7 +85,8 @@ class UserProvider extends BaseProvider {
   }
 
   Future<List<Payload>> getPlayers() async {
-    print("---------------------EXECUTING GET PLAYERS PROVIDER-------------------------");
+    print(
+        "---------------------EXECUTING GET PLAYERS PROVIDER-------------------------");
     try {
       final response = await dio.get("$kNewApiBaseURL/api/users");
       var user = userFromJson(response.data.toString());
@@ -104,13 +109,20 @@ class UserProvider extends BaseProvider {
   }
 
   //Create user after account registration
-  Future<User> createUser(Map data) async {
+  Future<String> createUser(Map data) async {
     try {
       final response = await dio.post("$kNewApiBaseURL/api/users", data: data);
-      Map<String, dynamic> resp = jsonDecode(response.data.toString());
-      return User.fromJson(resp);
+      return response.data.toString();
     } on DioError catch (exception) {
       if (exception.response != null) {
+        if (exception.response!.statusCode == 400) {
+          Map<String, dynamic> res =
+              jsonDecode((exception.response!.data.toString()));
+          print("RESPONSE CREATE USER DETAILS --------->>>> $res");
+          //logToChannel({"text": "$kError CREATE USER FAILURE\n ${exception.response!.data}"});
+          return Future.error(exception.response!.data["message"].toString());
+        }
+        //logToChannel({"text": "$kError CREATE USER FAILURE\n $exception"});
         return Future.error(exception.response!.statusMessage.toString());
       }
       logToChannel({"text": "$kError CREATE USER FAILURE\n $exception"});

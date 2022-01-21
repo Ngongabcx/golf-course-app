@@ -163,7 +163,6 @@ class ConfirmResultsScreenView extends GetView<ScoresInputScreenController> {
                             onPressed: () async {
                               await _controller.updateScorecard(
                                   {"confirmed": true}, "scorecardId");
-                              Get.back();
                             },
                             style: ButtonStyle(
                               backgroundColor:

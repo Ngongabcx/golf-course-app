@@ -134,8 +134,7 @@ class AuthenticationController extends GetxController {
         storage.write("isLoggedIn", true);
         storage.write("accessToken", resp.info!.accessToken);
         storage.write("refreshToken", resp.info!.refreshToken);
-        Map<String, dynamic> tkn =
-            Jwt.parseJwt('${resp.info!.accessToken}');
+        Map<String, dynamic> tkn = Jwt.parseJwt('${resp.info!.accessToken}');
         storage.write("aspUserID", tkn['Id']);
         Get.offAllNamed('/home');
       }, onError: (err) {
@@ -161,24 +160,61 @@ class AuthenticationController extends GetxController {
       'username': data["username"],
       'email': data["email"],
       'password': data["password"]
-    },{
-        'Fname': data["firstname"],
-        'Lname': data["lastname"],
-        'address': data["address"],
-        'gender': data["gender"],
-        'hcp': data["hcp"],
-        "dob": data["dob"],
-        "UsertypeId": 1,
-        'AspNetUsersId': storage.read("aspUserID").toString(),
-        "FcmToken": storage.read("fcmToken").toString(),
-      });
+    }, {
+      'Fname': data["firstname"],
+      'Lname': data["lastname"],
+      'address': data["address"],
+      'gender': data["gender"],
+      'hcp': data["hcp"],
+      "dob": data["dob"],
+      "UsertypeId": 1,
+      "FcmToken": storage.read("fcmToken"),
+    });
   }
+
+  register(Map data, Map data2) {
+    print(
+        "<<-----------REGISTERING USER ACCOUNT WITH PAYLOAD : $data ---------->");
+    try {
+      isProcessing(true);
+      AuthProvider().register(data).then((resp) async {
+        print('User data:${resp.info!.accessToken.toString()}');
+        clearTextEditingControllers();
+        isProcessing(false);
+        storage.write("accessToken", resp.info!.accessToken);
+        storage.write("refreshToken", resp.info!.refreshToken);
+        Map<String, dynamic> tkn =
+            Jwt.parseJwt('${storage.read("accessToken")}');
+        print("DECODED TOKEN INFORMATION ---> $tkn");
+        storage.write("aspUserID", tkn['Id']);
+        print(
+            "ASP USER ID READ FROM STRORAGE --> ${storage.read("aspUserID")}");
+        createUser(data2);
+      }, onError: (err) {
+        isProcessing(false);
+        ShowSnackBar(
+            title: "Error",
+            message: err.toString(),
+            backgroundColor: Colors.red);
+      });
+    } catch (exception) {
+      isProcessing(false);
+      print("<---------EXCEPTION2--------->" + exception.toString());
+      ShowSnackBar(
+          title: "Exception",
+          message: exception.toString(),
+          backgroundColor: Colors.red);
+    }
+  }
+
   void createUser(Map data) {
+    data['AspNetUsersId'] = storage.read("aspUserID");
     print("<<-----------SAVING USER DETAILS WITH PAYLOAD : $data ---------->");
     try {
       isProcessing(true);
       UserProvider().createUser(data).then((resp) {
         clearTextEditingControllers();
+        print("USER DETAILS REG RESPONE FROM PROVIDER -->$resp");
         storage.write("user", resp);
         var usrPayload = userFromJson(storage.read('user'));
         var usr = usrPayload.payload!.first;
@@ -197,6 +233,7 @@ class AuthenticationController extends GetxController {
             backgroundColor: Colors.green);
         Get.offAllNamed('/home');
       }, onError: (err) {
+        print(">>>>----SAVING USER DETAILS ERROR : $err");
         isProcessing(false);
         //TODO : You need to delete the account if creation has failed
         //TODO: Write a delete account function and call it from here
@@ -208,39 +245,8 @@ class AuthenticationController extends GetxController {
       });
     } catch (exception) {
       isProcessing(false);
-      print("<---------EXCEPTION2--------->" + exception.toString());
-      ShowSnackBar(
-          title: "Exception",
-          message: exception.toString(),
-          backgroundColor: Colors.red);
-    }
-  }
-  register(Map data,Map data2)  {
-    print(
-        "<<-----------REGISTERING USER ACCOUNT WITH PAYLOAD : $data ---------->");
-    try {
-      isProcessing(true);
-      AuthProvider().register(data).then((resp) async {
-        print('User data:${resp.info!.accessToken.toString()}');
-        clearTextEditingControllers();
-        isProcessing(false);
-        storage.write("accessToken", resp.info!.accessToken);
-        storage.write("refreshToken", resp.info!.refreshToken);
-        Map<String, dynamic> tkn =
-            Jwt.parseJwt('${storage.read("accessToken")}');
-        storage.write("aspUserID", tkn['Id']);
-        print(tkn.toString());
-        createUser(data2);
-      }, onError: (err) {
-        isProcessing(false);
-        ShowSnackBar(
-            title: "Error",
-            message: err.toString(),
-            backgroundColor: Colors.red);
-      });
-    } catch (exception) {
-      isProcessing(false);
-      print("<---------EXCEPTION2--------->" + exception.toString());
+      print("<---------SAVING USER DETAILS EXCEPTION2--------->" +
+          exception.toString());
       ShowSnackBar(
           title: "Exception",
           message: exception.toString(),
@@ -288,8 +294,6 @@ class AuthenticationController extends GetxController {
     }
     return true;
   }
-
-
 
   // clear the controllers
   void clearTextEditingControllers() {

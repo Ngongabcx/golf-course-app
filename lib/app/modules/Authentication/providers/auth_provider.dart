@@ -38,7 +38,7 @@ class AuthProvider extends BaseProvider {
   Future<Auth> register(Map data) async {
     try {
       final response =
-          await dio.post("$kApiBaseURL/authmanagement/register", data: data);
+          await dio.post("$kNewApiBaseURL/api/authmanagement/register", data: data);
       Map<String, dynamic> resp = jsonDecode(response.data.toString());
       return Auth.fromJson(resp);
     } on DioError catch (exception) {
