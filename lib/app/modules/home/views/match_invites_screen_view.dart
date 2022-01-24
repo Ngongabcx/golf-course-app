@@ -31,7 +31,7 @@ class MatchInvitesScreenView extends GetView<HomeController> {
                       rightCallBack: () => Get.to(SettingScreenView()),
                     ),
                     Container(
-                      margin: EdgeInsets.only(top: 20),
+                      margin: EdgeInsets.only(top: 20.0, bottom: 20.0),
                       padding: EdgeInsets.symmetric(horizontal: 25),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -46,7 +46,7 @@ class MatchInvitesScreenView extends GetView<HomeController> {
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.only(top: 20),
+                      margin: EdgeInsets.only(top: 20.0),
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       child: SearchCard(),
                     ),
@@ -84,7 +84,7 @@ class MatchInviteListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 25),
+      padding: EdgeInsets.symmetric(horizontal: 25.0),
       child: RefreshIndicator(
         onRefresh: _pullRefresh,
         child: ListView.builder(
@@ -97,7 +97,7 @@ class MatchInviteListView extends StatelessWidget {
                 );
               },
               child: Padding(
-                padding: const EdgeInsets.only(top: 20.0),
+                padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
                 child: MatchInvitationsCard(
                   invitations: invitations![index],
                 ),

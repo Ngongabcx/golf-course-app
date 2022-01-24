@@ -57,7 +57,7 @@ class MatchInvitationsCard extends StatelessWidget {
                     style: Theme.of(context).textTheme.bodyText1,
                   ),
                   SizedBox(
-                    height: 2,
+                    height: 2.0,
                   ),
                   Text(invitations.compDate.toString(),
                       style: GcmsTheme.darkTextTheme.bodyText2),

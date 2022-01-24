@@ -125,6 +125,7 @@ class UserProvider extends BaseProvider {
         logToChannel({"text": "$kError CREATE USER FAILURE\n $exception"});
         return Future.error(exception.response!.statusMessage.toString());
       }
+      print(exception.response!.statusMessage.toString());
       logToChannel({"text": "$kError CREATE USER FAILURE\n $exception"});
       print('<<===CREATING USER EXCEPTION ==> $exception');
       return Future.error(

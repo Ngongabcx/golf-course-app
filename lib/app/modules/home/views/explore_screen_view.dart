@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:gcms/app/modules/ScoresInputScreen/views/confirm_results_screen.dart';
 import 'package:gcms/constants/constant.dart';
 import 'package:get/get.dart';
 
@@ -71,7 +72,9 @@ class ExploreScreenView extends GetView {
           text1: 'Health',
           icon: FontAwesomeIcons.heartbeat,
           color: kPrimaryColor,
-          onTapped: () {},
+          onTapped: () {
+            Get.to(ConfirmResultsScreenView());
+          },
         ),
       ],
     );

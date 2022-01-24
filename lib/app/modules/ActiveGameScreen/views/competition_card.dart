@@ -70,7 +70,7 @@ class CompetitionCard extends StatelessWidget {
                         width: 5,
                       ),
                       Text(
-                        '18 holes',
+                        competition.gameHoles.toString(),
                         style: Theme.of(context).textTheme.headline6,
                       ),
                       SizedBox(

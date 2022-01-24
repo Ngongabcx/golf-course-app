@@ -139,7 +139,8 @@ class MatchSetupView extends StatelessWidget {
                             label: 'Pick match Time',
                             name: 'Match Time',
                             callback: (newSelectedDate) {
-                                  String formattedTime = DateFormat('kk:mm'). format(newSelectedDate!);
+                              String formattedTime =
+                                  DateFormat('kk:mm').format(newSelectedDate!);
                               _controller.selectedTime.value =
                                   formattedTime.toString();
                               print(formattedTime);
@@ -166,11 +167,11 @@ class MatchSetupView extends StatelessWidget {
                                 compName: _controller.matchname.text,
                                 gametypeId: 1,
                                 compFee: 0.0,
-                                compDate: _controller.formatter
-                                    .format(_controller.selectedDate.value),
+                                compDate:
+                                    _controller.selectedDate.value.toString(),
                                 time: _controller.selectedTime.value,
-                                gameHoles: _controller.numberOfHolesToPlay.value
-                                    ,
+                                gameHoles:
+                                    _controller.numberOfHolesToPlay.value,
                                 startingHole: _controller.startingHole.value,
                                 courseId: int.parse(
                                     _controller.selectedCourseId.value),

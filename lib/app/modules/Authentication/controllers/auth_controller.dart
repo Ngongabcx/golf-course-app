@@ -214,7 +214,7 @@ class AuthenticationController extends GetxController {
       isProcessing(true);
       UserProvider().createUser(data).then((resp) {
         clearTextEditingControllers();
-        print("USER DETAILS REG RESPONE FROM PROVIDER -->$resp");
+        print("USER DETAILS REG RESPONSE FROM PROVIDER -->$resp");
         storage.write("user", resp);
         var usrPayload = userFromJson(storage.read('user'));
         var usr = usrPayload.payload!.first;

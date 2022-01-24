@@ -9,69 +9,70 @@ User userFromJson(String str) => User.fromJson(json.decode(str));
 String userToJson(User data) => json.encode(data.toJson());
 
 class User {
-    User({
-        this.status,
-        this.success,
-        this.message,
-        this.error,
-        this.payload,
-    });
+  User({
+    this.status,
+    this.success,
+    this.message,
+    this.error,
+    this.payload,
+  });
 
-    int? status;
-    bool? success;
-    String? message;
-    String? error;
-    List<Payload>? payload;
+  int? status;
+  bool? success;
+  String? message;
+  String? error;
+  List<Payload>? payload;
 
-    factory User.fromJson(Map<String, dynamic> json) => User(
+  factory User.fromJson(Map<String, dynamic> json) => User(
         status: json["status"],
         success: json["success"],
         message: json["message"],
         error: json["error"],
-        payload: List<Payload>.from(json["payload"].map((x) => Payload.fromJson(x))),
-    );
+        payload:
+            List<Payload>.from(json["payload"].map((x) => Payload.fromJson(x))),
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "status": status,
         "success": success,
         "message": message,
         "error": error,
         "payload": List<dynamic>.from(payload!.map((x) => x.toJson())),
-    };
+      };
 }
 
 class Payload {
-    Payload({
-        this.id,
-        this.fname,
-        this.lname,
-        this.address,
-        this.dob,
-        this.gender,
-        this.dateJoined,
-        this.image,
-        this.imageThumbnail,
-        this.hcp,
-        this.fcmToken,
-        this.aspNetUsers,
-        this.usertype,
-    });
+  Payload({
+    this.id,
+    this.fname,
+    this.lname,
+    this.address,
+    this.dob,
+    this.gender,
+    this.dateJoined,
+    this.image,
+    this.imageThumbnail,
+    this.hcp,
+    this.fcmToken,
+    this.aspNetUsers,
+    this.usertype,
+  });
 
-    int? id;
-    String? fname;
-    String? lname;
-    String? address;
-    DateTime? dob;
-    String? gender;
-    DateTime? dateJoined;
-    String? image;
-    String? imageThumbnail;
-    int? hcp;
-    String? fcmToken;
-    AspNetUsers? aspNetUsers;
-    Usertype? usertype;
+  int? id;
+  String? fname;
+  String? lname;
+  String? address;
+  DateTime? dob;
+  String? gender;
+  DateTime? dateJoined;
+  String? image;
+  String? imageThumbnail;
+  int? hcp;
+  String? fcmToken;
+  AspNetUsers? aspNetUsers;
+  Usertype? usertype;
 
-    factory Payload.fromJson(Map<String, dynamic> json) => Payload(
+  factory Payload.fromJson(Map<String, dynamic> json) => Payload(
         id: json["id"],
         fname: json["fname"],
         lname: json["lname"],
@@ -85,9 +86,9 @@ class Payload {
         fcmToken: json["fcmToken"],
         aspNetUsers: AspNetUsers.fromJson(json["aspNetUsers"]),
         usertype: Usertype.fromJson(json["usertype"]),
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "id": id,
         "fname": fname,
         "lname": lname,
@@ -101,83 +102,81 @@ class Payload {
         "fcmToken": fcmToken,
         "aspNetUsers": aspNetUsers!.toJson(),
         "usertype": usertype!.toJson(),
-    };
+      };
 }
 
 class AspNetUsers {
-    AspNetUsers({
-        this.id,
-        this.userName,
-        this.email,
-        this.phoneNumber,
-    });
+  AspNetUsers({
+    this.id,
+    this.userName,
+    this.email,
+    this.phoneNumber,
+  });
 
-    String? id;
-    String? userName;
-    String? email;
-    dynamic phoneNumber;
+  String? id;
+  String? userName;
+  String? email;
+  dynamic phoneNumber;
 
-    factory AspNetUsers.fromJson(Map<String, dynamic> json) => AspNetUsers(
+  factory AspNetUsers.fromJson(Map<String, dynamic> json) => AspNetUsers(
         id: json["id"],
         userName: json["userName"],
         email: json["email"],
         phoneNumber: json["phoneNumber"],
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "id": id,
         "userName": userName,
         "email": email,
         "phoneNumber": phoneNumber,
-    };
+      };
 }
 
 class Usertype {
-    Usertype({
-        this.id,
-        this.name,
-        this.description,
-    });
+  Usertype({
+    this.id,
+    this.name,
+    this.description,
+  });
 
-    int? id;
-    Name? name;
-    Description? description;
+  int? id;
+  Name? name;
+  Description? description;
 
-    factory Usertype.fromJson(Map<String, dynamic> json) => Usertype(
+  factory Usertype.fromJson(Map<String, dynamic> json) => Usertype(
         id: json["id"],
         name: nameValues.map![json["name"]],
         description: descriptionValues.map![json["description"]],
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "id": id,
         "name": nameValues.reverse![name],
         "description": descriptionValues.reverse![description],
-    };
+      };
 }
 
 enum Description { THIS_IS_JUST_A_SAMPLE_TEST_USER }
 
 final descriptionValues = EnumValues({
-    "This is just a sample test user": Description.THIS_IS_JUST_A_SAMPLE_TEST_USER
+  "This is just a sample test user": Description.THIS_IS_JUST_A_SAMPLE_TEST_USER
 });
 
 enum Name { NORMAL_USER }
 
-final nameValues = EnumValues({
-    "Normal user": Name.NORMAL_USER
-});
+final nameValues = EnumValues({"Normal user": Name.NORMAL_USER});
 
 class EnumValues<T> {
-    Map<String, T>? map;
-    Map<T, String>? reverseMap;
+  Map<String, T>? map;
+  Map<T, String>? reverseMap;
 
-    EnumValues(this.map);
+  EnumValues(this.map);
 
-    Map<T, String>? get reverse {
-        if (reverseMap == null) {
-            reverseMap = map!.map((k, v) => new MapEntry(v, k));
-        }
-        return reverseMap;
+  Map<T, String>? get reverse {
+    if (reverseMap == null) {
+      reverseMap = map!.map((k, v) => new MapEntry(v, k));
     }
+    return reverseMap;
+  }
 }
