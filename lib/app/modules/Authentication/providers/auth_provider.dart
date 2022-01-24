@@ -12,9 +12,9 @@ class AuthProvider extends BaseProvider {
   Future<Auth> login(Map data) async {
     try {
       final response =
-          await dio.post("$kApiBaseURL/authmanagement/login", data: data);
+          await dio.post("$kNewApiBaseURL/api/authmanagement/login", data: data);
       print(
-          "*************LOGGIN RESPONSE --> ${response.statusCode.toString()}");
+          "*************LOGIN RESPONSE --> ${response.statusCode.toString()}");
       print('<<===LOGIN RESPONSE BODY==> ${response.data.toString()}');
       Map<String, dynamic> resp = jsonDecode((response.data.toString()));
       return Auth.fromJson(resp);
@@ -47,7 +47,7 @@ class AuthProvider extends BaseProvider {
           Map<String, dynamic> res =
               jsonDecode((exception.response!.data.toString()));
           print("RESPONSE STATUS --------->>>> $res");
-          return Future.error(exception.response!.data["errors"].toString());
+          return Future.error(exception.response!.data["errors"][0].toString());
         }
         return Future.error(exception.response!.statusMessage.toString());
       }

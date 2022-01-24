@@ -75,10 +75,17 @@ class SetupScreenController extends GetxController {
 
   getPlayers() {
     print("GETTING PLAYERS.......................");
+    var userIdString = storage.read('userId');
+    var userId = int.parse(userIdString);
+    print("USer id to remove from list of players  ---> $userId");
     try {
       isProcessing(true);
       UserProvider().getPlayers().then((resp) async {
         lstPlayers.addAll(resp);
+        print("List of players before removing the user  ---> $lstPlayers");
+        var usr = lstPlayers.where((p0) => p0.id==userId);
+        lstPlayers.remove(usr.first);
+        print("List of players after removing the user  ---> $lstPlayers");
         print("PLAYERS SUCCESSFULLY FETCHED  ---> ${resp.first.fname}");
         isProcessing(false);
       }, onError: (err) {

@@ -6,7 +6,7 @@ class BaseProvider {
   final Dio dio = Dio(BaseOptions(
     connectTimeout: kConnectionTimeout,
     receiveTimeout: kReceiveTimeout,
-    baseUrl: kApiBaseURL,
+    baseUrl: kNewApiBaseURL,
     contentType: 'application/json',
     responseType: ResponseType.plain,
     receiveDataWhenStatusError: true,

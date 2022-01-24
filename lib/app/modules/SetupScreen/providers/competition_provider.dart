@@ -13,7 +13,8 @@ class CompetitionProvider extends BaseProvider {
     print(
         "PROVIDER RECEIVED DATA TO SEND AS CREATE COMPETITION REQUEST ----> $data");
     try {
-      final response = await dio.post("$kNewApiBaseURL/api/competitions/with-ids", data: data);
+      final response = await dio
+          .post("$kNewApiBaseURL/api/competitions/with-ids", data: data);
       print(
           "CREATE COMPETITION RESPONDED WITH --> ${response.data.toString()}");
       return competitionFromJson(response.data.toString());
@@ -37,7 +38,7 @@ class CompetitionProvider extends BaseProvider {
   Future<Competition> getCompetition(int id) async {
     print("PROVIDER RECEIVED ID TO PASS AS GET COMPETITION REQUEST ----> $id");
     try {
-      final response = await dio.get("$kApiBaseURL/competitions/$id");
+      final response = await dio.get("$kNewApiBaseURL/api/competitions/$id");
       Map<String, dynamic> resp =
           Map<String, dynamic>.from(jsonDecode(response.data.toString()));
       return Competition.fromJson(resp);

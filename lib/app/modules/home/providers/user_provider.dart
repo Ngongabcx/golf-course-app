@@ -12,7 +12,7 @@ class UserProvider extends BaseProvider {
   Future<Auth> refreshToken(Map data) async {
     try {
       final response = await dio
-          .post("$kApiBaseURL/authmanagement/refreshToken", data: data);
+          .post("$kNewApiBaseURL/api/authmanagement/refreshToken", data: data);
       Map<String, dynamic> resp = jsonDecode(response.data.toString());
       return Auth.fromJson(resp);
     } on DioError catch (exception) {
@@ -119,10 +119,10 @@ class UserProvider extends BaseProvider {
           Map<String, dynamic> res =
               jsonDecode((exception.response!.data.toString()));
           print("RESPONSE CREATE USER DETAILS --------->>>> $res");
-          //logToChannel({"text": "$kError CREATE USER FAILURE\n ${exception.response!.data}"});
+          logToChannel({"text": "$kError CREATE USER FAILURE\n ${exception.response!.data}"});
           return Future.error(exception.response!.data["message"].toString());
         }
-        //logToChannel({"text": "$kError CREATE USER FAILURE\n $exception"});
+        logToChannel({"text": "$kError CREATE USER FAILURE\n $exception"});
         return Future.error(exception.response!.statusMessage.toString());
       }
       logToChannel({"text": "$kError CREATE USER FAILURE\n $exception"});

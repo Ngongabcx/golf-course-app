@@ -10,12 +10,13 @@ class MatchInvitesProvider extends BaseProvider {
   Future<Competition> getMatchInvites(String id) async {
     print("######---ID FOR FETCHING MATCH INVITATIONS   ---> $id");
     try {
-      final response = await dio.get("$kApiBaseURL/invites/all/$id");
+      final response = await dio.get("$kNewApiBaseURL/api/competitions/user/all/$id");
       return competitionFromJson(response.data.toString());
     } on DioError catch (exception) {
       if (exception.response != null) {
         if (exception.response!.statusCode == 400) {
-       print("RESPONSE #### --------->>>> ${exception.response!.statusCode}");
+          print(
+              "RESPONSE #### --------->>>> ${exception.response!.statusCode}");
           Map<String, dynamic> res =
               jsonDecode((exception.response!.data.toString()));
           print("RESPONSE STATUS --------->>>> $res");

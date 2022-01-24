@@ -9,7 +9,7 @@ import 'package:gcms/constants/constant.dart';
 class ActiveGamesProvider extends BaseProvider {
   Future<Competition> getActiveMatches() async {
     try {
-      final response = await dio.get("$kApiBaseURL/competitions");
+      final response = await dio.get("$kNewApiBaseURL/api/competitions");
       return competitionFromJson(response.data.toString());
     } on DioError catch (exception) {
       if (exception.response != null) {

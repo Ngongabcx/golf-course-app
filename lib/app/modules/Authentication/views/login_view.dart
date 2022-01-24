@@ -51,28 +51,8 @@ class LoginView extends GetView<AuthenticationController> {
                                 ),
                               ),
                             ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 0.0),
-                              child: Row(
-                                children: [
-                                  GestureDetector(
-                                    onTap: () {
-                                      Get.toNamed('/activate-account');
-                                    },
-                                    child: Text(
-                                      'Activate account',
-                                      style: TextStyle(
-                                        color: kWhiteColor,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w700,
-                                        decoration: TextDecoration.underline,
-                                        decorationThickness: 1,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
+                            SizedBox(
+                              height: 8,
                             ),
                             Padding(
                               padding: const EdgeInsets.only(bottom: 0),

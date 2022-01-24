@@ -11,7 +11,7 @@ class CustomDropDownMultiSelect extends GetView {
   final bool showClearButton;
   final bool showSearchField;
   final List<String> itemList;
-  final SetupScreenController _controller = Get.find();
+  final _controller = Get.find<SetupScreenController>();
 
   CustomDropDownMultiSelect(
     this.label,
@@ -68,8 +68,9 @@ class CustomDropDownMultiSelect extends GetView {
             print("FILTERED ITEM PLAYERS ----> ${_players[0].id}");
           }
           print("FILTERED ITEM ID ----> ${_controller.selectedPlayers}");
-        }
-        //selectedItems: ["Tiger Woods"],
-        );
+          var userIdString = _controller.storage.read('userId');
+          var userId = int.parse(userIdString);
+          _controller.selectedPlayers.add(userId);
+        });
   }
 }
