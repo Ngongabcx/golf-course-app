@@ -73,7 +73,7 @@ class ExploreScreenView extends GetView {
           icon: FontAwesomeIcons.heartbeat,
           color: kPrimaryColor,
           onTapped: () {
-            Get.to(ConfirmResultsScreenView());
+            //Get.to(ConfirmResultsScreenView());
           },
         ),
       ],

@@ -62,11 +62,11 @@ class AppPages {
     //   page: () => ScoresInputScreenView(),
     //   binding: ScoresInputScreenBinding(),
     // ),
-    GetPage(
-      name: _Paths.CONFIRM_RESULTS,
-      page: () => ConfirmResultsScreenView(),
-       binding: ScoresInputScreenBinding(),
-     ),
+    // GetPage(
+    //   name: _Paths.CONFIRM_RESULTS,
+    //   page: () => ConfirmResultsScreenView(),
+    //    binding: ScoresInputScreenBinding(),
+    //  ),
     GetPage(
       name: _Paths.NOTIFICATIONS,
       page: () => NotificationsView(),

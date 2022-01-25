@@ -1,8 +1,10 @@
+
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:gcms/app/modules/Messages/controllers/messages_controller.dart';
 import 'package:gcms/app/modules/Notifications/models/notification_model.dart';
 import 'package:gcms/app/modules/Notifications/providers/database/notifications_database.dart';
+import 'package:gcms/app/modules/ScoresInputScreen/views/confirm_results_screen.dart';
 import 'package:get/get.dart';
 
 class LocalNotificationsService {
@@ -15,10 +17,10 @@ class LocalNotificationsService {
             android: AndroidInitializationSettings("@mipmap/ic_launcher"));
 
     _notificationsPlugin.initialize(initializationSettings,
-        onSelectNotification: (String? viewUri) async {
-      if (viewUri != null) {
-        print("U R L is not EMPTY------------------------$viewUri");
-        Get.toNamed("/$viewUri");
+        onSelectNotification: (String? details) async {
+      if (details != null) {
+        print("U R L is not EMPTY------------------------$details");
+        Get.to(()=>ConfirmResultsScreenView(details));
       } else {
         print("U R L is EMPTY------------------------");
         Get.defaultDialog(
@@ -29,7 +31,7 @@ class LocalNotificationsService {
 
   static void displayNotification(RemoteMessage message) async {
     print("DISPLAY NOTIFICATION IN LOCAL NOTIFICATIONS FILE CALLED");
-    print("NOTIFICATION DATA ---> ${message.data["details"]["viewUri"]}");
+    print("NOTIFICATION DATA ---> ${message.data}");
     //Save the notification to local db
     var notification = FCMNotification(
         isRead: false,
@@ -54,7 +56,7 @@ class LocalNotificationsService {
         message.data['title'],
         message.data['body'],
         notificationDetails,
-        payload: message.data["details"]["viewUri"],
+        payload: message.data["details"],
       );
       await NotificationsDatabase.instance.create(notification);
       await MessagesController().refreshNotifications();
