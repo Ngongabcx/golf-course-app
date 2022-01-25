@@ -29,7 +29,9 @@ class MessagesController extends GetxController {
     notificationsList.clear();
     var notification =
         await NotificationsDatabase.instance.getAllNotifications();
-    notificationsList.addAll(notification);
+    //notificationsList.addAll(notification);
+    notificationsList.assignAll(notification);
+    ever(notificationsList, (_) => notification);
     print("NOTIFICATION LIST LENGTH ======= " +
         notificationsList.length.toString());
     isProcessing.value = false;

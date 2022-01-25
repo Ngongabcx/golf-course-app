@@ -150,6 +150,7 @@ class Player {
     this.gender,
     this.dateJoined,
     this.image,
+    this.imageThumbnail,
     this.hcp,
     this.fcmToken,
     this.aspNetUsers,
@@ -163,6 +164,7 @@ class Player {
   String? gender;
   DateTime? dateJoined;
   String? image;
+  String? imageThumbnail;
   int? hcp;
   String? fcmToken;
   AspNetUsers? aspNetUsers;
@@ -176,6 +178,7 @@ class Player {
         gender: json["gender"],
         dateJoined: DateTime.parse(json["dateJoined"]),
         image: json["image"],
+        imageThumbnail: json["imageThumbnail"],
         hcp: json["hcp"],
         fcmToken: json["fcmToken"],
         aspNetUsers: AspNetUsers.fromJson(json["aspNetUsers"]),
@@ -190,6 +193,7 @@ class Player {
         "gender": gender,
         "dateJoined": dateJoined!.toIso8601String(),
         "image": image,
+        "imageThumbnail":imageThumbnail,
         "hcp": hcp,
         "fcmToken": fcmToken,
         "aspNetUsers": aspNetUsers!.toJson(),

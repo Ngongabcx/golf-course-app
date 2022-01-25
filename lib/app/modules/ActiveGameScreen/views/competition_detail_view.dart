@@ -152,13 +152,13 @@ class CompetitionDetailView extends GetView {
                                 ? CircleAvatar(
                                     radius: 30.0,
                                     backgroundImage: AssetImage(competition
-                                        .competitionPlayers![index].player!.image
+                                        .competitionPlayers![index].player!.imageThumbnail
                                         .toString()),
                                   )
                                 : CircleAvatar(
                                     radius: 30.0,
                                     backgroundImage: NetworkImage(competition
-                                        .competitionPlayers![index].player!.image
+                                        .competitionPlayers![index].player!.imageThumbnail
                                         .toString()),
                                   ),
                             SizedBox(

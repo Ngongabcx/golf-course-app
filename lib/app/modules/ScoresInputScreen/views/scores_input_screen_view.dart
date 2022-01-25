@@ -97,7 +97,7 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                     padding: EdgeInsets.only(top: 0.0),
                                     child: CircleImage(
                                       imageProvider: NetworkImage(
-                                          '${recordingFor!.image}'),
+                                          '${recordingFor!.imageThumbnail}'),
                                     ),
                                   ),
                                   Text(

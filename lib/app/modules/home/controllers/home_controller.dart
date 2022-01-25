@@ -104,7 +104,7 @@ class HomeController extends GetxController {
         storage.write("username", usr.aspNetUsers!.userName.toString());
         storage.write(
             "name", usr.fname.toString() + " " + usr.lname.toString());
-        storage.write("profilePic", usr.image);
+        storage.write("profilePic", usr.imageThumbnail);
         if (usr.aspNetUsers!.userName!.isEmpty) {
           ShowSnackBar(
               title: "USER DETAILS Error",

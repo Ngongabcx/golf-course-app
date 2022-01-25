@@ -17,7 +17,7 @@ class LocalNotificationsService {
     _notificationsPlugin.initialize(initializationSettings,
         onSelectNotification: (String? viewUri) async {
       if (viewUri != null) {
-        print("U R L is not EMPTY------------------------");
+        print("U R L is not EMPTY------------------------$viewUri");
         Get.toNamed("/$viewUri");
       } else {
         print("U R L is EMPTY------------------------");
@@ -29,7 +29,7 @@ class LocalNotificationsService {
 
   static void displayNotification(RemoteMessage message) async {
     print("DISPLAY NOTIFICATION IN LOCAL NOTIFICATIONS FILE CALLED");
-    print("NOTIFICATION DATA ---> ${message.data.toString()}");
+    print("NOTIFICATION DATA ---> ${message.data["details"]["viewUri"]}");
     //Save the notification to local db
     var notification = FCMNotification(
         isRead: false,
@@ -54,7 +54,7 @@ class LocalNotificationsService {
         message.data['title'],
         message.data['body'],
         notificationDetails,
-        payload: message.data["viewUri"],
+        payload: message.data["details"]["viewUri"],
       );
       await NotificationsDatabase.instance.create(notification);
       await MessagesController().refreshNotifications();
