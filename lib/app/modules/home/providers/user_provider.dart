@@ -10,6 +10,7 @@ import '../user_model.dart';
 
 class UserProvider extends BaseProvider {
   Future<Auth> refreshToken(Map data) async {
+    print("PAYLOAD TO REFRESH TOKEN -->$data");
     try {
       final response = await dio
           .post("$kNewApiBaseURL/api/authmanagement/refreshToken", data: data);
@@ -119,7 +120,9 @@ class UserProvider extends BaseProvider {
           Map<String, dynamic> res =
               jsonDecode((exception.response!.data.toString()));
           print("RESPONSE CREATE USER DETAILS --------->>>> $res");
-          logToChannel({"text": "$kError CREATE USER FAILURE\n ${exception.response!.data}"});
+          logToChannel({
+            "text": "$kError CREATE USER FAILURE\n ${exception.response!.data}"
+          });
           return Future.error(exception.response!.data["message"].toString());
         }
         logToChannel({"text": "$kError CREATE USER FAILURE\n $exception"});

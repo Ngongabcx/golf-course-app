@@ -127,10 +127,9 @@ class AuthenticationController extends GetxController {
         isProcessing(false);
         print("ACCESSTOKEN ---> " + resp.info!.accessToken.toString());
         print("REFRESHTOKEN ---> " + resp.info!.refreshToken.toString());
-        ShowSnackBar(
-            title: "Success",
-            message: "Login Successful.",
-            backgroundColor: Colors.green);
+        DateTime? expiryDate =
+            Jwt.getExpiryDate(resp.info!.accessToken.toString());
+        print("ACCESS TOKEN IS EXPIRING AT ---> $expiryDate");
         storage.write("isLoggedIn", true);
         storage.write("accessToken", resp.info!.accessToken);
         storage.write("refreshToken", resp.info!.refreshToken);
@@ -226,6 +225,8 @@ class AuthenticationController extends GetxController {
         storage.write(
             "name", usr.fname.toString() + " " + usr.lname.toString());
         storage.write("profilePic", usr.image);
+        storage.write("name", '${usr.fname} ${usr.lname}');
+        storage.write("email", usr.aspNetUsers!.email);
         isProcessing(false);
         ShowSnackBar(
             title: "Success",

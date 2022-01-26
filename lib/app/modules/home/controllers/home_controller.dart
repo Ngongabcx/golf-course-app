@@ -61,12 +61,14 @@ class HomeController extends GetxController {
     if (storage.read("accessToken") != null) {
       String token = storage.read("accessToken");
       if (Jwt.isExpired(token)) {
+        print("<------------TOKEN IS EXPIRED------------>");
         await refreshToken({
           'accessToken': token.toString(),
           'refreshToken': storage.read("refreshToken").toString(),
         });
       }
     } else {
+       print("<------------TOKEN NOT FOUND IN STORAGE------------>");
       Get.offAllNamed('/login');
     }
     getUserDetails();
@@ -81,10 +83,12 @@ class HomeController extends GetxController {
         isProcessing(false);
       }, onError: (err) {
         isProcessing(false);
+         print("<------------REFRESH TOKEN ERRORED: $err------------>");
         Get.offAllNamed('/login');
       });
     } catch (exception) {
       isProcessing(false);
+      print("<------------REFRESH TOKEN EXCEPTION: $exception------------>");
       Get.offAllNamed('/login');
     }
   }
@@ -102,9 +106,9 @@ class HomeController extends GetxController {
         storage.write("userId", usr.id.toString());
         storage.write("hcp", usr.hcp!.toInt());
         storage.write("username", usr.aspNetUsers!.userName.toString());
-        storage.write(
-            "name", usr.fname.toString() + " " + usr.lname.toString());
         storage.write("profilePic", usr.imageThumbnail);
+        storage.write("name", '${usr.fname} ${usr.lname}');
+        storage.write("email", usr.aspNetUsers!.email);
         if (usr.aspNetUsers!.userName!.isEmpty) {
           ShowSnackBar(
               title: "USER DETAILS Error",

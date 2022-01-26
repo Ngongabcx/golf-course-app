@@ -143,7 +143,7 @@ class ConfirmResultsScreenView extends GetView<ScoresInputScreenController> {
                                               ),
                                             ),
                                             Text(
-                                              '${DateFormat('kk:mm').format(scorecard["payload"]["Timestamp"])}',
+                                              '${scorecard["payload"]["Timestamp"].substring(0,8)}',
                                               style: TextStyle(
                                                 color: Colors.black,
                                               ),
@@ -191,7 +191,7 @@ class ConfirmResultsScreenView extends GetView<ScoresInputScreenController> {
                                     ElevatedButton(
                                       onPressed: () async {
                                         await _controller.updateScorecard(
-                                            {"confirmed": true}, "scorecardId");
+                                            {"confirmed": "true"}, "${scorecard["payload"]["Id"]}");
                                         Get.back();
                                       },
                                       style: ButtonStyle(

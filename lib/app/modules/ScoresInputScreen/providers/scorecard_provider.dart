@@ -40,7 +40,7 @@ class ScorecardProvider extends BaseProvider {
     print("Posting scores --> $data");
     print("POST SCORES URL CREATED --> $url");
     try {
-      final response = await dio.post(url, data: data);
+      final response = await dio.put(url, data: data);
       Map<String, dynamic> resp = jsonDecode(response.data.toString());
       return Scorecard.fromJson(resp);
     } on DioError catch (exception) {
