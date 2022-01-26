@@ -7,12 +7,18 @@ class CustomDatePicker extends GetView {
   final String name;
   final String label;
   final Function(DateTime?)? callback;
+  DateTime? initialValue;
 
-  CustomDatePicker({required this.name, required this.label, this.callback});
+  CustomDatePicker(
+      {required this.name,
+      required this.label,
+      this.callback,
+      this.initialValue});
   @override
   Widget build(BuildContext context) {
     return FormBuilderDateTimePicker(
       name: name,
+      initialValue: initialValue,
       inputType: InputType.date,
       decoration: InputDecoration(
         labelText: label,

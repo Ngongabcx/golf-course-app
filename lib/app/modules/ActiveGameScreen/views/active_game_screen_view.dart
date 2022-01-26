@@ -15,7 +15,6 @@ class ActiveGameScreenView extends GetView<ActiveGameScreenController> {
 
   @override
   Widget build(BuildContext context) {
-    var matches = _controller.matches.value.payload;
     return Scaffold(
       backgroundColor: kBackgroundColor,
       body: SafeArea(
@@ -92,10 +91,17 @@ class ActiveGamesListView extends StatelessWidget {
       child: RefreshIndicator(
         onRefresh: _pullRefresh,
         child: ListView.builder(
+          controller: _controller.scrollController,
           // 5
           itemCount: _controller.matches.value.payload!.length,
           // 6
           itemBuilder: (BuildContext context, int index) {
+            if (index == _controller.matches.value.payload!.length - 1 &&
+                _controller.isMoreDataAvailable.value == true) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
             // 7
 
             // 7
@@ -110,7 +116,7 @@ class ActiveGamesListView extends StatelessWidget {
                 },
                 // 11
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 20.0),
+                  padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
                   child: CompetitionCard(
                       competition: _controller.matches.value.payload![index]),
                 ),
@@ -123,6 +129,6 @@ class ActiveGamesListView extends StatelessWidget {
   }
 
   Future<void> _pullRefresh() async {
-    await _controller.getActiveMatches();
+    await _controller.getActiveMatches(_controller.page);
   }
 }

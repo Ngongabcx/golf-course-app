@@ -9,14 +9,10 @@ class CustomTextFormFieldWidget extends GetView {
   final bool isObscure;
   final bool isNumber;
   final bool isEmail;
-  CustomTextFormFieldWidget(
-    this.textEditingController,
-    this.label,
-    this.onValidate,
-    this.isObscure,
-    this.isNumber,
-    this.isEmail,
-  );
+  String? initialValue;
+  CustomTextFormFieldWidget(this.textEditingController, this.label,
+      this.onValidate, this.isObscure, this.isNumber, this.isEmail,
+      {this.initialValue});
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -27,6 +23,8 @@ class CustomTextFormFieldWidget extends GetView {
               ? TextInputType.emailAddress
               : TextInputType.text,
       // validator: (()=>onValidate()),
+
+      initialValue: initialValue,
       obscureText: isObscure,
       decoration: InputDecoration(
         labelText: label,

@@ -11,6 +11,7 @@ import 'package:gcms/app/modules/commonWidgets/custom_appbar.dart';
 import 'package:gcms/constants/constant.dart';
 import 'package:gcms/theme/gcms_theme.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class CompetitionDetailView extends GetView {
   CompetitionDetailView({required this.competition});
@@ -80,7 +81,7 @@ class CompetitionDetailView extends GetView {
                     ),
                     Expanded(
                       child: Text(
-                        competition.compDate.toString(),
+                        DateFormat.yMMMMd().format(competition.compDate!),
                         // tournament.compDate.toString(),
                         style: Theme.of(context).textTheme.bodyText2,
                       ),
@@ -152,14 +153,18 @@ class CompetitionDetailView extends GetView {
                                 ? CircleAvatar(
                                     radius: 30.0,
                                     backgroundImage: AssetImage(competition
-                                        .competitionPlayers![index].player!.imageThumbnail
+                                        .competitionPlayers![index]
+                                        .player!
+                                        .image
                                         .toString()),
                                   )
                                 : CircleAvatar(
                                     radius: 30.0,
-                                    backgroundImage: NetworkImage(competition
-                                        .competitionPlayers![index].player!.imageThumbnail
-                                        .toString()),
+                                    backgroundImage: NetworkImage((competition
+                                        .competitionPlayers![index]
+                                        .player!
+                                        .imageThumbnail
+                                        .toString())),
                                   ),
                             SizedBox(
                               width: 10.0,

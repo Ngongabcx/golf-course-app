@@ -38,12 +38,12 @@ class MatchSetupView extends StatelessWidget {
                   ),
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 25),
-                    margin: EdgeInsets.only(top: 20),
+                    margin: EdgeInsets.only(top: 30),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
-                          'Setup up your Match',
+                          'Setup up details\nthis match',
                           style: Theme.of(context).textTheme.headline2,
                         ),
                       ],
@@ -146,42 +146,44 @@ class MatchSetupView extends StatelessWidget {
                               print(formattedTime);
                             },
                           ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Align(
+                            alignment: FractionalOffset.bottomCenter,
+                            child: Obx(
+                              () {
+                                //Dismissing the keyboard
+                                return CustomButton(
+                                  textStyle: GcmsTheme.lightTextTheme.bodyText2,
+                                  text: _controller.isProcessing.value == true
+                                      ? 'Processing'
+                                      : 'Confirm',
+                                  onPressed: () {
+                                    var comp = CompetitionRequest(
+                                      compName: _controller.matchname.text,
+                                      gametypeId: 1,
+                                      compFee: 0.0,
+                                      compDate: _controller.selectedDate.value
+                                          .toString(),
+                                      time: _controller.selectedTime.value,
+                                      gameHoles:
+                                          _controller.numberOfHolesToPlay.value,
+                                      startingHole:
+                                          _controller.startingHole.value,
+                                      courseId: int.parse(
+                                          _controller.selectedCourseId.value),
+                                      playerIds: _controller.selectedPlayers
+                                          .cast<int>(),
+                                    );
+                                    _controller
+                                        .createCompetition(comp.toJson());
+                                  },
+                                );
+                              },
+                            ),
+                          ),
                         ],
-                      ),
-                    ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 25, vertical: 25),
-                    child: Align(
-                      alignment: FractionalOffset.bottomCenter,
-                      child: Obx(
-                        () {
-                          //Dismissing the keyboard
-                          return CustomButton(
-                            textStyle: GcmsTheme.lightTextTheme.bodyText2,
-                            text: _controller.isProcessing.value == true
-                                ? 'Processing'
-                                : 'Confirm',
-                            onPressed: () {
-                              var comp = CompetitionRequest(
-                                compName: _controller.matchname.text,
-                                gametypeId: 1,
-                                compFee: 0.0,
-                                compDate:
-                                    _controller.selectedDate.value.toString(),
-                                time: _controller.selectedTime.value,
-                                gameHoles:
-                                    _controller.numberOfHolesToPlay.value,
-                                startingHole: _controller.startingHole.value,
-                                courseId: int.parse(
-                                    _controller.selectedCourseId.value),
-                                playerIds:
-                                    _controller.selectedPlayers.cast<int>(),
-                              );
-                              _controller.createCompetition(comp.toJson());
-                            },
-                          );
-                        },
                       ),
                     ),
                   ),

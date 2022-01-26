@@ -7,9 +7,12 @@ import 'package:gcms/app/services/slack_logger.dart';
 import 'package:gcms/constants/constant.dart';
 
 class ActiveGamesProvider extends BaseProvider {
-  Future<Competition> getActiveMatches() async {
+  Future<Competition> getActiveMatches(var page) async {
     try {
-      final response = await dio.get("$kNewApiBaseURL/api/competitions");
+      var url =
+          "$kNewApiBaseURL/api/competitions?PageSize=$kPageSize&PageNumber=$page";
+      final response = await dio.get(url);
+      print(url);
       return competitionFromJson(response.data.toString());
     } on DioError catch (exception) {
       if (exception.response != null) {

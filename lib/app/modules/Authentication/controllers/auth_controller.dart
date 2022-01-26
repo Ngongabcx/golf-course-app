@@ -206,6 +206,39 @@ class AuthenticationController extends GetxController {
     }
   }
 
+  updateRegister(Map data) {
+    print("<<-----------UPDATING PASSWORD WITH PAYLOAD : $data ---------->");
+    try {
+      isProcessing(true);
+      AuthProvider().updateRegister(data).then((resp) async {
+        print('User data:${resp.info!.accessToken.toString()}');
+        clearTextEditingControllers();
+        isProcessing(false);
+        storage.write("accessToken", resp.info!.accessToken);
+        storage.write("refreshToken", resp.info!.refreshToken);
+        Map<String, dynamic> tkn =
+            Jwt.parseJwt('${storage.read("accessToken")}');
+        print("DECODED TOKEN INFORMATION ---> $tkn");
+        storage.write("aspUserID", tkn['Id']);
+        print(
+            "ASP USER ID READ FROM STRORAGE --> ${storage.read("aspUserID")}");
+      }, onError: (err) {
+        isProcessing(false);
+        ShowSnackBar(
+            title: "Error",
+            message: err.toString(),
+            backgroundColor: Colors.red);
+      });
+    } catch (exception) {
+      isProcessing(false);
+      print("<---------EXCEPTION2--------->" + exception.toString());
+      ShowSnackBar(
+          title: "Exception",
+          message: exception.toString(),
+          backgroundColor: Colors.red);
+    }
+  }
+
   void createUser(Map data) {
     data['AspNetUsersId'] = storage.read("aspUserID");
     print("<<-----------SAVING USER DETAILS WITH PAYLOAD : $data ---------->");

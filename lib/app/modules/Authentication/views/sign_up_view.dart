@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/Authentication/controllers/auth_controller.dart';
+import 'package:gcms/app/modules/SettingScreen/controllers/setting_screen_controller.dart';
 import 'package:gcms/app/modules/commonWidgets/customButton.dart';
 import 'package:gcms/constants/constant.dart';
 import 'package:gcms/theme/gcms_theme.dart';
@@ -10,6 +11,7 @@ import 'form_submit.dart';
 
 class SignUpView extends GetView<AuthenticationController> {
   final signUpController = Get.put(AuthenticationController());
+  final settingController = Get.put(SettingScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -105,6 +107,8 @@ class SignUpView extends GetView<AuthenticationController> {
                                           signUpController.hcpController.text,
                                       "dob":
                                           signUpController.selectedDate.value,
+                                      "image": settingController
+                                          .selectedImagePath.value,
                                       "usertypeId": 1,
                                       "FcmToken": signUpController.storage
                                           .read("fcmToken")

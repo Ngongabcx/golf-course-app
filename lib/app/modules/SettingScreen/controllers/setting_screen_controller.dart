@@ -101,6 +101,34 @@ class SettingScreenController extends GetxController {
     }
   }
 
+  void updateUserDetails(Map data, String id) {
+    try {
+      isProcessing(true);
+      UserProvider().updateUserDetails(data, id).then((resp) {
+        isProcessing(false);
+        ShowSnackBar(
+            title: "Success",
+            message: "User Successfully Created.",
+            backgroundColor: Colors.green);
+        Get.offAllNamed('/home');
+      }, onError: (err) {
+        isProcessing(false);
+        print("UPDATE USER ERROR ---> ${err.toString()}");
+        ShowSnackBar(
+            title: "Error",
+            message: err.toString(),
+            backgroundColor: Colors.red);
+      });
+    } catch (exception) {
+      isProcessing(false);
+      print("<---------EXCEPTION2--------->" + exception.toString());
+      ShowSnackBar(
+          title: "Exception",
+          message: exception.toString(),
+          backgroundColor: Colors.red);
+    }
+  }
+
   void biometricsSecurity() {
     bool isSecSet = storage.read("isBiometricActivated");
     if (isSecSet) {

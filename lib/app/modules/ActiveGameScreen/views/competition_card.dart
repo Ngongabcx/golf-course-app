@@ -3,7 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gcms/app/modules/SetupScreen/competition_model.dart';
 import 'package:gcms/constants/constant.dart';
 import 'package:gcms/theme/gcms_theme.dart';
-import 'package:get/get_utils/src/extensions/string_extensions.dart';
+import 'package:intl/intl.dart';
 
 class CompetitionCard extends StatelessWidget {
   final Payload competition;
@@ -52,8 +52,8 @@ class CompetitionCard extends StatelessWidget {
                     height: 2,
                   ),
                   Text(
-                    competition.compName.toString(),
-                    style: Theme.of(context).textTheme.bodyText1,
+                    '${DateFormat.yMMMMd().format(competition.compDate!)} at ${competition.compTime}',
+                    style: Theme.of(context).textTheme.bodyText2,
                   ),
                   SizedBox(
                     height: 15,
@@ -77,13 +77,7 @@ class CompetitionCard extends StatelessWidget {
                         width: 10,
                       ),
                       Text(
-                        competition.gametype?.name
-                                .toString()
-                                .split('.')
-                                .last
-                                .replaceAll('_', ' ')
-                                .capitalizeFirst ??
-                            '',
+                        competition.gametype!.name.toString(),
                         style: GcmsTheme.darkTextTheme.bodyText2,
                       ),
                     ],

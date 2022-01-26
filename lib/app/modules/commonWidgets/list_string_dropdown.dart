@@ -9,18 +9,21 @@ class ListStringDropdown extends GetView {
   final String? hint;
   final List<String> listItems;
   final Function(String?)? callback;
+  String? initialValue;
 
   ListStringDropdown(
       {required this.name,
       this.label,
       this.hint,
       required this.listItems,
-      this.callback});
+      this.callback,
+      this.initialValue});
 
   @override
   Widget build(BuildContext context) {
     return FormBuilderDropdown(
       name: name,
+      initialValue: initialValue,
       decoration: InputDecoration(
         labelText: label,
         labelStyle: const TextStyle(

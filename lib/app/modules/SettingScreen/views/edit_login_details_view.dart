@@ -11,7 +11,7 @@ import 'package:get/get.dart';
 import 'package:provider/src/provider.dart';
 
 class EditLoginDetailsView extends GetView {
-  final _controller = Get.find<AuthenticationController>();
+  final _controller = Get.put(AuthenticationController());
 
   @override
   Widget build(BuildContext context) {
@@ -33,14 +33,14 @@ class EditLoginDetailsView extends GetView {
                 shrinkWrap: true,
                 physics: ScrollPhysics(),
                 children: [
-                  CustomTextFormFieldWidget(
-                    _controller.signUpEmailController,
-                    "Email",
-                    (s) {},
-                    false,
-                    false,
-                    true,
-                  ),
+                  // CustomTextFormFieldWidget(
+                  //   _controller.signUpEmailController,
+                  //   "Email",
+                  //   (s) {},
+                  //   false,
+                  //   false,
+                  //   true,
+                  // ),
                   SizedBox(
                     height: 10.0,
                   ),
@@ -80,7 +80,11 @@ class EditLoginDetailsView extends GetView {
                           ? 'Processing'
                           : 'Submit'),
                       textStyle: GcmsTheme.lightTextTheme.bodyText2,
-                      onPressed: () {},
+                      onPressed: () {
+                        _controller.updateRegister({
+                          'password': _controller.passwordController.text,
+                        });
+                      },
                     );
                   }),
                 ],

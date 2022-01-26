@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:gcms/app/modules/TournamentsScreen/tournament_model.dart';
+import 'package:gcms/app/modules/SetupScreen/competition_model.dart';
 import 'package:gcms/constants/constant.dart';
+import 'package:intl/intl.dart';
 
 class TournamentsCard extends StatelessWidget {
-  // final Payload tournament;
-  final Tournament tournament;
+  final Payload tournament;
 
   const TournamentsCard({Key? key, required this.tournament}) : super(key: key);
 
@@ -33,7 +33,7 @@ class TournamentsCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        tournament.course,
+                        tournament.course!.courseName.toString(),
                         style: Theme.of(context).textTheme.headline3,
                       ),
                       Icon(
@@ -43,7 +43,7 @@ class TournamentsCard extends StatelessWidget {
                     ],
                   ),
                   Text(
-                    tournament.compName,
+                    tournament.compName.toString(),
                     style: Theme.of(context).textTheme.headline6,
                   ),
                   SizedBox(
@@ -52,7 +52,7 @@ class TournamentsCard extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        '${tournament.compDate} ${tournament.compTime}',
+                        '${DateFormat.yMMMMd().format(tournament.compDate!)} at ${tournament.compTime} hrs',
                         style: Theme.of(context).textTheme.bodyText2,
                       ),
                     ],
@@ -72,14 +72,14 @@ class TournamentsCard extends StatelessWidget {
                         width: 5,
                       ),
                       Text(
-                        '${tournament.numberOfHoles} holes',
+                        '${tournament.gameHoles.toString()} holes',
                         style: Theme.of(context).textTheme.headline6,
                       ),
                       SizedBox(
                         width: 10,
                       ),
                       Text(
-                        tournament.gametype,
+                        tournament.gametype!.name.toString(),
                         style: Theme.of(context).textTheme.bodyText2,
                       ),
                     ],
@@ -87,7 +87,7 @@ class TournamentsCard extends StatelessWidget {
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );
