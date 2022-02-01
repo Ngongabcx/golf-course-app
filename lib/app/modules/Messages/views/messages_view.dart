@@ -24,7 +24,7 @@ class MessagesView extends GetView<MessagesController> {
                         Expanded(
                           child: Container(
                               padding: EdgeInsets.only(
-                                  left: 16, right: 16, bottom: 8,top:12),
+                                  left: 16, right: 16, bottom: 8, top: 12),
                               child: Expanded(
                                   child: RefreshWidget(
                                 keyRefresh: controller.keyRefresh.value,
@@ -40,62 +40,60 @@ class MessagesView extends GetView<MessagesController> {
                                         return Container(
                                             //margin: EdgeInsets.only(bottom: 10),
                                             child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              children: [
-                                                Expanded(
-                                                  child: CircleAvatar(
-                                                    radius: 20,
-                                                    backgroundColor:
-                                                        Colors.transparent,
-                                                    child: Icon(
-                                                      Icons.mail_outline,
-                                                      color: kPrimaryColor,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            Expanded(
+                                              child: CircleAvatar(
+                                                radius: 20,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                child: Icon(
+                                                  Icons.mail_outline,
+                                                  color: kPrimaryColor,
+                                                ),
+                                              ),
+                                            ),
+                                            Expanded(
+                                              flex: 6,
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    controller
+                                                        .notificationsList[
+                                                            index]
+                                                        .title,
+                                                    style: TextStyle(
+                                                      fontSize: 16,
+                                                      color: Colors.black54,
                                                     ),
                                                   ),
-                                                ),
-                                                Expanded(
-                                                  flex: 6,
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Text(
-                                                        controller
-                                                            .notificationsList[
-                                                                index]
-                                                            .title,
-                                                        style: TextStyle(
-                                                          fontSize: 16,
-                                                          color:
-                                                              Colors.black54,
-                                                        ),
-                                                      ),
-                                                      SizedBox(
-                                                        height: 10.0,
-                                                      ),
-                                                      Text(
-                                                        controller
-                                                            .notificationsList[
-                                                                index]
-                                                            .body,
-                                                        style: TextStyle(
-                                                          fontSize: 14,
-                                                        ),
-                                                      ),
-                                                      const SizedBox(
-                                                        height: 25.0,
-                                                        child: Divider(
-                                                          color: Colors.grey,
-                                                          thickness: 0.3,
-                                                        ),
-                                                      ),
-                                                    ],
+                                                  SizedBox(
+                                                    height: 10.0,
                                                   ),
-                                                ),
-                                              ],
-                                            ));
+                                                  Text(
+                                                    controller
+                                                        .notificationsList[
+                                                            index]
+                                                        .body,
+                                                    style: TextStyle(
+                                                      fontSize: 14,
+                                                    ),
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 25.0,
+                                                    child: Divider(
+                                                      color: Colors.grey,
+                                                      thickness: 0.3,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ));
                                       });
                                 }),
                               ))),
@@ -111,7 +109,10 @@ class MessagesView extends GetView<MessagesController> {
         }),
         floatingActionButton: new FloatingActionButton(
             elevation: 0.0,
-            child: new Icon(Icons.refresh,color: kPrimaryColor,),
+            child: new Icon(
+              Icons.refresh,
+              color: kPrimaryColor,
+            ),
             backgroundColor: Colors.transparent,
             onPressed: controller.refreshNotifications));
   }

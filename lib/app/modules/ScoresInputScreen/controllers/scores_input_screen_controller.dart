@@ -170,7 +170,8 @@ class ScoresInputScreenController extends GetxController {
           backgroundColor: Colors.red);
     }
   }
-    declineScorecard(Map data, String scorecardId) {
+
+  declineScorecard(Map data, String scorecardId) {
     try {
       isProcessing(true);
       ScorecardProvider().updateScorecard(data, scorecardId).then((resp) {
@@ -227,6 +228,8 @@ class ScoresInputScreenController extends GetxController {
           message: exception.toString(),
           backgroundColor: Colors.red);
     }
+    compPlayers.refresh();
+    compPlayers.clear();
   }
 
   calculateResult() {

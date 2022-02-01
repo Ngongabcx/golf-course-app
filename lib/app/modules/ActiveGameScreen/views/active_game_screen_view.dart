@@ -51,7 +51,7 @@ class ActiveGameScreenView extends GetView<ActiveGameScreenController> {
                         child: SearchCard(),
                       ),
                       Expanded(
-                        child: controller.matches.value.payload == null
+                        child: controller.matchList.value == null
                             ? Center(
                                 child: Text(
                                   "No Matches.",
@@ -91,11 +91,11 @@ class ActiveGamesListView extends StatelessWidget {
         child: ListView.builder(
           controller: _controller.scrollController,
           // 5
-          itemCount: _controller.matches.value.payload!.length,
+          itemCount: _controller.matchList.length,
           // 6
           itemBuilder: (BuildContext context, int index) {
-            if (index == _controller.matches.value.payload!.length - 1 &&
-                _controller.isMoreDataAvailable.value == true) {
+            if (index == _controller.matchList.length - 1 &&
+                _controller.isProcessing.value == true) {
               return Center(
                 child: CircularProgressIndicator(),
               );
@@ -109,14 +109,14 @@ class ActiveGamesListView extends StatelessWidget {
                 onTap: () {
                   Get.to(
                     CompetitionDetailView(
-                        competition: _controller.matches.value.payload![index]),
+                        competition: _controller.matchList[index]),
                   );
                 },
                 // 11
                 child: Padding(
                   padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
                   child: CompetitionCard(
-                      competition: _controller.matches.value.payload![index]),
+                      competition: _controller.matchList[index]),
                 ),
               );
             });

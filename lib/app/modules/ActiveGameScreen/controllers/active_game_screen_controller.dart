@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/ActiveGameScreen/providers/active_games_provider.dart';
 import 'package:gcms/app/modules/SetupScreen/competition_model.dart';
+import 'package:gcms/app/modules/SetupScreen/competition_model.dart' as compt;
 import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
 import 'package:get/get.dart';
 
 class ActiveGameScreenController extends GetxController {
   //TODO: Implement ActiveGameScreenController
   var matches = Competition().obs;
+  var matchList = <compt.Payload>[].obs;
   var isProcessing = false.obs;
   ScrollController scrollController = ScrollController();
   var isMoreDataAvailable = false.obs;
@@ -37,6 +39,7 @@ class ActiveGameScreenController extends GetxController {
       isProcessing(true);
       await ActiveGamesProvider().getActiveMatches(page).then((resp) async {
         matches.value = resp;
+        matchList.addAll(resp.payload!);
         print("MATCHES ---> ${matches.toString()}");
         debugPrint(
             "NUMBER  OF  COMPETITIONS ---> ${matches.value.payload!.length}");
@@ -65,7 +68,8 @@ class ActiveGameScreenController extends GetxController {
   void paginateMatches() {
     scrollController.addListener(() {
       if (scrollController.position.pixels ==
-          scrollController.position.maxScrollExtent) {
+              scrollController.position.maxScrollExtent &&
+          !isMoreDataAvailable()) {
         print("reached end");
         page++;
         getMoreMatches(page);
@@ -76,22 +80,26 @@ class ActiveGameScreenController extends GetxController {
 
   void getMoreMatches(var page) async {
     print('GET MORE MATCHES CALLED');
+
     try {
+      isProcessing(true);
       await ActiveGamesProvider().getActiveMatches(page).then((resp) {
-        matches.value = resp;
+        matchList.addAll(resp.payload!);
         if (matches.value.payload!.length > 0) {
           isMoreDataAvailable(true);
-          print("MATCHES ---> ${matches.toString()}");
+          print("MATCHES ---> ${matches.value.toString()}");
           debugPrint(
               "NUMBER  OF  COMPETITIONS ---> ${matches.value.payload!.length}");
           debugPrint(
               "FIRST COMPETITION NAME ---> ${matches.value.payload!.first.compName}");
+          isProcessing(false);
         } else {
           isMoreDataAvailable(false);
           ShowSnackBar(
               title: "Message",
               message: "No more items",
               backgroundColor: Colors.red);
+          isProcessing(false);
         }
       }, onError: (err) {
         isMoreDataAvailable(false);
@@ -99,6 +107,7 @@ class ActiveGameScreenController extends GetxController {
             title: "Error",
             message: err.toString(),
             backgroundColor: Colors.red);
+        isProcessing(false);
       });
     } catch (exception) {
       isMoreDataAvailable(false);
@@ -106,6 +115,7 @@ class ActiveGameScreenController extends GetxController {
           title: "Error",
           message: exception.toString(),
           backgroundColor: Colors.red);
+      isProcessing(false);
     }
   }
 }

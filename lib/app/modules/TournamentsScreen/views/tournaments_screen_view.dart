@@ -15,16 +15,16 @@ class TournamentsScreenView extends GetView<TournamentsScreenController> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      return controller.isProcessing.value == true
-          ? Loader()
-          : Scaffold(
-              backgroundColor: kBackgroundColor,
-              body: SafeArea(
-                child: Container(
-                  height: MediaQuery.of(context).size.height,
-                  width: MediaQuery.of(context).size.height,
-                  child: Column(
+    return Scaffold(
+      backgroundColor: kBackgroundColor,
+      body: SafeArea(
+        child: Obx(() {
+          return Container(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.height,
+            child: _controller.isProcessing.value == true
+                ? Loader()
+                : Column(
                     children: [
                       CustomAppBar(
                         Icons.arrow_back_ios_outlined,
@@ -66,9 +66,9 @@ class TournamentsScreenView extends GetView<TournamentsScreenController> {
                       ),
                     ],
                   ),
-                ),
-              ),
-            );
-    });
+          );
+        }),
+      ),
+    );
   }
 }

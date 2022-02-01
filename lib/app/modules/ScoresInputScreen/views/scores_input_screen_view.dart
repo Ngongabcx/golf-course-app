@@ -67,7 +67,7 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                               child: Text('End Match'),
                               onTap: () {
                                 Get.defaultDialog(
-                                  confirmTextColor: Colors.white,
+                                    confirmTextColor: Colors.white,
                                     title: "End Match",
                                     content: Text(
                                         "You will lose all your scores and match progress. This action cannot be reversed. Confirm ending match?"),
@@ -75,7 +75,6 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                       Get.toNamed("/home");
                                     },
                                     onCancel: () {});
-
                               },
                             ),
                           ],
