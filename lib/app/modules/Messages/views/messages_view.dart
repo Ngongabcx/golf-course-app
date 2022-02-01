@@ -24,7 +24,7 @@ class MessagesView extends GetView<MessagesController> {
                         Expanded(
                           child: Container(
                               padding: EdgeInsets.only(
-                                  left: 16, right: 16, bottom: 8),
+                                  left: 16, right: 16, bottom: 8,top:12),
                               child: Expanded(
                                   child: RefreshWidget(
                                 keyRefresh: controller.keyRefresh.value,
