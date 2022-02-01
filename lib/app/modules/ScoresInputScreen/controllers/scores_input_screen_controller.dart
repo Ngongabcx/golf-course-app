@@ -170,6 +170,33 @@ class ScoresInputScreenController extends GetxController {
           backgroundColor: Colors.red);
     }
   }
+    declineScorecard(Map data, String scorecardId) {
+    try {
+      isProcessing(true);
+      ScorecardProvider().updateScorecard(data, scorecardId).then((resp) {
+        isProcessing(false);
+        ShowSnackBar(
+            title: "Declined",
+            message: "Your have declined the score.",
+            backgroundColor: Colors.red);
+        Get.back();
+      }, onError: (err) {
+        isProcessing(false);
+        print("DECLINE SCORES ERROR ---> ${err.toString()}");
+        ShowSnackBar(
+            title: "Error",
+            message: "Failed to delcine score please try again.",
+            backgroundColor: Colors.red);
+      });
+    } catch (exception) {
+      isProcessing(false);
+      print("<---------EXCEPTION2--------->" + exception.toString());
+      ShowSnackBar(
+          title: "Exception",
+          message: exception.toString(),
+          backgroundColor: Colors.red);
+    }
+  }
 
   getAllPlayers(String competitionId) {
     try {

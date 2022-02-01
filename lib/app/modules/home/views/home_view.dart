@@ -45,33 +45,34 @@ class HomeView extends GetView<HomeController> {
                 ? Loader()
                 : HomeController.pages[_controller.selectedIndex.value]);
       }),
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Theme.of(context).textSelectionTheme.selectionColor,
-        currentIndex: controller.selectedIndex.value.toInt(),
-        onTap: controller.onItemTapped,
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.explore_outlined,
-              color: Colors.black,
+      bottomNavigationBar: Obx(()=> BottomNavigationBar(
+          selectedItemColor: Theme.of(context).textSelectionTheme.selectionColor,
+          currentIndex: controller.selectedIndex.value.toInt(),
+          onTap: controller.onItemTapped,
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.explore_outlined,
+                color: Colors.black,
+              ),
+              label: 'Explore',
             ),
-            label: 'Explore',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.leaderboard_outlined,
-              color: Colors.black,
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.leaderboard_outlined,
+                color: Colors.black,
+              ),
+              label: 'Leaderboard',
             ),
-            label: 'Leaderboard',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.notifications_outlined,
-              color: Colors.black,
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.notifications_outlined,
+                color: Colors.black,
+              ),
+              label: 'Notifications',
             ),
-            label: 'Notifications',
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -85,6 +85,7 @@ class SettingScreenController extends GetxController {
           'image': res['payload']['imagePath'],
           'imageThumbnail': res['payload']['thumbnailPath'],
         }, id).then((resp) {
+          storage.write("profilePic", res['payload']['thumbnailPath']);
           ShowSnackBar(
               title: "Success",
               message: "Image Successfully uploaded.",

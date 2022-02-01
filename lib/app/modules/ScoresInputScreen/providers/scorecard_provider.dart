@@ -37,8 +37,8 @@ class ScorecardProvider extends BaseProvider {
   }
   Future<Scorecard> updateScorecard(data, scorecardId) async {
     var url = "$kNewApiBaseURL/api/scorecards/$scorecardId";
-    print("Posting scores --> $data");
-    print("POST SCORES URL CREATED --> $url");
+    print("Updating scores --> $data");
+    print("UPDATE SCORES URL CREATED --> $url");
     try {
       final response = await dio.put(url, data: data);
       Map<String, dynamic> resp = jsonDecode(response.data.toString());
@@ -56,6 +56,31 @@ class ScorecardProvider extends BaseProvider {
       }
       logToChannel({"text": "$kError UPDATE SCORE CARD FAILURE\n $exception"});
       print('<<===UPDATING SCORE CARD EXCEPTION ==> $exception');
+      return Future.error(
+          "An error occured please check your internet connection.".toString());
+    }
+  }
+    Future<Scorecard> declineScorecard(data, scorecardId) async {
+    var url = "$kNewApiBaseURL/api/scorecards/confirm-score/$scorecardId";
+    print("Declining scores --> $data");
+    print("DECLINE SCORES URL CREATED --> $url");
+    try {
+      final response = await dio.put(url, data: data);
+      Map<String, dynamic> resp = jsonDecode(response.data.toString());
+      return Scorecard.fromJson(resp);
+    } on DioError catch (exception) {
+      if (exception.response != null) {
+        if (exception.response!.statusCode == 400) {
+          Map<String, dynamic> res =
+              jsonDecode((exception.response!.data.toString()));
+          print("RESPONSE EXCEPTION --------->>>> $res");
+          return Future.error(exception.response!.data["error"].toString());
+        }
+        print("RESPONSE EXCEPTION --------->>>> $exception");
+        return Future.error(exception.response!.statusMessage.toString());
+      }
+      logToChannel({"text": "$kError DECLINE SCORE CARD FAILURE\n $exception"});
+      print('<<===DECLINE SCORE CARD EXCEPTION ==> $exception');
       return Future.error(
           "An error occured please check your internet connection.".toString());
     }

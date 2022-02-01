@@ -166,7 +166,11 @@ class ConfirmResultsScreenView extends GetView<ScoresInputScreenController> {
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
                                     ElevatedButton(
-                                      onPressed: () {},
+                                      onPressed: () async {
+                                        await _controller.declineScorecard(
+                                            {"confirmed": "false"}, "${scorecard["payload"]["Id"]}");
+                                        Get.back();
+                                      },
                                       style: ButtonStyle(
                                         backgroundColor:
                                             MaterialStateProperty.all(
