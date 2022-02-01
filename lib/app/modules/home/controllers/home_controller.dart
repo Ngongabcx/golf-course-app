@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:gcms/app/modules/Messages/views/messages_view.dart';
 import 'package:gcms/app/modules/Notifications/models/notification_model.dart';
 import 'package:gcms/app/modules/Notifications/providers/database/notifications_database.dart';
 import 'package:gcms/app/modules/Notifications/views/notifications_view.dart';
+import 'package:gcms/app/modules/SettingScreen/views/setting_screen_view.dart';
 import 'package:gcms/app/modules/SetupScreen/competition_model.dart';
 import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
 import 'package:gcms/app/modules/home/providers/match_invites_provider.dart';
@@ -26,8 +28,8 @@ class HomeController extends GetxController {
   var matchInvites = Competition().obs;
   static List<Widget> pages = <Widget>[
     ExploreScreenView(),
-    Icon(Icons.note_add_outlined),
-    NotificationsView(),
+    Icon(Icons.check),
+    MessagesView(),
   ];
   @override
   void onInit() async {
@@ -42,20 +44,26 @@ class HomeController extends GetxController {
     name.value = '';
     NotificationsDatabase.instance.close();
   }
-
   void onItemTapped(int index) {
-    switch (index) {
-      case 0:
-        Get.to(() => ExploreScreenView());
-        break;
-      case 1:
-        Icon(Icons.note_add_outlined);
-        break;
-      case 2:
-        Get.toNamed("/messages");
-        break;
-    }
+    print("I HAVE BEEN TAPPED WITH INDEX  --> $index");
+    print("SELECTED INDEX VALUE BEFORE ---> $selectedIndex");
+    selectedIndex.value = index;
+    print("SELECTED INDEX VALUE AFTER ---> $selectedIndex");
   }
+
+  // void onItemTapped(int index) {
+  //   switch (index) {
+  //     case 0:
+  //       Get.to(() => ExploreScreenView());
+  //       break;
+  //     case 1:
+  //       Icon(Icons.note_add_outlined);
+  //       break;
+  //     case 2:
+  //       Get.toNamed("/messages");
+  //       break;
+  //   }
+  // }
 
   validateToken() async {
     if (storage.read("accessToken") != null) {
@@ -68,7 +76,7 @@ class HomeController extends GetxController {
         });
       }
     } else {
-       print("<------------TOKEN NOT FOUND IN STORAGE------------>");
+      print("<------------TOKEN NOT FOUND IN STORAGE------------>");
       Get.offAllNamed('/login');
     }
     getUserDetails();
@@ -83,7 +91,7 @@ class HomeController extends GetxController {
         isProcessing(false);
       }, onError: (err) {
         isProcessing(false);
-         print("<------------REFRESH TOKEN ERRORED: $err------------>");
+        print("<------------REFRESH TOKEN ERRORED: $err------------>");
         Get.offAllNamed('/login');
       });
     } catch (exception) {

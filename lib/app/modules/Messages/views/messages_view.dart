@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gcms/app/modules/SettingScreen/views/setting_screen_view.dart';
-import 'package:gcms/app/modules/commonWidgets/custom_appbar.dart';
 import 'package:gcms/app/modules/commonWidgets/refresh_widget.dart';
 import 'package:gcms/constants/constant.dart';
 import 'package:get/get.dart';
@@ -8,6 +6,7 @@ import 'package:get/get.dart';
 import '../controllers/messages_controller.dart';
 
 class MessagesView extends GetView<MessagesController> {
+  final controller = Get.put(MessagesController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,12 +21,6 @@ class MessagesView extends GetView<MessagesController> {
               : controller.notificationsList.length > 0
                   ? Column(
                       children: [
-                        CustomAppBar(
-                          Icons.arrow_back_ios_outlined,
-                          Icons.settings_outlined,
-                          leftCallBack: () => Get.back(),
-                          rightCallBack: () => Get.to(SettingScreenView()),
-                        ),
                         Expanded(
                           child: Container(
                               padding: EdgeInsets.only(
@@ -45,27 +38,24 @@ class MessagesView extends GetView<MessagesController> {
                                       itemBuilder:
                                           (BuildContext context, int index) {
                                         return Container(
-                                            margin: EdgeInsets.only(bottom: 10),
+                                            //margin: EdgeInsets.only(bottom: 10),
                                             child: Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.start,
                                               children: [
                                                 Expanded(
                                                   child: CircleAvatar(
-                                                    radius: 25,
+                                                    radius: 20,
                                                     backgroundColor:
-                                                        Colors.teal,
+                                                        Colors.transparent,
                                                     child: Icon(
                                                       Icons.mail_outline,
-                                                      color: Colors.white,
+                                                      color: kPrimaryColor,
                                                     ),
                                                   ),
                                                 ),
-                                                SizedBox(
-                                                  width: 4,
-                                                ),
                                                 Expanded(
-                                                  flex: 4,
+                                                  flex: 6,
                                                   child: Column(
                                                     crossAxisAlignment:
                                                         CrossAxisAlignment
@@ -79,7 +69,7 @@ class MessagesView extends GetView<MessagesController> {
                                                         style: TextStyle(
                                                           fontSize: 16,
                                                           color:
-                                                              Colors.grey[600],
+                                                              Colors.black54,
                                                         ),
                                                       ),
                                                       SizedBox(
@@ -121,8 +111,8 @@ class MessagesView extends GetView<MessagesController> {
         }),
         floatingActionButton: new FloatingActionButton(
             elevation: 0.0,
-            child: new Icon(Icons.refresh),
-            backgroundColor: kPrimaryColor,
+            child: new Icon(Icons.refresh,color: kPrimaryColor,),
+            backgroundColor: Colors.transparent,
             onPressed: controller.refreshNotifications));
   }
 }
