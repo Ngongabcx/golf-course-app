@@ -15,6 +15,7 @@ class SignUpView extends GetView<AuthenticationController> {
 
   @override
   Widget build(BuildContext context) {
+    final form;
     return Scaffold(
       body: Theme(
         data: Theme.of(context).copyWith(
@@ -84,7 +85,7 @@ class SignUpView extends GetView<AuthenticationController> {
                                   : 'Next',
                               textStyle: GcmsTheme.lightTextTheme.bodyText2,
                               onPressed: () async {
-                                if (signUpController.currentStep.value == 2) {
+                                if (signUpController.currentStep.value == 1) {
                                   print('Send data to the server');
                                   if (signUpController.isProcessing.value ==
                                       false) {
@@ -107,8 +108,6 @@ class SignUpView extends GetView<AuthenticationController> {
                                           signUpController.hcpController.text,
                                       "dob":
                                           signUpController.selectedDate.value,
-                                      "image": settingController
-                                          .selectedImagePath.value,
                                       "usertypeId": 1,
                                       "FcmToken": signUpController.storage
                                           .read("fcmToken")

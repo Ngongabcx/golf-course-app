@@ -1,5 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="zm.co.bcx.gcms">
+
   <application android:label="gcms" android:usesCleartextTraffic="true" android:icon="@mipmap/ic_launcher">
+    <activity
+        android:name="com.yalantis.ucrop.UCropActivity"
+        android:screenOrientation="portrait"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
     <activity android:name=".MainActivity" android:launchMode="singleTop" android:theme="@style/Theme.AppCompat.Light" android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode" android:screenOrientation="portrait" android:hardwareAccelerated="true" android:windowSoftInputMode="adjustResize" android:requestLegacyExternalStorage="true">
       <!-- Specifies an Android theme to apply to this Activity as soon as
                  the Android process has started. This theme is visible to the user

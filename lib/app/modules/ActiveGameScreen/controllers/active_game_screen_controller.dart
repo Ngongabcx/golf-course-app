@@ -13,7 +13,7 @@ class ActiveGameScreenController extends GetxController {
   var page = 1;
   final count = 0.obs;
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
     getActiveMatches(page);
     paginateMatches();
@@ -81,6 +81,11 @@ class ActiveGameScreenController extends GetxController {
         matches.value = resp;
         if (matches.value.payload!.length > 0) {
           isMoreDataAvailable(true);
+          print("MATCHES ---> ${matches.toString()}");
+          debugPrint(
+              "NUMBER  OF  COMPETITIONS ---> ${matches.value.payload!.length}");
+          debugPrint(
+              "FIRST COMPETITION NAME ---> ${matches.value.payload!.first.compName}");
         } else {
           isMoreDataAvailable(false);
           ShowSnackBar(
@@ -88,12 +93,6 @@ class ActiveGameScreenController extends GetxController {
               message: "No more items",
               backgroundColor: Colors.red);
         }
-
-        print("MATCHES ---> ${matches.toString()}");
-        debugPrint(
-            "NUMBER  OF  COMPETITIONS ---> ${matches.value.payload!.length}");
-        debugPrint(
-            "FIRST COMPETITION NAME ---> ${matches.value.payload!.first.compName}");
       }, onError: (err) {
         isMoreDataAvailable(false);
         ShowSnackBar(

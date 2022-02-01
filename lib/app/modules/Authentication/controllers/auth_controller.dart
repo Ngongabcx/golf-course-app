@@ -25,6 +25,7 @@ class AuthenticationController extends GetxController {
   var storage = GetStorage();
   var isProcessing = false.obs;
   var tkn;
+
   late final TextEditingController usernameController,
       passwordController,
       signUpEmailController,
@@ -206,12 +207,12 @@ class AuthenticationController extends GetxController {
     }
   }
 
-  updateRegister(Map data) {
+  updateRegister(Map data, String id) {
     print("<<-----------UPDATING PASSWORD WITH PAYLOAD : $data ---------->");
     try {
       isProcessing(true);
-      AuthProvider().updateRegister(data).then((resp) async {
-        print('User data:${resp.info!.accessToken.toString()}');
+      AuthProvider().updateRegister(data, id).then((resp) async {
+        print('Register data:${resp.info!.accessToken.toString()}');
         clearTextEditingControllers();
         isProcessing(false);
         storage.write("accessToken", resp.info!.accessToken);
@@ -220,8 +221,7 @@ class AuthenticationController extends GetxController {
             Jwt.parseJwt('${storage.read("accessToken")}');
         print("DECODED TOKEN INFORMATION ---> $tkn");
         storage.write("aspUserID", tkn['Id']);
-        print(
-            "ASP USER ID READ FROM STRORAGE --> ${storage.read("aspUserID")}");
+        print("ASP USER ID READ FROM STORAGE --> ${storage.read("aspUserID")}");
       }, onError: (err) {
         isProcessing(false);
         ShowSnackBar(
@@ -265,7 +265,6 @@ class AuthenticationController extends GetxController {
             title: "Success",
             message: "Account Successfully Created.",
             backgroundColor: Colors.green);
-        Get.offAllNamed('/home');
       }, onError: (err) {
         print(">>>>----SAVING USER DETAILS ERROR : $err");
         isProcessing(false);

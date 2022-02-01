@@ -1,4 +1,3 @@
-
 import 'package:dio/dio.dart';
 import 'package:gcms/constants/constant.dart';
 
@@ -12,7 +11,5 @@ class BaseProvider {
     receiveDataWhenStatusError: true,
   ));
   @override
-  void onInit() {
-
-  }
+  void onInit() {}
 }

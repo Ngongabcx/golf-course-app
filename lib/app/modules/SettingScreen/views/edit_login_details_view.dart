@@ -28,66 +28,73 @@ class EditLoginDetailsView extends GetView {
           Container(
             padding: EdgeInsets.symmetric(horizontal: 25.0),
             child: Expanded(
-              child: ListView(
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                physics: ScrollPhysics(),
-                children: [
-                  // CustomTextFormFieldWidget(
-                  //   _controller.signUpEmailController,
-                  //   "Email",
-                  //   (s) {},
-                  //   false,
-                  //   false,
-                  //   true,
-                  // ),
-                  SizedBox(
-                    height: 10.0,
-                  ),
-                  CustomTextFormFieldWidget(
-                    _controller.signUpPasswordController,
-                    "Password",
-                    (s) {},
-                    true,
-                    false,
-                    false,
-                  ),
-                  SizedBox(
-                    height: 10.0,
-                  ),
-                  CustomTextFormFieldWidget(
-                    _controller.signUpConfirmPasswordController,
-                    "Confirm Password",
-                    (s) {},
-                    true,
-                    false,
-                    false,
-                  ),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  Obx(() {
-                    //Returning loader and dismissing it once processing status changes
-                    Future.delayed(Duration.zero, () async {
-                      context
-                          .read<LoadingProvider>()
-                          .setLoad(_controller.isProcessing.value);
-                    });
-                    //Dismissing keyboard
-                    FocusScope.of(context).requestFocus(new FocusNode());
-                    return CustomButton(
-                      text: (_controller.isProcessing.value == true
-                          ? 'Processing'
-                          : 'Submit'),
-                      textStyle: GcmsTheme.lightTextTheme.bodyText2,
-                      onPressed: () {
-                        _controller.updateRegister({
-                          'password': _controller.passwordController.text,
-                        });
-                      },
-                    );
-                  }),
-                ],
+              child: Form(
+                key: _controller.signUpFormKey,
+                child: ListView(
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  physics: ScrollPhysics(),
+                  children: [
+                    // CustomTextFormFieldWidget(
+                    //   _controller.signUpEmailController,
+                    //   "Email",
+                    //   (s) {},
+                    //   false,
+                    //   false,
+                    //   true,
+                    // ),
+                    SizedBox(
+                      height: 10.0,
+                    ),
+                    CustomTextFormFieldWidget(
+                      _controller.signUpPasswordController,
+                      "Password",
+                      (s) {},
+                      true,
+                      false,
+                      false,
+                    ),
+                    SizedBox(
+                      height: 10.0,
+                    ),
+                    CustomTextFormFieldWidget(
+                      _controller.signUpConfirmPasswordController,
+                      "Confirm Password",
+                      (s) {},
+                      true,
+                      false,
+                      false,
+                    ),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    Obx(() {
+                      //Returning loader and dismissing it once processing status changes
+                      Future.delayed(Duration.zero, () async {
+                        context
+                            .read<LoadingProvider>()
+                            .setLoad(_controller.isProcessing.value);
+                      });
+                      //Dismissing keyboard
+                      FocusScope.of(context).requestFocus(new FocusNode());
+                      return CustomButton(
+                        text: (_controller.isProcessing.value == true
+                            ? 'Processing'
+                            : 'Submit'),
+                        textStyle: GcmsTheme.lightTextTheme.bodyText2,
+                        onPressed: () {
+                          _controller.updateRegister(
+                            {
+                              'password':
+                                  _controller.signUpPasswordController.text,
+                            },
+                            _controller.storage.read('aspUserID').toString(),
+                          );
+                        },
+                      );
+                    }),
+                  ],
+                ),
               ),
             ),
           ),

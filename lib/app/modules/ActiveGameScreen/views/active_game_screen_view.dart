@@ -11,8 +11,6 @@ import '../controllers/active_game_screen_controller.dart';
 import 'competition_detail_view.dart';
 
 class ActiveGameScreenView extends GetView<ActiveGameScreenController> {
-  final _controller = Get.put(ActiveGameScreenController());
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +20,7 @@ class ActiveGameScreenView extends GetView<ActiveGameScreenController> {
           () => Container(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.height,
-            child: _controller.isProcessing.value == true
+            child: controller.isProcessing.value == true
                 ? Loader()
                 : Column(
                     children: [
@@ -53,7 +51,7 @@ class ActiveGameScreenView extends GetView<ActiveGameScreenController> {
                         child: SearchCard(),
                       ),
                       Expanded(
-                        child: _controller.matches.value.payload == null
+                        child: controller.matches.value.payload == null
                             ? Center(
                                 child: Text(
                                   "No Matches.",
@@ -62,8 +60,8 @@ class ActiveGameScreenView extends GetView<ActiveGameScreenController> {
                               )
                             : Padding(
                                 padding: const EdgeInsets.only(top: 10.0),
-                                child: ActiveGamesListView(
-                                    controller: _controller),
+                                child:
+                                    ActiveGamesListView(controller: controller),
                               ),
                       ),
                     ],

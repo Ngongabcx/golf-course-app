@@ -1,28 +1,114 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:gcms/app/modules/Authentication/controllers/auth_controller.dart';
+import 'package:gcms/app/modules/SettingScreen/providers/image_upload_provider.dart';
 import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
 import 'package:gcms/app/modules/home/providers/user_provider.dart';
 import 'package:gcms/constants/constant.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
 class SettingScreenController extends GetxController {
   final userFormKey = GlobalKey<FormState>();
   var isProcessing = false.obs;
   var biometricsSet = false.obs;
+
   var selectedImagePath = ''.obs;
   var selectedImageSize = ''.obs;
-  void getImage(ImageSource imageSource) async {
+
+  //Crop code
+  var cropImagePath = ''.obs;
+  var cropImageSize = ''.obs;
+
+  //Compress code
+  var compressImagePath = ''.obs;
+  var compressImageSize = ''.obs;
+
+  getImage(ImageSource imageSource) async {
     final pickedFile = await ImagePicker().pickImage(source: imageSource);
-    selectedImagePath.value = pickedFile!.path;
-    selectedImageSize.value =
-        ((File(selectedImagePath.value)).lengthSync() / 1024 / 1024)
-                .toStringAsFixed(2) +
-            'Mb';
+    if (pickedFile != null) {
+      selectedImagePath.value = pickedFile.path;
+      selectedImageSize.value =
+          ((File(selectedImagePath.value)).lengthSync() / 1024 / 1024)
+                  .toStringAsFixed(2) +
+              'Mb';
+
+      final cropImageFile = await ImageCropper.cropImage(
+          sourcePath: selectedImagePath.value,
+          maxHeight: 512,
+          maxWidth: 512,
+          compressFormat: ImageCompressFormat.jpg);
+      cropImagePath.value = cropImageFile!.path;
+      cropImageSize.value =
+          ((File(cropImagePath.value)).lengthSync() / 1024 / 1024)
+                  .toStringAsFixed(2) +
+              "MB";
+
+      //Compress
+      final dir = await Directory.systemTemp;
+      final targetPath = dir.absolute.path + "temp.jpg";
+      var compressedFile = await FlutterImageCompress.compressAndGetFile(
+          cropImagePath.value, targetPath,
+          quality: 90);
+      compressImagePath.value = compressedFile!.path;
+      compressImageSize.value =
+          ((File(compressImagePath.value)).lengthSync() / 1024 / 1024)
+                  .toStringAsFixed(2) +
+              "MB";
+      uploadImage(compressedFile);
+    } else {
+      Get.snackbar("Error", "No image selected",
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white);
+    }
   }
+
+  void uploadImage(File compressedFile) {
+    Get.dialog(
+      Center(
+        child: CircularProgressIndicator(),
+      ),
+      barrierDismissible: false,
+    );
+
+    final id = storage.read('aspUserID').toString();
+    ImageUploadProvider().uploadImage(compressedFile, id).then((resp) {
+      Map<String, dynamic> res = jsonDecode((resp));
+      if (res["success"] == true) {
+        UserProvider().updateUserDetails({
+          'image': res['payload']['imagePath'],
+          'imageThumbnail': res['payload']['thumbnailPath'],
+        }, id).then((resp) {
+          ShowSnackBar(
+              title: "Success",
+              message: "Image Successfully uploaded.",
+              backgroundColor: Colors.green);
+          Get.offAllNamed('/home');
+        });
+      } else if (res["success"] == false) {
+        ShowSnackBar(
+          title: "Error",
+          message: "Image upload failed.",
+          backgroundColor: Colors.red,
+        );
+      }
+    }, onError: (err) {
+      Get.back();
+      ShowSnackBar(
+        title: "Error",
+        message: "Image upload failed.",
+        backgroundColor: Colors.red,
+      );
+    });
+  }
+
+  //Crop image
 
   var storage = GetStorage();
 
@@ -53,25 +139,6 @@ class SettingScreenController extends GetxController {
 
   @override
   void onClose() {}
-
-  String validateCreateUserForm() {
-    if (firstnameController.text.isEmpty) {
-      return 'Provide your first name';
-    }
-    if (lastnameController.text.isEmpty) {
-      return 'Provide your last name';
-    }
-    if (addressController.text.isEmpty) {
-      return 'Provide your address';
-    }
-    // if (!GetUtils.isBlank(value)) {
-    //   return 'Provide your gender';
-    // }
-    if (hcpController.text.isEmpty) {
-      return 'Provide your handicap';
-    }
-    return "";
-  }
 
   void createUser(Map data) {
     try {

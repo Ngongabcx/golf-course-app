@@ -57,11 +57,11 @@ class UserProvider extends BaseProvider {
     }
   }
 
-  Future<String> updateUserDetails(Map payload, String id) async {
+  Future<String> updateUserDetails(Map data, String id) async {
     try {
-      print("NEW FCM TOKEN _---->>> $payload");
+      print("NEW FCM TOKEN _---->>> $data");
       final response =
-          await dio.put("$kNewApiBaseURL/api/users/$id", data: payload);
+          await dio.put("$kNewApiBaseURL/api/users/$id", data: data);
       print(
           "RESPONSE UPDATE USER DETAILS --------->>>> ${response.statusMessage}");
       return response.data.toString();

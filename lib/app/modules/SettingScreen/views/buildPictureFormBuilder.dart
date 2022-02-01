@@ -3,13 +3,11 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/SettingScreen/controllers/setting_screen_controller.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_instance/src/extension_instance.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ImagePicker extends GetView {
-  final settingController = Get.put(SettingScreenController());
+  final _controller = Get.put(SettingScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -17,11 +15,11 @@ class ImagePicker extends GetView {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Obx(
-          () => settingController.selectedImagePath.value == ''
+          () => _controller.selectedImagePath.value == ''
               ? Text('Select an image from your gallery or camera')
               : ClipOval(
                   child: Image.file(
-                    File(settingController.selectedImagePath.value),
+                    File(_controller.selectedImagePath.value),
                     width: 150,
                     height: 150,
                     fit: BoxFit.cover,
@@ -35,7 +33,7 @@ class ImagePicker extends GetView {
             title: 'Pick Camera',
             icon: Icons.camera_alt_outlined,
             onClicked: () {
-              settingController.getImage(ImageSource.camera);
+              _controller.getImage(ImageSource.camera);
             }),
         SizedBox(
           height: 24,
@@ -44,7 +42,7 @@ class ImagePicker extends GetView {
             title: 'Pick Gallery',
             icon: Icons.image_outlined,
             onClicked: () {
-              settingController.getImage(ImageSource.gallery);
+              _controller.getImage(ImageSource.gallery);
             }),
         SizedBox(
           height: 50,
