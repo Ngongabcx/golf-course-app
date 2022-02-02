@@ -198,7 +198,13 @@ class SettingScreenController extends GetxController {
   }
 
   void biometricsSecurity() {
-    bool isSecSet = storage.read("isBiometricActivated");
+    bool isSecSet;
+    if (storage.read("isBiometricActivated") == null) {
+      isSecSet = false;
+    } else {
+      isSecSet = storage.read("isBiometricActivated");
+    }
+
     if (isSecSet) {
       Get.defaultDialog(
           title: "Authentication",
