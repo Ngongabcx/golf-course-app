@@ -10,10 +10,10 @@ class Course {
 
   static Course generateCourse() {
     return Course('Lusaka Golf Course', {
-      'Upcoming': Events.generateUpcomingEvents(),
-      'Today': Events.generateTodaysEvents(),
-      'Tomorrow': Events.generateTomorrowsEvents(),
-      'Next Week': Events.generateNextWeeksEvents(),
+      'Today': Events.generateUpcomingEvents(),
+      'This Week': Events.generateTodaysEvents(),
+      'This Month': Events.generateTomorrowsEvents(),
+      'This Year': Events.generateNextWeeksEvents(),
     });
   }
 }

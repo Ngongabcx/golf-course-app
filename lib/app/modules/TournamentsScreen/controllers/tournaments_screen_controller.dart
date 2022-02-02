@@ -38,6 +38,7 @@ class TournamentsScreenController extends GetxController {
       isProcessing(true);
       await TournamentsProvider().getTournaments(page).then((resp) async {
         compList.addAll(resp.payload!);
+        compList.removeWhere((item) => item.isTournament == false);
         print("TOURNAMENTS ---> ${compList.toString()}");
         debugPrint("NUMBER  OF  TOURNAMENTS ---> ${compList.length}");
         debugPrint("FIRST TOURNAMENT NAME ---> ${compList.first.compName}");

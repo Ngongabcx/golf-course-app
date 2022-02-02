@@ -40,6 +40,7 @@ class ActiveGameScreenController extends GetxController {
       await ActiveGamesProvider().getActiveMatches(page).then((resp) async {
         matches.value = resp;
         matchList.addAll(resp.payload!);
+        matchList.removeWhere((item) => item.isTournament == true);
         print("MATCHES ---> ${matches.toString()}");
         debugPrint(
             "NUMBER  OF  COMPETITIONS ---> ${matches.value.payload!.length}");

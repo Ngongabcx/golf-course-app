@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/TournamentsScreen/controllers/tournaments_screen_controller.dart';
 import 'package:gcms/app/modules/TournamentsScreen/views/widgets/tournaments_card.dart';
@@ -15,7 +14,7 @@ class TournamentListView extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 25),
       child: RefreshIndicator(
         onRefresh: _pullRefresh,
-        child: ListView.builder(
+        child: _controller.compList.isEmpty ? Center(child:Text("No tournaments.",style: TextStyle(fontSize: 17.0),)) :ListView.builder(
           itemCount: _controller.compList.length,
           // itemCount: _controller.tournament.value.payload!.length,
           itemBuilder: (BuildContext context, int index) {
