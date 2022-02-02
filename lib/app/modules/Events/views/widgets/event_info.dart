@@ -13,9 +13,11 @@ class EventInfo extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Text(
-                'Find Interesting Events\nto attend',
-                style: Theme.of(context).textTheme.headline2,
+              Expanded(
+                child: Text(
+                  'Find Interesting Events to attend',
+                  style: Theme.of(context).textTheme.headline2,
+                ),
               ),
             ],
           ),
