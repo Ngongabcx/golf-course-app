@@ -267,16 +267,17 @@ class AuthenticationController extends GetxController {
             backgroundColor: Colors.green);
       }, onError: (err) {
         print(">>>>----SAVING USER DETAILS ERROR : $err");
+        UserProvider().deleteUser(storage.read("aspUserID"));
+        storage.erase();
         isProcessing(false);
-        //TODO : You need to delete the account if creation has failed
-        //TODO: Write a delete account function and call it from here
-        //TODO: Also call that function when an exception is thrown
         ShowSnackBar(
             title: "Error",
             message: err.toString(),
             backgroundColor: Colors.red);
       });
     } catch (exception) {
+      UserProvider().deleteUser(storage.read("aspUserID"));
+      storage.erase();
       isProcessing(false);
       print("<---------SAVING USER DETAILS EXCEPTION2--------->" +
           exception.toString());

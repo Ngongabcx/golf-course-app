@@ -14,7 +14,7 @@ class TournamentListView extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 25),
       child: RefreshIndicator(
         onRefresh: _pullRefresh,
-        child: _controller.compList.isEmpty ? Center(child:Text("No tournaments.",style: TextStyle(fontSize: 17.0),)) :ListView.builder(
+        child: ListView.builder(
           itemCount: _controller.compList.length,
           // itemCount: _controller.tournament.value.payload!.length,
           itemBuilder: (BuildContext context, int index) {

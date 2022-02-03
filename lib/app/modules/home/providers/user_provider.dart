@@ -135,4 +135,26 @@ class UserProvider extends BaseProvider {
           "An error occured please check your internet connection.".toString());
     }
   }
+     Future<Auth> deleteUser(String id) async {
+    try {
+      final response = await dio
+          .delete("$kNewApiBaseURL/api/users/$id");
+      Map<String, dynamic> resp = jsonDecode(response.data.toString());
+      return Auth.fromJson(resp);
+    } on DioError catch (exception) {
+      if (exception.response != null) {
+        if (exception.response!.statusCode == 400) {
+          Map<String, dynamic> res =
+              jsonDecode((exception.response!.data.toString()));
+          print("RESPONSE STATUS --------->>>> $res");
+          return Future.error(res["errors"].toString());
+        }
+        return Future.error(exception.response!.statusMessage.toString());
+      }
+      logToChannel({"text": "$kError DELETING USER FAILURE\n $exception"});
+      print('<<===DELETING USER EXCEPTION ==> $exception');
+      return Future.error(
+          "An error occured please check your internet connection.".toString());
+    }
+  }
 }

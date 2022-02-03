@@ -12,7 +12,7 @@ import '../controllers/tournaments_screen_controller.dart';
 
 class TournamentsScreenView extends GetView<TournamentsScreenController> {
   final _controller = Get.put(ActiveGameScreenController());
-
+  final tournamentCtl = Get.put(TournamentsScreenController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,11 +52,13 @@ class TournamentsScreenView extends GetView<TournamentsScreenController> {
                           ],
                         ),
                       ),
+                       tournamentCtl.compList.isEmpty ? Center(child:Text("No tournaments.",style: TextStyle(fontSize: 17.0),)) :
                       Container(
                         margin: EdgeInsets.only(top: 20),
                         padding: EdgeInsets.symmetric(horizontal: 20),
                         child: SearchCard(),
                       ),
+                     if( tournamentCtl.compList.isNotEmpty)
                       Expanded(
                         child: Center(
                           child: Expanded(
