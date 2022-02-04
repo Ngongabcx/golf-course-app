@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/Messages/views/messages_view.dart';
 import 'package:gcms/app/modules/Notifications/models/notification_model.dart';
 import 'package:gcms/app/modules/Notifications/providers/database/notifications_database.dart';
-import 'package:gcms/app/modules/Notifications/views/notifications_view.dart';
-import 'package:gcms/app/modules/SettingScreen/views/setting_screen_view.dart';
 import 'package:gcms/app/modules/SetupScreen/competition_model.dart';
 import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
 import 'package:gcms/app/modules/home/providers/match_invites_provider.dart';
@@ -44,6 +42,7 @@ class HomeController extends GetxController {
     name.value = '';
     NotificationsDatabase.instance.close();
   }
+
   void onItemTapped(int index) {
     print("I HAVE BEEN TAPPED WITH INDEX  --> $index");
     print("SELECTED INDEX VALUE BEFORE ---> $selectedIndex");

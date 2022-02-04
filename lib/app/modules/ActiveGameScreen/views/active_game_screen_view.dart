@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/ActiveGameScreen/views/competition_card.dart';
 import 'package:gcms/app/modules/ActiveGameScreen/views/search_card.dart';
 import 'package:gcms/app/modules/SettingScreen/views/setting_screen_view.dart';
-import 'package:gcms/app/modules/commonWidgets/custom_appbar.dart';
 import 'package:gcms/app/modules/commonWidgets/loader/loader.dart';
 import 'package:gcms/constants/constant.dart';
 import 'package:get/get.dart';
@@ -15,6 +14,22 @@ class ActiveGameScreenView extends GetView<ActiveGameScreenController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kBackgroundColor,
+      appBar: AppBar(
+        iconTheme: const IconThemeData(color: Colors.black),
+        backgroundColor: kBackgroundColor,
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.settings_outlined,
+            ),
+            onPressed: () {
+              // do something
+              Get.to(SettingScreenView());
+            },
+          ),
+        ],
+        elevation: 0.0,
+      ),
       body: SafeArea(
         child: Obx(
           () => Container(
@@ -24,12 +39,6 @@ class ActiveGameScreenView extends GetView<ActiveGameScreenController> {
                 ? Loader()
                 : Column(
                     children: [
-                      CustomAppBar(
-                        Icons.arrow_back_ios_outlined,
-                        Icons.settings_outlined,
-                        leftCallBack: () => Get.back(),
-                        rightCallBack: () => Get.to(SettingScreenView()),
-                      ),
                       Container(
                         margin: EdgeInsets.only(top: 20),
                         padding: EdgeInsets.symmetric(horizontal: 25),

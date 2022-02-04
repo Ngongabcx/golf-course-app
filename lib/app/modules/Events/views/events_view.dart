@@ -4,7 +4,6 @@ import 'package:gcms/app/modules/Events/course.dart';
 import 'package:gcms/app/modules/Events/views/widgets/event_filter_list.dart';
 import 'package:gcms/app/modules/Events/views/widgets/event_list_view.dart';
 import 'package:gcms/app/modules/SettingScreen/views/setting_screen_view.dart';
-import 'package:gcms/app/modules/commonWidgets/custom_appbar.dart';
 import 'package:gcms/constants/constant.dart';
 import 'package:get/get.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -20,14 +19,24 @@ class EventsView extends GetView<EventsController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kBackgroundColor,
+      appBar: AppBar(
+        iconTheme: const IconThemeData(color: Colors.black),
+        backgroundColor: kBackgroundColor,
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.settings_outlined,
+            ),
+            onPressed: () {
+              // do something
+              Get.to(SettingScreenView());
+            },
+          ),
+        ],
+        elevation: 0.0,
+      ),
       body: Column(
         children: [
-          CustomAppBar(
-            Icons.arrow_back_ios_outlined,
-            Icons.settings_outlined,
-            leftCallBack: () => Get.back(),
-            rightCallBack: () => Get.to(SettingScreenView()),
-          ),
           EventInfo(),
           Container(
             margin: EdgeInsets.only(top: 0),

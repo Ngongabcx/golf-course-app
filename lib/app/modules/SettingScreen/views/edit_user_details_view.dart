@@ -3,7 +3,6 @@ import 'package:gcms/app/modules/Authentication/controllers/auth_controller.dart
 import 'package:gcms/app/modules/SettingScreen/controllers/setting_screen_controller.dart';
 import 'package:gcms/app/modules/SettingScreen/views/setting_screen_view.dart';
 import 'package:gcms/app/modules/commonWidgets/customButton.dart';
-import 'package:gcms/app/modules/commonWidgets/custom_appbar.dart';
 import 'package:gcms/app/modules/commonWidgets/custom_date_time_picker.dart.dart';
 import 'package:gcms/app/modules/commonWidgets/list_string_dropdown.dart';
 import 'package:gcms/app/modules/commonWidgets/loader/loader.dart';
@@ -34,17 +33,28 @@ class EditUserDetailsView extends GetView<SettingScreenController> {
           ? Loader()
           : Scaffold(
               backgroundColor: kBackgroundColor,
+              appBar: AppBar(
+                iconTheme: const IconThemeData(color: Colors.black),
+                backgroundColor: kBackgroundColor,
+                actions: [
+                  IconButton(
+                    icon: Icon(
+                      Icons.settings_outlined,
+                    ),
+                    onPressed: () {
+                      // do something
+                      Get.to(SettingScreenView());
+                    },
+                  ),
+                ],
+                elevation: 0.0,
+              ),
               body: Column(
                 children: [
-                  CustomAppBar(
-                    Icons.arrow_back_ios_outlined,
-                    Icons.settings_outlined,
-                    leftCallBack: () => Get.back(),
-                    rightCallBack: () => Get.to(SettingScreenView()),
-                  ),
                   Expanded(
                     child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 25.0),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 25.0, vertical: 25.0),
                       child: Form(
                         key: userController.userFormKey,
                         child: ListView(

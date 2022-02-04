@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/Messages/views/messages_view.dart';
-import 'package:gcms/app/modules/commonWidgets/custom_appbar.dart';
 import 'package:gcms/bcx_icons_icons.dart';
 import 'package:gcms/constants/constant.dart';
 import 'package:get/get.dart';
@@ -19,14 +18,24 @@ class SettingScreenView extends GetView<SettingScreenController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kBackgroundColor,
+      appBar: AppBar(
+        iconTheme: const IconThemeData(color: Colors.black),
+        backgroundColor: kBackgroundColor,
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.settings_outlined,
+            ),
+            onPressed: () {
+              // do something
+              Get.to(SettingScreenView());
+            },
+          ),
+        ],
+        elevation: 0.0,
+      ),
       body: Column(
         children: [
-          CustomAppBar(
-            Icons.arrow_back_ios_outlined,
-            Icons.settings_outlined,
-            leftCallBack: () => Get.back(),
-            rightCallBack: () => Get.to(SettingScreenView()),
-          ),
           Expanded(
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 25.0),

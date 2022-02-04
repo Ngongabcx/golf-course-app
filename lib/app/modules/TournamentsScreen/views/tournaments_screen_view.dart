@@ -17,6 +17,22 @@ class TournamentsScreenView extends GetView<TournamentsScreenController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kBackgroundColor,
+      appBar: AppBar(
+        iconTheme: const IconThemeData(color: Colors.black),
+        backgroundColor: kBackgroundColor,
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.settings_outlined,
+            ),
+            onPressed: () {
+              // do something
+              Get.to(SettingScreenView());
+            },
+          ),
+        ],
+        elevation: 0.0,
+      ),
       body: SafeArea(
         child: Obx(() {
           return Container(
@@ -26,12 +42,7 @@ class TournamentsScreenView extends GetView<TournamentsScreenController> {
                 ? Loader()
                 : Column(
                     children: [
-                      CustomAppBar(
-                        Icons.arrow_back_ios_outlined,
-                        Icons.settings_outlined,
-                        leftCallBack: () => Get.back(),
-                        rightCallBack: () => Get.to(SettingScreenView()),
-                      ),
+
                       Container(
                         margin: EdgeInsets.only(top: 20),
                         padding: EdgeInsets.symmetric(horizontal: 25),

@@ -26,16 +26,27 @@ class MatchSetupView extends StatelessWidget {
     return Obx(() {
       return Scaffold(
         backgroundColor: kBackgroundColor,
+        appBar: AppBar(
+          iconTheme: const IconThemeData(color: Colors.black),
+          backgroundColor: kBackgroundColor,
+          actions: [
+            IconButton(
+              icon: Icon(
+                Icons.settings_outlined,
+              ),
+              onPressed: () {
+                // do something
+                Get.to(SettingScreenView());
+              },
+            ),
+          ],
+          elevation: 0.0,
+        ),
         body: _controller.isProcessing.value == true
             ? Loader()
             : Column(
                 children: [
-                  CustomAppBar(
-                    Icons.arrow_back_ios_outlined,
-                    Icons.settings_outlined,
-                    leftCallBack: () => Get.back(),
-                    rightCallBack: () => Get.to(SettingScreenView()),
-                  ),
+
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 25),
                     margin: EdgeInsets.only(top: 30),
@@ -149,12 +160,13 @@ class MatchSetupView extends StatelessWidget {
                           SizedBox(
                             height: 20,
                           ),
-                          Align(
-                            alignment: FractionalOffset.bottomCenter,
-                            child: Obx(
-                              () {
-                                //Dismissing the keyboard
-                                return CustomButton(
+                          Obx(
+                            () {
+                              //Dismissing the keyboard
+                              return Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 20.0),
+                                child: CustomButton(
                                   textStyle: GcmsTheme.lightTextTheme.bodyText2,
                                   text: _controller.isProcessing.value == true
                                       ? 'Processing'
@@ -179,9 +191,9 @@ class MatchSetupView extends StatelessWidget {
                                     _controller
                                         .createCompetition(comp.toJson());
                                   },
-                                );
-                              },
-                            ),
+                                ),
+                              );
+                            },
                           ),
                         ],
                       ),
