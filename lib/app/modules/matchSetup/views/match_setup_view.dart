@@ -4,7 +4,6 @@ import 'package:gcms/app/modules/SetupScreen/competition_request_model.dart';
 import 'package:gcms/app/modules/SetupScreen/controllers/setup_screen_controller.dart';
 import 'package:gcms/app/modules/commonWidgets/CustomTimePicker.dart';
 import 'package:gcms/app/modules/commonWidgets/customButton.dart';
-import 'package:gcms/app/modules/commonWidgets/custom_appbar.dart';
 import 'package:gcms/app/modules/commonWidgets/custom_date_time_picker.dart.dart';
 import 'package:gcms/app/modules/commonWidgets/custom_multi_select_drop_down.dart';
 import 'package:gcms/app/modules/commonWidgets/custom_single_select_drop_down.dart';

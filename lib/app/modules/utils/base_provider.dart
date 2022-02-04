@@ -10,6 +10,4 @@ class BaseProvider {
     responseType: ResponseType.plain,
     receiveDataWhenStatusError: true,
   ));
-  @override
-  void onInit() {}
 }

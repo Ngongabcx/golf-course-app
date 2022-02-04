@@ -231,7 +231,7 @@ class Scorecard {
     });
 
     int? id;
-    int? score;
+    double? score;
     String? timestamp;
     bool? confirmed;
     double? result;

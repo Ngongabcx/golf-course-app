@@ -4,7 +4,7 @@ import 'package:gcms/app/modules/Events/course.dart';
 import 'event_item.dart';
 
 class EventListView extends StatelessWidget {
-  int selected;
+  final int selected;
   final Function callback;
   final PageController pageController;
   final Course events;

@@ -1,8 +1,6 @@
 import 'package:get/get.dart';
 
 class EventScreenController extends GetxController {
-  //TODO: Implement EventScreenController
-
   final count = 0.obs;
   @override
   void onInit() {

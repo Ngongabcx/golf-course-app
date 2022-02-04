@@ -60,7 +60,7 @@ class ActiveGameScreenView extends GetView<ActiveGameScreenController> {
                         child: SearchCard(),
                       ),
                       Expanded(
-                        child: controller.matchList.value == null
+                        child: controller.matchList.isEmpty
                             ? Center(
                                 child: Text(
                                   "No Matches.",

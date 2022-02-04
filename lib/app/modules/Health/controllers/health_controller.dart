@@ -1,8 +1,6 @@
 import 'package:get/get.dart';
 
 class HealthController extends GetxController {
-  //TODO: Implement HealthController
-
   final count = 0.obs;
   @override
   void onInit() {

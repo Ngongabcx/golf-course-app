@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/SetupScreen/competition_model.dart' as compt;
 import 'package:gcms/app/modules/TournamentsScreen/providers/tournaments_provider.dart';
@@ -6,7 +5,6 @@ import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
 import 'package:get/get.dart';
 
 class TournamentsScreenController extends GetxController {
-  //TODO: Implement TournamentsScreenController
   var isProcessing = false.obs;
   ScrollController scrollController = ScrollController();
   var compList = <compt.Payload>[].obs;

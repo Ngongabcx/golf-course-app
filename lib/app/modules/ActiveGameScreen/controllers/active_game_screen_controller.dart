@@ -6,7 +6,6 @@ import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
 import 'package:get/get.dart';
 
 class ActiveGameScreenController extends GetxController {
-  //TODO: Implement ActiveGameScreenController
   var matches = Competition().obs;
   var matchList = <compt.Payload>[].obs;
   var isProcessing = false.obs;

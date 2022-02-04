@@ -3,7 +3,6 @@ import 'package:gcms/app/modules/ActiveGameScreen/controllers/active_game_screen
 import 'package:gcms/app/modules/ActiveGameScreen/views/search_card.dart';
 import 'package:gcms/app/modules/SettingScreen/views/setting_screen_view.dart';
 import 'package:gcms/app/modules/TournamentsScreen/views/widgets/tournament_list_view.dart';
-import 'package:gcms/app/modules/commonWidgets/custom_appbar.dart';
 import 'package:gcms/app/modules/commonWidgets/loader/loader.dart';
 import 'package:gcms/constants/constant.dart';
 import 'package:get/get.dart';

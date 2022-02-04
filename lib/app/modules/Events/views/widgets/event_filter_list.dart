@@ -5,7 +5,7 @@ import 'package:gcms/constants/constant.dart';
 import 'package:get/get.dart';
 
 class EventFilterList extends StatelessWidget {
-  var controller = Get.put(EventsController());
+  final controller = Get.put(EventsController());
   final int selected;
   final Function callBack;
   final Course events;
@@ -28,7 +28,7 @@ class EventFilterList extends StatelessWidget {
                     padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      color: controller.selected == index
+                      color: controller.selected.value == index
                           ? kPrimaryColor
                           : Colors.white,
                     ),

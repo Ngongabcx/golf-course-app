@@ -9,7 +9,7 @@ class CustomTextFormFieldWidget extends GetView {
   final bool isObscure;
   final bool isNumber;
   final bool isEmail;
-  String? initialValue;
+  final String? initialValue;
   CustomTextFormFieldWidget(this.textEditingController, this.label,
       this.onValidate, this.isObscure, this.isNumber, this.isEmail,
       {this.initialValue});

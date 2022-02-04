@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/EventsScreen/events_model.dart';
 import 'package:gcms/constants/constant.dart';

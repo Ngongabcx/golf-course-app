@@ -50,7 +50,7 @@ class SettingScreenController extends GetxController {
               "MB";
 
       //Compress
-      final dir = await Directory.systemTemp;
+      final dir = Directory.systemTemp;
       final targetPath = dir.absolute.path + "temp.jpg";
       var compressedFile = await FlutterImageCompress.compressAndGetFile(
           cropImagePath.value, targetPath,

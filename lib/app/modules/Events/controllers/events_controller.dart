@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 
 class EventsController extends GetxController {
-  //TODO: Implement EventsController
   var selected = 0.obs;
   final count = 0.obs;
   @override

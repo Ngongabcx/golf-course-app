@@ -1,8 +1,6 @@
 import 'package:get/get.dart';
 
 class MatchSetupController extends GetxController {
-  //TODO: Implement MatchSetupController
-
   final count = 0.obs;
   @override
   void onInit() {

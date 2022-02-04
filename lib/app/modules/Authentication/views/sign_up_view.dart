@@ -15,7 +15,6 @@ class SignUpView extends GetView<AuthenticationController> {
 
   @override
   Widget build(BuildContext context) {
-    final form;
     return Scaffold(
       body: Theme(
         data: Theme.of(context).copyWith(

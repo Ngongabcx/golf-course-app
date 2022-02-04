@@ -1,8 +1,6 @@
 import 'package:get/get.dart';
 
 class ResultsScreenController extends GetxController {
-  //TODO: Implement ResultsScreenController
-
   String res = '80.0';
   @override
   void onInit() {

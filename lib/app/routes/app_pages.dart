@@ -1,5 +1,3 @@
-import 'package:gcms/app/modules/ScoresInputScreen/bindings/scores_input_screen_binding.dart';
-import 'package:gcms/app/modules/ScoresInputScreen/views/confirm_results_screen.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
 import '../modules/ActiveGameScreen/bindings/active_game_screen_binding.dart';

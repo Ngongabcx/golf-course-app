@@ -9,7 +9,7 @@ class ListStringDropdown extends GetView {
   final String? hint;
   final List<String> listItems;
   final Function(String?)? callback;
-  String? initialValue;
+  final String? initialValue;
 
   ListStringDropdown(
       {required this.name,

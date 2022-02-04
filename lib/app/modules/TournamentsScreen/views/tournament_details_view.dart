@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/ScoresInputScreen/views/scores_input_screen_view.dart';
 import 'package:gcms/app/modules/SettingScreen/views/setting_screen_view.dart';
 import 'package:gcms/app/modules/SetupScreen/competition_model.dart';
-import 'package:gcms/app/modules/SetupScreen/competition_player_model.dart'
-    as compPlayer;
 import 'package:gcms/app/modules/SetupScreen/controllers/setup_screen_controller.dart';
-import 'package:gcms/app/modules/SetupScreen/providers/competition_provider.dart';
 import 'package:gcms/app/modules/commonWidgets/customButton.dart';
 import 'package:gcms/constants/constant.dart';
 import 'package:gcms/theme/gcms_theme.dart';
