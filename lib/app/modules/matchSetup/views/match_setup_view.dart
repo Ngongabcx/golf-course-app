@@ -139,7 +139,7 @@ class MatchSetupView extends StatelessWidget {
                             label: 'Pick match date',
                             name: 'Match Date',
                             callback: (newSelectedDate) {
-                              _controller.selectedDate.value = newSelectedDate!;
+                              _controller.selectedDate.value = _controller.formatter.format(newSelectedDate!);
                               print(newSelectedDate);
                             },
                           ),

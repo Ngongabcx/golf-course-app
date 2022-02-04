@@ -13,7 +13,7 @@ import '../course_model.dart' as courseModel;
 
 class SetupScreenController extends GetxController {
   final DateFormat formatter = DateFormat('yyyy-MM-dd');
-  var selectedDate = DateTime.now().obs;
+  var selectedDate = ''.obs;
   var selectedTime = 'Not set'.obs;
   var selectedCourseId = ''.obs;
   var storage = GetStorage();

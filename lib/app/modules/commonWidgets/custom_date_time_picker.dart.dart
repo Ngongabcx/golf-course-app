@@ -7,7 +7,7 @@ class CustomDatePicker extends GetView {
   final String name;
   final String label;
   final Function(DateTime?)? callback;
-  DateTime? initialValue;
+  final DateTime? initialValue;
 
   CustomDatePicker(
       {required this.name,
