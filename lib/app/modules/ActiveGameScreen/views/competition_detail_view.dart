@@ -39,7 +39,6 @@ class CompetitionDetailView extends GetView {
       ),
       body: Column(
         children: [
-
           const SizedBox(
             height: 20.0,
           ),
@@ -215,18 +214,16 @@ class CompetitionDetailView extends GetView {
               onPressed: () async {
                 var competitionId = competition.id.toString();
                 print('COMPETITION ID ---------> $competitionId');
-                var playerId = _controller.storage.read("userId");
+                var playerId = int. parse(_controller.storage.read("userId"));
                 print('PLAYER ID --------> $playerId');
-                compPlayer.CompetitionPlayer recordingScoresFor =
-                    await CompetitionProvider()
-                        .getCompetitionPlayer(competitionId, playerId);
-                Get.offAll(ScoresInputScreenView(
-                  competition,
-                  recordingScoresFor.payload!.first.recordingScoresFor,
+                CompetitionPlayer competitionPlayer = competition.competitionPlayers!
+                    .singleWhere((element) => element.player!.id == playerId);
+                Get.to(ScoresInputScreenView(
+                  competition,competitionPlayer
                 ));
                 print('COMPETITION ---------> $competition');
                 print(
-                    'PLAYER FIRST NAME ----------> ${recordingScoresFor.payload!.first.recordingScoresFor}');
+                    'PLAYER FIRST NAME ----------> ${competitionPlayer.player!.fname}');
                 print('Go to scores page');
               },
             ),

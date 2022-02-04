@@ -5,8 +5,6 @@ import 'package:gcms/app/modules/ActiveGameScreen/views/update_score_button.dart
 import 'package:gcms/app/modules/ScoresInputScreen/views/result_widget.dart';
 import 'package:gcms/app/modules/ScoresInputScreen/views/score_widget.dart';
 import 'package:gcms/app/modules/SetupScreen/competition_model.dart';
-import 'package:gcms/app/modules/SetupScreen/competition_player_model.dart'
-    as compPlayer;
 import 'package:gcms/app/modules/commonWidgets/customButton.dart';
 import 'package:gcms/app/modules/commonWidgets/loader/loader.dart';
 import 'package:gcms/constants/constant.dart';
@@ -19,8 +17,8 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
   final _controller = Get.put(ScoresInputScreenController());
   final Payload competition;
 
-  final compPlayer.Player? recordingFor;
-  ScoresInputScreenView(this.competition, this.recordingFor);
+  final CompetitionPlayer? competitionPlayer;
+  ScoresInputScreenView(this.competition, this.competitionPlayer);
   @override
   Widget build(BuildContext context) {
     _controller.extractGameHolesArray(competition);
@@ -46,7 +44,7 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                               onTap: () {
                                 Get.bottomSheet(
                                   ResultsBottomSheet(
-                                    recordingFor: recordingFor,
+                                    recordingFor: competitionPlayer!.recordingScoresFor,
                                     controller: _controller,
                                     competition: competition,
                                   ),
@@ -98,16 +96,16 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                     padding: EdgeInsets.only(top: 0.0),
                                     child: CircleImage(
                                       imageProvider: NetworkImage(
-                                          '${recordingFor!.imageThumbnail}'),
+                                          '${competitionPlayer!.recordingScoresFor!.imageThumbnail}'),
                                     ),
                                   ),
                                   Text(
-                                    '${recordingFor!.fname} ${recordingFor!.lname}',
+                                    '${competitionPlayer!.recordingScoresFor!.fname} ${competitionPlayer!.recordingScoresFor!.lname}',
                                     style:
                                         Theme.of(context).textTheme.headline2,
                                   ),
                                   Text(
-                                    'hcp ${recordingFor!.hcp}',
+                                    'hcp ${competitionPlayer!.recordingScoresFor!.hcp}',
                                     style:
                                         Theme.of(context).textTheme.bodyText2,
                                   ),
@@ -349,7 +347,7 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                                   .id
                                                   .toString(),
                                             }, "${competition.id}",
-                                                "${recordingFor!.id}");
+                                                "${competitionPlayer!.id}");
                                             Get.back();
                                           },
                                           onCancel: () {},
@@ -395,7 +393,7 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                         Get.bottomSheet(
                                           ResultsBottomSheet(
                                               competition: competition,
-                                              recordingFor: recordingFor,
+                                              recordingFor: competitionPlayer!.player,
                                               controller: _controller),
                                           elevation: 20.0,
                                           enableDrag: false,
@@ -493,7 +491,7 @@ class ResultsBottomSheet extends StatelessWidget {
   })  : _controller = controller,
         super(key: key);
 
-  final compPlayer.Player? recordingFor;
+  final Player? recordingFor;
   final ScoresInputScreenController _controller;
   final Payload competition;
 
