@@ -58,7 +58,7 @@ class TournamentsScreenView extends GetView<TournamentsScreenController> {
                         padding: EdgeInsets.symmetric(horizontal: 20),
                         child: SearchCard(),
                       ),
-                     if( tournamentCtl.compList.isNotEmpty)
+                     if(tournamentCtl.compList.isNotEmpty)
                       Expanded(
                         child: Center(
                           child: Expanded(
