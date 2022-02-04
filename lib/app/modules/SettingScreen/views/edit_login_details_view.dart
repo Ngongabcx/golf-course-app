@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/Authentication/controllers/auth_controller.dart';
 import 'package:gcms/app/modules/SettingScreen/views/setting_screen_view.dart';
 import 'package:gcms/app/modules/commonWidgets/customButton.dart';
-import 'package:gcms/app/modules/commonWidgets/custom_appbar.dart';
 import 'package:gcms/app/modules/commonWidgets/loader/loading_provider.dart';
 import 'package:gcms/app/modules/commonWidgets/textFormField.dart';
 import 'package:gcms/constants/constant.dart';
@@ -17,16 +16,26 @@ class EditLoginDetailsView extends GetView {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kBackgroundColor,
+      appBar: AppBar(
+        iconTheme: const IconThemeData(color: Colors.black),
+        backgroundColor: kBackgroundColor,
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.settings_outlined,
+            ),
+            onPressed: () {
+              // do something
+              Get.to(SettingScreenView());
+            },
+          ),
+        ],
+        elevation: 0.0,
+      ),
       body: Column(
         children: [
-          CustomAppBar(
-            Icons.arrow_back_ios_outlined,
-            Icons.settings_outlined,
-            leftCallBack: () => Get.back(),
-            rightCallBack: () => Get.to(SettingScreenView()),
-          ),
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 25.0),
+            padding: EdgeInsets.symmetric(horizontal: 25.0, vertical: 25.0),
             child: Expanded(
               child: Form(
                 key: _controller.signUpFormKey,

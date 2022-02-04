@@ -21,14 +21,25 @@ class CompetitionDetailView extends GetView {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kBackgroundColor,
+      appBar: AppBar(
+        iconTheme: const IconThemeData(color: Colors.black),
+        backgroundColor: kBackgroundColor,
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.settings_outlined,
+            ),
+            onPressed: () {
+              // do something
+              Get.to(SettingScreenView());
+            },
+          ),
+        ],
+        elevation: 0.0,
+      ),
       body: Column(
         children: [
-          CustomAppBar(
-            Icons.arrow_back_ios_outlined,
-            Icons.settings_outlined,
-            leftCallBack: () => Get.back(),
-            rightCallBack: () => Get.to(SettingScreenView()),
-          ),
+
           const SizedBox(
             height: 20.0,
           ),
