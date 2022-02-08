@@ -29,6 +29,8 @@ class CustomDropDown extends GetView {
       popupBackgroundColor: Colors.white,
       popupItemDisabled: (String s) => s.startsWith('I'),
       dropdownSearchDecoration: InputDecoration(
+        filled: true,
+        fillColor: Colors.white,
         constraints: BoxConstraints(maxHeight: 70.0),
         isDense: true,
         isCollapsed: false,

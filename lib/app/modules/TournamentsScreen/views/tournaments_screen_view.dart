@@ -41,7 +41,6 @@ class TournamentsScreenView extends GetView<TournamentsScreenController> {
                 ? Loader()
                 : Column(
                     children: [
-
                       Container(
                         margin: EdgeInsets.only(top: 20),
                         padding: EdgeInsets.symmetric(horizontal: 25),
@@ -62,20 +61,25 @@ class TournamentsScreenView extends GetView<TournamentsScreenController> {
                           ],
                         ),
                       ),
-                       tournamentCtl.compList.isEmpty ? Center(child:Text("No tournaments.",style: TextStyle(fontSize: 17.0),)) :
-                      Container(
-                        margin: EdgeInsets.only(top: 20),
-                        padding: EdgeInsets.symmetric(horizontal: 20),
-                        child: SearchCard(),
-                      ),
-                     if(tournamentCtl.compList.isNotEmpty)
-                      Expanded(
-                        child: Center(
-                          child: Expanded(
-                            child: TournamentListView(),
+                      tournamentCtl.compList.isEmpty
+                          ? Center(
+                              child: Text(
+                              "No tournaments.",
+                              style: TextStyle(fontSize: 17.0),
+                            ))
+                          : Container(
+                              margin: EdgeInsets.only(top: 20),
+                              padding: EdgeInsets.symmetric(horizontal: 20),
+                              child: SearchCard(),
+                            ),
+                      if (tournamentCtl.compList.isNotEmpty)
+                        Expanded(
+                          child: Center(
+                            child: Expanded(
+                              child: TournamentListView(),
+                            ),
                           ),
                         ),
-                      ),
                     ],
                   ),
           );

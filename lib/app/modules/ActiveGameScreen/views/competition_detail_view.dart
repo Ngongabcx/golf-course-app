@@ -39,7 +39,6 @@ class CompetitionDetailView extends GetView {
             height: 20.0,
           ),
           Container(
-            margin: EdgeInsets.only(top: 20),
             padding: EdgeInsets.symmetric(horizontal: 25),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -210,13 +209,12 @@ class CompetitionDetailView extends GetView {
               onPressed: () async {
                 var competitionId = competition.id.toString();
                 print('COMPETITION ID ---------> $competitionId');
-                var playerId = int. parse(_controller.storage.read("userId"));
+                var playerId = int.parse(_controller.storage.read("userId"));
                 print('PLAYER ID --------> $playerId');
-                CompetitionPlayer competitionPlayer = competition.competitionPlayers!
+                CompetitionPlayer competitionPlayer = competition
+                    .competitionPlayers!
                     .singleWhere((element) => element.player!.id == playerId);
-                Get.to(ScoresInputScreenView(
-                  competition,competitionPlayer
-                ));
+                Get.to(ScoresInputScreenView(competition, competitionPlayer));
                 print('COMPETITION ---------> $competition');
                 print(
                     'PLAYER FIRST NAME ----------> ${competitionPlayer.player!.fname}');

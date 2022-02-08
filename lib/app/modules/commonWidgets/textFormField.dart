@@ -23,7 +23,7 @@ class CustomTextFormFieldWidget extends GetView {
               ? TextInputType.emailAddress
               : TextInputType.text,
       // validator: (()=>onValidate()),
-
+      textCapitalization: TextCapitalization.words,
       initialValue: initialValue,
       obscureText: isObscure,
       decoration: InputDecoration(

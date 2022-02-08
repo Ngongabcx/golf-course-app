@@ -36,47 +36,15 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         PopupMenuButton<int>(
-                          onSelected: (item) => onSelected(context, item),
+                          onSelected: popUpMenuOnSelected,
                           itemBuilder: (context) => [
                             PopupMenuItem(
                               value: 0,
                               child: Text('Results'),
-                              onTap: () {
-                                Get.bottomSheet(
-                                  ResultsBottomSheet(
-                                    recordingFor:
-                                        competitionPlayer!.recordingScoresFor,
-                                    controller: _controller,
-                                    competition: competition,
-                                  ),
-                                  elevation: 20.0,
-                                  enableDrag: false,
-                                  backgroundColor: Colors.white,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(30.0),
-                                      topRight: Radius.circular(30.0),
-                                    ),
-                                  ),
-                                );
-                              },
                             ),
                             PopupMenuItem(
                               value: 1,
                               child: Text('End Match'),
-                              onTap: () {
-                                Get.defaultDialog(
-                                    confirmTextColor: Colors.white,
-                                    title: "End Match",
-                                    content: Text(
-                                        "You will lose all your scores and match progress. This action cannot be reversed. Confirm ending match?"),
-                                    onConfirm: () {
-                                      _controller.gameHoles.clear();
-                                      _controller.count.value = 0;
-                                      Get.toNamed("/home");
-                                    },
-                                    onCancel: () {});
-                              },
                             ),
                           ],
                         ),
@@ -325,7 +293,7 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.symmetric(
-                                        vertical: 20.0),
+                                        vertical: 50.0),
                                     child: CustomButton(
                                       textStyle:
                                           GcmsTheme.lightTextTheme.bodyText2,
@@ -387,90 +355,6 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                       },
                                     ),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 6.0),
-                                    child: InkWell(
-                                      onTap: () {
-                                        _controller.getAllPlayers(
-                                            competition.id.toString());
-                                        Get.bottomSheet(
-                                          ResultsBottomSheet(
-                                              competition: competition,
-                                              recordingFor:
-                                                  competitionPlayer!.player,
-                                              controller: _controller),
-                                          elevation: 20.0,
-                                          enableDrag: false,
-                                          backgroundColor: Colors.white,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(30.0),
-                                              topRight: Radius.circular(30.0),
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                      child: Ink(
-                                        padding: EdgeInsets.symmetric(
-                                          vertical: 12,
-                                          horizontal: 16,
-                                        ),
-                                        decoration: BoxDecoration(
-                                          border: Border(
-                                            top: BorderSide(
-                                              color: Colors.grey,
-                                            ),
-                                            bottom: BorderSide(
-                                              color: Colors.grey,
-                                            ),
-                                          ),
-                                        ),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: <Widget>[
-                                            Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: <Widget>[
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          bottom: 4.0),
-                                                  child: Text(
-                                                    "View Match Results",
-                                                    style: TextStyle(
-                                                      color: kPrimaryColor,
-                                                      // fontWeight: FontWeight.bold,
-                                                      fontSize: 14,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 8.0),
-                                    child: CustomButton(
-                                      textStyle:
-                                          GcmsTheme.lightTextTheme.bodyText2,
-                                      text: "End Match",
-                                      onPressed: () {
-                                        Get.defaultDialog(
-                                            title: "End Match",
-                                            content: Text(
-                                                "You will lose all your scores and match progress. This action cannot be reversed. Confirm ending match?"),
-                                            onConfirm: () {
-                                              Get.toNamed("/home");
-                                            },
-                                            onCancel: () {});
-                                      },
-                                    ),
-                                  ),
                                 ],
                               ),
                             ],
@@ -483,6 +367,45 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
         },
       ),
     );
+  }
+
+  void popUpMenuOnSelected(item) {
+    switch (item) {
+      case 0:
+        Get.bottomSheet(
+          ResultsBottomSheet(
+            recordingFor: competitionPlayer!.recordingScoresFor,
+            controller: _controller,
+            competition: competition,
+          ),
+          elevation: 20.0,
+          enableDrag: false,
+          backgroundColor: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(30.0),
+              topRight: Radius.circular(30.0),
+            ),
+          ),
+        );
+        print('Results clicked');
+        break;
+
+      case 1:
+        Get.defaultDialog(
+            confirmTextColor: Colors.white,
+            title: "End Match",
+            content: Text(
+                "You will lose all your scores and match progress. This action cannot be reversed. Confirm ending match?"),
+            onConfirm: () {
+              _controller.gameHoles.clear();
+              _controller.count.value = 0;
+              Get.toNamed("/home");
+            },
+            onCancel: () {});
+        print('End Match clicked');
+        break;
+    }
   }
 }
 
@@ -591,17 +514,5 @@ class ResultsBottomSheet extends StatelessWidget {
 
   Future<void> _pullRefresh() async {
     await _controller.getAllPlayers(competition.id.toString());
-  }
-}
-
-void onSelected(BuildContext context, int item) {
-  switch (item) {
-    case 0:
-      print('Results clicked');
-      break;
-
-    case 1:
-      print('End Match clicked');
-      break;
   }
 }

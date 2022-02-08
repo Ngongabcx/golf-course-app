@@ -45,10 +45,9 @@ class MatchSetupView extends StatelessWidget {
             ? Loader()
             : Column(
                 children: [
-
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 25),
-                    margin: EdgeInsets.only(top: 30),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 25.0, vertical: 25.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -138,7 +137,9 @@ class MatchSetupView extends StatelessWidget {
                             label: 'Pick match date',
                             name: 'Match Date',
                             callback: (newSelectedDate) {
-                              _controller.selectedDate.value = _controller.formatter.format(newSelectedDate!);
+                              _controller.selectedDate.value = _controller
+                                  .formatter
+                                  .format(newSelectedDate!);
                               print(newSelectedDate);
                             },
                           ),
@@ -163,8 +164,7 @@ class MatchSetupView extends StatelessWidget {
                             () {
                               //Dismissing the keyboard
                               return Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 20.0),
+                                padding: const EdgeInsets.only(bottom: 20.0),
                                 child: CustomButton(
                                   textStyle: GcmsTheme.lightTextTheme.bodyText2,
                                   text: _controller.isProcessing.value == true

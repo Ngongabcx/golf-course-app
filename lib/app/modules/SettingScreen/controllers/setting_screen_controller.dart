@@ -29,6 +29,8 @@ class SettingScreenController extends GetxController {
   var compressImagePath = ''.obs;
   var compressImageSize = ''.obs;
 
+  var storage = GetStorage();
+
   getImage(ImageSource imageSource) async {
     final pickedFile = await ImagePicker().pickImage(source: imageSource);
     if (pickedFile != null) {
@@ -110,8 +112,6 @@ class SettingScreenController extends GetxController {
   }
 
   //Crop image
-
-  var storage = GetStorage();
 
   late TextEditingController firstnameController,
       lastnameController,

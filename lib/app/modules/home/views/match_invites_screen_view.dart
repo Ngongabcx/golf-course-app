@@ -60,7 +60,7 @@ class MatchInvitesScreenView extends GetView<HomeController> {
                       child: SearchCard(),
                     ),
                     Expanded(
-                      child: _controller.matchInvites.value.payload == null
+                      child: _controller.matchInvList == null
                           ? Center(
                               child: Text("No Invitations."),
                             )
@@ -97,18 +97,26 @@ class MatchInviteListView extends StatelessWidget {
       child: RefreshIndicator(
         onRefresh: _pullRefresh,
         child: ListView.builder(
-          itemCount: _controller.matchInvites.value.payload!.length,
+          controller: _controller.scrollController,
+          itemCount: _controller.matchInvList.length,
           itemBuilder: (BuildContext context, int index) {
+            if (index == _controller.matchInvList.length - 1 &&
+                _controller.isProcessing.value == true) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
             return GestureDetector(
               onTap: () {
                 Get.to(
-                  CompetitionDetailView(competition: invitations![index]),
+                  CompetitionDetailView(
+                      competition: _controller.matchInvList[index]),
                 );
               },
               child: Padding(
                 padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
                 child: MatchInvitationsCard(
-                  invitations: invitations![index],
+                  invitations: _controller.matchInvList[index],
                 ),
               ),
             );
@@ -120,6 +128,6 @@ class MatchInviteListView extends StatelessWidget {
 
   Future<void> _pullRefresh() async {
     await _controller.getMatchInvites(
-        _controller.matchInvites.value.payload!.first.id.toString());
+        _controller.matchInvList.first.id.toString(), _controller.page);
   }
 }

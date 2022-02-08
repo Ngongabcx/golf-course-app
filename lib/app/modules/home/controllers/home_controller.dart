@@ -3,6 +3,7 @@ import 'package:gcms/app/modules/Messages/views/messages_view.dart';
 import 'package:gcms/app/modules/Notifications/models/notification_model.dart';
 import 'package:gcms/app/modules/Notifications/providers/database/notifications_database.dart';
 import 'package:gcms/app/modules/SetupScreen/competition_model.dart';
+import 'package:gcms/app/modules/SetupScreen/competition_model.dart' as compt;
 import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
 import 'package:gcms/app/modules/home/providers/match_invites_provider.dart';
 import 'package:gcms/app/modules/home/providers/user_provider.dart';
@@ -24,6 +25,8 @@ class HomeController extends GetxController {
   var storage = GetStorage();
   var isProcessing = false.obs;
   var matchInvites = Competition().obs;
+  var matchInvList = <compt.Payload>[].obs;
+  var page = 1;
   static List<Widget> pages = <Widget>[
     ExploreScreenView(),
     Icon(Icons.check),
@@ -34,6 +37,7 @@ class HomeController extends GetxController {
     super.onInit();
     LocalNotificationsService.initialize();
     await validateToken();
+    paginateMatchInvites();
   }
 
   @override
@@ -126,7 +130,7 @@ class HomeController extends GetxController {
         name.value = usr.fname!;
         var fcmToken = usr.fcmToken.toString();
         await processUserDeviceFcmToken(fcmToken, id);
-        await getMatchInvites(usr.id.toString());
+        await getMatchInvites(usr.id.toString(), page);
         isProcessing(false);
         //Get.offAllNamed('/home');
       }, onError: (err) {
@@ -147,13 +151,14 @@ class HomeController extends GetxController {
     }
   }
 
-  getMatchInvites(String id) async {
+  getMatchInvites(String id, page) async {
     print("GET MATCH INVITES ----> ID: $id");
     try {
       isProcessing(true);
-      await MatchInvitesProvider().getMatchInvites(id).then((resp) async {
+      await MatchInvitesProvider().getMatchInvites(id, page).then((resp) async {
         print("GET MATCH INVITES RESPONSE  --> ${resp.toString()}");
-        matchInvites.value = resp;
+        matchInvList.addAll(resp.payload!);
+        matchInvList.removeWhere((item) => item.isTournament == true);
         isProcessing(false);
       }, onError: (err) {
         print("GET MATCH INVITES ERROR --> $err");
@@ -168,6 +173,61 @@ class HomeController extends GetxController {
     } catch (exception) {
       ShowSnackBar(
           title: "Exception",
+          message: exception.toString(),
+          backgroundColor: Colors.red);
+      isProcessing(false);
+    }
+  }
+
+  void paginateMatchInvites() {
+    scrollController.addListener(() {
+      if (scrollController.position.pixels ==
+              scrollController.position.maxScrollExtent &&
+          !isMoreDataAvailable()) {
+        print("reached end");
+        page++;
+        getMoreMatchInvites(page);
+        print('Page number $page');
+      }
+    });
+  }
+
+  getMoreMatchInvites(var page) async {
+    print('GET MORE MATCHES CALLED');
+
+    try {
+      isProcessing(true);
+      final id = storage.read("userId").toString();
+      await MatchInvitesProvider().getMatchInvites(id, page).then((resp) {
+        matchInvList.addAll(resp.payload!);
+        if (matchInvites.value.payload!.length > 0) {
+          isMoreDataAvailable(true);
+          print("MATCHES ---> ${matchInvites.value.toString()}");
+          debugPrint(
+              "NUMBER  OF  COMPETITIONS ---> ${matchInvites.value.payload!.length}");
+          debugPrint(
+              "FIRST COMPETITION NAME ---> ${matchInvites.value.payload!.first.compName}");
+          isProcessing(false);
+        } else {
+          isMoreDataAvailable(false);
+          ShowSnackBar(
+              title: "Message",
+              message: "No more items",
+              backgroundColor: Colors.red);
+          isProcessing(false);
+        }
+      }, onError: (err) {
+        isMoreDataAvailable(false);
+        ShowSnackBar(
+            title: "Error",
+            message: err.toString(),
+            backgroundColor: Colors.red);
+        isProcessing(false);
+      });
+    } catch (exception) {
+      isMoreDataAvailable(false);
+      ShowSnackBar(
+          title: "Error",
           message: exception.toString(),
           backgroundColor: Colors.red);
       isProcessing(false);

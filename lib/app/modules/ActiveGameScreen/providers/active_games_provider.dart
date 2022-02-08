@@ -7,7 +7,7 @@ import 'package:gcms/app/services/slack_logger.dart';
 import 'package:gcms/constants/constant.dart';
 
 class ActiveGamesProvider extends BaseProvider {
-  Future<Competition> getActiveMatches(var page,String usrId) async {
+  Future<Competition> getActiveMatches(var page, String usrId) async {
     try {
       var url =
           "$kNewApiBaseURL/api/competitions/user/all/$usrId?PageSize=$kPageSize&PageNumber=$page";

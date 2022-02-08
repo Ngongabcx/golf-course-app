@@ -20,6 +20,7 @@ class ScoresInputScreenController extends GetxController {
   var holeIndex = 0.obs;
   var count = 0.obs;
   var compPlayers = <compPlayer.Payload>[].obs;
+  var item = 0.obs;
   @override
   void onInit() {
     super.onInit();
