@@ -15,6 +15,7 @@ class ScoresInputScreenController extends GetxController {
   var storage = GetStorage();
   var endHole;
   var gameHoles = <Hole>[].obs;
+  var gmHoles;
   var remainingHoles = 0.obs;
   var holeIndex = 0.obs;
   var count = 0.obs;
@@ -31,13 +32,15 @@ class ScoresInputScreenController extends GetxController {
 
   @override
   void onClose() {}
-  void extractGameHolesArray(Payload competition) {
+  void extractGameHolesArray(
+      Payload competition, CompetitionPlayer? competitionPlayer) {
     print("EXTRACT GAME HOLES HAS BEEN CALLED!!!!");
     var totalHoles = competition.gameHoles;
     remainingHoles.value = totalHoles!;
     var startingHole = competition.startingHole;
     var holes = competition.course?.holes;
     print("TOTAL HOLES ------------> $totalHoles");
+    gameHoles.clear();
     //get holes that are being payed accourding to the competition number of holes being played
     if (totalHoles == 18) {
       if (startingHole == 1) {
@@ -102,7 +105,7 @@ class ScoresInputScreenController extends GetxController {
         }
       }
     }
-    hcp.value = storage.read("hcp");
+    hcp.value = competitionPlayer!.recordingScoresFor!.hcp!;
     print("FIRST GAME HOLE NUMBER ----> ${gameHoles.first.holeNo}");
     print("LAST GAME HOLE NUMBER ----> ${gameHoles.last.holeNo}");
   }

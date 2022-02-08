@@ -4,6 +4,7 @@ import 'package:gcms/app/modules/SetupScreen/competition_model.dart';
 import 'package:gcms/app/modules/SetupScreen/competition_model.dart' as compt;
 import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class ActiveGameScreenController extends GetxController {
   var matches = Competition().obs;
@@ -13,6 +14,7 @@ class ActiveGameScreenController extends GetxController {
   var isMoreDataAvailable = false.obs;
   var page = 1;
   final count = 0.obs;
+  var storage = GetStorage();
   @override
   void onInit() async {
     super.onInit();
@@ -36,7 +38,7 @@ class ActiveGameScreenController extends GetxController {
     print('GET ACTIVE MATCHES CALLED');
     try {
       isProcessing(true);
-      await ActiveGamesProvider().getActiveMatches(page).then((resp) async {
+      await ActiveGamesProvider().getActiveMatches(page,storage.read("userId")).then((resp) async {
         matches.value = resp;
         matchList.addAll(resp.payload!);
         matchList.removeWhere((item) => item.isTournament == true);
@@ -83,7 +85,7 @@ class ActiveGameScreenController extends GetxController {
 
     try {
       isProcessing(true);
-      await ActiveGamesProvider().getActiveMatches(page).then((resp) {
+      await ActiveGamesProvider().getActiveMatches(page,storage.read("userId")).then((resp) {
         matchList.addAll(resp.payload!);
         if (matches.value.payload!.length > 0) {
           isMoreDataAvailable(true);

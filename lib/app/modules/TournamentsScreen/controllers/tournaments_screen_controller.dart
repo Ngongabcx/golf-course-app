@@ -3,12 +3,14 @@ import 'package:gcms/app/modules/SetupScreen/competition_model.dart' as compt;
 import 'package:gcms/app/modules/TournamentsScreen/providers/tournaments_provider.dart';
 import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class TournamentsScreenController extends GetxController {
   var isProcessing = false.obs;
   ScrollController scrollController = ScrollController();
   var compList = <compt.Payload>[].obs;
   var isMoreDataAvailable = false.obs;
+  var storage = GetStorage();
   var page = 1;
   final count = 0.obs;
   @override
@@ -34,7 +36,7 @@ class TournamentsScreenController extends GetxController {
     print('GET TOURNAMENTS CALLED');
     try {
       isProcessing(true);
-      await TournamentsProvider().getTournaments(page).then((resp) async {
+      await TournamentsProvider().getTournaments(page,storage.read("userId")).then((resp) async {
         compList.addAll(resp.payload!);
         compList.removeWhere((item) => item.isTournament == false);
         print("TOURNAMENTS ---> ${compList.toString()}");
@@ -78,7 +80,7 @@ class TournamentsScreenController extends GetxController {
 
     try {
       isProcessing(true);
-      await TournamentsProvider().getTournaments(page).then((resp) {
+      await TournamentsProvider().getTournaments(page,storage.read("userId")).then((resp) {
         compList.addAll(resp.payload!);
         if (compList.length > 0) {
           isMoreDataAvailable(true);

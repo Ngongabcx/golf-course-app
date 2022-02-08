@@ -21,7 +21,7 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
   ScoresInputScreenView(this.competition, this.competitionPlayer);
   @override
   Widget build(BuildContext context) {
-    _controller.extractGameHolesArray(competition);
+    _controller.extractGameHolesArray(competition, competitionPlayer!);
     return Scaffold(
       backgroundColor: kBackgroundColor,
       body: Obx(
@@ -44,7 +44,8 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                               onTap: () {
                                 Get.bottomSheet(
                                   ResultsBottomSheet(
-                                    recordingFor: competitionPlayer!.recordingScoresFor,
+                                    recordingFor:
+                                        competitionPlayer!.recordingScoresFor,
                                     controller: _controller,
                                     competition: competition,
                                   ),
@@ -70,6 +71,8 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                     content: Text(
                                         "You will lose all your scores and match progress. This action cannot be reversed. Confirm ending match?"),
                                     onConfirm: () {
+                                      _controller.gameHoles.clear();
+                                      _controller.count.value = 0;
                                       Get.toNamed("/home");
                                     },
                                     onCancel: () {});
@@ -347,7 +350,7 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                                   .id
                                                   .toString(),
                                             }, "${competition.id}",
-                                                "${competitionPlayer!.id}");
+                                                "${competitionPlayer!.recordingScoresFor!.id}");
                                             Get.back();
                                           },
                                           onCancel: () {},
@@ -393,7 +396,8 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                                         Get.bottomSheet(
                                           ResultsBottomSheet(
                                               competition: competition,
-                                              recordingFor: competitionPlayer!.player,
+                                              recordingFor:
+                                                  competitionPlayer!.player,
                                               controller: _controller),
                                           elevation: 20.0,
                                           enableDrag: false,
