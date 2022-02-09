@@ -70,6 +70,12 @@ class MatchSetupView extends StatelessWidget {
                             false,
                             false,
                             false,
+                            (value) {
+                              if (value == null || value.trim().isEmpty) {
+                                return 'Match Name is required.';
+                              }
+                              return null;
+                            },
                           ),
                           const SizedBox(height: 20),
                           Obx(() {

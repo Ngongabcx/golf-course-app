@@ -28,6 +28,12 @@ class BuildSignUp extends GetView<AuthenticationController> {
                     false,
                     false,
                     true,
+                    (value) {
+                      if (value == null || value.trim().isEmpty) {
+                        return 'Email is required.';
+                      }
+                      return null;
+                    },
                   ),
                 ),
               ],
@@ -47,6 +53,12 @@ class BuildSignUp extends GetView<AuthenticationController> {
                     true,
                     false,
                     false,
+                    (value) {
+                      if (value == null || value.trim().isEmpty) {
+                        return 'Password is required.';
+                      }
+                      return null;
+                    },
                   ),
                 ),
               ],
@@ -66,6 +78,12 @@ class BuildSignUp extends GetView<AuthenticationController> {
                     true,
                     false,
                     false,
+                    (value) {
+                      if (value == null || value.trim().isEmpty) {
+                        return 'Confirm password is required.';
+                      }
+                      return null;
+                    },
                   ),
                 ),
               ],

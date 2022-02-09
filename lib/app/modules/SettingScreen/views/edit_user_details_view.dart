@@ -72,6 +72,12 @@ class EditUserDetailsView extends GetView<SettingScreenController> {
                                 false,
                                 false,
                                 false,
+                                (value) {
+                                  if (value == null || value.trim().isEmpty) {
+                                    return '${usr.fname.toString()} is required.';
+                                  }
+                                  return null;
+                                },
                               ),
                             ),
                             Padding(
@@ -84,6 +90,12 @@ class EditUserDetailsView extends GetView<SettingScreenController> {
                                 false,
                                 false,
                                 false,
+                                (value) {
+                                  if (value == null || value.trim().isEmpty) {
+                                    return '${usr.lname.toString()} is required.';
+                                  }
+                                  return null;
+                                },
                               ),
                             ),
                             Padding(
@@ -96,6 +108,12 @@ class EditUserDetailsView extends GetView<SettingScreenController> {
                                 false,
                                 false,
                                 false,
+                                (value) {
+                                  if (value == null || value.trim().isEmpty) {
+                                    return '${usr.address.toString()} is required.';
+                                  }
+                                  return null;
+                                },
                               ),
                             ),
                             Padding(
@@ -135,6 +153,12 @@ class EditUserDetailsView extends GetView<SettingScreenController> {
                                 false,
                                 true,
                                 false,
+                                (value) {
+                                  if (value == null || value.trim().isEmpty) {
+                                    return '${usr.hcp.toString()} is required.';
+                                  }
+                                  return null;
+                                },
                               ),
                             ),
                             const SizedBox(height: 25),

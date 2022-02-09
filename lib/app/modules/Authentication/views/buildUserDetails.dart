@@ -31,6 +31,12 @@ class BuildUserDetails extends GetView<AuthenticationController> {
                       false,
                       false,
                       false,
+                      (value) {
+                        if (value == null || value.trim().isEmpty) {
+                          return 'First name is required.';
+                        }
+                        return null;
+                      },
                     ),
                   ),
                   Padding(
@@ -42,6 +48,12 @@ class BuildUserDetails extends GetView<AuthenticationController> {
                       false,
                       false,
                       false,
+                      (value) {
+                        if (value == null || value.trim().isEmpty) {
+                          return 'Last name is required.';
+                        }
+                        return null;
+                      },
                     ),
                   ),
                   Padding(
@@ -53,6 +65,12 @@ class BuildUserDetails extends GetView<AuthenticationController> {
                       false,
                       false,
                       false,
+                      (value) {
+                        if (value == null || value.trim().isEmpty) {
+                          return 'Address is required.';
+                        }
+                        return null;
+                      },
                     ),
                   ),
 
@@ -91,6 +109,12 @@ class BuildUserDetails extends GetView<AuthenticationController> {
                       false,
                       true,
                       false,
+                      (value) {
+                        if (value == null || value.trim().isEmpty) {
+                          return 'Handicap is required.';
+                        }
+                        return null;
+                      },
                     ),
                   ),
 

@@ -56,24 +56,32 @@ class EditLoginDetailsView extends GetView {
                       height: 10.0,
                     ),
                     CustomTextFormFieldWidget(
-                      _controller.signUpPasswordController,
-                      "Password",
-                      (s) {},
-                      true,
-                      false,
-                      false,
-                    ),
+                        _controller.signUpPasswordController,
+                        "Password",
+                        (s) {},
+                        true,
+                        false,
+                        false, (value) {
+                      if (value == null || value.trim().isEmpty) {
+                        return 'Password is required.';
+                      }
+                      return null;
+                    }),
                     SizedBox(
                       height: 10.0,
                     ),
                     CustomTextFormFieldWidget(
-                      _controller.signUpConfirmPasswordController,
-                      "Confirm Password",
-                      (s) {},
-                      true,
-                      false,
-                      false,
-                    ),
+                        _controller.signUpConfirmPasswordController,
+                        "Confirm Password",
+                        (s) {},
+                        true,
+                        false,
+                        false, (value) {
+                      if (value == null || value.trim().isEmpty) {
+                        return 'Confirm password is required.';
+                      }
+                      return null;
+                    }),
                     SizedBox(
                       height: 20.0,
                     ),

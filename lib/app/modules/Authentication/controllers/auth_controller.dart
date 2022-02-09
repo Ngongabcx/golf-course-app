@@ -289,44 +289,48 @@ class AuthenticationController extends GetxController {
   }
 
   bool validateCreateUserForm() {
-    if (firstnameController.text.isEmpty) {
-      print('FIRST NAME: ${firstnameController.text}');
-      ShowSnackBar(
-        title: "First name cannot be empty",
-        message: "Provide your first name.",
-        backgroundColor: Colors.red,
-      );
-      return false;
+    if (userFormKey.currentState!.validate()) {
+      return true;
     }
-    if (lastnameController.text.isEmpty) {
-      print('LAST NAME: ${lastnameController.text}');
-      ShowSnackBar(
-        title: "Last name cannot be empty",
-        message: "Please Provide your last name.",
-        backgroundColor: Colors.red,
-      );
-      return false;
-    }
-    if (addressController.text.isEmpty) {
-      ShowSnackBar(
-        title: "Address cannot be empty",
-        message: "Please Provide your address.",
-        backgroundColor: Colors.red,
-      );
-      return false;
-    }
-    // if (!GetUtils.isBlank(value)) {
-    //   return 'Provide your gender';
+    return false;
+    // if (firstnameController.text.isEmpty) {
+    //   print('FIRST NAME: ${firstnameController.text}');
+    //   ShowSnackBar(
+    //     title: "First name cannot be empty",
+    //     message: "Provide your first name.",
+    //     backgroundColor: Colors.red,
+    //   );
+    //   return false;
     // }
-    if (hcpController.text.isEmpty) {
-      ShowSnackBar(
-        title: "Handicap cannot be empty",
-        message: "Please Provide your handicap.",
-        backgroundColor: Colors.red,
-      );
-      return false;
-    }
-    return true;
+    // if (lastnameController.text.isEmpty) {
+    //   print('LAST NAME: ${lastnameController.text}');
+    //   ShowSnackBar(
+    //     title: "Last name cannot be empty",
+    //     message: "Please Provide your last name.",
+    //     backgroundColor: Colors.red,
+    //   );
+    //   return false;
+    // }
+    // if (addressController.text.isEmpty) {
+    //   ShowSnackBar(
+    //     title: "Address cannot be empty",
+    //     message: "Please Provide your address.",
+    //     backgroundColor: Colors.red,
+    //   );
+    //   return false;
+    // }
+    // // if (!GetUtils.isBlank(value)) {
+    // //   return 'Provide your gender';
+    // // }
+    // if (hcpController.text.isEmpty) {
+    //   ShowSnackBar(
+    //     title: "Handicap cannot be empty",
+    //     message: "Please Provide your handicap.",
+    //     backgroundColor: Colors.red,
+    //   );
+    //   return false;
+    // }
+    // return true;
   }
 
   // clear the controllers

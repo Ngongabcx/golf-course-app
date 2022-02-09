@@ -54,7 +54,19 @@ class NotificationDetailsView extends GetView {
             ),
           ),
           CustomTextFormFieldWidget(
-              textEditingController, "TEST2", () {}, false, false, false)
+            textEditingController,
+            "TEST2",
+            () {},
+            false,
+            false,
+            false,
+            (value) {
+              if (value == null || value.trim().isEmpty) {
+                return 'TEST2 is required.';
+              }
+              return null;
+            },
+          )
         ],
       )),
     );

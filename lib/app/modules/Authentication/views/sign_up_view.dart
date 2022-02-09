@@ -84,7 +84,7 @@ class SignUpView extends GetView<AuthenticationController> {
                                   : 'Next',
                               textStyle: GcmsTheme.lightTextTheme.bodyText2,
                               onPressed: () async {
-                                if (signUpController.currentStep.value == 1) {
+                                if (signUpController.currentStep.value == 2) {
                                   print('Send data to the server');
                                   if (signUpController.isProcessing.value ==
                                       false) {
@@ -114,15 +114,15 @@ class SignUpView extends GetView<AuthenticationController> {
                                     });
                                   }
                                 }
-
-                                if (signUpController.currentStep.value == 1) {
-                                  if (signUpController
-                                      .validateCreateUserForm()) {
+                                if (signUpController.currentStep.value == 0) {
+                                  print("Validate aspUser detilas");
+                                  if (signupSubmitForm()) {
                                     controls.onStepContinue!();
                                   }
                                 }
-                                if (signUpController.currentStep.value == 0) {
-                                  if (signupSubmitForm()) {
+                                if (signUpController.currentStep.value == 1) {
+                                  print("Validate user detilas");
+                                  if (userDetailsSubmitForm()) {
                                     controls.onStepContinue!();
                                   }
                                 }

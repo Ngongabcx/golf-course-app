@@ -10,8 +10,15 @@ class CustomTextFormFieldWidget extends GetView {
   final bool isNumber;
   final bool isEmail;
   final String? initialValue;
-  CustomTextFormFieldWidget(this.textEditingController, this.label,
-      this.onValidate, this.isObscure, this.isNumber, this.isEmail,
+  final String? Function(String?)? callback;
+  CustomTextFormFieldWidget(
+      this.textEditingController,
+      this.label,
+      this.onValidate,
+      this.isObscure,
+      this.isNumber,
+      this.isEmail,
+      this.callback,
       {this.initialValue});
   @override
   Widget build(BuildContext context) {
@@ -22,7 +29,7 @@ class CustomTextFormFieldWidget extends GetView {
           : isEmail
               ? TextInputType.emailAddress
               : TextInputType.text,
-      // validator: (()=>onValidate()),
+      validator: callback,
       textCapitalization: TextCapitalization.words,
       initialValue: initialValue,
       obscureText: isObscure,
@@ -39,6 +46,12 @@ class CustomTextFormFieldWidget extends GetView {
             width: 2,
           ),
           borderRadius: BorderRadius.circular(8),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderSide: const BorderSide(
+            color: Colors.red,
+            width: 2,
+          ),
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: const BorderSide(
