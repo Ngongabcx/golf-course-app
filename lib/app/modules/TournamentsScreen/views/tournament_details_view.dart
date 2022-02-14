@@ -144,7 +144,7 @@ class TournamentDetailsView extends GetView {
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
                 physics: ScrollPhysics(),
-                itemCount: competition.competitionPlayers!.length,
+                itemCount: competition.rounds!.first.roundPlayers!.length,
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10.0),
@@ -153,13 +153,13 @@ class TournamentDetailsView extends GetView {
                       children: [
                         Row(
                           children: [
-                            competition.competitionPlayers![index].player!
+                            competition.rounds!.first.roundPlayers![index].player!
                                         .image ==
                                     ""
                                 ? CircleAvatar(
                                     radius: 30.0,
                                     backgroundImage: AssetImage(competition
-                                        .competitionPlayers![index]
+                                        .rounds!.first.roundPlayers![index]
                                         .player!
                                         .image
                                         .toString()),
@@ -167,7 +167,7 @@ class TournamentDetailsView extends GetView {
                                 : CircleAvatar(
                                     radius: 30.0,
                                     backgroundImage: NetworkImage((competition
-                                        .competitionPlayers![index]
+                                        .rounds!.first.roundPlayers![index]
                                         .player!
                                         .imageThumbnail
                                         .toString())),
@@ -176,7 +176,7 @@ class TournamentDetailsView extends GetView {
                               width: 10.0,
                             ),
                             Text(
-                              "${competition.competitionPlayers![index].player!.fname.toString().split('.').last.replaceAll('_', ' ').capitalizeFirst ?? ''}",
+                              "${competition.rounds!.first.roundPlayers![index].player!.fname.toString().split('.').last.replaceAll('_', ' ').capitalizeFirst ?? ''}",
                               style: GcmsTheme.lightTextTheme.bodyText1,
                             ),
                           ],
@@ -212,7 +212,7 @@ class TournamentDetailsView extends GetView {
                 print('COMPETITION ID ---------> $competitionId');
                 var playerId = int. parse(_controller.storage.read("userId"));
                 print('PLAYER ID --------> $playerId');
-                CompetitionPlayer competitionPlayer = competition.competitionPlayers!
+                RoundPlayer competitionPlayer = competition.rounds!.first.roundPlayers!
                     .singleWhere((element) => element.player!.id == playerId);
                 Get.to(ScoresInputScreenView(
                   competition,competitionPlayer

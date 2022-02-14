@@ -49,10 +49,11 @@ class Payload {
         this.compTime,
         this.gameHoles,
         this.startingHole,
+        this.endingHole,
         this.isTournament,
         this.gametype,
         this.course,
-        this.competitionPlayers,
+        this.rounds,
     });
 
     int? id;
@@ -62,10 +63,11 @@ class Payload {
     String? compTime;
     int? gameHoles;
     int? startingHole;
+    int? endingHole;
     bool? isTournament;
     Gametype? gametype;
     Course? course;
-    List<CompetitionPlayer>? competitionPlayers;
+    List<Round>? rounds;
 
     factory Payload.fromJson(Map<String, dynamic> json) => Payload(
         id: json["id"],
@@ -75,10 +77,11 @@ class Payload {
         compTime: json["compTime"],
         gameHoles: json["gameHoles"],
         startingHole: json["startingHole"],
+        endingHole: json["endingHole"],
         isTournament: json["isTournament"],
         gametype: Gametype.fromJson(json["gametype"]),
         course: Course.fromJson(json["course"]),
-        competitionPlayers: List<CompetitionPlayer>.from(json["competitionPlayers"].map((x) => CompetitionPlayer.fromJson(x))),
+        rounds: List<Round>.from(json["rounds"].map((x) => Round.fromJson(x))),
     );
 
     Map<String, dynamic> toJson() => {
@@ -89,102 +92,59 @@ class Payload {
         "compTime": compTime,
         "gameHoles": gameHoles,
         "startingHole": startingHole,
+        "endingHole": endingHole,
         "isTournament": isTournament,
         "gametype": gametype!.toJson(),
         "course": course!.toJson(),
-        "competitionPlayers": List<dynamic>.from(competitionPlayers!.map((x) => x.toJson())),
+        "rounds": List<dynamic>.from(rounds!.map((x) => x.toJson())),
     };
 }
 
-class CompetitionPlayer {
-    CompetitionPlayer({
+class Course {
+    Course({
         this.id,
-        this.compTime,
-        this.compHcp,
-        this.nextHole,
-        this.player,
-        this.inviteStatus,
-        this.colorcode,
-        this.recordingScoresFor,
+        this.courseName,
+        this.courseAbr,
+        this.address,
+        this.phoneNo,
+        this.email,
+        this.courseImage,
+        this.imageThumbnail,
+        this.holes,
     });
 
     int? id;
-    String? compTime;
-    int? compHcp;
-    Hole? nextHole;
-    Player? player;
-    Gametype? inviteStatus;
-    Colorcode? colorcode;
-    Player? recordingScoresFor;
+    String? courseName;
+    String? courseAbr;
+    String? address;
+    String? phoneNo;
+    String? email;
+    String? courseImage;
+    String? imageThumbnail;
+    List<Hole>? holes;
 
-    factory CompetitionPlayer.fromJson(Map<String, dynamic> json) => CompetitionPlayer(
+    factory Course.fromJson(Map<String, dynamic> json) => Course(
         id: json["id"],
-        compTime: json["compTime"],
-        compHcp: json["compHcp"],
-        nextHole: Hole.fromJson(json["nextHole"]),
-        player: Player.fromJson(json["player"]),
-        inviteStatus: Gametype.fromJson(json["inviteStatus"]),
-        colorcode: Colorcode.fromJson(json["colorcode"]),
-        recordingScoresFor: Player.fromJson(json["recordingScoresFor"]),
+        courseName: json["courseName"],
+        courseAbr: json["courseAbr"],
+        address: json["address"],
+        phoneNo: json["phoneNo"],
+        email: json["email"],
+        courseImage: json["courseImage"],
+        imageThumbnail: json["imageThumbnail"],
+        holes: List<Hole>.from(json["holes"].map((x) => Hole.fromJson(x))),
     );
 
     Map<String, dynamic> toJson() => {
         "id": id,
-        "compTime": compTime,
-        "compHcp": compHcp,
-        "nextHole": nextHole!.toJson(),
-        "player": player!.toJson(),
-        "inviteStatus": inviteStatus!.toJson(),
-        "colorcode": colorcode!.toJson(),
-        "recordingScoresFor": recordingScoresFor!.toJson(),
-    };
-}
-
-class Colorcode {
-    Colorcode({
-        this.id,
-        this.color,
-        this.description,
-    });
-
-    int? id;
-    String? color;
-    String? description;
-
-    factory Colorcode.fromJson(Map<String, dynamic> json) => Colorcode(
-        id: json["id"],
-        color: json["color"],
-        description: json["description"],
-    );
-
-    Map<String, dynamic> toJson() => {
-        "id": id,
-        "color": color,
-        "description": description,
-    };
-}
-
-class Gametype {
-    Gametype({
-        this.id,
-        this.name,
-        this.description,
-    });
-
-    int? id;
-    String? name;
-    String? description;
-
-    factory Gametype.fromJson(Map<String, dynamic> json) => Gametype(
-        id: json["id"],
-        name: json["name"],
-        description: json["description"],
-    );
-
-    Map<String, dynamic> toJson() => {
-        "id": id,
-        "name": name,
-        "description": description,
+        "courseName": courseName,
+        "courseAbr": courseAbr,
+        "address": address,
+        "phoneNo": phoneNo,
+        "email": email,
+        "courseImage": courseImage,
+        "imageThumbnail": imageThumbnail,
+        "holes": List<dynamic>.from(holes!.map((x) => x.toJson())),
     };
 }
 
@@ -236,6 +196,194 @@ class Hole {
     };
 }
 
+class Gametype {
+    Gametype({
+        this.id,
+        this.name,
+        this.description,
+    });
+
+    int? id;
+    String? name;
+    String? description;
+
+    factory Gametype.fromJson(Map<String, dynamic> json) => Gametype(
+        id: json["id"],
+        name: json["name"],
+        description: json["description"],
+    );
+
+    Map<String, dynamic> toJson() => {
+        "id": id,
+        "name": name,
+        "description": description,
+    };
+}
+
+class Round {
+    Round({
+        this.id,
+        this.roundNumber,
+        this.competitionId,
+        this.par,
+        this.isTieBreaker,
+        this.roundHoles,
+        this.playerCount,
+        this.playerFinishCount,
+        this.roundStatus,
+        this.roundPlayers,
+    });
+
+    int? id;
+    int? roundNumber;
+    int? competitionId;
+    int? par;
+    bool? isTieBreaker;
+    int? roundHoles;
+    int? playerCount;
+    int? playerFinishCount;
+    String? roundStatus;
+    List<RoundPlayer>? roundPlayers;
+
+    factory Round.fromJson(Map<String, dynamic> json) => Round(
+        id: json["id"],
+        roundNumber: json["roundNumber"],
+        competitionId: json["competitionId"],
+        par: json["par"],
+        isTieBreaker: json["isTieBreaker"],
+        roundHoles: json["roundHoles"],
+        playerCount: json["playerCount"],
+        playerFinishCount: json["playerFinishCount"],
+        roundStatus: json["roundStatus"],
+        roundPlayers: List<RoundPlayer>.from(json["roundPlayers"].map((x) => RoundPlayer.fromJson(x))),
+    );
+
+    Map<String, dynamic> toJson() => {
+        "id": id,
+        "roundNumber": roundNumber,
+        "competitionId": competitionId,
+        "par": par,
+        "isTieBreaker": isTieBreaker,
+        "roundHoles": roundHoles,
+        "playerCount": playerCount,
+        "playerFinishCount": playerFinishCount,
+        "roundStatus": roundStatus,
+        "roundPlayers": List<dynamic>.from(roundPlayers!.map((x) => x.toJson())),
+    };
+}
+
+class RoundPlayer {
+    RoundPlayer({
+        this.id,
+        this.compTime,
+        this.compHcp,
+        this.totalScore,
+        this.totalResult,
+        this.roundsCummulativeScore,
+        this.roundsCummulativeResult,
+        this.roundsCompleted,
+        this.roundId,
+        this.playerId,
+        this.player,
+        this.playerRoundStatus,
+        this.colorcodeId,
+        this.colorcode,
+        this.recordingScoresForId,
+        this.recordingScoresFor,
+        this.scorecards,
+        this.nextHoleId,
+        this.nextHole,
+    });
+
+    int? id;
+    String? compTime;
+    int? compHcp;
+    int? totalScore;
+    double? totalResult;
+    int? roundsCummulativeScore;
+    double? roundsCummulativeResult;
+    int? roundsCompleted;
+    int? roundId;
+    int? playerId;
+    Player? player;
+    String? playerRoundStatus;
+    int? colorcodeId;
+    Colorcode? colorcode;
+    int? recordingScoresForId;
+    Player? recordingScoresFor;
+    dynamic scorecards;
+    int? nextHoleId;
+    Hole? nextHole;
+
+    factory RoundPlayer.fromJson(Map<String, dynamic> json) => RoundPlayer(
+        id: json["id"],
+        compTime: json["compTime"],
+        compHcp: json["compHcp"],
+        totalScore: json["totalScore"],
+        totalResult: json["totalResult"],
+        roundsCummulativeScore: json["roundsCummulativeScore"],
+        roundsCummulativeResult: json["roundsCummulativeResult"],
+        roundsCompleted: json["roundsCompleted"],
+        roundId: json["roundId"],
+        playerId: json["playerId"],
+        player: Player.fromJson(json["player"]),
+        playerRoundStatus: json["playerRoundStatus"],
+        colorcodeId: json["colorcodeId"],
+        colorcode: Colorcode.fromJson(json["colorcode"]),
+        recordingScoresForId: json["recordingScoresForId"],
+        recordingScoresFor: Player.fromJson(json["recordingScoresFor"]),
+        scorecards: json["scorecards"],
+        nextHoleId: json["nextHoleId"],
+        nextHole: Hole.fromJson(json["nextHole"]),
+    );
+
+    Map<String, dynamic> toJson() => {
+        "id": id,
+        "compTime": compTime,
+        "compHcp": compHcp,
+        "totalScore": totalScore,
+        "totalResult": totalResult,
+        "roundsCummulativeScore": roundsCummulativeScore,
+        "roundsCummulativeResult": roundsCummulativeResult,
+        "roundsCompleted": roundsCompleted,
+        "roundId": roundId,
+        "playerId": playerId,
+        "player": player!.toJson(),
+        "playerRoundStatus": playerRoundStatus,
+        "colorcodeId": colorcodeId,
+        "colorcode": colorcode!.toJson(),
+        "recordingScoresForId": recordingScoresForId,
+        "recordingScoresFor": recordingScoresFor!.toJson(),
+        "scorecards": scorecards,
+        "nextHoleId": nextHoleId,
+        "nextHole": nextHole!.toJson(),
+    };
+}
+
+class Colorcode {
+    Colorcode({
+        this.id,
+        this.color,
+        this.description,
+    });
+
+    int? id;
+    String? color;
+    String? description;
+
+    factory Colorcode.fromJson(Map<String, dynamic> json) => Colorcode(
+        id: json["id"],
+        color: json["color"],
+        description: json["description"],
+    );
+
+    Map<String, dynamic> toJson() => {
+        "id": id,
+        "color": color,
+        "description": description,
+    };
+}
+
 class Player {
     Player({
         this.id,
@@ -249,6 +397,9 @@ class Player {
         this.imageThumbnail,
         this.hcp,
         this.fcmToken,
+        this.usertypeId,
+        this.usertype,
+        this.aspNetUsersId,
         this.aspNetUsers,
     });
 
@@ -263,6 +414,9 @@ class Player {
     String? imageThumbnail;
     int? hcp;
     String? fcmToken;
+    int? usertypeId;
+    dynamic usertype;
+    String? aspNetUsersId;
     AspNetUsers? aspNetUsers;
 
     factory Player.fromJson(Map<String, dynamic> json) => Player(
@@ -277,6 +431,9 @@ class Player {
         imageThumbnail: json["imageThumbnail"],
         hcp: json["hcp"],
         fcmToken: json["fcmToken"],
+        usertypeId: json["usertypeId"],
+        usertype: json["usertype"],
+        aspNetUsersId: json["aspNetUsersId"],
         aspNetUsers: AspNetUsers.fromJson(json["aspNetUsers"]),
     );
 
@@ -292,6 +449,9 @@ class Player {
         "imageThumbnail": imageThumbnail,
         "hcp": hcp,
         "fcmToken": fcmToken,
+        "usertypeId": usertypeId,
+        "usertype": usertype,
+        "aspNetUsersId": aspNetUsersId,
         "aspNetUsers": aspNetUsers!.toJson(),
     };
 }
@@ -300,74 +460,70 @@ class AspNetUsers {
     AspNetUsers({
         this.id,
         this.userName,
+        this.normalizedUserName,
         this.email,
+        this.normalizedEmail,
+        this.emailConfirmed,
+        this.passwordHash,
+        this.securityStamp,
+        this.concurrencyStamp,
         this.phoneNumber,
+        this.phoneNumberConfirmed,
+        this.twoFactorEnabled,
+        this.lockoutEnd,
+        this.lockoutEnabled,
+        this.accessFailedCount,
     });
 
     String? id;
     String? userName;
+    String? normalizedUserName;
     String? email;
+    String? normalizedEmail;
+    bool? emailConfirmed;
+    String? passwordHash;
+    String? securityStamp;
+    String? concurrencyStamp;
     dynamic phoneNumber;
+    bool? phoneNumberConfirmed;
+    bool? twoFactorEnabled;
+    dynamic lockoutEnd;
+    bool? lockoutEnabled;
+    int? accessFailedCount;
 
     factory AspNetUsers.fromJson(Map<String, dynamic> json) => AspNetUsers(
         id: json["id"],
         userName: json["userName"],
+        normalizedUserName: json["normalizedUserName"],
         email: json["email"],
+        normalizedEmail: json["normalizedEmail"],
+        emailConfirmed: json["emailConfirmed"],
+        passwordHash: json["passwordHash"],
+        securityStamp: json["securityStamp"],
+        concurrencyStamp: json["concurrencyStamp"],
         phoneNumber: json["phoneNumber"],
+        phoneNumberConfirmed: json["phoneNumberConfirmed"],
+        twoFactorEnabled: json["twoFactorEnabled"],
+        lockoutEnd: json["lockoutEnd"],
+        lockoutEnabled: json["lockoutEnabled"],
+        accessFailedCount: json["accessFailedCount"],
     );
 
     Map<String, dynamic> toJson() => {
         "id": id,
         "userName": userName,
+        "normalizedUserName": normalizedUserName,
         "email": email,
+        "normalizedEmail": normalizedEmail,
+        "emailConfirmed": emailConfirmed,
+        "passwordHash": passwordHash,
+        "securityStamp": securityStamp,
+        "concurrencyStamp": concurrencyStamp,
         "phoneNumber": phoneNumber,
-    };
-}
-
-class Course {
-    Course({
-        this.id,
-        this.courseName,
-        this.courseAbr,
-        this.address,
-        this.phoneNo,
-        this.email,
-        this.courseImage,
-        this.imageThumbnail,
-        this.holes,
-    });
-
-    int? id;
-    String? courseName;
-    String? courseAbr;
-    String? address;
-    String? phoneNo;
-    String? email;
-    String? courseImage;
-    String? imageThumbnail;
-    List<Hole>? holes;
-
-    factory Course.fromJson(Map<String, dynamic> json) => Course(
-        id: json["id"],
-        courseName: json["courseName"],
-        courseAbr: json["courseAbr"],
-        address: json["address"],
-        phoneNo: json["phoneNo"],
-        email: json["email"],
-        courseImage: json["courseImage"],
-        imageThumbnail: json["imageThumbnail"],
-        holes: List<Hole>.from(json["holes"].map((x) => Hole.fromJson(x))),
-    );
-
-    Map<String, dynamic> toJson() => {
-        "id": id,
-        "courseName": courseName,
-        "courseAbr": courseAbr,
-        "address": address,
-        "phoneNo": phoneNo,
-        "email": email,
-        "courseImage": courseImage,
-        "imageThumbnail": imageThumbnail,
-        "holes": List<dynamic>.from(holes!.map((x) => x.toJson())),
+        "phoneNumberConfirmed": phoneNumberConfirmed,
+        "twoFactorEnabled": twoFactorEnabled,
+        "lockoutEnd": lockoutEnd,
+        "lockoutEnabled": lockoutEnabled,
+        "accessFailedCount": accessFailedCount,
     };
 }

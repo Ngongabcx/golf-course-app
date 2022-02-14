@@ -17,7 +17,7 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
   final _controller = Get.put(ScoresInputScreenController());
   final Payload competition;
 
-  final CompetitionPlayer? competitionPlayer;
+  final RoundPlayer? competitionPlayer;
   ScoresInputScreenView(this.competition, this.competitionPlayer);
   @override
   Widget build(BuildContext context) {

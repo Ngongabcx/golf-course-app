@@ -34,7 +34,7 @@ class ScoresInputScreenController extends GetxController {
   @override
   void onClose() {}
   void extractGameHolesArray(
-      Payload competition, CompetitionPlayer? competitionPlayer) {
+      Payload competition, RoundPlayer? competitionPlayer) {
     print("EXTRACT GAME HOLES HAS BEEN CALLED!!!!");
     var totalHoles = competition.gameHoles;
     remainingHoles.value = totalHoles!;
