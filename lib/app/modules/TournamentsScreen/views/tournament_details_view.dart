@@ -153,13 +153,15 @@ class TournamentDetailsView extends GetView {
                       children: [
                         Row(
                           children: [
-                            competition.rounds!.first.roundPlayers![index].player!
-                                        .image ==
+                            competition.rounds!.first.roundPlayers![index]
+                                        .player!.image ==
                                     ""
                                 ? CircleAvatar(
                                     radius: 30.0,
                                     backgroundImage: AssetImage(competition
-                                        .rounds!.first.roundPlayers![index]
+                                        .rounds!
+                                        .first
+                                        .roundPlayers![index]
                                         .player!
                                         .image
                                         .toString()),
@@ -167,7 +169,9 @@ class TournamentDetailsView extends GetView {
                                 : CircleAvatar(
                                     radius: 30.0,
                                     backgroundImage: NetworkImage((competition
-                                        .rounds!.first.roundPlayers![index]
+                                        .rounds!
+                                        .first
+                                        .roundPlayers![index]
                                         .player!
                                         .imageThumbnail
                                         .toString())),
@@ -210,13 +214,12 @@ class TournamentDetailsView extends GetView {
               onPressed: () async {
                 var competitionId = competition.id.toString();
                 print('COMPETITION ID ---------> $competitionId');
-                var playerId = int. parse(_controller.storage.read("userId"));
+                var playerId = int.parse(_controller.storage.read("userId"));
                 print('PLAYER ID --------> $playerId');
-                RoundPlayer competitionPlayer = competition.rounds!.first.roundPlayers!
+                RoundPlayer competitionPlayer = competition
+                    .rounds!.first.roundPlayers!
                     .singleWhere((element) => element.player!.id == playerId);
-                Get.to(ScoresInputScreenView(
-                  competition,competitionPlayer
-                ));
+                Get.to(ScoresInputScreenView(competition, competitionPlayer));
                 print('COMPETITION ---------> $competition');
                 print(
                     'PLAYER FIRST NAME ---------->${competitionPlayer.player!.fname}');

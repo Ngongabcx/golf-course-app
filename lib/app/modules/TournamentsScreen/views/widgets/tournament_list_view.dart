@@ -29,9 +29,6 @@ class TournamentListView extends StatelessWidget {
                 Get.to(
                   TournamentDetailsView(
                     competition: _controller.compList[index],
-
-                    // tournament: _controller
-                    //     .tournament.value.payload![index]),
                   ),
                 );
                 print(

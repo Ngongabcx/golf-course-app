@@ -12,6 +12,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:uuid/uuid.dart';
 
 class SettingScreenController extends GetxController {
   final userFormKey = GlobalKey<FormState>();
@@ -30,6 +31,9 @@ class SettingScreenController extends GetxController {
   var compressImageSize = ''.obs;
 
   var storage = GetStorage();
+  var uuid = Uuid();
+
+  late Map<String, dynamic> res;
 
   getImage(ImageSource imageSource) async {
     final pickedFile = await ImagePicker().pickImage(source: imageSource);
@@ -71,7 +75,7 @@ class SettingScreenController extends GetxController {
     }
   }
 
-  void uploadImage(File compressedFile) {
+  void uploadImage(File file) {
     Get.dialog(
       Center(
         child: CircularProgressIndicator(),
@@ -79,22 +83,17 @@ class SettingScreenController extends GetxController {
       barrierDismissible: false,
     );
 
-    final id = storage.read('aspUserID').toString();
-    ImageUploadProvider().uploadImage(compressedFile, id).then((resp) {
-      Map<String, dynamic> res = jsonDecode((resp));
+    final id = uuid.v4();
+    ImageUploadProvider().uploadImage(file, id).then((resp) {
+      Get.back();
+      res = jsonDecode((resp));
       if (res["success"] == true) {
-        UserProvider().updateUserDetails({
-          'image': res['payload']['imagePath'],
-          'imageThumbnail': res['payload']['thumbnailPath'],
-        }, id).then((resp) {
-          storage.write("profilePic", res['payload']['thumbnailPath']);
-          ShowSnackBar(
-              title: "Success",
-              message: "Image Successfully uploaded.",
-              backgroundColor: Colors.green);
-          Get.offAllNamed('/home');
-        });
-      } else if (res["success"] == false) {
+        ShowSnackBar(
+          title: "Success",
+          message: "Image uploaded.",
+          backgroundColor: Colors.green,
+        );
+      } else if (res["success"] = false) {
         ShowSnackBar(
           title: "Error",
           message: "Image upload failed.",

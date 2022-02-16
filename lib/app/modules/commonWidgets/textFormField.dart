@@ -53,6 +53,18 @@ class CustomTextFormFieldWidget extends GetView {
             width: 2,
           ),
         ),
+        disabledBorder: OutlineInputBorder(
+          borderSide: const BorderSide(
+            color: kPrimaryColor,
+            width: 2,
+          ),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderSide: const BorderSide(
+            color: kPrimaryColor,
+            width: 2,
+          ),
+        ),
         focusedBorder: OutlineInputBorder(
           borderSide: const BorderSide(
             color: kPrimaryColor,

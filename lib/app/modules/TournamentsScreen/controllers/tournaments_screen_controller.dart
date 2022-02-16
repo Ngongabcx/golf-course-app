@@ -17,7 +17,7 @@ class TournamentsScreenController extends GetxController {
   void onInit() {
     super.onInit();
     getTournaments(page);
-    paginateMatches();
+    paginateTournaments();
   }
 
   @override
@@ -36,7 +36,9 @@ class TournamentsScreenController extends GetxController {
     print('GET TOURNAMENTS CALLED');
     try {
       isProcessing(true);
-      await TournamentsProvider().getTournaments(page,storage.read("userId")).then((resp) async {
+      await TournamentsProvider()
+          .getTournaments(page, storage.read("userId"))
+          .then((resp) async {
         compList.addAll(resp.payload!);
         compList.removeWhere((item) => item.isTournament == false);
         print("TOURNAMENTS ---> ${compList.toString()}");
@@ -62,25 +64,27 @@ class TournamentsScreenController extends GetxController {
     }
   }
 
-  void paginateMatches() {
+  void paginateTournaments() {
     scrollController.addListener(() {
       if (scrollController.position.pixels ==
               scrollController.position.maxScrollExtent &&
           !isMoreDataAvailable()) {
         print("reached end");
         page++;
-        getMoreMatches(page);
+        getMoreTournaments(page);
         print('Page number $page');
       }
     });
   }
 
-  void getMoreMatches(var page) async {
+  void getMoreTournaments(var page) async {
     print('GET MORE MATCHES CALLED');
 
     try {
       isProcessing(true);
-      await TournamentsProvider().getTournaments(page,storage.read("userId")).then((resp) {
+      await TournamentsProvider()
+          .getTournaments(page, storage.read("userId"))
+          .then((resp) {
         compList.addAll(resp.payload!);
         if (compList.length > 0) {
           isMoreDataAvailable(true);

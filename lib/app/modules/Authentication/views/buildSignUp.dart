@@ -81,7 +81,13 @@ class BuildSignUp extends GetView<AuthenticationController> {
                     (value) {
                       if (value == null || value.trim().isEmpty) {
                         return 'Confirm password is required.';
+                      } else if (signUpController
+                              .signUpPasswordController.text !=
+                          signUpController
+                              .signUpConfirmPasswordController.text) {
+                        return 'Passwords do not match.';
                       }
+
                       return null;
                     },
                   ),

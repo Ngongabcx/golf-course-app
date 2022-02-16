@@ -41,7 +41,7 @@ const kDefaultPagePadding = EdgeInsets.symmetric(
 );
 const String kApiBaseURL = "https://bcxz.azurewebsites.net/api";
 const String kNewApiBaseURL = "https://bcxtestapi.azurewebsites.net";
-const kPageSize = 20;
+const kPageSize = 5;
 const int kConnectionTimeout = 50000;
 const int kReceiveTimeout = 30000;
 const String kSlackLogChannelURL =

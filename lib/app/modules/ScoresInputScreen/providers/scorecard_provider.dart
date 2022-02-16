@@ -10,8 +10,8 @@ import 'package:gcms/constants/constant.dart';
 import '../scorecard_model.dart';
 
 class ScorecardProvider extends BaseProvider {
-  Future<Scorecard> addScorecard(data, compId, userId) async {
-    var url = "$kNewApiBaseURL/api/scorecards/$compId/$userId";
+  Future<Scorecard> addScorecard(data, roundId, userId) async {
+    var url = "$kNewApiBaseURL/api/scorecards/$roundId/$userId";
     print("Posting scores --> $data");
     print("POST SCORES URL CREATED --> $url");
     try {
@@ -27,6 +27,8 @@ class ScorecardProvider extends BaseProvider {
           return Future.error(exception.response!.data["error"].toString());
         }
         print("RESPONSE EXCEPTION --------->>>> $exception");
+        print(
+            'Error    --------->    ${exception.response!.statusMessage.toString()}');
         return Future.error(exception.response!.statusMessage.toString());
       }
       logToChannel({"text": "$kError ADD SCORE CARD FAILURE\n $exception"});
@@ -35,6 +37,7 @@ class ScorecardProvider extends BaseProvider {
           "An error occured please check your internet connection.".toString());
     }
   }
+
   Future<Scorecard> updateScorecard(data, scorecardId) async {
     var url = "$kNewApiBaseURL/api/scorecards/$scorecardId";
     print("Updating scores --> $data");
@@ -60,7 +63,8 @@ class ScorecardProvider extends BaseProvider {
           "An error occured please check your internet connection.".toString());
     }
   }
-    Future<Scorecard> declineScorecard(data, scorecardId) async {
+
+  Future<Scorecard> declineScorecard(data, scorecardId) async {
     var url = "$kNewApiBaseURL/api/scorecards/confirm-score/$scorecardId";
     print("Declining scores --> $data");
     print("DECLINE SCORES URL CREATED --> $url");

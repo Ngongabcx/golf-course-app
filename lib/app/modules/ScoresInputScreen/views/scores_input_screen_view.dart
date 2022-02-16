@@ -21,6 +21,7 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
   ScoresInputScreenView(this.competition, this.competitionPlayer);
   @override
   Widget build(BuildContext context) {
+    _controller.extractGameHolesArray(competition, competitionPlayer);
     return Scaffold(
       backgroundColor: kBackgroundColor,
       body: Obx(
@@ -39,11 +40,11 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
                           itemBuilder: (context) => [
                             PopupMenuItem(
                               value: 0,
-                              child: Text('Results'),
+                              child: Text('View results'),
                             ),
                             PopupMenuItem(
                               value: 1,
-                              child: Text('End Match'),
+                              child: Text('End match'),
                             ),
                           ],
                         ),
@@ -305,19 +306,21 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
 
                                           titleStyle: TextStyle(fontSize: 18),
                                           onConfirm: () {
-                                            _controller.addScorecard({
-                                              'score': _controller.score.value
-                                                  .toString(),
-                                              'result': _controller.result.value
-                                                  .toString(),
-                                              "confirmed": false,
-                                              "holeId": _controller
-                                                  .gameHoles[_controller
-                                                      .holeIndex.value]
-                                                  .id
-                                                  .toString(),
-                                            }, "${competition.id}",
-                                                "${competitionPlayer!.recordingScoresFor!.id}");
+                                            _controller.addScorecard(
+                                                {
+                                                  'score':
+                                                      _controller.score.value,
+                                                  'result':
+                                                      _controller.result.value,
+                                                  "confirmed": false,
+                                                  "holeId": _controller
+                                                      .gameHoles[_controller
+                                                          .holeIndex.value]
+                                                      .id,
+                                                },
+                                                competition.rounds!.first.id!,
+                                                competitionPlayer!
+                                                    .recordingScoresFor!.id!);
                                             Get.back();
                                           },
                                           onCancel: () {},
@@ -371,6 +374,7 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
   void popUpMenuOnSelected(item) {
     switch (item) {
       case 0:
+        _controller.getAllPlayers(competition.id.toString());
         Get.bottomSheet(
           ResultsBottomSheet(
             recordingFor: competitionPlayer!.recordingScoresFor,
@@ -397,7 +401,7 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
             content: Text(
                 "You will lose all your scores and match progress. This action cannot be reversed. Confirm ending match?"),
             onConfirm: () {
-              Get.to(()=>HomeView());
+              Get.to(() => HomeView());
             },
             onCancel: () {});
         print('End Match clicked');
@@ -442,66 +446,81 @@ class ResultsBottomSheet extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.only(right: 14.0),
                           child: Text(
-                            'Scores',
+                            'Results',
                             style: Theme.of(context).textTheme.headline3,
                           ),
                         ),
                       ],
                     ),
-                    Expanded(
-                      child: RefreshIndicator(
-                        onRefresh: _pullRefresh,
-                        child: Container(
-                          margin: EdgeInsets.symmetric(vertical: 8.0),
-                          height: 360.0,
-                          child: ListView.builder(
-                            scrollDirection: Axis.vertical,
-                            shrinkWrap: true,
-                            physics: ScrollPhysics(),
-                            itemCount: _controller.compPlayers.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return Row(
-                                children: [
-                                  Padding(
-                                    padding:
-                                        EdgeInsets.only(left: 16.0, top: 16.0),
-                                    child: Expanded(
-                                      flex: 5,
-                                      child: CircleAvatar(
-                                        radius: 30.0,
-                                        backgroundImage: NetworkImage(
-                                            "${_controller.compPlayers[index].player!.image}"),
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    flex: 10,
-                                    child: Padding(
-                                      padding: EdgeInsets.only(left: 20.0),
-                                      child: Text(
-                                        '${_controller.compPlayers[index].player!.fname} ${_controller.compPlayers[index].player!.lname}',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyText1,
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    flex: 2,
-                                    child: Text(
-                                      _controller.compPlayers[index].totalResult
-                                          .toString(),
-                                      style:
-                                          Theme.of(context).textTheme.bodyText1,
-                                    ),
-                                  ),
-                                ],
-                              );
-                            },
+                    _controller.compPlayers.isEmpty
+                        ? Expanded(
+                            child: Center(
+                              child:
+                                  Text('Unable to load results at the moment'),
+                            ),
+                          )
+                        : Expanded(
+                            child: RefreshIndicator(
+                              onRefresh: _pullRefresh,
+                              child: Container(
+                                margin: EdgeInsets.symmetric(vertical: 8.0),
+                                height: 360.0,
+                                child: ListView.builder(
+                                  scrollDirection: Axis.vertical,
+                                  shrinkWrap: true,
+                                  physics: ScrollPhysics(),
+                                  itemCount: _controller
+                                      .compPlayers.first.roundPlayers!.length,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return Row(
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                              left: 16.0, top: 16.0),
+                                          child: Expanded(
+                                            flex: 5,
+                                            child: CircleAvatar(
+                                              radius: 30.0,
+                                              backgroundImage: NetworkImage(
+                                                  "${_controller.compPlayers.first.roundPlayers![index].player!.image}"),
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          flex: 10,
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsets.only(left: 20.0),
+                                            child: Text(
+                                              '${_controller.compPlayers.first.roundPlayers![index].player!.fname} ${_controller.compPlayers.first.roundPlayers![index].player!.lname}',
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyText1,
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          flex: 2,
+                                          child: Text(
+                                            _controller
+                                                .compPlayers
+                                                .first
+                                                .roundPlayers![index]
+                                                .totalResult
+                                                .toString(),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText1,
+                                          ),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                    ),
                   ],
                 ),
               ),

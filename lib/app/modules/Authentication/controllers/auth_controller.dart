@@ -167,6 +167,8 @@ class AuthenticationController extends GetxController {
       'gender': data["gender"],
       'hcp': data["hcp"],
       "dob": data["dob"],
+      "image": data["image"],
+      "imageThumbnail": data["imageThumbnail"],
       "UsertypeId": 1,
       "FcmToken": storage.read("fcmToken"),
     });
@@ -187,8 +189,7 @@ class AuthenticationController extends GetxController {
             Jwt.parseJwt('${storage.read("accessToken")}');
         print("DECODED TOKEN INFORMATION ---> $tkn");
         storage.write("aspUserID", tkn['Id']);
-        print(
-            "ASP USER ID READ FROM STRORAGE --> ${storage.read("aspUserID")}");
+        print("ASP USER ID READ FROM STORAGE --> ${storage.read("aspUserID")}");
         createUser(data2);
       }, onError: (err) {
         isProcessing(false);
@@ -265,6 +266,7 @@ class AuthenticationController extends GetxController {
             title: "Success",
             message: "Account Successfully Created.",
             backgroundColor: Colors.green);
+        Get.offAllNamed('/home');
       }, onError: (err) {
         print(">>>>----SAVING USER DETAILS ERROR : $err");
         UserProvider().deleteUser(storage.read("aspUserID"));

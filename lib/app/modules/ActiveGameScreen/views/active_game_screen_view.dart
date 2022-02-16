@@ -123,7 +123,7 @@ class ActiveGamesListView extends StatelessWidget {
                 },
                 // 11
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+                  padding: const EdgeInsets.symmetric(vertical: 10.0),
                   child: CompetitionCard(
                       competition: _controller.matchList[index]),
                 ),

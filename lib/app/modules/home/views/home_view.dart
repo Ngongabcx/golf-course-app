@@ -31,7 +31,7 @@ class HomeView extends GetView<HomeController> {
             ),
             onPressed: () {
               // do something
-              Get.to(SettingScreenView());
+              Get.to(() => SettingScreenView());
             },
           ),
         ],
@@ -45,8 +45,10 @@ class HomeView extends GetView<HomeController> {
                 ? Loader()
                 : HomeController.pages[_controller.selectedIndex.value]);
       }),
-      bottomNavigationBar: Obx(()=> BottomNavigationBar(
-          selectedItemColor: Theme.of(context).textSelectionTheme.selectionColor,
+      bottomNavigationBar: Obx(
+        () => BottomNavigationBar(
+          selectedItemColor:
+              Theme.of(context).textSelectionTheme.selectionColor,
           currentIndex: controller.selectedIndex.value.toInt(),
           onTap: controller.onItemTapped,
           items: <BottomNavigationBarItem>[

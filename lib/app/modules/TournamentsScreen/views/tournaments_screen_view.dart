@@ -62,11 +62,14 @@ class TournamentsScreenView extends GetView<TournamentsScreenController> {
                         ),
                       ),
                       tournamentCtl.compList.isEmpty
-                          ? Center(
-                              child: Text(
-                              "No tournaments.",
-                              style: TextStyle(fontSize: 17.0),
-                            ))
+                          ? Expanded(
+                              child: Center(
+                                child: Text(
+                                  "No tournaments.",
+                                  style: TextStyle(fontSize: 17.0),
+                                ),
+                              ),
+                            )
                           : Container(
                               margin: EdgeInsets.only(top: 20),
                               padding: EdgeInsets.symmetric(horizontal: 20),

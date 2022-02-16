@@ -34,6 +34,7 @@ class ScoresInputScreenController extends GetxController {
 
   @override
   void onClose() {}
+
   void extractGameHolesArray(
       Payload competition, RoundPlayer? competitionPlayer) {
     print("EXTRACT GAME HOLES HAS BEEN CALLED!!!!");
@@ -43,7 +44,7 @@ class ScoresInputScreenController extends GetxController {
     var holes = competition.course?.holes;
     print("TOTAL HOLES ------------> $totalHoles");
     //gameHoles.clear();
-    //get holes that are being payed accourding to the competition number of holes being played
+    //get holes that are being played according to the competition number of holes being played
     if (totalHoles == 18) {
       if (startingHole == 1) {
         //front nine logic
@@ -112,10 +113,10 @@ class ScoresInputScreenController extends GetxController {
     print("LAST GAME HOLE NUMBER ----> ${gameHoles.last.holeNo}");
   }
 
-  void addScorecard(Map data, String compId, String userId) {
+  void addScorecard(Map data, int roundId, int userId) {
     try {
       isProcessing(true);
-      ScorecardProvider().addScorecard(data, compId, userId).then((resp) {
+      ScorecardProvider().addScorecard(data, roundId, userId).then((resp) {
         isProcessing(false);
         print("Hole index before ${holeIndex.value}");
         print(
@@ -212,12 +213,14 @@ class ScoresInputScreenController extends GetxController {
         compPlayers.addAll(resp);
 
         print(
-            "COMPETITION PLAYERS SUCCESSFULLY FETCHED  ---> ${compPlayers.first.player!.fname}");
+            "COMPETITION PLAYERS SUCCESSFULLY FETCHED  ---> ${compPlayers.first.roundPlayers!.first.player!.fname}");
         isProcessing(false);
         print(
             "COMPETITION PLAYERS SUCCESSFULLY FETCHED  ---> ${isProcessing.value}");
       }, onError: (err) {
-        print("Error getting competition players details -->" + err.toString());
+        print(
+            "Error getting competition players details --> " + err.toString());
+
         isProcessing(false);
         ShowSnackBar(
             title: "Error",
@@ -225,7 +228,7 @@ class ScoresInputScreenController extends GetxController {
             backgroundColor: Colors.red);
       });
     } catch (exception) {
-      print("Exception getting competition players details -->" +
+      print("Exception getting competition players details --> " +
           exception.toString());
       isProcessing(false);
       ShowSnackBar(

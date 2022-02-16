@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gcms/app/modules/Messages/views/messages_view.dart';
 import 'package:gcms/bcx_icons_icons.dart';
 import 'package:gcms/constants/constant.dart';
@@ -21,17 +22,6 @@ class SettingScreenView extends GetView<SettingScreenController> {
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.black),
         backgroundColor: kBackgroundColor,
-        actions: [
-          IconButton(
-            icon: Icon(
-              Icons.settings_outlined,
-            ),
-            onPressed: () {
-              // do something
-              Get.to(SettingScreenView());
-            },
-          ),
-        ],
         elevation: 0.0,
       ),
       body: Column(
@@ -85,7 +75,7 @@ class SettingScreenView extends GetView<SettingScreenController> {
                       SettingsTile(
                         title: 'Appearance',
                         subtitle: 'Change to light mode or dark mode',
-                        leading: Icon(Icons.settings_brightness),
+                        leading: Icon(FontAwesomeIcons.moon),
                         onPressed: (BuildContext context) {},
                       ),
                     ],
@@ -98,7 +88,9 @@ class SettingScreenView extends GetView<SettingScreenController> {
                         title: 'Fingerprint',
                         subtitle: 'Use fingerprint',
                         leading: Icon(Icons.fingerprint),
-                        enabled: _controller.storage.read("hasFingerPrintLock"),
+                        enabled:
+                            _controller.storage.read("hasFingerPrintLock") ??
+                                false,
                         onPressed: (BuildContext context) {
                           _controller.biometricsSecurity();
                         },
@@ -110,7 +102,8 @@ class SettingScreenView extends GetView<SettingScreenController> {
                           BcxIcons.face_id,
                           size: 30.0,
                         ),
-                        enabled: _controller.storage.read("hasFaceLock"),
+                        enabled:
+                            _controller.storage.read("hasFaceLock") ?? false,
                         onPressed: (BuildContext context) {
                           _controller.biometricsSecurity();
                         },

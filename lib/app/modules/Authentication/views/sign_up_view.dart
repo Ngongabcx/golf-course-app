@@ -107,21 +107,26 @@ class SignUpView extends GetView<AuthenticationController> {
                                           signUpController.hcpController.text,
                                       "dob":
                                           signUpController.selectedDate.value,
+                                      "image": settingController.res['payload']
+                                          ['imagePath'],
+                                      "imageThumbnail": settingController
+                                          .res['payload']['thumbnailPath'],
                                       "usertypeId": 1,
                                       "FcmToken": signUpController.storage
                                           .read("fcmToken")
                                           .toString(),
                                     });
                                   }
+                                  Get.offAllNamed("/home");
                                 }
                                 if (signUpController.currentStep.value == 0) {
-                                  print("Validate aspUser detilas");
+                                  print("Validate aspUser details");
                                   if (signupSubmitForm()) {
                                     controls.onStepContinue!();
                                   }
                                 }
                                 if (signUpController.currentStep.value == 1) {
-                                  print("Validate user detilas");
+                                  print("Validate user details");
                                   if (userDetailsSubmitForm()) {
                                     controls.onStepContinue!();
                                   }
