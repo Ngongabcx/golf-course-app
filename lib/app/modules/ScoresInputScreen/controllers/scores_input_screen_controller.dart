@@ -17,7 +17,7 @@ class ScoresInputScreenController extends GetxController {
   var endHole;
   var gameHoles = <Hole>[].obs;
   var gmHoles;
-  var remainingHoles = 0.obs;
+  var remainingHoles = 1.obs;
   var holeIndex = 0.obs;
   var count = 0.obs;
   var compPlayers = <compPlayer.Payload>[].obs;
@@ -52,19 +52,28 @@ class ScoresInputScreenController extends GetxController {
         for (int h = 0; h < totalHoles; h++) {
           print("COUNT2  --> $count");
           var _gameHoles =
-              holes!.where((course) => course.holeNo == count.value).toList();
+              holes!.where((hole) => hole.holeNo == count.value).toList();
           count.value++;
           print(h);
           print(holes[h]);
+          //Get next hole index
+          //Create initial list with all gameholes
+          //Get non played holes by Poping out indeces (holes) < Next hole
+          //Assign the length of non played holes to remainingHoles variable
           gameHoles.addAll(_gameHoles);
         }
+        var nextHoleIndex = gameHoles.indexOf(competitionPlayer!.nextHole);
+        for (var i = 0; i < nextHoleIndex; i++) {
+          gameHoles.removeAt(i);
+        }
+        remainingHoles.value = gameHoles.length;
       } else {
         //this is the back nine logic i.e starting hole is 10 ending at 1
         count.value = 10;
         for (int h = 0; h < totalHoles; h++) {
           print("COUNT2  --> $count");
           var _gameHoles =
-              holes!.where((course) => course.holeNo == count.value).toList();
+              holes!.where((hole) => hole.holeNo == count.value).toList();
           count.value++;
           print(h);
           print(holes[h]);
@@ -74,12 +83,17 @@ class ScoresInputScreenController extends GetxController {
         for (int h = 0; h < 9; h++) {
           print("COUNT2  --> $count");
           var _gameHoles =
-              holes!.where((course) => course.holeNo == count.value).toList();
+              holes!.where((hole) => hole.holeNo == count.value).toList();
           count.value++;
           print(h);
           print(holes[h]);
           gameHoles.addAll(_gameHoles);
         }
+        var nextHoleIndex = gameHoles.indexOf(competitionPlayer!.nextHole);
+        for (var i = 0; i < nextHoleIndex; i++) {
+          gameHoles.removeAt(i);
+        }
+        remainingHoles.value = gameHoles.length;
       }
       print("GAME HOLES ----> ${gameHoles.first}");
     } else {
@@ -89,26 +103,36 @@ class ScoresInputScreenController extends GetxController {
         for (int h = 0; h < totalHoles; h++) {
           print("COUNT1  --> $count");
           var _gameHoles =
-              holes!.where((course) => course.holeNo == count.value).toList();
+              holes!.where((hole) => hole.holeNo == count.value).toList();
           count.value++;
           print(h);
           print(holes[h]);
           gameHoles.addAll(_gameHoles);
         }
+        var nextHoleIndex = gameHoles.indexOf(competitionPlayer!.nextHole);
+        for (var i = 0; i < nextHoleIndex; i++) {
+          gameHoles.removeAt(i);
+        }
+        remainingHoles.value = gameHoles.length;
       } else {
         //starting hole is 10
         count.value = 10;
         for (int h = 0; h < totalHoles; h++) {
           print("COUNT2  --> $count");
           var _gameHoles =
-              holes!.where((course) => course.holeNo == count.value).toList();
+              holes!.where((hole) => hole.holeNo == count.value).toList();
           count.value++;
           print(h);
           gameHoles.addAll(_gameHoles);
         }
+        var nextHoleIndex = gameHoles.indexOf(competitionPlayer!.nextHole);
+        for (var i = 0; i < nextHoleIndex; i++) {
+          gameHoles.removeAt(i);
+        }
+        remainingHoles.value = gameHoles.length;
       }
     }
-    hcp.value = competitionPlayer!.recordingScoresFor!.hcp!;
+    hcp.value = competitionPlayer.recordingScoresFor!.hcp!;
     print("FIRST GAME HOLE NUMBER ----> ${gameHoles.first.holeNo}");
     print("LAST GAME HOLE NUMBER ----> ${gameHoles.last.holeNo}");
   }
@@ -122,6 +146,7 @@ class ScoresInputScreenController extends GetxController {
         print(
             "old hole --> ${gameHoles[holeIndex.value].holeNo}, old par --> ${gameHoles[holeIndex.value].par}");
         holeIndex.value++;
+        remainingHoles.value--;
         ShowSnackBar(
             title: "Success",
             message: "Your score has been saved.",
@@ -131,6 +156,10 @@ class ScoresInputScreenController extends GetxController {
             "new hole --> ${gameHoles[holeIndex.value].holeNo}, new par --> ${gameHoles[holeIndex.value].par}");
         score.value = 0;
         result.value = 0;
+        //If remaining holes value has reached zero game is done so show game completed or game over screen
+        if (remainingHoles.value == 0) {
+          Get.dialog(Text('Bro Game is over! what are we waiting for? Lets finish this thing'));
+        }
       }, onError: (err) {
         isProcessing(false);
         print("POST SCORES ERROR ---> ${err.toString()}");
