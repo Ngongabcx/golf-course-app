@@ -63,6 +63,8 @@ class ScoresInputScreenController extends GetxController {
           gameHoles.addAll(_gameHoles);
         }
         var nextHoleIndex = gameHoles.indexOf(competitionPlayer!.nextHole);
+        print("NEXT HOLE INDEX IN LIST IS --> $nextHoleIndex");
+        holeIndex.value=nextHoleIndex;
         for (var i = 0; i < nextHoleIndex; i++) {
           gameHoles.removeAt(i);
         }
@@ -90,6 +92,8 @@ class ScoresInputScreenController extends GetxController {
           gameHoles.addAll(_gameHoles);
         }
         var nextHoleIndex = gameHoles.indexOf(competitionPlayer!.nextHole);
+        print("NEXT HOLE INDEX IN LIST IS --> $nextHoleIndex");
+        holeIndex.value=nextHoleIndex;
         for (var i = 0; i < nextHoleIndex; i++) {
           gameHoles.removeAt(i);
         }
@@ -110,6 +114,8 @@ class ScoresInputScreenController extends GetxController {
           gameHoles.addAll(_gameHoles);
         }
         var nextHoleIndex = gameHoles.indexOf(competitionPlayer!.nextHole);
+        print("NEXT HOLE INDEX IN LIST IS --> $nextHoleIndex");
+        holeIndex.value=nextHoleIndex;
         for (var i = 0; i < nextHoleIndex; i++) {
           gameHoles.removeAt(i);
         }
@@ -126,6 +132,8 @@ class ScoresInputScreenController extends GetxController {
           gameHoles.addAll(_gameHoles);
         }
         var nextHoleIndex = gameHoles.indexOf(competitionPlayer!.nextHole);
+        print("NEXT HOLE INDEX IN LIST IS --> $nextHoleIndex");
+        holeIndex.value=nextHoleIndex;
         for (var i = 0; i < nextHoleIndex; i++) {
           gameHoles.removeAt(i);
         }
