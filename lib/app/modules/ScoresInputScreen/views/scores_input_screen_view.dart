@@ -7,6 +7,7 @@ import 'package:gcms/app/modules/ScoresInputScreen/views/score_widget.dart';
 import 'package:gcms/app/modules/SetupScreen/competition_model.dart';
 import 'package:gcms/app/modules/commonWidgets/customButton.dart';
 import 'package:gcms/app/modules/commonWidgets/loader/loader.dart';
+import 'package:gcms/app/modules/home/views/home_view.dart';
 import 'package:gcms/constants/constant.dart';
 import 'package:gcms/theme/gcms_theme.dart';
 import 'package:get/get.dart';
@@ -16,12 +17,10 @@ import '../controllers/scores_input_screen_controller.dart';
 class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
   final _controller = Get.put(ScoresInputScreenController());
   final Payload competition;
-
   final RoundPlayer? competitionPlayer;
   ScoresInputScreenView(this.competition, this.competitionPlayer);
   @override
   Widget build(BuildContext context) {
-    _controller.extractGameHolesArray(competition, competitionPlayer!);
     return Scaffold(
       backgroundColor: kBackgroundColor,
       body: Obx(
@@ -398,9 +397,7 @@ class ScoresInputScreenView extends GetView<ScoresInputScreenController> {
             content: Text(
                 "You will lose all your scores and match progress. This action cannot be reversed. Confirm ending match?"),
             onConfirm: () {
-              _controller.gameHoles.clear();
-              _controller.count.value = 0;
-              Get.toNamed("/home");
+              Get.to(()=>HomeView());
             },
             onCancel: () {});
         print('End Match clicked');

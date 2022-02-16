@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class ScoresInputScreenController extends GetxController {
+  late final Payload competition;
   var hcp = 0.obs;
   var score = 0.obs;
   var result = 0.obs;
@@ -41,7 +42,7 @@ class ScoresInputScreenController extends GetxController {
     var startingHole = competition.startingHole;
     var holes = competition.course?.holes;
     print("TOTAL HOLES ------------> $totalHoles");
-    gameHoles.clear();
+    //gameHoles.clear();
     //get holes that are being payed accourding to the competition number of holes being played
     if (totalHoles == 18) {
       if (startingHole == 1) {
