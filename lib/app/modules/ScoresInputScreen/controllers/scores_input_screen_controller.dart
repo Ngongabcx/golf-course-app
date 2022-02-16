@@ -64,8 +64,9 @@ class ScoresInputScreenController extends GetxController {
         }
         var nextHoleIndex = gameHoles.indexOf(competitionPlayer!.nextHole);
         print("NEXT HOLE INDEX IN LIST IS --> $nextHoleIndex");
-        holeIndex.value=nextHoleIndex;
-        for (var i = 0; i < nextHoleIndex; i++) {
+        holeIndex.value=nextHoleIndex+1;
+        var k = nextHoleIndex+1;
+        for (var i = 0; i < k; i++) {
           gameHoles.removeAt(i);
         }
         remainingHoles.value = gameHoles.length;
@@ -93,8 +94,9 @@ class ScoresInputScreenController extends GetxController {
         }
         var nextHoleIndex = gameHoles.indexOf(competitionPlayer!.nextHole);
         print("NEXT HOLE INDEX IN LIST IS --> $nextHoleIndex");
-        holeIndex.value=nextHoleIndex;
-        for (var i = 0; i < nextHoleIndex; i++) {
+        holeIndex.value=nextHoleIndex+1;
+        var k = nextHoleIndex+1;
+        for (var i = 0; i < k; i++) {
           gameHoles.removeAt(i);
         }
         remainingHoles.value = gameHoles.length;
@@ -115,8 +117,9 @@ class ScoresInputScreenController extends GetxController {
         }
         var nextHoleIndex = gameHoles.indexOf(competitionPlayer!.nextHole);
         print("NEXT HOLE INDEX IN LIST IS --> $nextHoleIndex");
-        holeIndex.value=nextHoleIndex;
-        for (var i = 0; i < nextHoleIndex; i++) {
+        holeIndex.value=nextHoleIndex+1;
+        var k = nextHoleIndex+1;
+        for (var i = 0; i < k; i++) {
           gameHoles.removeAt(i);
         }
         remainingHoles.value = gameHoles.length;
@@ -133,8 +136,9 @@ class ScoresInputScreenController extends GetxController {
         }
         var nextHoleIndex = gameHoles.indexOf(competitionPlayer!.nextHole);
         print("NEXT HOLE INDEX IN LIST IS --> $nextHoleIndex");
-        holeIndex.value=nextHoleIndex;
-        for (var i = 0; i < nextHoleIndex; i++) {
+        holeIndex.value=nextHoleIndex+1;
+        var k = nextHoleIndex+1;
+        for (var i = 0; i < k; i++) {
           gameHoles.removeAt(i);
         }
         remainingHoles.value = gameHoles.length;
