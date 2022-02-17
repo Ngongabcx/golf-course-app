@@ -83,7 +83,7 @@ class SetupScreenController extends GetxController {
       UserProvider().getPlayers().then((resp) async {
         lstPlayers.addAll(resp);
         print("List of players before removing the user  ---> $lstPlayers");
-        var usr = lstPlayers.where((p0) => p0.id==userId);
+        var usr = lstPlayers.where((p0) => p0.id == userId);
         lstPlayers.remove(usr.first);
         print("List of players after removing the user  ---> $lstPlayers");
         print("PLAYERS SUCCESSFULLY FETCHED  ---> ${resp.first.fname}");
@@ -107,8 +107,11 @@ class SetupScreenController extends GetxController {
     lstPlayers.refresh();
   }
 
-  createCompetition(Map data) {
+  createCompetition(Map data) async {
+    var endHole =
+        await computeEndingHole(data['gameHoles'], data['startingHole']);
     print("DATA FOR CREATING COMPETITIION---------> $data");
+    data['endingHole'] = endHole;
     try {
       isProcessing(true);
       CompetitionProvider().createCompetition(data).then((resp) async {
@@ -133,6 +136,21 @@ class SetupScreenController extends GetxController {
     }
   }
 
+  Future<int> computeEndingHole(int totalholes, int starthole) async{
+    if (totalholes == 18) {
+      if (starthole == 1) {
+        return 18;
+      } else {
+        return 9;
+      }
+    } else {
+      if (starthole == 1) {
+        return 9;
+      } else {
+        return 18;
+      }
+    }
+  }
   // Future<compPlayer.CompetitionPlayer> getCompetitionPlayer(
   //     String playerId, String competitionId) {
   //   try {

@@ -42,6 +42,8 @@ class ScoresInputScreenController extends GetxController {
     remainingHoles.value = totalHoles!;
     var startingHole = competition.startingHole;
     var holes = competition.course?.holes;
+    Hole nextHole = competitionPlayer!.nextHole!;
+    print('NEXT HOLE NUMBER --> ${nextHole.holeNo}');
     print("TOTAL HOLES ------------> $totalHoles");
     //gameHoles.clear();
     //get holes that are being played according to the competition number of holes being played
@@ -56,20 +58,16 @@ class ScoresInputScreenController extends GetxController {
           count.value++;
           print(h);
           print(holes[h]);
-          //Get next hole index
-          //Create initial list with all gameholes
-          //Get non played holes by Poping out indeces (holes) < Next hole
-          //Assign the length of non played holes to remainingHoles variable
           gameHoles.addAll(_gameHoles);
         }
-        var nextHoleIndex = gameHoles.indexOf(competitionPlayer!.nextHole);
+        var nxtHoleInGameHoles = gameHoles
+            .firstWhere((element) => element.holeNo == nextHole.holeNo);
+        print('TEST HOLE NUMBER----> ${nxtHoleInGameHoles.holeNo}');
+
+        var nextHoleIndex = gameHoles.indexOf(nxtHoleInGameHoles);
         print("NEXT HOLE INDEX IN LIST IS --> $nextHoleIndex");
-        holeIndex.value=nextHoleIndex+1;
-        var k = nextHoleIndex+1;
-        for (var i = 0; i < k; i++) {
-          gameHoles.removeAt(i);
-        }
-        remainingHoles.value = gameHoles.length;
+        holeIndex.value = nextHoleIndex;
+        remainingHoles.value = totalHoles-(nextHoleIndex+1);
       } else {
         //this is the back nine logic i.e starting hole is 10 ending at 1
         count.value = 10;
@@ -92,14 +90,14 @@ class ScoresInputScreenController extends GetxController {
           print(holes[h]);
           gameHoles.addAll(_gameHoles);
         }
-        var nextHoleIndex = gameHoles.indexOf(competitionPlayer!.nextHole);
+        var nxtHoleInGameHoles = gameHoles
+            .firstWhere((element) => element.holeNo == nextHole.holeNo);
+        print('TEST HOLE NUMBER----> ${nxtHoleInGameHoles.holeNo}');
+
+        var nextHoleIndex = gameHoles.indexOf(nxtHoleInGameHoles);
         print("NEXT HOLE INDEX IN LIST IS --> $nextHoleIndex");
-        holeIndex.value=nextHoleIndex+1;
-        var k = nextHoleIndex+1;
-        for (var i = 0; i < k; i++) {
-          gameHoles.removeAt(i);
-        }
-        remainingHoles.value = gameHoles.length;
+        holeIndex.value = nextHoleIndex;
+        remainingHoles.value = totalHoles-(nextHoleIndex+1);
       }
       print("GAME HOLES ----> ${gameHoles.first}");
     } else {
@@ -115,14 +113,14 @@ class ScoresInputScreenController extends GetxController {
           print(holes[h]);
           gameHoles.addAll(_gameHoles);
         }
-        var nextHoleIndex = gameHoles.indexOf(competitionPlayer!.nextHole);
+        var nxtHoleInGameHoles = gameHoles
+            .firstWhere((element) => element.holeNo == nextHole.holeNo);
+        print('TEST HOLE NUMBER----> ${nxtHoleInGameHoles.holeNo}');
+
+        var nextHoleIndex = gameHoles.indexOf(nxtHoleInGameHoles);
         print("NEXT HOLE INDEX IN LIST IS --> $nextHoleIndex");
-        holeIndex.value=nextHoleIndex+1;
-        var k = nextHoleIndex+1;
-        for (var i = 0; i < k; i++) {
-          gameHoles.removeAt(i);
-        }
-        remainingHoles.value = gameHoles.length;
+        holeIndex.value = nextHoleIndex;
+        remainingHoles.value = totalHoles-(nextHoleIndex+1);
       } else {
         //starting hole is 10
         count.value = 10;
@@ -134,14 +132,14 @@ class ScoresInputScreenController extends GetxController {
           print(h);
           gameHoles.addAll(_gameHoles);
         }
-        var nextHoleIndex = gameHoles.indexOf(competitionPlayer!.nextHole);
+        var nxtHoleInGameHoles = gameHoles
+            .firstWhere((element) => element.holeNo == nextHole.holeNo);
+        print('TEST HOLE NUMBER----> ${nxtHoleInGameHoles.holeNo}');
+
+        var nextHoleIndex = gameHoles.indexOf(nxtHoleInGameHoles);
         print("NEXT HOLE INDEX IN LIST IS --> $nextHoleIndex");
-        holeIndex.value=nextHoleIndex+1;
-        var k = nextHoleIndex+1;
-        for (var i = 0; i < k; i++) {
-          gameHoles.removeAt(i);
-        }
-        remainingHoles.value = gameHoles.length;
+        holeIndex.value = nextHoleIndex;
+        remainingHoles.value = totalHoles-(nextHoleIndex+1);
       }
     }
     hcp.value = competitionPlayer.recordingScoresFor!.hcp!;
@@ -170,7 +168,8 @@ class ScoresInputScreenController extends GetxController {
         result.value = 0;
         //If remaining holes value has reached zero game is done so show game completed or game over screen
         if (remainingHoles.value == 0) {
-          Get.dialog(Text('Bro Game is over! what are we waiting for? Lets finish this thing'));
+          Get.dialog(Text(
+              'Bro Game is over! what are we waiting for? Lets finish this thing'));
         }
       }, onError: (err) {
         isProcessing(false);
