@@ -7,7 +7,7 @@ import 'package:gcms/app/modules/utils/base_provider.dart';
 import 'package:gcms/app/services/slack_logger.dart';
 import 'package:gcms/constants/constant.dart';
 
-import '../scorecard_model.dart';
+import '../models/scorecard_model.dart';
 
 class ScorecardProvider extends BaseProvider {
   Future<Scorecard> addScorecard(data, roundId, userId) async {

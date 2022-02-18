@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gcms/app/modules/Events/events_model.dart';
+import 'package:gcms/app/modules/Events/models/events_model.dart';
 
 class EventItem extends StatelessWidget {
   final Events event;

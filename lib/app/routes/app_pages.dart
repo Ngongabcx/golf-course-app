@@ -5,12 +5,8 @@ import '../modules/ActiveGameScreen/views/active_game_screen_view.dart';
 import '../modules/Authentication/bindings/login_binding.dart';
 import '../modules/Authentication/views/login_view.dart';
 import '../modules/Authentication/views/sign_up_view.dart';
-import '../modules/CoursesScreen/bindings/course_binding.dart';
-import '../modules/CoursesScreen/views/course_view.dart';
 import '../modules/Events/bindings/events_binding.dart';
 import '../modules/Events/views/events_view.dart';
-import '../modules/EventsScreen/bindings/event_screen_binding.dart';
-import '../modules/EventsScreen/views/event_screen_view.dart';
 import '../modules/Messages/bindings/messages_binding.dart';
 import '../modules/Messages/views/messages_view.dart';
 import '../modules/Notifications/bindings/notifications_binding.dart';
@@ -22,8 +18,6 @@ import '../modules/SettingScreen/bindings/setting_screen_binding.dart';
 import '../modules/SettingScreen/views/setting_screen_view.dart';
 import '../modules/TournamentsScreen/bindings/tournaments_screen_binding.dart';
 import '../modules/TournamentsScreen/views/tournaments_screen_view.dart';
-import '../modules/ViewPlayersScreen/bindings/view_players_screen_binding.dart';
-import '../modules/ViewPlayersScreen/views/view_players_screen_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/home/views/match_invites_screen_view.dart';
@@ -76,11 +70,6 @@ class AppPages {
       binding: NotificationsBinding(),
     ),
     GetPage(
-      name: _Paths.VIEW_PLAYERS_SCREEN,
-      page: () => ViewPlayersScreenView(),
-      binding: ViewPlayersScreenBinding(),
-    ),
-    GetPage(
       name: _Paths.RESULTS_SCREEN,
       page: () => ResultsScreenView(),
       binding: ResultsScreenBinding(),
@@ -96,19 +85,9 @@ class AppPages {
       binding: HomeBinding(),
     ),
     GetPage(
-      name: _Paths.COURSE,
-      page: () => CourseView(),
-      binding: CourseBinding(),
-    ),
-    GetPage(
       name: _Paths.MESSAGES,
       page: () => MessagesView(),
       binding: MessagesBinding(),
-    ),
-    GetPage(
-      name: _Paths.EVENT_SCREEN,
-      page: () => EventScreenView(),
-      binding: EventScreenBinding(),
     ),
     GetPage(
       name: _Paths.TOURNAMENTS_SCREEN,

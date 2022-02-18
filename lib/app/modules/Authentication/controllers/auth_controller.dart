@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/Authentication/providers/auth_provider.dart';
 import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
+import 'package:gcms/app/modules/home/models/user_model.dart';
 import 'package:gcms/app/modules/home/providers/user_provider.dart';
-import 'package:gcms/app/modules/home/user_model.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:jwt_decode/jwt_decode.dart';

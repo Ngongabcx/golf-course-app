@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gcms/app/modules/Events/course.dart';
+import 'package:gcms/app/modules/Events/models/course.dart';
 
 import 'event_item.dart';
 

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/Authentication/controllers/auth_controller.dart';
-import 'package:gcms/app/modules/SettingScreen/views/buildPictureFormBuilder.dart';
+import 'package:gcms/app/modules/SettingScreen/views/widgets/image_picker.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 
-import 'buildSignUp.dart';
-import 'buildUserDetails.dart';
+import '../widgets/buildSignUp.dart';
+import '../widgets/buildUserDetails.dart';
 
 final signUpController = Get.put(AuthenticationController());
 

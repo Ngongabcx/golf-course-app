@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gcms/app/modules/Events/controllers/events_controller.dart';
-import 'package:gcms/app/modules/Events/course.dart';
+import 'package:gcms/app/modules/Events/models/course.dart';
 import 'package:gcms/constants/constant.dart';
 import 'package:get/get.dart';
 

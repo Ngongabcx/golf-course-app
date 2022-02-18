@@ -6,7 +6,7 @@ import 'package:gcms/app/modules/utils/base_provider.dart';
 import 'package:gcms/app/services/slack_logger.dart';
 import 'package:gcms/constants/constant.dart';
 
-import '../user_model.dart';
+import '../models/user_model.dart';
 
 class UserProvider extends BaseProvider {
   Future<Auth> refreshToken(Map data) async {
@@ -135,10 +135,10 @@ class UserProvider extends BaseProvider {
           "An error occured please check your internet connection.".toString());
     }
   }
-     Future<Auth> deleteUser(String id) async {
+
+  Future<Auth> deleteUser(String id) async {
     try {
-      final response = await dio
-          .delete("$kNewApiBaseURL/api/users/$id");
+      final response = await dio.delete("$kNewApiBaseURL/api/users/$id");
       Map<String, dynamic> resp = jsonDecode(response.data.toString());
       return Auth.fromJson(resp);
     } on DioError catch (exception) {

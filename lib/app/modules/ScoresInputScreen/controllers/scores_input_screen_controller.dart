@@ -36,7 +36,7 @@ class ScoresInputScreenController extends GetxController {
   void onClose() {}
 
   void extractGameHolesArray(
-      Payload competition, RoundPlayer? competitionPlayer) {
+      Payload competition, RoundPlayer? competitionPlayer) async {
     print("EXTRACT GAME HOLES HAS BEEN CALLED!!!!");
     var totalHoles = competition.gameHoles;
     remainingHoles.value = totalHoles!;
@@ -67,7 +67,7 @@ class ScoresInputScreenController extends GetxController {
         var nextHoleIndex = gameHoles.indexOf(nxtHoleInGameHoles);
         print("NEXT HOLE INDEX IN LIST IS --> $nextHoleIndex");
         holeIndex.value = nextHoleIndex;
-        remainingHoles.value = totalHoles-(nextHoleIndex+1);
+        remainingHoles.value = totalHoles - (nextHoleIndex + 1);
       } else {
         //this is the back nine logic i.e starting hole is 10 ending at 1
         count.value = 10;
@@ -97,7 +97,7 @@ class ScoresInputScreenController extends GetxController {
         var nextHoleIndex = gameHoles.indexOf(nxtHoleInGameHoles);
         print("NEXT HOLE INDEX IN LIST IS --> $nextHoleIndex");
         holeIndex.value = nextHoleIndex;
-        remainingHoles.value = totalHoles-(nextHoleIndex+1);
+        remainingHoles.value = totalHoles - (nextHoleIndex + 1);
       }
       print("GAME HOLES ----> ${gameHoles.first}");
     } else {
@@ -120,7 +120,7 @@ class ScoresInputScreenController extends GetxController {
         var nextHoleIndex = gameHoles.indexOf(nxtHoleInGameHoles);
         print("NEXT HOLE INDEX IN LIST IS --> $nextHoleIndex");
         holeIndex.value = nextHoleIndex;
-        remainingHoles.value = totalHoles-(nextHoleIndex+1);
+        remainingHoles.value = totalHoles - (nextHoleIndex + 1);
       } else {
         //starting hole is 10
         count.value = 10;
@@ -139,7 +139,7 @@ class ScoresInputScreenController extends GetxController {
         var nextHoleIndex = gameHoles.indexOf(nxtHoleInGameHoles);
         print("NEXT HOLE INDEX IN LIST IS --> $nextHoleIndex");
         holeIndex.value = nextHoleIndex;
-        remainingHoles.value = totalHoles-(nextHoleIndex+1);
+        remainingHoles.value = totalHoles - (nextHoleIndex + 1);
       }
     }
     hcp.value = competitionPlayer.recordingScoresFor!.hcp!;

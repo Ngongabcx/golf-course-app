@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gcms/app/modules/ActiveGameScreen/views/competition_card.dart';
-import 'package:gcms/app/modules/ActiveGameScreen/views/search_card.dart';
+import 'package:gcms/app/modules/ActiveGameScreen/views/widgets/competition_card.dart';
+import 'package:gcms/app/modules/ActiveGameScreen/views/widgets/search_card.dart';
 import 'package:gcms/app/modules/SettingScreen/views/setting_screen_view.dart';
 import 'package:gcms/app/modules/commonWidgets/loader/loader.dart';
 import 'package:gcms/constants/constant.dart';

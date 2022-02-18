@@ -8,7 +8,7 @@ import 'package:gcms/app/modules/home/controllers/home_controller.dart';
 import 'package:gcms/constants/constant.dart';
 import 'package:get/get.dart';
 
-import 'matchInvitationsCard.dart';
+import 'widgets/matchInvitationsCard.dart';
 
 class MatchInvitesScreenView extends GetView<HomeController> {
   final _controller = Get.put(HomeController());

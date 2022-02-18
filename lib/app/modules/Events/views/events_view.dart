@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gcms/app/modules/ActiveGameScreen/views/search_card.dart';
-import 'package:gcms/app/modules/Events/course.dart';
+import 'package:gcms/app/modules/ActiveGameScreen/views/widgets/search_card.dart';
+import 'package:gcms/app/modules/Events/models/course.dart';
 import 'package:gcms/app/modules/Events/views/widgets/event_filter_list.dart';
 import 'package:gcms/app/modules/Events/views/widgets/event_list_view.dart';
 import 'package:gcms/app/modules/SettingScreen/views/setting_screen_view.dart';

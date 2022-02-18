@@ -3,8 +3,8 @@ import 'package:gcms/app/modules/ActiveGameScreen/views/competition_detail_view.
 import 'package:gcms/app/modules/SetupScreen/providers/competition_provider.dart';
 import 'package:gcms/app/modules/SetupScreen/providers/course_provider.dart';
 import 'package:gcms/app/modules/commonWidgets/snackbar.dart';
+import 'package:gcms/app/modules/home/models/user_model.dart' as userModel;
 import 'package:gcms/app/modules/home/providers/user_provider.dart';
-import 'package:gcms/app/modules/home/user_model.dart' as userModel;
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
@@ -136,7 +136,7 @@ class SetupScreenController extends GetxController {
     }
   }
 
-  Future<int> computeEndingHole(int totalholes, int starthole) async{
+  Future<int> computeEndingHole(int totalholes, int starthole) async {
     if (totalholes == 18) {
       if (starthole == 1) {
         return 18;

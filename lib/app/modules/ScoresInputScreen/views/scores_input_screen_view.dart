@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gcms/app/components/circle_image.dart';
 import 'package:gcms/app/components/round_button_widget.dart';
-import 'package:gcms/app/modules/ActiveGameScreen/views/update_score_button.dart';
-import 'package:gcms/app/modules/ScoresInputScreen/views/result_widget.dart';
-import 'package:gcms/app/modules/ScoresInputScreen/views/score_widget.dart';
+import 'package:gcms/app/modules/ActiveGameScreen/views/widgets/update_score_button.dart';
+import 'package:gcms/app/modules/ScoresInputScreen/views/widgets/result_widget.dart';
+import 'package:gcms/app/modules/ScoresInputScreen/views/widgets/score_widget.dart';
 import 'package:gcms/app/modules/SetupScreen/competition_model.dart';
 import 'package:gcms/app/modules/commonWidgets/customButton.dart';
 import 'package:gcms/app/modules/commonWidgets/loader/loader.dart';

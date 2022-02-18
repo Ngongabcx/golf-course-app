@@ -52,7 +52,7 @@ class CompetitionCard extends StatelessWidget {
                     height: 2,
                   ),
                   Text(
-                    '${DateFormat.yMMMMd().format(competition.compDate!)} at ${competition.compTime}',
+                    '${DateFormat.yMMMMd().format(competition.compDate!)} at ${competition.compTime} hrs',
                     style: Theme.of(context).textTheme.bodyText2,
                   ),
                   SizedBox(

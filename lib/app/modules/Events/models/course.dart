@@ -1,4 +1,4 @@
-import 'package:gcms/app/modules/Events/events_model.dart';
+import 'package:gcms/app/modules/Events/models/events_model.dart';
 
 class Course {
   String courseName;

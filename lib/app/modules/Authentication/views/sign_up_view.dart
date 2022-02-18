@@ -6,8 +6,8 @@ import 'package:gcms/constants/constant.dart';
 import 'package:gcms/theme/gcms_theme.dart';
 import 'package:get/get.dart';
 
+import '../widgets/form_submit.dart';
 import 'build_step.dart';
-import 'form_submit.dart';
 
 class SignUpView extends GetView<AuthenticationController> {
   final signUpController = Get.put(AuthenticationController());

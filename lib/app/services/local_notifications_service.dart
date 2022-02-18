@@ -1,10 +1,9 @@
-
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:gcms/app/modules/Messages/controllers/messages_controller.dart';
 import 'package:gcms/app/modules/Notifications/models/notification_model.dart';
 import 'package:gcms/app/modules/Notifications/providers/database/notifications_database.dart';
-import 'package:gcms/app/modules/ScoresInputScreen/views/confirm_results_screen.dart';
+import 'package:gcms/app/modules/ScoresInputScreen/views/widgets/confirm_results_screen.dart';
 import 'package:get/get.dart';
 
 class LocalNotificationsService {
@@ -20,7 +19,7 @@ class LocalNotificationsService {
         onSelectNotification: (String? details) async {
       if (details != null) {
         print("U R L is not EMPTY------------------------$details");
-        Get.to(()=>ConfirmResultsScreenView(details));
+        Get.to(() => ConfirmResultsScreenView(details));
       } else {
         print("U R L is EMPTY------------------------");
         Get.defaultDialog(

@@ -7,7 +7,7 @@ import 'package:gcms/app/modules/commonWidgets/custom_date_time_picker.dart.dart
 import 'package:gcms/app/modules/commonWidgets/list_string_dropdown.dart';
 import 'package:gcms/app/modules/commonWidgets/loader/loader.dart';
 import 'package:gcms/app/modules/commonWidgets/textFormField.dart';
-import 'package:gcms/app/modules/home/user_model.dart';
+import 'package:gcms/app/modules/home/models/user_model.dart';
 import 'package:gcms/constants/constant.dart';
 import 'package:gcms/theme/gcms_theme.dart';
 import 'package:get/get.dart';

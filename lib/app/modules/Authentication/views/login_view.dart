@@ -9,7 +9,7 @@ import 'package:gcms/theme/gcms_theme.dart';
 import 'package:get/get.dart';
 
 import '../controllers/auth_controller.dart';
-import 'login_form_view.dart';
+import '../widgets/login_form_view.dart';
 
 class LoginView extends GetView<AuthenticationController> {
   final _controller = Get.put(AuthenticationController());

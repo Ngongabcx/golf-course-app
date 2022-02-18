@@ -3,7 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gcms/constants/constant.dart';
 import 'package:get/get.dart';
 
-import 'card.dart';
+import 'widgets/card.dart';
 
 class ExploreScreenView extends GetView {
   @override

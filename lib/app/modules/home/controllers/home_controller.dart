@@ -13,7 +13,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:jwt_decode/jwt_decode.dart';
 
-import '../user_model.dart';
+import '../models/user_model.dart';
 
 class HomeController extends GetxController {
   final keyRefresh = GlobalKey<RefreshIndicatorState>();
@@ -29,7 +29,6 @@ class HomeController extends GetxController {
   var page = 1;
   static List<Widget> pages = <Widget>[
     ExploreScreenView(),
-    Icon(Icons.check),
     MessagesView(),
   ];
   @override

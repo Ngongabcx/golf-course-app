@@ -61,13 +61,6 @@ class HomeView extends GetView<HomeController> {
             ),
             BottomNavigationBarItem(
               icon: Icon(
-                Icons.leaderboard_outlined,
-                color: Colors.black,
-              ),
-              label: 'Leaderboard',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
                 Icons.notifications_outlined,
                 color: Colors.black,
               ),
