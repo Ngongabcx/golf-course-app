@@ -140,34 +140,6 @@ class SettingScreenController extends GetxController {
   @override
   void onClose() {}
 
-  void createUser(Map data) {
-    try {
-      isProcessing(true);
-      UserProvider().createUser(data).then((resp) {
-        clearTextEditingControllers();
-        isProcessing(false);
-        ShowSnackBar(
-            title: "Success",
-            message: "User Successfully Created.",
-            backgroundColor: Colors.green);
-        Get.offAllNamed('/home');
-      }, onError: (err) {
-        isProcessing(false);
-        ShowSnackBar(
-            title: "Error",
-            message: err.toString(),
-            backgroundColor: Colors.red);
-      });
-    } catch (exception) {
-      isProcessing(false);
-      print("<---------EXCEPTION2--------->" + exception.toString());
-      ShowSnackBar(
-          title: "Exception",
-          message: exception.toString(),
-          backgroundColor: Colors.red);
-    }
-  }
-
   void updateUserDetails(Map data, String id) {
     try {
       isProcessing(true);

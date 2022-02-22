@@ -39,7 +39,10 @@ class SettingScreenView extends GetView<SettingScreenController> {
                       SettingsTile(
                         title: 'User Details',
                         subtitle: 'User Details',
-                        leading: Icon(Icons.account_circle_outlined),
+                        leading: Icon(
+                          Icons.account_circle_outlined,
+                          color: Colors.black,
+                        ),
                         onPressed: (BuildContext context) {
                           Get.to(() => EditUserDetailsView());
                         },
@@ -47,7 +50,10 @@ class SettingScreenView extends GetView<SettingScreenController> {
                       SettingsTile(
                         title: 'Password',
                         subtitle: 'Edit Password',
-                        leading: Icon(Icons.password_outlined),
+                        leading: Icon(
+                          Icons.password_outlined,
+                          color: Colors.black,
+                        ),
                         onPressed: (BuildContext context) {
                           Get.to(() => EditLoginDetailsView());
                         },
@@ -61,7 +67,10 @@ class SettingScreenView extends GetView<SettingScreenController> {
                       SettingsTile(
                         title: 'Notifications',
                         subtitle: 'Get updates on whats going on',
-                        leading: Icon(Icons.notifications_none_outlined),
+                        leading: Icon(
+                          Icons.notifications_none_outlined,
+                          color: Colors.black,
+                        ),
                         onPressed: (BuildContext context) {
                           Get.to(() => MessagesView());
                         },
@@ -75,7 +84,10 @@ class SettingScreenView extends GetView<SettingScreenController> {
                       SettingsTile(
                         title: 'Appearance',
                         subtitle: 'Change to light mode or dark mode',
-                        leading: Icon(FontAwesomeIcons.moon),
+                        leading: Icon(
+                          FontAwesomeIcons.moon,
+                          color: Colors.black,
+                        ),
                         onPressed: (BuildContext context) {},
                       ),
                     ],
@@ -87,7 +99,10 @@ class SettingScreenView extends GetView<SettingScreenController> {
                       SettingsTile(
                         title: 'Fingerprint',
                         subtitle: 'Use fingerprint',
-                        leading: Icon(Icons.fingerprint),
+                        leading: Icon(
+                          Icons.fingerprint,
+                          color: Colors.black,
+                        ),
                         enabled:
                             _controller.storage.read("hasFingerPrintLock") ??
                                 false,
@@ -100,6 +115,7 @@ class SettingScreenView extends GetView<SettingScreenController> {
                         subtitle: 'Use face Id',
                         leading: Icon(
                           BcxIcons.face_id,
+                          color: Colors.black,
                           size: 30.0,
                         ),
                         enabled:
@@ -117,7 +133,10 @@ class SettingScreenView extends GetView<SettingScreenController> {
                       SettingsTile(
                         title: 'Additional Resources',
                         subtitle: 'Review other places for helpful information',
-                        leading: Icon(Icons.more_horiz_outlined),
+                        leading: Icon(
+                          Icons.more_horiz_outlined,
+                          color: Colors.black,
+                        ),
                         onPressed: (BuildContext context) {},
                       ),
                     ],
@@ -129,7 +148,10 @@ class SettingScreenView extends GetView<SettingScreenController> {
                       SettingsTile(
                         title: 'Sign Out',
                         subtitle: 'Leave the application',
-                        leading: Icon(Icons.exit_to_app),
+                        leading: Icon(
+                          Icons.exit_to_app,
+                          color: Colors.black,
+                        ),
                         onPressed: (BuildContext context) {
                           _controller.storage.erase();
                           Get.offAllNamed('/login');

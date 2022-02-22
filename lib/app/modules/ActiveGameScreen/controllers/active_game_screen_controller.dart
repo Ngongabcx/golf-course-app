@@ -38,7 +38,9 @@ class ActiveGameScreenController extends GetxController {
     print('GET ACTIVE MATCHES CALLED');
     try {
       isProcessing(true);
-      await ActiveGamesProvider().getActiveMatches(page,storage.read("userId")).then((resp) async {
+      await ActiveGamesProvider()
+          .getActiveMatches(page, storage.read("userId"))
+          .then((resp) async {
         matches.value = resp;
         matchList.addAll(resp.payload!);
         matchList.removeWhere((item) => item.isTournament == true);
@@ -85,7 +87,9 @@ class ActiveGameScreenController extends GetxController {
 
     try {
       isProcessing(true);
-      await ActiveGamesProvider().getActiveMatches(page,storage.read("userId")).then((resp) {
+      await ActiveGamesProvider()
+          .getActiveMatches(page, storage.read("userId"))
+          .then((resp) {
         matchList.addAll(resp.payload!);
         if (matches.value.payload!.length > 0) {
           isMoreDataAvailable(true);

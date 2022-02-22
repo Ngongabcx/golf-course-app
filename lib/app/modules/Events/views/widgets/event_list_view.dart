@@ -1,37 +1,43 @@
 import 'package:flutter/material.dart';
-import 'package:gcms/app/modules/Events/models/course.dart';
+import 'package:gcms/app/modules/Events/controllers/events_controller.dart';
+import 'package:get/get.dart';
 
 import 'event_item.dart';
 
 class EventListView extends StatelessWidget {
+  final _controller = Get.put(EventsController());
   final int selected;
   final Function callback;
   final PageController pageController;
-  final Course events;
 
-  EventListView(this.selected, this.callback, this.pageController, this.events);
+  // final Course events;
+
+  EventListView(this.selected, this.callback, this.pageController);
 
   @override
   Widget build(BuildContext context) {
-    final category = events.event.keys.toList();
+    // final category = events.event.keys.toList();
+    final events = _controller.eventList;
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 25),
-      child: PageView(
-        controller: pageController,
-        onPageChanged: (index) => callback(index),
-        children: category
-            .map(
-              (e) => ListView.separated(
+      child: Obx(() {
+        return PageView(
+          controller: pageController,
+          onPageChanged: (index) => callback(index),
+          children: events
+              .map(
+                (e) => ListView.separated(
                   padding: EdgeInsets.zero,
-                  itemBuilder: (context, index) =>
-                      EventItem(events.event[category[selected]]![index]),
+                  itemBuilder: (context, index) => EventItem(events[index]),
                   separatorBuilder: (_, index) => SizedBox(
-                        height: 15,
-                      ),
-                  itemCount: events.event[category[selected]]!.length),
-            )
-            .toList(),
-      ),
+                    height: 15,
+                  ),
+                  itemCount: events.length,
+                ),
+              )
+              .toList(),
+        );
+      }),
     );
   }
 }

@@ -117,8 +117,8 @@ class SignUpView extends GetView<AuthenticationController> {
                                           .toString(),
                                     });
                                   }
-                                  Get.offAllNamed("/home");
                                 }
+
                                 if (signUpController.currentStep.value == 0) {
                                   print("Validate aspUser details");
                                   if (signupSubmitForm()) {

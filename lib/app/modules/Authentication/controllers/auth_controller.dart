@@ -223,6 +223,7 @@ class AuthenticationController extends GetxController {
         print("DECODED TOKEN INFORMATION ---> $tkn");
         storage.write("aspUserID", tkn['Id']);
         print("ASP USER ID READ FROM STORAGE --> ${storage.read("aspUserID")}");
+        Get.offAllNamed("/home");
       }, onError: (err) {
         isProcessing(false);
         ShowSnackBar(

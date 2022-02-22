@@ -64,7 +64,7 @@ class ActiveGameScreenView extends GetView<ActiveGameScreenController> {
                             ? Center(
                                 child: Text(
                                   "No Matches.",
-                                  style: Theme.of(context).textTheme.headline3,
+                                  style: Theme.of(context).textTheme.bodyText2,
                                 ),
                               )
                             : Padding(
